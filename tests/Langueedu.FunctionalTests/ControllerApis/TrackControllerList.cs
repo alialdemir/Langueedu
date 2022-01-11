@@ -26,4 +26,3 @@ public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<We
         Assert.NotNull(result.Value);
     }
 }
-

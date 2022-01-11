@@ -26,7 +26,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Langueedu.Infrastructure\Langueedu.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Core\Langueedu.Core\Langueedu.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Langueedu.Infrastructure\Langueedu.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   
   <ItemGroup>

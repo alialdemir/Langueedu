@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Langueedu.UnitTests\Langueedu.UnitTests.csproj" />
+    <ProjectReference Include="..\..\src\Core\Langueedu.Infrastructure\Langueedu.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -47,6 +47,8 @@
     <None Remove="Specifications\Track\" />
     <None Remove="Features\Queries\Track\" />
     <None Remove="Features\Queries\Track\GetTrackDetailById\" />
+    <None Remove="Entities\User\" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -65,5 +67,6 @@
     <Folder Include="Specifications\Track\" />
     <Folder Include="Features\Queries\Track\" />
     <Folder Include="Features\Queries\Track\GetTrackDetailById\" />
+    <Folder Include="Entities\User\" />
   </ItemGroup>
 </Project>

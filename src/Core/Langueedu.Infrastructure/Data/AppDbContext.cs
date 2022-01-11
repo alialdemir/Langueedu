@@ -2,11 +2,12 @@
 using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.SharedKernel;
 using MediatR;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Langueedu.Infrastructure.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<User>
 {
     private readonly IMediator? _mediator;
 

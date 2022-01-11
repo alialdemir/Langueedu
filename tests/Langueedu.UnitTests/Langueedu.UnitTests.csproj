@@ -25,6 +25,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\..\src\Langueedu.API\Langueedu.API.csproj" />
+    <ProjectReference Include="..\..\src\Core\Langueedu.Core\Langueedu.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

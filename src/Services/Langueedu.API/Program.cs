@@ -68,10 +68,12 @@ else
 }
 app.UseRouting();
 
+
 app.UseDefaultFiles();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCookiePolicy();
+app.ConfigureInfrastructure();
 
 // Enable middleware to serve generated Swagger as a JSON endpoint.
 app.UseSwagger();
