@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Langueedu.Web": {
+    "Langueedu.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

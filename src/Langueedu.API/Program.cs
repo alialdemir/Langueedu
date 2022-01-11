@@ -5,7 +5,7 @@ using Autofac.Extensions.DependencyInjection;
 using Langueedu.Core;
 using Langueedu.Infrastructure;
 using Langueedu.Infrastructure.Data;
-using Langueedu.Web;
+using Langueedu.API;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 

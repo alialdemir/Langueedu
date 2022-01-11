@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Langueedu.Web.Controllers;
+namespace Langueedu.API.Controllers;
 
 public class PlaylistsController : BaseApiController
 {

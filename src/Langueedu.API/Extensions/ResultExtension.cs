@@ -2,7 +2,7 @@
 using Ardalis.Result;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Langueedu.Web
+namespace Langueedu.API
 {
     public static class ResultExtension
     {

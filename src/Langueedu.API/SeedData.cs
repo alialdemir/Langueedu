@@ -3,7 +3,7 @@ using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Langueedu.Web;
+namespace Langueedu.API;
 
 public static class SeedData
 {

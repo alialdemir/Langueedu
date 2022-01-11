@@ -2,7 +2,7 @@
 using Ardalis.Result;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Langueedu.Web.Controllers;
+namespace Langueedu.API.Controllers;
 
 /// <summary>
 /// If your API controllers will use a consistent route convention and the [ApiController] attribute (they should)
