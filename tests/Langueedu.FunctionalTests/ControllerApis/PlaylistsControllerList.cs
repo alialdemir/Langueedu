@@ -1,14 +1,15 @@
 ﻿using Ardalis.HttpClientTestExtensions;
 using Ardalis.Result;
 using Langueedu.SharedKernel.ViewModels;
-using Langueedu.Web;
+using Langueedu.API;
 using Xunit;
 
 namespace Langueedu.FunctionalTests.ControllerApis;
 
-[Collection("Sequential")]
+[Collection("PlaylistSequential")]
 public class PlaylistsControllerList : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
+
     private readonly HttpClient _client;
 
     public PlaylistsControllerList(CustomWebApplicationFactory<WebMarker> factory)
@@ -17,11 +18,11 @@ public class PlaylistsControllerList : IClassFixture<CustomWebApplicationFactory
     }
 
     [Fact]
-    public async Task ReturnsOnePlaylist()
+    public async Task ReturnsAnyItemsPlaylists()
     {
-        var result = await _client.GetAndDeserialize<Result<IEnumerable<PlaylistViewModel>>>("/api/playlist");
+        var result = await _client.GetAndDeserialize<Result<IEnumerable<PlaylistViewModel>>>("/api/playlists");
 
-        Assert.Single(result.Value);
+        Assert.True(result.Value.Any());
 
 #nullable disable
         Assert.NotNull(result.Value.FirstOrDefault().Tracks);

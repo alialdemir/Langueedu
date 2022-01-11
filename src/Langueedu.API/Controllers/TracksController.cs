@@ -7,7 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Langueedu.API.Controllers
 {
-    public class TracksController
+    public class TracksController : BaseApiController
     {
         private readonly IMediator _mediator;
 

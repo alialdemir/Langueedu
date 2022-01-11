@@ -9,28 +9,29 @@ namespace Langueedu.UnitTests.Core.Services
 {
     public class TrackService_GetTrackDetail
     {
-        private Mock<IReadRepository<Playlist>> _mockRepo = new Mock<IReadRepository<Playlist>>();
-        private PlaylistService _searchService;
+        private Mock<IReadRepository<Track>> _mockRepo = new Mock<IReadRepository<Track>>();
+        private TrackService _trackService;
 
         public TrackService_GetTrackDetail()
         {
-            _searchService = new PlaylistService(_mockRepo.Object);
+            _trackService = new TrackService(_mockRepo.Object);
         }
 
         [Fact]
-        public async Task ReturnsPlaylistDetailGivenByPlaylistId()
+        public async Task ReturnsTrackDetailGivenByTrackId()
         {
-            var result = await _searchService.GetPlaylistDetailByIdAsync(1);
+            var result = await _trackService.GetTrackDetailByIdAsync(1);
 
             Assert.Equal(Ardalis.Result.ResultStatus.Ok, result.Status);
         }
-        [Fact]
-        public void ThrowsExceptionGivenNegativeOrZeroTrack()
-        {
-            Action action = () => _searchService.GetPlaylistDetailByIdAsync(0);
 
-            var ex = Assert.Throws<ArgumentNullException>(action);
-            Assert.Equal("playlistId", ex.ParamName);
+        [Fact]
+        public async Task ReturnsErrorIfGivenIdIsZero()
+        {
+            var result = await _trackService.GetTrackDetailByIdAsync(0);
+
+            Assert.Equal(Ardalis.Result.ResultStatus.Invalid, result.Status);
+            Assert.True(result.ValidationErrors.Any());
         }
     }
 }

@@ -35,10 +35,14 @@ public static class SeedData
         }
         dbContext.SaveChanges();
 
+        Track.Id = 1;
+
         Track
         .ChangeContentStatus(ContentStatus.Active)
         .AddPerformsOnSong(Artist)
         .AddPerformsOnSong(ArtistBeduk);
+
+        Album.Id = 1;
 
         Album
         .ChangeContentStatus(ContentStatus.Active)
@@ -48,6 +52,7 @@ public static class SeedData
         .ChangeContentStatus(ContentStatus.Active)
         .AddAlbum(Album);
 
+        Playlist.Id = 1;
 
         Playlist
         .ChangeContentStatus(ContentStatus.Active)

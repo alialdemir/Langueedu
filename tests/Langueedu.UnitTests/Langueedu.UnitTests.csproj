@@ -24,7 +24,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Langueedu.Web\Langueedu.Web.csproj" />
+    <ProjectReference Include="..\..\src\Langueedu.API\Langueedu.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
