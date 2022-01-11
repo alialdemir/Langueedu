@@ -1,19 +1,19 @@
-﻿using Langueedu.Core.Features.Queries.Playlist;
+﻿using Langueedu.Core.Features.Queries.Playlist.GetAllPlaylist;
 using Langueedu.Core.Interfaces;
 using Moq;
 using Xunit;
 
 namespace Langueedu.UnitTests.Core.Handlers;
 
-public class GetAllPlaylistQueryHandlerHandle
+public class GetAllPlaylistsQueryHandlerHandle
 {
-    private GetAllPlaylistQueryHandler _handler;
+    private GetAllPlaylistsQueryHandler _handler;
     private Mock<IPlaylistService> _playlistServiceMock;
 
-    public GetAllPlaylistQueryHandlerHandle()
+    public GetAllPlaylistsQueryHandlerHandle()
     {
         _playlistServiceMock = new Mock<IPlaylistService>();
-        _handler = new GetAllPlaylistQueryHandler(_playlistServiceMock.Object);
+        _handler = new GetAllPlaylistsQueryHandler(_playlistServiceMock.Object);
     }
 
     [Fact]
@@ -27,9 +27,9 @@ public class GetAllPlaylistQueryHandlerHandle
     [Fact]
     public async Task SendsGetAllPlaylistGivenEventInstance()
     {
-        await _handler.Handle(new GetAllPlaylistQuery(), CancellationToken.None);
+        await _handler.Handle(new GetAllPlaylistsQuery(), CancellationToken.None);
 
-        _playlistServiceMock.Verify(sender => sender.GetAllPlaylistAsync());
+        _playlistServiceMock.Verify(sender => sender.GetAllPlaylistsAsync());
     }
 }
 

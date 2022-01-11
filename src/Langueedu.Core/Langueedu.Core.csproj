@@ -41,6 +41,12 @@
     <None Remove="FluentValidation.AspNetCore" />
     <None Remove="Ardalis.Result.FluentValidation" />
     <None Remove="Entities\" />
+    <None Remove="Features\Queries\Playlist\GetAllPlaylist\" />
+    <None Remove="Features\Queries\Playlist\GetPlaylistDetailById\" />
+    <None Remove="Specifications\Playlist\" />
+    <None Remove="Specifications\Track\" />
+    <None Remove="Features\Queries\Track\" />
+    <None Remove="Features\Queries\Track\GetTrackDetailById\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -54,5 +60,10 @@
     <Folder Include="Features\Queries\Playlist\" />
     <Folder Include="Validations\" />
     <Folder Include="Entities\" />
+    <Folder Include="Features\Queries\Playlist\GetAllPlaylist\" />
+    <Folder Include="Specifications\Playlist\" />
+    <Folder Include="Specifications\Track\" />
+    <Folder Include="Features\Queries\Track\" />
+    <Folder Include="Features\Queries\Track\GetTrackDetailById\" />
   </ItemGroup>
 </Project>

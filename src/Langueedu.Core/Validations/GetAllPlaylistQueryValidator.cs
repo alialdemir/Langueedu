@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
 using Langueedu.Core.Features.Queries.Playlist;
+using Langueedu.Core.Features.Queries.Playlist.GetAllPlaylist;
 
 namespace Langueedu.Core.Validations
 {
-    public class GetAllPlaylistCommandValidator : AbstractValidator<GetAllPlaylistQuery>
+    public class GetAllPlaylistQueryValidator : AbstractValidator<GetAllPlaylistsQuery>
     {
-        public GetAllPlaylistCommandValidator()
+        public GetAllPlaylistQueryValidator()
         {
             // RuleFor(p => p.CategoryName)
             //     .NotNull()

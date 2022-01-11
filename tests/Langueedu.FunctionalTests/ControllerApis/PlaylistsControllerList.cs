@@ -7,11 +7,11 @@ using Xunit;
 namespace Langueedu.FunctionalTests.ControllerApis;
 
 [Collection("Sequential")]
-public class PlaylistControllerList : IClassFixture<CustomWebApplicationFactory<WebMarker>>
+public class PlaylistsControllerList : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
     private readonly HttpClient _client;
 
-    public PlaylistControllerList(CustomWebApplicationFactory<WebMarker> factory)
+    public PlaylistsControllerList(CustomWebApplicationFactory<WebMarker> factory)
     {
         _client = factory.CreateClient();
     }

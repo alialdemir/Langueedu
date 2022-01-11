@@ -7,7 +7,7 @@ namespace Langueedu.Core.Interfaces
 {
     public interface IPlaylistService
     {
-        Task<Result<IEnumerable<PlaylistViewModel>>> GetAllPlaylistAsync();
+        Task<Result<IEnumerable<PlaylistViewModel>>> GetAllPlaylistsAsync();
     }
 }
 

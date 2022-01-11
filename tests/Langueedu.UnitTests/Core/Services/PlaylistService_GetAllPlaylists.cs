@@ -17,9 +17,9 @@ namespace Langueedu.UnitTests.Core.Services
         }
 
         [Fact]
-        public async Task ReturnsListGivenSearchString()
+        public async Task ReturnsListsGivenActivePlaylist()
         {
-            var result = await _searchService.GetAllPlaylistAsync();
+            var result = await _searchService.GetAllPlaylistsAsync();
 
             Assert.Equal(Ardalis.Result.ResultStatus.Ok, result.Status);
         }
