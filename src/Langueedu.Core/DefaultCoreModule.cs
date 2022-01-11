@@ -12,6 +12,11 @@ public class DefaultCoreModule : Module
            .RegisterType<PlaylistService>()
            .As<IPlaylistService>()
            .InstancePerLifetimeScope();
+
+        builder
+           .RegisterType<TrackService>()
+           .As<ITrackService>()
+           .InstancePerLifetimeScope();
     }
 }
 

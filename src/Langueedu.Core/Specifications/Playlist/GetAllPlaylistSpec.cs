@@ -47,8 +47,7 @@ public class GetAllPlaylistSpec : Specification<Playlist, PlaylistViewModel>
           })
           .ToList()
         })
-        .OrderByDescending(x => x.DisplayOrder)
-        .EnableCache(nameof(GetAllPlaylistSpec));
+        .OrderByDescending(x => x.DisplayOrder);
     }
 }
 

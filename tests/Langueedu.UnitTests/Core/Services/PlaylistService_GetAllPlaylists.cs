@@ -6,12 +6,12 @@ using Xunit;
 
 namespace Langueedu.UnitTests.Core.Services
 {
-    public class PlaylistService_GetAllPlaylist
+    public class PlaylistService_GetAllPlaylists
     {
         private Mock<IReadRepository<Playlist>> _mockRepo = new Mock<IReadRepository<Playlist>>();
         private PlaylistService _searchService;
 
-        public PlaylistService_GetAllPlaylist()
+        public PlaylistService_GetAllPlaylists()
         {
             _searchService = new PlaylistService(_mockRepo.Object);
         }
