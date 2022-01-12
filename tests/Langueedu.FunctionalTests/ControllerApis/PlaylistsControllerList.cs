@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Langueedu.FunctionalTests.ControllerApis;
 
-[Collection("PlaylistSequential")]
+[Collection("Sequential2")]
 public class PlaylistsControllerList : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
 

@@ -1,10 +1,11 @@
-﻿using Langueedu.Infrastructure.Data;
+﻿using Langueedu.API;
+using Langueedu.Infrastructure.Data;
 using Langueedu.UnitTests;
-using Langueedu.API;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,6 +15,8 @@ namespace Langueedu.FunctionalTests;
 
 public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
+    public bool IsMockAuthentication { get; set; } = true;
+
     /// <summary>
     /// Overriding CreateHost to avoid creating a separate ServiceProvider per this thread:
     /// https://github.com/dotnet-architecture/eShopOnWeb/issues/465
@@ -23,6 +26,7 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
     protected override IHost CreateHost(IHostBuilder builder)
     {
         var host = builder.Build();
+
         builder.ConfigureWebHost(ConfigureWebHost);
 
         // Get service provider.
@@ -53,6 +57,7 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
             }
         }
 
+
         host.Start();
         return host;
     }
@@ -70,6 +75,17 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
                 if (descriptor != null)
                 {
                     services.Remove(descriptor);
+                }
+
+                if (IsMockAuthentication)
+                {
+                    var basicAuth = services.SingleOrDefault(
+                                      s => s.ServiceType ==
+                                          typeof(JwtBearerHandler));
+
+                    services.Remove(basicAuth);
+
+                    services.AddTransient<IAuthenticationSchemeProvider, MockSchemeProvider>();
                 }
 
                 // This should be set for each individual test run

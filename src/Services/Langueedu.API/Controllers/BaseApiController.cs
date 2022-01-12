@@ -14,6 +14,4 @@ namespace Langueedu.API.Controllers;
 [Route("api/[controller]")]
 public abstract class BaseApiController : Controller
 {
-
 }
-

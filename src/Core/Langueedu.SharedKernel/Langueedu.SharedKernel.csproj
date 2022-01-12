@@ -16,5 +16,9 @@
     <None Remove="ViewModels\Base\" />
     <None Remove="ViewModels\Error\" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <None Remove="ViewModels\Identity\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Identity\" />
   </ItemGroup>
 </Project>

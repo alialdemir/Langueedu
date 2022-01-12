@@ -49,17 +49,18 @@ public static class StartupSetup
 
         var identityUrl = configuration.GetValue<string>("IdentityUrl");
         var audience = configuration.GetValue<string>("Audience");
+        var identitySecret = configuration.GetValue<string>("IdentitySecret");
 
         var builder = services.AddIdentityServer(options =>
-        {
-            options.IssuerUri = identityUrl;
-        })
-            .AddDeveloperSigningCredential()// not recommended for production - you need to store your key material somewhere secure
-            .AddInMemoryApiScopes(Config.GetApiScopes)
-            .AddInMemoryApiResources(Config.Apis)
-            .AddInMemoryClients(Config.Clients(identityUrl))
-            .AddInMemoryIdentityResources(Config.Ids)
-            .AddAspNetIdentity<User>();
+       {
+           options.IssuerUri = identityUrl;
+       })
+           .AddDeveloperSigningCredential()// not recommended for production - you need to store your key material somewhere secure
+           .AddInMemoryApiScopes(Config.GetApiScopes)
+           .AddInMemoryApiResources(Config.Apis)
+           .AddInMemoryClients(Config.Clients(identityUrl, identitySecret))
+           .AddInMemoryIdentityResources(Config.Ids)
+           .AddAspNetIdentity<User>();
 
         services
             .AddAuthentication(options =>
