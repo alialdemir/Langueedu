@@ -1,17 +1,87 @@
 ﻿@inherits LayoutComponentBase
+<!-- Loader ends-->
+<!-- page-wrapper Start-->
+<div class="page-wrapper">
+    <!-- Page Header Start-->
+    <div class="page-main-header">
+        <div class="main-header-right">
+            <div class="main-header-left text-center">
+                <div class="logo-wrapper">
+                    <a href="index.html"><img src="_content/Langueedu.Web.Pages/images/logo.png" width="112" height="35" alt="Langueedu" /></a>
+                </div>
+            </div>
+            <div class="mobile-sidebar">
+                <div class="media-body text-right switch-sm">
+                    <label class="switch ml-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-align-center font-primary" id="sidebar-toggle">
+                            <line x1="18" y1="10" x2="6" y2="10"></line>
+                            <line x1="21" y1="6" x2="3" y2="6"></line>
+                            <line x1="21" y1="14" x2="3" y2="14"></line>
+                            <line x1="18" y1="18" x2="6" y2="18"></line>
+                        </svg>
+                    </label>
+                </div>
+            </div>
+            <div class="vertical-mobile-sidebar">
+                <i class="fa fa-bars sidebar-bar"> </i>
+            </div>
+            <div class="nav-right col pull-right right-menu">
+                <ul class="nav-menus">
+                    <li>
+                        <form class="form-inline search-form" action="#" method="get">
+                            <div class="form-group">
+                                <div class="Typeahead Typeahead--twitterUsers">
+                                    <div class="u-posRelative">
+                                        <input class="Typeahead-input form-control-plaintext" id="demo-input"
+                                               type="text" name="q" placeholder="Search Your Product..." />
+                                        <div class="spinner-border Typeahead-spinner" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                    </div>
+                                    <div class="Typeahead-menu"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <!-- <li>
+                      <div class="text-dark toggleFullScreen">
+                        <i data-feather="maximize"></i>
+                      </div>
+                    </li> -->
 
-@namespace Langueedu.Web.Pages.Shared
-
-
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+                    <li class="onhover-dropdown">
+                        <span class="media user-header">
+                            <img class="img-fluid" src="_content/Langueedu.Web.Pages/images/user.png" width="167"
+                                 height="75" alt="User" />
+                        </span>
+                        <ul class="onhover-show-div profile-dropdown">
+                            <li class="gradient-primary">
+                                <h5 class="f-w-600 mb-0">Elana Saint</h5>
+                                <span>Web Designer</span>
+                            </li>
+                            <li><i data-feather="user"> </i>Profile</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-lg-none mobile-toggle pull-right">
+                    <i class="pe-7s-more"></i>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <main>
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <!-- Page Header Ends -->
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <Sidebar />
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">@Body</div>
+            <!-- Container-fluid Ends-->
+        </div>
+    </div>
 </div>
-

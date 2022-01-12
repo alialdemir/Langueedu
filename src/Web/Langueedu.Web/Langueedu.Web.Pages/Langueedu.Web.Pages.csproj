@@ -5,7 +5,6 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-		<NpmLastInstall>node_modules/.last-install</NpmLastInstall>
 	</PropertyGroup>
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
@@ -46,18 +45,4 @@
 			<PublishedContent>wwwroot\service-worker.published.js</PublishedContent>
 		</ServiceWorker>
 	</ItemGroup>
-	<Target Name="CheckForNpm" BeforeTargets="NpmInstall">
-		<Exec Command="yarn -v" ContinueOnError="true">
-			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-		</Exec>
-		<Error Condition="'$(ErrorCode)' != '0'" Text="You must install YARN to build this project" />
-	</Target>
-	<Target Name="NpmInstall" BeforeTargets="BuildCSS" Inputs="package.json" Outputs="$(NpmLastInstall)">
-		<Exec Command="yarn install" />
-		<Touch Files="$(NpmLastInstall)" AlwaysCreate="true" />
-	</Target>
-	<Target Name="BuildCSS" BeforeTargets="Compile">
-		<Exec Command="yarn run buildcss:dev" Condition=" '$(Configuration)' == 'Debug' " />
-		<Exec Command="yarn run buildcss:release" Condition=" '$(Configuration)' == 'Release' " />
-	</Target>
 </Project>

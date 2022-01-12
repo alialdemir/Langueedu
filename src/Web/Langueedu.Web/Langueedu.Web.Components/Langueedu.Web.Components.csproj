@@ -25,5 +25,11 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\css\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Shared\Sidebar\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Shared\" />
+    <None Remove="Shared\Sidebar\" />
   </ItemGroup>
 </Project>
