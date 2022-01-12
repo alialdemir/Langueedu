@@ -1,11 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "./pe7-icon";
 @import "./color-2";
 @import "./responsive";
-//@import "../../../Shared/*.razor.scss";
 
 .form-control.invalid {
     border-color: $danger-color !important;

@@ -2,22 +2,22 @@
 const sass = require('gulp-sass')(require('sass'));
 const watchSass = require("gulp-watch-sass")
 const concat = require('gulp-concat');
-var cssnano = require('gulp-cssnano');
+const cssnano = require('gulp-cssnano');
 
-gulp.task("sass", () => gulp.src([
-    "./**/*.razor.scss",
+const paths = [
+    "../**/*.razor.scss",
     "../Langueedu.Web.Components/**/*.razor.scss",
-    "../Langueedu.Web.Components/**/**/*.razor.scss"
-])
+    "../Langueedu.Web.Components/**/**/*.razor.scss",
+    "./wwwroot/assets/scss/app.scss",
+];
+
+gulp.task("sass", () => gulp.src(paths)
     .pipe(sass())
     .pipe(cssnano())
     .pipe(concat('app.min.css'))
     .pipe(gulp.dest("./wwwroot/css")));
 
+
 gulp.task("watch", () => {
-    gulp.watch([
-        "./**/*.razor.scss",
-        "../Langueedu.Web.Components/**/*.razor.scss",
-        "../Langueedu.Web.Components/**/**/*.razor.scss"
-    ], gulp.series('sass'));
+    gulp.watch(paths, gulp.series('sass'));
 });

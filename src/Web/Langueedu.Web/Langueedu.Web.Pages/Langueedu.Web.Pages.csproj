@@ -31,6 +31,7 @@
 		<Folder Include="wwwroot\assets\images\" />
 		<Folder Include="wwwroot\assets\scripts\" />
 		<Folder Include="wwwroot\assets\scss\" />
+		<Folder Include="wwwroot\assets\Assets\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Remove="wwwroot\service-worker.js" />
@@ -39,6 +40,7 @@
 		<Content Remove="wwwroot\assets\images\" />
 		<Content Remove="wwwroot\assets\scripts\" />
 		<Content Remove="wwwroot\assets\scss\" />
+		<Content Remove="wwwroot\assets\Assets\" />
 	</ItemGroup>
 	<ItemGroup>
 		<ServiceWorker Include="wwwroot\service-worker.js">

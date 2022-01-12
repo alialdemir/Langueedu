@@ -2,11 +2,9 @@
   "name": "langueedu.web.pages",
   "version": "1.0.0",
   "description": "",
-  "main": "postcss.config.js",
   "scripts": {
     "dev": "gulp watch",
-    "prod": "gulp sass",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "gulp sass"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +16,8 @@
     "gulp-util": "^3.0.8",
     "gulp-watch-sass": "^1.4.1",
     "sass": "^1.47.0"
+  },
+  "dependencies": {
+    "cash-dom": "^8.1.0"
   }
 }
