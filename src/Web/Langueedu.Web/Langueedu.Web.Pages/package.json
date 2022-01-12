@@ -1,0 +1,35 @@
+{
+  "scripts": {
+    "buildcss:dev": "yarn run dev",
+    "buildcss:release": "cross-env NODE_ENV=production postcss ./wwwroot/assets/app.css -o ./wwwroot/css/app.css",
+    "dev": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "yarn run production",
+    "production": "mix --production"
+  },
+  "dependencies": {
+    "cash-dom": "^8.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "browser-sync": "^2.26.14",
+    "browser-sync-webpack-plugin": "2.2.2",
+    "css-loader": "4",
+    "laravel-mix": "^6.0.13",
+    "postcss": "^8.2.6",
+    "postcss-loader": "4",
+    "prettier": "2.2.1",
+    "raw-loader": "4",
+    "sass": "^1.32.6",
+    "sass-loader": "8.*",
+    "style-loader": "1",
+    "svg-loaders": "^0.2.0",
+    "tailwindcss": "^2.1.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "purgecss-webpack-plugin": "^4.1.3",
+    "terser-webpack-plugin": "^5.3.0"
+  }
+}

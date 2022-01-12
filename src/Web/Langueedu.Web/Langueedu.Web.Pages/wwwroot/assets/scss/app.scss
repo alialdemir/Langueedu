@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./pe7-icon";
+@import "./color-2";
+@import "./responsive";
+
+.form-control.invalid {
+    border-color: $danger-color !important;
+}
+
+.validation-message {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: $danger-color !important;
+}

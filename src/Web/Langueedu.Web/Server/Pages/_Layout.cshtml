@@ -7,19 +7,34 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Langueedu</title>
     <base href="~/" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet" />
+
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="_content/Langueedu.Web.Components/css/app.css" rel="stylesheet" />
     <link href="Langueedu.Web.Client.styles.css" rel="stylesheet" />
 
-    <link rel="manifest" href="manifest.json">
+    <link href="_content/Langueedu.Web.Pages/css/app.min.css" rel="stylesheet" />
+    <link href="_content/Langueedu.Web.Pages/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="_content/Langueedu.Web.Pages/manifest.json" rel="manifest" />
     <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
 </head>
-<body>
+<body class="dark-only">
 
     @RenderBody()
+
+    <div class="loader-wrapper">
+        <div class="typewriter">
+            <div class="spinner-border Typeahead-spinner">
+            </div>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
@@ -35,6 +50,12 @@
     <persist-component-state />
 
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+
+    <script src="_content/Langueedu.Web.Pages/scripts/jquery/jquery.min.js"></script>
+    <script src="_content/Langueedu.Web.Pages/scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="_content/Langueedu.Web.Pages/scripts/app.min.js"></script>
+
+    <!-- <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>-->
+    <script>navigator.serviceWorker.register('_content/Langueedu.Web.Pages/service-worker.js');</script>
 </body>
 </html>
