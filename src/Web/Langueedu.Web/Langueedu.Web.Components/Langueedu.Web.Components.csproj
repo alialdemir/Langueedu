@@ -28,10 +28,15 @@
     <Folder Include="Shared\Logo\" />
     <Folder Include="Components\" />
     <Folder Include="Components\Auth\" />
-    <Folder Include="ExceptionS\" />
     <Folder Include="Components\Base\" />
     <Folder Include="Shared\UI\" />
     <Folder Include="Shared\UI\Button\" />
+    <Folder Include="Shared\UI\Element\" />
+    <Folder Include="enums\" />
+    <Folder Include="Shared\UI\Base\" />
+    <Folder Include="Shared\UI\EditForm\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Shared\UI\TextField\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Shared\" />
@@ -41,9 +46,19 @@
     <None Remove="Shared\Logo\" />
     <None Remove="Components\" />
     <None Remove="Components\Auth\" />
-    <None Remove="ExceptionS\" />
     <None Remove="Components\Base\" />
     <None Remove="Shared\UI\" />
     <None Remove="Shared\UI\Button\" />
+    <None Remove="Shared\UI\Element\" />
+    <None Remove="enums\" />
+    <None Remove="Shared\UI\Base\" />
+    <None Remove="Shared\UI\EditForm\" />
+    <None Remove="Exceptions\" />
+    <None Remove="Shared\UI\Input\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Shared\UI\Input\TextField">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 </Project>

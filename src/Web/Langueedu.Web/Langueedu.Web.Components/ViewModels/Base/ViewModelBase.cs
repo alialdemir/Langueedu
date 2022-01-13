@@ -6,7 +6,7 @@ using Langueedu.Web.Components.Exceptions;
 
 namespace Langueedu.Web.Components.ViewModels;
 
-public class ViewModelBase : INotifyPropertyChanged
+public abstract class ViewModelBase : INotifyPropertyChanged
 {
     #region Notify property
 

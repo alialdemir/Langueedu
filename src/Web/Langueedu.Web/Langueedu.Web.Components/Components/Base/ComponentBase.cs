@@ -1,37 +1,39 @@
-using System.Reflection;
-using Langueedu.Web.Components.ViewModels;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Langueedu.Web.Components;
 
-public class ComponentBase<T> : Microsoft.AspNetCore.Components.ComponentBase where T : ViewModelBase
+public abstract class ComponentBase : Microsoft.AspNetCore.Components.ComponentBase, IDisposable, IAsyncDisposable
 {
-    private IServiceProvider _serviceProvider;
 
-    protected internal T BindingContext { get; set; } = null!;
+    #region IDisposable Support
 
-    [Inject]
-    public IServiceProvider ServiceProvider
+    public void Dispose()
     {
-        get => _serviceProvider;
-        set => _serviceProvider = value;
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 
-    protected override void OnInitialized()
+    protected virtual void Dispose(bool disposing)
     {
-        base.OnInitialized();
-        SetBindingContext();
-        BindingContext?.OnInitialized();
+
     }
 
-    private void SetBindingContext()
+    public async ValueTask DisposeAsync()
     {
-        BindingContext ??= _serviceProvider.GetRequiredService<T>();
+        await DisposeAsyncCore();
+
+        Dispose(false);
+        GC.SuppressFinalize(this);
     }
 
-    protected override Task OnInitializedAsync()
+    protected virtual ValueTask DisposeAsyncCore()
     {
-        return BindingContext?.OnInitializedAsync() ?? Task.CompletedTask;
+        return default;
     }
+
+
+    ~ComponentBase()
+    {
+        Dispose(false);
+    }
+
+    #endregion
 }

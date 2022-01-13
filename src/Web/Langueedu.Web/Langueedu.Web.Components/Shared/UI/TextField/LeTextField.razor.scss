@@ -1,0 +1,24 @@
+﻿.form-group {
+    position: relative;
+}
+
+.form-group label {
+    position: absolute;
+    z-index: 2;
+    border-radius: 50px;
+    top: 13px;
+    left: 20px;
+    padding: 0 10px;
+    transition: all .3s ease
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: 5px;
+}
+
+.form-group input:focus + label {
+    font-weight: bold;
+    top: -12px;
+    background-color: #333a62;
+}

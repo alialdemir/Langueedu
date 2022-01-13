@@ -9,4 +9,14 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Utilities\" />
+    <None Remove="Extensions\" />
+    <None Remove="Utilities\Command\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Utilities\Command\" />
+  </ItemGroup>
 </Project>

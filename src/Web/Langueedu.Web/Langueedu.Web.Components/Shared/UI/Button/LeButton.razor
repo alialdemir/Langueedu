@@ -1,0 +1,18 @@
+﻿@namespace Langueedu.Web.Components
+
+@inherits LeButtonBase
+
+<LeElement @bind-Ref="@_elementReference"
+           HtmlTag="@HtmlTag"
+           Class="@Classname"
+           Style="@Style"
+           @attributes="UserAttributes"
+           @onclick="OnClickHandler"
+           type="@Type.ToDescriptionString()"
+           href="@Link"
+           target="@Target"
+           rel="@(Target=="_blank"?"noopener":null)"
+           disabled="@Disabled">
+    @ChildContent
+</LeElement>
+

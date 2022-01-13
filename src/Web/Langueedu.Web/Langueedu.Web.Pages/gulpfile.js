@@ -32,6 +32,7 @@ const paths = [
     "./wwwroot/assets/scss/theme/*.scss",
     "../Langueedu.Web.Components/**/*.razor.scss",
     "../Langueedu.Web.Components/**/**/*.razor.scss",
+    "../Langueedu.Web.Components/**/**/**/*.razor.scss",
     "./wwwroot/assets/scss/app.scss",
 ];
 

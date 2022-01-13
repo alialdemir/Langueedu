@@ -6,6 +6,7 @@ public static class ServiceRegistry
 {
     public static IServiceCollection AddComponents(this IServiceCollection services)
     {
+        // services.AddTransient<ViewModelBase>();
         services.AddTransient<SignInViewModel>();
 
         return services;
