@@ -28,7 +28,8 @@ const jsFiles = [jsFront];
 const jsURL = './wwwroot/scripts/';
 
 const paths = [
-    "../**/*.razor.scss",
+    "./**/*.razor.scss",
+    "./wwwroot/assets/scss/theme/*.scss",
     "../Langueedu.Web.Components/**/*.razor.scss",
     "../Langueedu.Web.Components/**/**/*.razor.scss",
     "./wwwroot/assets/scss/app.scss",
@@ -60,5 +61,5 @@ gulp.task("script", (done) => {
 
 gulp.task("watch", () => {
     gulp.watch(paths, gulp.series('sass'));
-    gulp.watch(jsSRC + '*.js', gulp.series('script'));
+    //gulp.watch(jsSRC + '*.js', gulp.series('script'));
 });

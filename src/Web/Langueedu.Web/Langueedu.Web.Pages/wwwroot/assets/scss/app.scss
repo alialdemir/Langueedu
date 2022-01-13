@@ -3,12 +3,12 @@
 @import "./responsive";
 
 .form-control.invalid {
-    border-color: $danger-color !important;
+  border-color: $danger-color !important;
 }
 
 .validation-message {
-    width: 100%;
-    margin-top: .25rem;
-    font-size: 80%;
-    color: $danger-color !important;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: $danger-color !important;
 }

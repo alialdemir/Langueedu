@@ -5,6 +5,7 @@ var services = builder.Services;
 
 services.AddControllersWithViews();
 services.AddRazorPages();
+services.AddComponents();
 
 var app = builder.Build();
 

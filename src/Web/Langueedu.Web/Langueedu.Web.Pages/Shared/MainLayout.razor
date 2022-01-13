@@ -1,21 +1,32 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page-wrapper">
-    <div class="page-main-header">
-        <div class="main-header-right">
-            <LogoHeader />
+@if (Authentication)
+{
+    <div class="page-wrapper">
+        <div class="page-main-header">
+            <div class="main-header-right">
+                <LogoHeader />
 
-            <MobileSidebar />
+                <MobileSidebar />
 
-            <NavMenu />
+                <NavMenu />
+            </div>
+        </div>
+
+        <div class="page-body-wrapper">
+            <Sidebar />
+
+            <div class="page-body">
+                <div class="container-fluid">@Body</div>
+            </div>
         </div>
     </div>
+}
+            else
+            {
+                @Body
+            }
 
-    <div class="page-body-wrapper">
-        <Sidebar />
-
-        <div class="page-body">
-            <div class="container-fluid">@Body</div>
-        </div>
-    </div>
-</div>
+@code {
+    public bool Authentication { get; set; }
+}
