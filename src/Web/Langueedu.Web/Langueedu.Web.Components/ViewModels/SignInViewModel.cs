@@ -5,7 +5,11 @@ namespace Langueedu.Web.Components.ViewModels;
 public class SignInViewModel : ViewModelBase
 {
 
-    public LoginModel LoginModel { get; set; } = new() { UserName = "test" };
+    private LoginModel _loginModel = new();
 
-
+    public LoginModel LoginModel
+    {
+        get => _loginModel;
+        set => Set(ref _loginModel, value);
+    }
 }

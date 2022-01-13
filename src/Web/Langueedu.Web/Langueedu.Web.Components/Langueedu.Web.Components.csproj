@@ -5,37 +5,45 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <SupportedPlatform Include="browser"/>
+    <SupportedPlatform Include="browser" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.1"/>
-    <PackageReference Include="Blazored.FluentValidation" Version="2.0.3"/>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.1" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj"/>
+    <ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="wwwroot\"/>
-    <Content Remove="wwwroot\css\"/>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\css\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\"/>
-    <Folder Include="wwwroot\css\"/>
-    <Folder Include="Shared\"/>
-    <Folder Include="Shared\Sidebar\"/>
-    <Folder Include="Models\"/>
-    <Folder Include="Shared\NavMenu\"/>
-    <Folder Include="Shared\Logo\"/>
-    <Folder Include="Components\"/>
-    <Folder Include="Components\Auth\"/>
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Shared\Sidebar\" />
+    <Folder Include="Models\" />
+    <Folder Include="Shared\NavMenu\" />
+    <Folder Include="Shared\Logo\" />
+    <Folder Include="Components\" />
+    <Folder Include="Components\Auth\" />
+    <Folder Include="ExceptionS\" />
+    <Folder Include="Components\Base\" />
+    <Folder Include="Shared\UI\" />
+    <Folder Include="Shared\UI\Button\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Shared\"/>
-    <None Remove="Shared\Sidebar\"/>
-    <None Remove="MenuItem\"/>
-    <None Remove="Shared\NavMenu\"/>
-    <None Remove="Shared\Logo\"/>
-    <None Remove="Components\"/>
-    <None Remove="Components\Auth\"/>
+    <None Remove="Shared\" />
+    <None Remove="Shared\Sidebar\" />
+    <None Remove="MenuItem\" />
+    <None Remove="Shared\NavMenu\" />
+    <None Remove="Shared\Logo\" />
+    <None Remove="Components\" />
+    <None Remove="Components\Auth\" />
+    <None Remove="ExceptionS\" />
+    <None Remove="Components\Base\" />
+    <None Remove="Shared\UI\" />
+    <None Remove="Shared\UI\Button\" />
   </ItemGroup>
 </Project>

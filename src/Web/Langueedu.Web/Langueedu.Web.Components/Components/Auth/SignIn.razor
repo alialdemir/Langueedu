@@ -1,32 +1,34 @@
 ﻿@namespace Langueedu.Web.Components
 @inherits ComponentBase<SignInViewModel>
 
-<EditForm class="theme-form" Model="ViewModel?.LoginModel" OnValidSubmit="@HandleLogin">
+
+<EditForm class="theme-form" Model="BindingContext.LoginModel" OnValidSubmit="@HandleLogin">
     <FluentValidationValidator />
 
     <h4 class="text-center">LOGIN</h4>
-    @*
-        <div class="form-group">
-              <label class="col-form-label pt-0">Your Name</label>
-              <InputText type="text" Class="form-control" @bind-Value="@ViewModel.LoginModel.UserName" />
-              <ValidationMessage For="@(() => ViewModel.LoginModel.UserName)" />
-          </div>
 
-          <div class="form-group">
-              <label class="col-form-label">Password</label>
-              <InputText type="password" Class="form-control" @bind-Value="@ViewModel.LoginModel.Password" />
-              <ValidationMessage For="@(() => ViewModel.LoginModel.Password)" />
-          </div>
-    *@
+    <div class="form-group">
+        <label class="col-form-label pt-0">Your Name</label>
+        <InputText type="text" Class="form-control" @bind-Value="@BindingContext.LoginModel.UserName" />
+        <ValidationMessage For="@(() => BindingContext.LoginModel.UserName)" />
+    </div>
+
+    <div class="form-group">
+        <label class="col-form-label">Password</label>
+        <InputText type="password" Class="form-control" @bind-Value="@BindingContext.LoginModel.Password" />
+        <ValidationMessage For="@(() => BindingContext.LoginModel.Password)" />
+    </div>
+
     <div class="form-group form-row mt-3 mb-0">
         <button class="btn btn-primary btn-block" type="submit">LOGIN</button>
     </div>
     <div class="login-divider"></div>
 </EditForm>
+
 <div>
     <div>
 
-        aaaa - @ViewModel?.LoginModel?.UserName
+        aaaa - @BindingContext?.LoginModel?.UserName
     </div>
 </div>
 

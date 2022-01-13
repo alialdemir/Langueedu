@@ -2,10 +2,10 @@
 var services = builder.Services;
 
 // Add services to the container.
+services.AddComponents();
 
 services.AddControllersWithViews();
 services.AddRazorPages();
-services.AddComponents();
 
 var app = builder.Build();
 
