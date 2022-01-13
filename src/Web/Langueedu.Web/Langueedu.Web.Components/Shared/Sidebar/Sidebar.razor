@@ -1,11 +1,14 @@
 ﻿@namespace Langueedu.Web.Components
 
-    <div class="iconsidebar-menu">
-        <div class="sidebar">
-            <ul class="iconMenu-bar custom-scrollbar">
+<div class="iconsidebar-menu">
+    <div class="sidebar">
+        <ul class="iconMenu-bar custom-scrollbar">
+            @foreach (var menuItem in MenuItem.MenuItems)
+            {
                 <li>
-                    <a class="bar-icons" href="#"><i class="pe-7s-home"></i><span>Home </span></a>
+                    <a class="bar-icons" href="@menuItem.Href"><i class="@menuItem.Icon"></i><span>@menuItem.Title </span></a>
                 </li>
-            </ul>
-        </div>
+            }
+        </ul>
     </div>
+</div>
