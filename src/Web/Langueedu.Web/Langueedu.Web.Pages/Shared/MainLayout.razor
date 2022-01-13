@@ -6,7 +6,7 @@
         <div class="main-header-right">
             <div class="main-header-left text-center">
                 <div class="logo-wrapper">
-                    <a href="index.html"><img src="_content/Langueedu.Components/images/logo.png" width="112" height="35" alt="Langueedu" /></a>
+                    <a href="index.html"><img src="_content/Langueedu.Web.Pages/assets/images/logo.png" width="112" height="35" alt="Langueedu" /></a>
                 </div>
             </div>
             <div class="mobile-sidebar">
@@ -35,7 +35,7 @@
                                     <div class="u-posRelative">
                                         <input class="Typeahead-input form-control-plaintext" id="demo-input"
                                                type="text" name="q" placeholder="Search Your Product..." />
-                                        <div class="spinner-border Typeahead-spinner" role="status">
+                                        <div class="spinner-border Typeahead-spinner d-none" role="status">
                                             <span class="sr-only">Loading...</span>
                                         </div>
                                         <span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
@@ -53,7 +53,7 @@
 
                     <li class="onhover-dropdown">
                         <span class="media user-header">
-                            <img class="img-fluid" src="_content/Langueedu.Components/images/user.png" width="167"
+                            <img class="img-fluid" src="_content/Langueedu.Web.Pages/assets/images/user.png" width="167"
                                  height="75" alt="User" />
                         </span>
                         <ul class="onhover-show-div profile-dropdown">
@@ -75,15 +75,7 @@
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
         <!-- Page Sidebar Start-->
-        <div class="iconsidebar-menu">
-            <div class="sidebar">
-                <ul class="iconMenu-bar custom-scrollbar">
-                    <li>
-                        <a class="bar-icons" href="#"><i class="pe-7s-home"></i><span>Home </span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <Sidebar />
         <!-- Page Sidebar Ends-->
         <div class="page-body">
             <!-- Container-fluid starts-->

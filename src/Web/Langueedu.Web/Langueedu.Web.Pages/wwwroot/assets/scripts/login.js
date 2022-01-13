@@ -1,7 +1,11 @@
-((cash) => {
-    'use strict';
+import cash from "cash-dom";
 
-    cash(document).on('click', '.img__btn', () => {
-        cash(document).find('.cont').toggleClass('s--signup');
-    });
-})(cash);
+class Login {
+    constructor() {
+        cash(document).on('click', '.img__btn', () => {
+            cash(document).find('.cont').toggleClass('s--signup');
+        });
+    }
+}
+
+export default new Login();

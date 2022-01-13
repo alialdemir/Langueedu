@@ -1,7 +1,11 @@
-(function (cash) {
-    'use strict';
+import cash from "cash-dom";
 
-    cash(document).on('click', '.mobile-toggle', () => {
-        cash('.nav-menus').toggleClass('open');
-    });
-})(cash);
+class MobileMenu {
+    constructor() {
+        cash(document).on('click', '.mobile-toggle', () => {
+            cash('.nav-menus').toggleClass('open');
+        });
+    }
+}
+
+export default new MobileMenu();
