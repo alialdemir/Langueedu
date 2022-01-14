@@ -8,6 +8,7 @@ using Langueedu.Infrastructure.Data;
 using Langueedu.API;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using Langueedu.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
+
+builder.Services.AddCorsConfigure(builder.Configuration);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCore();
@@ -67,6 +70,8 @@ else
     app.UseHsts();
 }
 app.UseRouting();
+
+app.AddCors();
 
 
 app.UseDefaultFiles();

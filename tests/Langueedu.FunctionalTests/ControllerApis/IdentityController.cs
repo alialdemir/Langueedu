@@ -1,10 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
-using Ardalis.HttpClientTestExtensions;
-using Ardalis.Result;
 using Langueedu.API;
-using Langueedu.SharedKernel.ViewModels;
-using Langueedu.SharedKernel.ViewModels.Identity;
+using Langueedu.Sdk.Identity.Response;
 using Xunit;
 
 namespace Langueedu.FunctionalTests.ControllerApis;
@@ -37,7 +34,7 @@ public class IdentityController : IClassFixture<CustomWebApplicationFactory<WebM
 
         var postResponse = await _client.PostAsync("/connect/token", formContent);
 
-        TokenViewModel? token = await postResponse.Content.ReadFromJsonAsync<TokenViewModel>();
+        TokenModel? token = await postResponse.Content.ReadFromJsonAsync<TokenModel>();
 
         Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
         Assert.NotNull(token);

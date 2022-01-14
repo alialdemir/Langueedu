@@ -1,7 +1,10 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
+string langueeduApiUrl = builder.Configuration.GetValue<string>("LangueeduApiUrl");
+
 // Add services to the container.
+services.AddLangueeduSdk(langueeduApiUrl);
 services.AddComponents();
 
 services.AddControllersWithViews();
@@ -31,9 +34,8 @@ app.UseRouting();
 
 app.MapRazorPages();
 app.MapControllers();
-//app.MapFallbackToFile("index.html");
+
 app.MapFallbackToPage("{*path:nonfile}", "/_Host");
 app.MapFallbackToPage("/", "/Landing");
 
 app.Run();
-

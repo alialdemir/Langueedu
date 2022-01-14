@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Langueedu.SharedKernel.ViewModels.Identity
+namespace Langueedu.Sdk.Identity.Response
 {
-    public class TokenViewModel
+    public class TokenModel
     {
         [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }
@@ -21,4 +21,3 @@ namespace Langueedu.SharedKernel.ViewModels.Identity
         public string Scope { get; set; }
     }
 }
-

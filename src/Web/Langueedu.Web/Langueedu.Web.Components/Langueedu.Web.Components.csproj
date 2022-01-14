@@ -12,9 +12,6 @@
     <PackageReference Include="Blazored.FluentValidation" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="wwwroot\" />
     <Content Remove="wwwroot\css\" />
   </ItemGroup>
@@ -60,5 +57,9 @@
     <None Update="Shared\UI\Input\TextField">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Langueedu.Sdk\Langueedu.Sdk.csproj" />
   </ItemGroup>
 </Project>

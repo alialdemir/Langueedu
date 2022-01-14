@@ -3,20 +3,21 @@
 @inherits UIComponentBase
 
 <div class="form-group">
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <label class="col-form-label pt-0">@Label</label>
+    }
 
     <InputText type=@InputType.ToDescriptionString()
                Class="form-control"
                @attributes="UserAttributes"
                @bind-Value=@Value
-               DisplayName=@Placeholder />
+               Placeholder=@Placeholder />
 
-    @if (!string.IsNullOrWhiteSpace(Label))
-    {
-        <label class="col-form-label pt-0">@Label</label>
-    }
 
     @if (ValidationFor != null)
     {
         <ValidationMessage For="@ValidationFor" />
     }
 </div>
+

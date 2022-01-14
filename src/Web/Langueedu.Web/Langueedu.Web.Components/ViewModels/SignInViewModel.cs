@@ -1,18 +1,23 @@
 using System.Windows.Input;
-using Langueedu.Web.Components.Models;
+using Langueedu.Sdk.Identity;
+using Langueedu.Sdk.Identity.Request;
 using Langueedu.Web.Shared.Utilities;
-using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components;
 
 namespace Langueedu.Web.Components.ViewModels;
 
 public class SignInViewModel : ViewModelBase
 {
-    public SignInViewModel()
-    {
-
-    }
-    private LoginModel _loginModel = new();
+    private LoginModel _loginModel = new() { UserName = "witcherfearless", Password = "12345678" };
     private ICommand _loginCommand;
+    private readonly IIdentityService _identityService;
+
+    public SignInViewModel(IIdentityService identityService)
+    {
+        _identityService = identityService;
+    }
+
+
 
     public LoginModel LoginModel
     {
@@ -20,14 +25,16 @@ public class SignInViewModel : ViewModelBase
         set => Set(ref _loginModel, value);
     }
 
-    private void LoginCommandExecute()
+    private async Task LoginCommandExecute()
     {
-        Console.WriteLine("--- LoginCommandExecute --- çalıştı");
-        Console.WriteLine(LoginModel.UserName);
-        Console.WriteLine(LoginModel.Password);
-        Console.WriteLine("--- LoginCommandExecute --- çalıştı");
+        var response = await _identityService.SignInAsync(LoginModel);
+        Console.WriteLine("çalıştı *-*-- {0}", response.IsSuccess);
+        if (response.IsSuccess)
+        {
+            // redirect
+        }
+
     }
 
-    public ICommand LoginCommand { get { return _loginCommand = (_loginCommand ?? new Command(LoginCommandExecute)); } }
-
+    public ICommand LoginCommand { get { return _loginCommand = (_loginCommand ?? new CommandAsync(LoginCommandExecute)); } }
 }

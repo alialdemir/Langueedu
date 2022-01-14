@@ -1,9 +1,10 @@
 /**=====================
     25. Form CSS Start
 ==========================**/
-.height-35{
-  height: 35px !important;
+.height-35 {
+    height: 35px !important;
 }
+
 .theme-form {
     label {
         font-size: 16px;
@@ -21,7 +22,7 @@
         }
     }
 
-    .form-group {
+    .form-floating {
         margin-bottom: $form-group-margin-bottom;
 
         textarea {
@@ -131,61 +132,71 @@
         width: 100%;
     }
 }
+
 input[type=file] {
-  height: auto !important;
+    height: auto !important;
 }
-.form-inline{
-  .form-group{
-    margin-right: 15px;
-    .col-form-label
-    {
-      margin-right: 5px;
+
+.form-inline {
+    .form-group {
+        margin-right: 15px;
+
+        .col-form-label {
+            margin-right: 5px;
+        }
     }
-  }
 }
+
 .bottom-minus {
-  margin-bottom: -15px;
+    margin-bottom: -15px;
 }
-.search-form{
-  position: relative;
-  .form-group{
-    &:before{
-      position: absolute;
-      content: "";
-      width: 1px;
-      height: 25px;
-      background: #e8ebf2;
-      left: 52px;
-      top: 10px;
+
+.search-form {
+    position: relative;
+
+    .form-group {
+        &:before {
+            position: absolute;
+            content: "";
+            width: 1px;
+            height: 25px;
+            background: #e8ebf2;
+            left: 52px;
+            top: 10px;
+        }
+
+        &:after {
+            position: absolute;
+            content: "\f002";
+            font-family: FontAwesome;
+            top: 11px;
+            left: 25px;
+            color: #8e8e8e;
+        }
     }
-    &:after{
-      position: absolute;
-      content: "\f002";
-      font-family: FontAwesome;
-      top: 11px;
-      left: 25px;
-      color: #8e8e8e;
+
+    input {
+        border: 1px solid $light-semi-gray;
+        padding: 10px 10px 10px 70px;
+        border-radius: 50px;
+        background-color: rgba($primary-color, 0.02);
     }
-  }
-  input{
-    border: 1px solid $light-semi-gray;
-    padding: 10px 10px 10px 70px;
-    border-radius: 50px;
-    background-color: rgba($primary-color, 0.02);
-  }
 }
-.form-label-align-right{
-  label{
-    text-align:right;
-    padding-top: 17px;
-    font-weight: 500;
-  }
+
+.form-label-align-right {
+    label {
+        text-align: right;
+        padding-top: 17px;
+        font-weight: 500;
+    }
 }
-.custom-file-label{
-  line-height: 1.8;
-  &::after{
+
+.custom-file-label {
     line-height: 1.8;
-  }
+
+    &::after {
+        line-height: 1.8;
+    }
 }
 /**=====================
     25. Form CSS Ends

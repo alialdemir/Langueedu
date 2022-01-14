@@ -1,4 +1,8 @@
 ﻿@namespace Langueedu.Web.Components
+
+@inherits ComponentBase<SignUpViewModel>
+
+
 <div class="sub-cont">
     <div class="img">
         <div class="img__text m--up">
@@ -12,30 +16,74 @@
         <div class="img__btn"><span class="m--up">Sign up</span><span class="m--in">Sign in</span></div>
     </div>
     <div>
-        <form class="theme-form">
+
+        <LeEditForm Class="theme-form"
+                    Model=@BindingContext.SignUpModel
+                    ValidSubmitCommand=@BindingContext.SignUpCommand>
             <h4 class="text-center">NEW USER</h4>
-            <div class="form-row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input class="form-control" type="text" placeholder="First Name">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Last Name">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="User Name">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" placeholder="Password">
-            </div>
-            <div class="form-row">
-                <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.UserName
+                         Placeholder="User Name"
+                         autocomplete="username"
+                         ValidationFor="@(() => BindingContext.SignUpModel.UserName)" />
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.Email
+                         Placeholder="Email"
+                         autocomplete="username"
+                         ValidationFor="@(() => BindingContext.SignUpModel.Email)" />
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.Password
+                         Placeholder="Password"
+                         InputType=@InputTypes.Password
+                         autocomplete="current-password"
+                         ValidationFor="@(() => BindingContext.SignUpModel.Password)" />
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.ConfirmPassword
+                         Placeholder="Confirm Password"
+                         InputType=@InputTypes.Password
+                         autocomplete="current-password"
+                         ValidationFor="@(() => BindingContext.SignUpModel.ConfirmPassword)" />
+
+            <div class="form-group form-row mt-3 mb-0">
+                <LeButton Type=@ButtonTypes.Submit FullWidth>Sign Up</LeButton>
             </div>
             <div class="login-divider"></div>
-        </form>
+        </LeEditForm>
+
+        @*
+
+
+
+
+
+
+
+
+            <form class="theme-form">
+                <h4 class="text-center">NEW USER</h4>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="User Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" placeholder="Password">
+                </div>
+                <div class="form-row">
+                    <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                </div>
+                <div class="login-divider"></div>
+            </form>
+        *@
     </div>
 </div>

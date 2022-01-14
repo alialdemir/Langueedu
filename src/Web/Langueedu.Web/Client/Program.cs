@@ -2,9 +2,17 @@
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 var services = builder.Services;
-services.AddComponents();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+string langueeduApiUrl = "http://localhost:57679";// builder.Configuration.GetValue<string>("LangueeduApiUrl");
+
+builder.Services.AddScoped(sp => new HttpClient
+{
+    BaseAddress = new Uri(langueeduApiUrl)
+});
+
+services.AddLangueeduSdk(langueeduApiUrl);
+
+services.AddComponents();
 
 await builder.Build().RunAsync();
 
