@@ -26,6 +26,7 @@ public class PlaylistsController : BaseApiController
         Tags = new[] { "PlayList Endpoints" })
     ]
     [HttpGet]
+    [ProducesResponseType(typeof(Result<IEnumerable<PlaylistViewModel>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAllPlaylists()
     {
         var playList = await _mediator.Send(new GetAllPlaylistsQuery());
