@@ -1,4 +1,7 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Langueedu.Web.Components.Provider;
+using Microsoft.AspNetCore.Components.Authorization;
+
+var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 string langueeduApiUrl = builder.Configuration.GetValue<string>("LangueeduApiUrl");
@@ -9,6 +12,8 @@ services.AddComponents();
 
 services.AddControllersWithViews();
 services.AddRazorPages();
+
+builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Langueedu.Sdk.Identity;
 using Langueedu.Sdk.Identity.Response;
 using Langueedu.Web.Shared.Utilities;
 
@@ -8,6 +9,13 @@ public class SignUpViewModel : ViewModelBase
 {
     private SignUpModel _signUpModel = new();
     private ICommand _loginCommand;
+    private readonly IIdentityService _identityService;
+
+    public SignUpViewModel(IIdentityService identityService,
+                           IServiceProvider serviceProvider) : base(serviceProvider)
+    {
+        _identityService = identityService;
+    }
 
     public SignUpModel SignUpModel
     {
@@ -15,12 +23,16 @@ public class SignUpViewModel : ViewModelBase
         set => Set(ref _signUpModel, value);
     }
 
-    private void SignUpCommandExecute()
+    private async Task SignUpCommandExecute()
     {
-        Console.WriteLine("--- LoginCommandExecute ---");
-        Console.WriteLine(SignUpModel.UserName);
-        Console.WriteLine(SignUpModel.Password);
+        var response = await _identityService.SignUpAsync(SignUpModel);
+        if (!response.IsSuccess)
+        {
+            await ShowErrorAsync(response.Errors);
+
+            return;
+        }
     }
 
-    public ICommand SignUpCommand { get { return _loginCommand = (_loginCommand ?? new Command(SignUpCommandExecute)); } }
+    public ICommand SignUpCommand { get { return _loginCommand = (_loginCommand ?? new CommandAsync(SignUpCommandExecute)); } }
 }

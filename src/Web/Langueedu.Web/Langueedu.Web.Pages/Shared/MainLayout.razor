@@ -1,7 +1,5 @@
 ﻿@inherits LayoutComponentBase
 
-@if (Authentication)
-{
     <div class="page-wrapper">
         <div class="page-main-header">
             <div class="main-header-right">
@@ -21,12 +19,31 @@
             </div>
         </div>
     </div>
-}
+
+
+    @code
+{
+        [CascadingParameter]
+        public Task<AuthenticationState> AuthState { get; set; }
+
+
+        [Inject]
+        NavigationManager NavigationManager { get; set; }
+
+
+
+        protected async override Task OnInitializedAsync()
+        {
+            var authState = await AuthState;
+
+            if (authState.User.Identity.IsAuthenticated)
+            {
+                //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
+
+            }
             else
             {
-                @Body
+                NavigationManager.NavigateTo("/SignIn");
             }
-
-@code {
-    public bool Authentication { get; set; }
-}
+        }
+    }

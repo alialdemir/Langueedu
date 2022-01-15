@@ -2,12 +2,32 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Web.Components.Exceptions;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Langueedu.Web.Components.ViewModels;
 
 public abstract class ViewModelBase : INotifyPropertyChanged
 {
+    #region Private fields
+
+    private readonly IServiceProvider _serviceProvider;
+    private SweetAlertService _swal;
+    private NavigationManager _navigationManager;
+
+    #endregion
+
+    #region Constructor
+
+    public ViewModelBase(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
+    #endregion
+
     #region Notify property
 
     private readonly Dictionary<string, List<Func<object, Task>>> _subscriptions
@@ -84,6 +104,57 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     public virtual Task OnInitializedAsync()
     {
         return Task.CompletedTask;
+    }
+
+    #endregion
+
+    #region Dialogs
+
+    private SweetAlertService Swal
+    {
+        get
+        {
+            if (_swal == null)
+                _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
+
+            return _swal;
+        }
+    }
+
+    protected async Task ShowErrorAsync(params string[] errorMessages)
+    {
+        if (errorMessages == null || !errorMessages.Any())
+            return;
+
+        foreach (var errorMessage in errorMessages)
+        {
+            await Swal.FireAsync(errorMessage, icon: SweetAlertIcon.Error);
+        }
+    }
+
+    protected Task ShowErrorAsync(IEnumerable<string> errorMessages)
+    {
+        return ShowErrorAsync(errorMessages.ToArray());
+    }
+
+    #endregion
+
+    #region Navigation
+
+    private NavigationManager Navigation
+    {
+        get
+        {
+            if (_navigationManager == null)
+                _navigationManager ??= _serviceProvider.GetRequiredService<NavigationManager>();
+
+            return _navigationManager;
+        }
+    }
+
+    protected void NavigateTo(string uri, bool forceLoad = false)
+    {
+        Navigation.NavigateTo(uri, forceLoad);
     }
 
     #endregion

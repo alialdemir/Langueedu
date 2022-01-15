@@ -26,7 +26,6 @@ namespace Langueedu.Sdk.Identity
             string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, API_URL_BASE);
 
             var response = await PostAsync<string>(uri, signUpModel);
-
             return response;
         }
 
@@ -44,8 +43,19 @@ namespace Langueedu.Sdk.Identity
 
             SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            var result = await SendAsync<TokenModel>(HttpMethod.Form, Configs.TokenEndpoint, from);
-            return result;
+            var response = await _httpClient.SendAsync(new HttpRequestMessage(System.Net.Http.HttpMethod.Post, Configs.TokenEndpoint)
+            {
+                Content = new FormUrlEncodedContent((Dictionary<string, string>)from)
+            });
+
+            if (response.IsSuccessStatusCode)
+            {
+                var token = await RequestAsResultAsync<TokenModel>(response);
+                return Result<TokenModel>.Success(token);
+            }
+
+            var error = await RequestAsResultAsync<TokenErrorModel>(response);
+            return Result<TokenModel>.Error(error.ErrorDescription.Replace("_", " "));
         }
 
         public async Task SignOutAsync()

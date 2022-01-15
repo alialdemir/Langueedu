@@ -9,12 +9,13 @@ namespace Langueedu.Sdk
 {
     public abstract class ServiceBase
     {
-        private readonly HttpClient _httpClient;
+        protected readonly HttpClient _httpClient;
 
         public ServiceBase(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
+
 
         /// <summary>
         /// Request to get
@@ -24,7 +25,7 @@ namespace Langueedu.Sdk
         /// <returns>Data of type TResult </returns>
         protected Task<Result<TResult>> GetAsync<TResult>(string url)
         {
-            return SendAsync<TResult>(HttpMethod.Get, url);
+            return SendAsync<Result<TResult>>(HttpMethod.Get, url);
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace Langueedu.Sdk
         /// <param name="data">Content data</param>
         protected Task<Result<TResult>> PostAsync<TResult>(string url, object data = null)
         {
-            return SendAsync<TResult>(HttpMethod.Post, url, data);
+            return SendAsync<Result<TResult>>(HttpMethod.Post, url, data);
         }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace Langueedu.Sdk
         /// <returns>Data of type TResult </returns>
         protected Task<Result<TResult>> DeleteAsync<TResult>(string url)
         {
-            return SendAsync<TResult>(HttpMethod.Delete, url);
+            return SendAsync<Result<TResult>>(HttpMethod.Delete, url);
         }
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Langueedu.Sdk
             return this;
         }
 
-        protected async Task<Result<TResult>> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
+        protected async Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
         {
             HttpResponseMessage response = null;
 
@@ -84,13 +85,6 @@ namespace Langueedu.Sdk
                     case HttpMethod.Delete:
                         response = await _httpClient.DeleteAsync(url);
                         break;
-
-                    case HttpMethod.Form:
-                        response = await _httpClient.SendAsync(new HttpRequestMessage(System.Net.Http.HttpMethod.Post, url)
-                        {
-                            Content = new FormUrlEncodedContent((Dictionary<string, string>)data)
-                        });
-                        break;
                 }
 
                 return await RequestAsResultAsync<TResult>(response);
@@ -103,10 +97,9 @@ namespace Langueedu.Sdk
             }
         }
 
-        private async Task<Result<TResult>> RequestAsResultAsync<TResult>(HttpResponseMessage response)
+        protected async Task<TResult> RequestAsResultAsync<TResult>(HttpResponseMessage response)
         {
-            var result = await response.Content.ReadFromJsonAsync<Result<TResult>>();
-
+            var result = await response.Content.ReadFromJsonAsync<TResult>();
             return result;
         }
     }

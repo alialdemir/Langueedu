@@ -5,6 +5,5 @@
         Get,
         Post,
         Delete,
-        Form
     }
 }
