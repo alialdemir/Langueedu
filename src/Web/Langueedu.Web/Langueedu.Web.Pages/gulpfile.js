@@ -62,5 +62,5 @@ gulp.task("script", (done) => {
 
 gulp.task("watch", () => {
     gulp.watch(paths, gulp.series('sass'));
-    //gulp.watch(jsSRC + '*.js', gulp.series('script'));
+    gulp.watch(jsSRC + '*.js', gulp.series('script'));
 });
