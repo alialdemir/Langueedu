@@ -21,9 +21,37 @@ public abstract class ViewModelBase : INotifyPropertyChanged
 
     #region Constructor
 
-    public ViewModelBase(IServiceProvider serviceProvider)
+    public ViewModelBase(IServiceProvider serviceProvider = null)
     {
         _serviceProvider = serviceProvider;
+    }
+
+    #endregion
+
+    #region Properties
+
+    public bool IsBusy { get; set; }
+
+    private SweetAlertService Swal
+    {
+        get
+        {
+            if (_swal == null)
+                _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
+
+            return _swal;
+        }
+    }
+
+    private NavigationManager Navigation
+    {
+        get
+        {
+            if (_navigationManager == null)
+                _navigationManager ??= _serviceProvider.GetRequiredService<NavigationManager>();
+
+            return _navigationManager;
+        }
     }
 
     #endregion
@@ -110,17 +138,6 @@ public abstract class ViewModelBase : INotifyPropertyChanged
 
     #region Dialogs
 
-    private SweetAlertService Swal
-    {
-        get
-        {
-            if (_swal == null)
-                _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
-
-            return _swal;
-        }
-    }
-
     protected async Task ShowErrorAsync(params string[] errorMessages)
     {
         if (errorMessages == null || !errorMessages.Any())
@@ -140,17 +157,6 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     #endregion
 
     #region Navigation
-
-    private NavigationManager Navigation
-    {
-        get
-        {
-            if (_navigationManager == null)
-                _navigationManager ??= _serviceProvider.GetRequiredService<NavigationManager>();
-
-            return _navigationManager;
-        }
-    }
 
     protected void NavigateTo(string uri, bool forceLoad = false)
     {
