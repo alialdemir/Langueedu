@@ -10,6 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Langueedu.API.Controllers;
 
+[ApiVersion("1.0")]
 public class PlaylistsController : BaseApiController
 {
     private readonly IMediator _mediator;

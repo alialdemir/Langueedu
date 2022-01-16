@@ -29,6 +29,9 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.Converters.Add(new StringEnumConverter());
 });
+
+builder.Services.AddApiVersioning();
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddSwaggerGen(c =>

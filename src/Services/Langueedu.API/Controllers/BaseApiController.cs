@@ -11,7 +11,7 @@ namespace Langueedu.API.Controllers;
 /// </summary>
 [Authorize]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public abstract class BaseApiController : Controller
 {
 }
