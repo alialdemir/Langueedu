@@ -36,6 +36,9 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     {
         get
         {
+            if (_serviceProvider == null)
+                throw new ArgumentNullException(nameof(_serviceProvider));
+
             if (_swal == null)
                 _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
 
@@ -47,6 +50,9 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     {
         get
         {
+            if (_serviceProvider == null)
+                throw new ArgumentNullException(nameof(_serviceProvider));
+
             if (_navigationManager == null)
                 _navigationManager ??= _serviceProvider.GetRequiredService<NavigationManager>();
 

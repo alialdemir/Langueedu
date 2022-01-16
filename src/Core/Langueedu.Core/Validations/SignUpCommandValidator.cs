@@ -1,12 +1,13 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 using FluentValidation.Validators;
-using Langueedu.Sdk.Identity.Response;
+using Langueedu.Core.Features.Commands.Account.SignUp;
 
-namespace Langueedu.Sdk.Identity.Validators
+namespace Langueedu.Core.Validations
 {
-    public class SignUpModelValidator : AbstractValidator<SignUpModel>
+    public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
     {
-        public SignUpModelValidator()
+        public SignUpCommandValidator()
         {
             RuleFor(x => x.UserName)
             .NotEmpty()
@@ -41,6 +42,11 @@ namespace Langueedu.Sdk.Identity.Validators
                     context.AddFailure(nameof(x.Password), "Passwords should match");
                 }
             });
+
+            RuleFor(x => x.LanguageCode)
+            .NotEmpty()
+            .WithMessage("You must enter a language code");
         }
     }
 }
+

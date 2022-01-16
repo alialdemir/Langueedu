@@ -1,10 +1,11 @@
 ﻿using System;
-using FluentValidation;
-using FluentValidation.Validators;
+using Ardalis.Result;
+using Langueedu.SharedKernel.ViewModels;
+using MediatR;
 
-namespace Langueedu.Sdk.Identity.Response
+namespace Langueedu.Core.Features.Commands.Account.SignUp
 {
-    public class SignUpModel
+    public class SignUpCommand : IRequest<Result<string>>
     {
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -13,3 +14,4 @@ namespace Langueedu.Sdk.Identity.Response
         public string LanguageCode { get; set; }
     }
 }
+

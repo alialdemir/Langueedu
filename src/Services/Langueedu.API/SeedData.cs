@@ -22,10 +22,15 @@ public static class SeedData
 
 
             // Look for any TODO items.
-            if (dbContext.Artists.Any())
+            if (dbContext.Users.Any())
             {
                 return; // DB has been seeded
             }
+
+            dbContext.Roles.AddRange(GetRoles());
+
+            dbContext.SaveChanges();
+
 
             PopulateTestData(dbContext);
         }
@@ -74,6 +79,29 @@ public static class SeedData
         dbContext.SaveChanges();
     }
 
+    private static List<IdentityRole> GetRoles()
+    {
+        IdentityRole adminRole = new IdentityRole
+        {
+            Id = "admin",
+            Name = "Admin",
+            NormalizedName = "ADMIN"
+        };
+
+        IdentityRole userRole = new IdentityRole
+        {
+            Id = "user",
+            Name = "User",
+            NormalizedName = "USER"
+        };
+
+        return new List<IdentityRole>
+            {
+                adminRole,
+                userRole
+            };
+    }
+
     private static IEnumerable<User> GetDefaultUser()
     {
         IPasswordHasher<User> _passwordHasher = new PasswordHasher<User>();
@@ -82,7 +110,6 @@ public static class SeedData
             new User()
             {
                 Id = "1111-1111-1111-1111",
-                FullName = "Ali Aldemir",
                 UserName = "witcherfearless",
                 Email = "aldemirali93@gmail.com",
                 PhoneNumber = "5444261154",
@@ -98,7 +125,6 @@ public static class SeedData
         new User()
         {
             Id = "2222-2222-2222-2222",
-            FullName = "Demo",
             UserName = "demo",
             PhoneNumber = "0000000000",
             NormalizedUserName = "DEMO",
@@ -110,27 +136,26 @@ public static class SeedData
 
         demoUser.PasswordHash = _passwordHasher.HashPassword(demoUser, "12345678");
 
-        var botUser =
+        var guestUser =
         new User()
         {
             Id = "3333-3333-3333-bot",
-            FullName = "Bot",
-            UserName = "bot12345",
+            UserName = "guest123",
             PhoneNumber = "1234567890",
-            NormalizedUserName = "BOT12345",
-            Email = "bot@bot.com",
-            NormalizedEmail = "BOT@BOT.COM",
+            NormalizedUserName = "GUEST123",
+            Email = "guest@guest.com",
+            NormalizedEmail = "GUEST@GUEST.COM",
             LanguageCode = "en_US",
             SecurityStamp = Guid.NewGuid().ToString("D"),
         };
 
-        botUser.PasswordHash = _passwordHasher.HashPassword(botUser, "12345678");
+        guestUser.PasswordHash = _passwordHasher.HashPassword(guestUser, "12345678");
 
         return new List<User>()
             {
                witcherUser,
                demoUser,
-               botUser
+               guestUser
 };
     }
 

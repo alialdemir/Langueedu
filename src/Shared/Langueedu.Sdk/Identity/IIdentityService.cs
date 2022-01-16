@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Ardalis.Result;
+﻿using System.Threading.Tasks;
 using Langueedu.Sdk.Identity.Request;
 using Langueedu.Sdk.Identity.Response;
 

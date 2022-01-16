@@ -13,7 +13,6 @@
     <PackageReference Include="Ardalis.Specification" Version="5.2.0" />
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="MediatR" Version="10.0.0" />
-    <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Ardalis.Result.FluentValidation" Version="3.0.2" />
   </ItemGroup>
@@ -49,6 +48,8 @@
     <None Remove="Features\Queries\Track\GetTrackDetailById\" />
     <None Remove="Entities\User\" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="Features\Commands\Account\" />
+    <None Remove="Features\Commands\Account\SignUp\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -68,5 +69,7 @@
     <Folder Include="Features\Queries\Track\" />
     <Folder Include="Features\Queries\Track\GetTrackDetailById\" />
     <Folder Include="Entities\User\" />
+    <Folder Include="Features\Commands\Account\" />
+    <Folder Include="Features\Commands\Account\SignUp\" />
   </ItemGroup>
 </Project>

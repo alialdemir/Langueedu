@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Ardalis.Result;
 
 namespace Langueedu.Sdk
 {
@@ -11,9 +12,16 @@ namespace Langueedu.Sdk
     {
         protected readonly HttpClient _httpClient;
 
+        private readonly JsonSerializerOptions _serializerSettings;
         public ServiceBase(HttpClient httpClient)
         {
             _httpClient = httpClient;
+
+            _serializerSettings = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                Converters = { new JsonStringEnumConverter() }
+            };
         }
 
 
@@ -99,7 +107,7 @@ namespace Langueedu.Sdk
 
         protected async Task<TResult> RequestAsResultAsync<TResult>(HttpResponseMessage response)
         {
-            var result = await response.Content.ReadFromJsonAsync<TResult>();
+            var result = await response.Content.ReadFromJsonAsync<TResult>(_serializerSettings);
             return result;
         }
     }

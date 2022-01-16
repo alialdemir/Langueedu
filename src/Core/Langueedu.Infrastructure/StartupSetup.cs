@@ -1,6 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using Langueedu.Core.Interfaces;
 using Langueedu.Infrastructure.Configuration;
 using Langueedu.Infrastructure.Data;
+using Langueedu.Infrastructure.Mapping;
+using Langueedu.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +17,10 @@ public static class StartupSetup
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IAccountService, AccountService>();
+
+        services.AddAutoMapper(typeof(UserProfile));
+
         services.AddDbContext(configuration);
 
         services.AddIdentity(configuration);

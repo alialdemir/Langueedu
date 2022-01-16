@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Ardalis.Result;
 using Langueedu.Sdk.Identity.Request;
 using Langueedu.Sdk.Identity.Response;
 using Langueedu.Sdk.Utilities;
@@ -11,7 +10,7 @@ namespace Langueedu.Sdk.Identity
 {
     internal class IdentityService : ServiceBase, IIdentityService
     {
-        private const string API_URL_BASE = "/v1/Account";
+        private const string API_URL_BASE = "/v1/Accounts";
 
         public IdentityService(IHttpClientFactory clientFactory)
             : base(clientFactory.CreateClient("LangueeduApi"))
