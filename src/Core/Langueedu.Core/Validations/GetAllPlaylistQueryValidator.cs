@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Langueedu.Core.Features.Queries.Playlist;
 using Langueedu.Core.Features.Queries.Playlist.GetAllPlaylist;
 
 namespace Langueedu.Core.Validations

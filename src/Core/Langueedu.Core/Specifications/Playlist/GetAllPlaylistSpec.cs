@@ -1,6 +1,6 @@
 using Ardalis.Specification;
-using Langueedu.Core.Enums;
 using Langueedu.Core.Entities.PlaylistAggregate;
+using Langueedu.Core.Enums;
 using Langueedu.SharedKernel.ViewModels;
 
 namespace Langueedu.Core.Specifications;
@@ -25,6 +25,7 @@ public class GetAllPlaylistSpec : Specification<Playlist, PlaylistViewModel>
                       t.Album.MainArtist.ContentStatus == ContentStatus.Active)
           .Select(track => new TrackViewModel
           {
+              TrackId = track.Id,
               YoutubeId = track.YoutubeVideoId,
               TrackSlug = track.Slug,
               SongTitle = track.SongTitle,

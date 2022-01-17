@@ -1,7 +1,6 @@
-﻿using System;
-namespace Langueedu.Core.Enums
+﻿namespace Langueedu.Core.Enums
 {
-  public enum ContentStatus : byte
+    public enum ContentStatus : byte
   {
     Active,
     Passive

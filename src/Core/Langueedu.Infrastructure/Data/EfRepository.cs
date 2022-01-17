@@ -1,5 +1,4 @@
-﻿using Ardalis.Specification;
-using Ardalis.Specification.EntityFrameworkCore;
+﻿using Ardalis.Specification.EntityFrameworkCore;
 using Langueedu.SharedKernel.Interfaces;
 
 namespace Langueedu.Infrastructure.Data;

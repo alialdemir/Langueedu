@@ -1,6 +1,4 @@
-﻿using System;
-using Langueedu.Core.Enums;
-using Langueedu.Core.Entities.PlaylistAggregate;
+﻿using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using Langueedu.SharedKernel.Interfaces;
 

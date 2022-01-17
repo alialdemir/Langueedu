@@ -1,5 +1,4 @@
-﻿using System;
-namespace Langueedu.Sdk
+﻿namespace Langueedu.Sdk
 {
     internal static class Configs
     {

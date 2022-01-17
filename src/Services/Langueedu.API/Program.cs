@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Ardalis.ListStartupServices;
+﻿using Ardalis.ListStartupServices;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Langueedu.Core;

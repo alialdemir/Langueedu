@@ -40,6 +40,8 @@
     <Folder Include="Shared\UI\TextField\" />
     <Folder Include="Provider\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Shared\UI\Card\" />
+    <Folder Include="Components\Playlist\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Shared\" />
@@ -64,6 +66,8 @@
     <None Remove="CurrieTechnologies.Razor.SweetAlert2" />
     <None Remove="System.IdentityModel.Tokens.Jwt" />
     <None Remove="Extensions\" />
+    <None Remove="Shared\UI\Card\" />
+    <None Remove="Components\Playlist\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Shared\UI\Input\TextField">

@@ -1,10 +1,9 @@
-﻿using System;
-namespace Langueedu.API.Extensions;
+﻿namespace Langueedu.API.Extensions;
 
 
 public static partial class Startup
 {
-    public static IServiceCollection AddCorsConfigure(this IServiceCollection services, IConfiguration configuration = null)
+    public static IServiceCollection AddCorsConfigure(this IServiceCollection services, IConfiguration? configuration = null)
     {
         services.AddCors(options =>
         {

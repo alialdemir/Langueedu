@@ -1,0 +1,23 @@
+﻿.playlist {
+  @apply cursor-pointer
+  text-white;
+
+  &__image {
+    @apply rounded-md;
+
+    width: 230px;
+  }
+
+  &__footer {
+    @apply pl-2
+    pt-2;
+  }
+
+  &__sont-title {
+    @apply font-bold;
+  }
+
+  &__artists {
+    @apply block;
+  }
+}

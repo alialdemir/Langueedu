@@ -1,0 +1,11 @@
+@inherits Langueedu.Web.Components.ComponentBase
+@namespace Langueedu.Web.Components
+<a href="@Url">
+    <div class="playlist">
+        <img src="@Track.TrackImage" class="playlist__image" />
+        <div class="playlist__footer">
+            <span class="playlist__sont-title">@Track.SongTitle</span>
+            <span class="playlist__artists">@Track.Artists.GetArtistNames()</span>
+        </div>
+    </div>
+</a>

@@ -1,6 +1,4 @@
-﻿using System;
-using Ardalis.Result;
-using Langueedu.SharedKernel.ViewModels;
+﻿using Ardalis.Result;
 using MediatR;
 
 namespace Langueedu.Core.Features.Commands.Account.SignUp

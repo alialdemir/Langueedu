@@ -140,6 +140,13 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         return Task.CompletedTask;
     }
 
+    public virtual void OnParametersSet() { }
+    
+    public virtual Task SetParametersAsync(ParameterView parameters)
+    {
+        return Task.CompletedTask;
+    }
+
     #endregion
 
     #region Dialogs

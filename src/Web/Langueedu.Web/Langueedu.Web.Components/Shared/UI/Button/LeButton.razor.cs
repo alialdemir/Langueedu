@@ -10,6 +10,7 @@ namespace Langueedu.Web.Components
         new ClassnameBuilder("btn")
             .AddClass("btn-block", FullWidth)
             .AddClass($"btn-{Color.ToDescriptionString()}")
+            .AddClass($"p-6 {Rounded.ToDescriptionString()}", Rounded != Rounded.None)
             .AddClass($"btn-{Size.ToDescriptionString()}")
             .AddClass(Class)
             .Build();
@@ -19,6 +20,9 @@ namespace Langueedu.Web.Components
 
         [Parameter]
         public Color Color { get; set; } = Color.Primary;
+
+        [Parameter]
+        public Rounded Rounded { get; set; } = Rounded.None;
 
         [Parameter]
         public Size Size { get; set; } = Size.Small;

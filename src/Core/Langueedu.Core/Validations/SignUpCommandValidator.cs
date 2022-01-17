@@ -1,5 +1,4 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Validators;
 using Langueedu.Core.Features.Commands.Account.SignUp;
 

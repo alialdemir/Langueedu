@@ -1,8 +1,8 @@
-﻿using Langueedu.Core.Enums;
-using Langueedu.Core.Entities.PlaylistAggregate;
+﻿using Langueedu.Core.Entities.PlaylistAggregate;
+using Langueedu.Core.Enums;
 using Langueedu.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Langueedu.API;
 
@@ -65,7 +65,8 @@ public static class SeedData
 
         Artist
         .ChangeContentStatus(ContentStatus.Active)
-        .AddAlbum(Album);
+        .AddAlbum(Album)
+        .ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
 
         Playlist.Id = 1;
 

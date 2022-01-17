@@ -9,6 +9,9 @@ const watchSass = require("gulp-watch-sass");
 const concat = require('gulp-concat');
 const cssnano = require('gulp-cssnano');
 
+// tailwindcss
+const tailwindcss = require('tailwindcss');
+const postcss = require('gulp-postcss');
 
 // JS related plugins
 const uglify = require('gulp-uglify');
@@ -38,6 +41,10 @@ const paths = [
 
 gulp.task("sass", () => gulp.src(paths)
     .pipe(sass())
+    .pipe(postcss([
+        tailwindcss("./tailwind.config.js"),
+        require('autoprefixer'),
+    ]))
     .pipe(cssnano())
     .pipe(concat('app.min.css'))
     .pipe(gulp.dest("./wwwroot/css")));
@@ -62,5 +69,5 @@ gulp.task("script", (done) => {
 
 gulp.task("watch", () => {
     gulp.watch(paths, gulp.series('sass'));
-    gulp.watch(jsSRC + '*.js', gulp.series('script'));
+   // gulp.watch(jsSRC + '*.js', gulp.series('script'));
 });

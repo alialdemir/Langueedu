@@ -1,16 +1,10 @@
-using System.Net.Http.Headers;
 using System.Windows.Input;
 using Blazored.LocalStorage;
 using Langueedu.Sdk.Identity;
 using Langueedu.Sdk.Identity.Request;
 using Langueedu.Web.Components.Provider;
 using Langueedu.Web.Shared.Utilities;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Langueedu.Sdk.Identity.Response;
-using CurrieTechnologies.Razor.SweetAlert2;
 
 namespace Langueedu.Web.Components.ViewModels;
 
@@ -55,7 +49,7 @@ public class SignInViewModel : ViewModelBase
 
         await (_authenticationStateProvider as AuthStateProvider).NotifyUserLogin(response.Value);
 
-        NavigateTo("/Counter");
+        NavigateTo("/Learn");
     }
 
     public ICommand LoginCommand { get => _loginCommand ??= new CommandAsync(LoginCommandExecute); }

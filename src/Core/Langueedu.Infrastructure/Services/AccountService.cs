@@ -1,8 +1,6 @@
-﻿using System;
-using Ardalis.Result;
+﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using AutoMapper;
-using Langueedu.Core;
 using Langueedu.Core.Features.Commands.Account.SignUp;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;

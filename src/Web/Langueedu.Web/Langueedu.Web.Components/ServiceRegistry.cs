@@ -1,20 +1,27 @@
 using Blazored.LocalStorage;
-using Langueedu.Web.Components;
+using CurrieTechnologies.Razor.SweetAlert2;
+using Langueedu.Web.Components.Interfaces;
+using Langueedu.Web.Components.PropertyBinding;
+using Langueedu.Web.Components.Services;
 using Langueedu.Web.Components.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using CurrieTechnologies.Razor.SweetAlert2;
-using Langueedu.Web.Components.Services;
-using Langueedu.Web.Components.Interfaces;
 
 public static class ServiceRegistry
 {
     public static IServiceCollection AddComponents(this IServiceCollection services)
     {
 
+
+        services.AddSingleton<IParameterResolver, ParameterResolver>();
+        services.AddSingleton<IParameterCache, ParameterCache>();
+        services.AddSingleton<IViewModelParameterSetter, ViewModelParameterSetter>();
+
+        services.AddScoped<ITinySlider, TinySlider>();
         services.AddScoped<ICultureService, CultureService>();
 
         services.AddScoped<SignInViewModel>();
         services.AddScoped<SignUpViewModel>();
+        services.AddScoped<TrackCoverViewModel>();
 
         services.AddBlazoredLocalStorage();
 

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Langueedu.Core
 {
-  public static class SlugExtension
+    public static class SlugExtension
   {
     /// <summary>
     /// Seo friendly slug

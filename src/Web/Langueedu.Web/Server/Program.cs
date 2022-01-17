@@ -6,9 +6,9 @@ var services = builder.Services;
 
 string langueeduApiUrl = builder.Configuration.GetValue<string>("LangueeduApiUrl");
 
-// Add services to the container.
-services.AddLangueeduSdk(langueeduApiUrl);
 services.AddComponents();
+
+services.AddLangueeduSdk(langueeduApiUrl, string.Empty);
 
 services.AddControllersWithViews();
 services.AddRazorPages();

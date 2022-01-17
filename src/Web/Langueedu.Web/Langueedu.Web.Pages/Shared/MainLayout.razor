@@ -1,49 +1,44 @@
 ﻿@inherits LayoutComponentBase
 
-    <div class="page-wrapper">
-        <div class="page-main-header">
-            <div class="main-header-right">
-                <LogoHeader />
+<div class="page-wrapper">
+    <div class="page-main-header">
+        <div class="main-header-right">
+            <LogoHeader />
 
-                <MobileSidebar />
+            <MobileSidebar />
 
-                <NavMenu />
-            </div>
-        </div>
-
-        <div class="page-body-wrapper">
-            <Sidebar />
-
-            <div class="page-body">
-                <div class="container-fluid">@Body</div>
-            </div>
+            <NavMenu />
         </div>
     </div>
 
+    <div class="page-body-wrapper">
+        <Sidebar />
 
-    @code
+        <div class="page-body">
+            <div class="container-fluid pt-12">
+                @Body
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code
 {
-        [CascadingParameter]
-        public Task<AuthenticationState> AuthState { get; set; }
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; }
 
 
-        [Inject]
-        NavigationManager NavigationManager { get; set; }
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
 
 
 
-        protected async override Task OnInitializedAsync()
-        {
-            var authState = await AuthState;
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await AuthState;
 
-            if (authState.User.Identity.IsAuthenticated)
-            {
-                //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
-
-            }
-            else
-            {
-                NavigationManager.NavigateTo("/SignIn");
-            }
-        }
+        if (!authState.User.Identity.IsAuthenticated)
+            NavigationManager.NavigateTo("/SignIn");
     }
+}

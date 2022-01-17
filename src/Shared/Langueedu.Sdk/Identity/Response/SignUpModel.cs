@@ -1,8 +1,4 @@
-﻿using System;
-using FluentValidation;
-using FluentValidation.Validators;
-
-namespace Langueedu.Sdk.Identity.Response
+﻿namespace Langueedu.Sdk.Identity.Response
 {
     public class SignUpModel
     {

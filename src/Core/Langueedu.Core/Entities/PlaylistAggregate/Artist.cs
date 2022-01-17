@@ -24,6 +24,7 @@ public class Artist : BaseEntity, IAggregateRoot
     public IReadOnlyCollection<Album> Albums => _albums.AsReadOnly();
 
     public string PicturePath { get; set; }
+    public string CoverPicturePath { get; set; }
 
     private readonly List<PerformsOnSong> _performsOnSongs = new();
 
@@ -39,6 +40,13 @@ public class Artist : BaseEntity, IAggregateRoot
     public Artist ChangeContentStatus(ContentStatus contentStatus)
     {
         ContentStatus = contentStatus;
+
+        return this;
+    }
+
+    public Artist ChangeCoverPicture(string coverPicturePath)
+    {
+        CoverPicturePath = coverPicturePath;
 
         return this;
     }

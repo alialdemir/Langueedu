@@ -1,13 +1,9 @@
 ﻿using Ardalis.Result;
-using Ardalis.Result.FluentValidation;
 using Langueedu.Core.Entities.PlaylistAggregate;
-using Langueedu.Core.Features.Queries.Track.GetTrackDetailById;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Specifications;
-using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.Interfaces;
 using Langueedu.SharedKernel.ViewModels;
-using Langueedu.Core;
 
 namespace Langueedu.Core.Services
 {
@@ -36,4 +32,3 @@ namespace Langueedu.Core.Services
         }
     }
 }
-

@@ -17,10 +17,12 @@
     <None Remove="ViewModels\Base\" />
     <None Remove="ViewModels\Error\" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
-    <None Remove="ViewModels\Identity\" />
     <None Remove="FluentValidation" />
+    <None Remove="ViewModels\" />
+    <None Remove="ViewModels\Playlist\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\Identity\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Playlist\" />
   </ItemGroup>
 </Project>

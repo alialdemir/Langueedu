@@ -94,8 +94,16 @@
 $primary-color: #ffbf00;
 $secondary-color: #ffbf00;
 $gradient-primary: linear-gradient($secondary-color, $primary-color);
-$gradient-primary-direction: linear-gradient( to right, lighten($primary-color, 10%), darken($primary-color, 8%) );
-$gradient-secondary-direction: linear-gradient( to right, lighten($secondary-color, 10%), darken($secondary-color, 5%) );
+$gradient-primary-direction: linear-gradient(
+  to right,
+  lighten($primary-color, 10%),
+  darken($primary-color, 8%)
+);
+$gradient-secondary-direction: linear-gradient(
+  to right,
+  lighten($secondary-color, 10%),
+  darken($secondary-color, 5%)
+);
 $all-focus-outline-color: $primary-color;
 $code-tag-color: $primary-color;
 $list-group-active-bg-color: $primary-color;
@@ -130,7 +138,7 @@ $sidebar-hover-txt-color: $primary-color;
 // @import "theme/megaoption";
 // @import "theme/touchspin";
 // @import "theme/select2";
-// @import "theme/user-profile";
+@import "theme/user-profile";
 // @import "theme/progress";
 // @import "theme/according";
 @import "theme/login";
@@ -173,8 +181,8 @@ $sidebar-hover-txt-color: $primary-color;
 // @import "theme/learning";
 // @import "theme/order-history";
 // @import "theme/internationalization";
-// @import "theme/social-app";
-// @import "theme/avatars";
+@import "theme/social-app";
+@import "theme/avatars";
 // @import "theme/bookmark";
 @import "theme/typeahead-search";
 // @import "theme/dashboard_default";

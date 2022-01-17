@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Langueedu.Core.Features.Commands.Account.SignUp;
 using Langueedu.Infrastructure.Data;
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Langueedu.Web.Shared.Utilities;
+﻿namespace Langueedu.Web.Shared.Utilities;
 
 public partial class CommandAsync : Command
 {

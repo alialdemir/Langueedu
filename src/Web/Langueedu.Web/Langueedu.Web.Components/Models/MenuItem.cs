@@ -1,5 +1,4 @@
-﻿using System;
-namespace Langueedu.Web.Components.Models;
+﻿namespace Langueedu.Web.Components.Models;
 
 public class MenuItem
 {
@@ -13,7 +12,7 @@ public class MenuItem
         get
         {
             return new List<MenuItem> {
-                        new MenuItem { Title = "Home", Href = "/", Icon = "pe-7s-home", IsActive = true },
+                        new MenuItem { Title = "Home", Href = "/Learn", Icon = "pe-7s-home", IsActive = true },
                         new MenuItem { Title = "Explore", Href = "/Explore", Icon = "pe-7s-compass", IsActive = false }
                     };
         }

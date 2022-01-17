@@ -1,0 +1,20 @@
+﻿@page "/Learn"
+
+
+<LePlaylist Playlists="@Items" />
+
+
+@code {
+
+    [Inject]
+    public IPlaylistService PlaylistService { get; set; }
+
+    public IEnumerable<PlaylistViewModel> Items { get; set; } = new List<PlaylistViewModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Items = (await PlaylistService.GetAllPlaylistsAsync())?.Value;
+
+        base.OnInitializedAsync();
+    }
+}

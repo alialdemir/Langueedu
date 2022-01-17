@@ -2,10 +2,10 @@
 
 @inherits UIComponentBase
 
-<div class="form-group">
+<LeElement HtmlTag="div" Class="form-group">
     @if (!string.IsNullOrWhiteSpace(Label))
     {
-        <label class="col-form-label pt-0">@Label</label>
+        <LeElement HtmlTag="label" Class="col-form-label pt-0">@Label</LeElement>
     }
 
     <InputText type=@InputType.ToDescriptionString()
@@ -19,5 +19,5 @@
     {
         <ValidationMessage For="@ValidationFor" />
     }
-</div>
+</LeElement>
 

@@ -1,7 +1,4 @@
 ﻿using Ardalis.Result;
-using Ardalis.Result.AspNetCore;
-using AutoMapper;
-using Langueedu.Core.Features.Queries.Playlist;
 using Langueedu.Core.Features.Queries.Playlist.GetAllPlaylist;
 using Langueedu.SharedKernel.ViewModels;
 using MediatR;
