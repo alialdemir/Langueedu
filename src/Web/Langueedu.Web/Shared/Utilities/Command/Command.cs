@@ -38,6 +38,16 @@ public class Command : ICommand
             throw new ArgumentNullException(nameof(canExecute));
     }
 
+    public Command(Func<Task> execute)
+    {
+        _execute = (_) => execute();
+    }
+
+    public Command(Func<object, Task> execute)
+    {
+        _execute = (parameter) => execute(parameter);
+    }
+
     public bool CanExecute(object parameter)
     {
         if (_canExecute != null)

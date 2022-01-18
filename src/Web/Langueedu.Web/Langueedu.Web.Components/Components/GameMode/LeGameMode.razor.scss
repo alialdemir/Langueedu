@@ -1,4 +1,5 @@
 .leModal__game-mode {
+  margin-bottom: 0px !important;
   max-width: 345px;
   height: 450px;
 
@@ -23,7 +24,7 @@
     text-primary;
   }
 
-  &--sub-title {
+  &--description {
     @apply text-sm;
   }
 

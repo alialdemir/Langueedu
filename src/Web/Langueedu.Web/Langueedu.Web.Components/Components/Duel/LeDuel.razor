@@ -1,0 +1,41 @@
+@namespace Langueedu.Web.Components
+
+@inherits ComponentBase<DuelViewModel>
+
+<div class="le-duel">
+   <div class="container">
+        <div class="le-duel--close">
+        <LeButton Color=Color.Transparent Rounded=@Rounded.Full Command=@BindingContext.HideModalCommand>
+            <i class="pe-7s-close-circle text-lg text-white"></i>
+        </LeButton>
+    </div>
+
+    <div class="row le-duel-flex-wrap-reverse">
+        <div class="col-12 col-xs-8 col-sm-8 col-md-8">
+            ads
+        </div>
+
+        <div class="col-12 col-xs-4 col-sm-4 col-md-4">
+            4sda
+        </div>
+    </div>
+   </div>
+</div>
+
+@code {
+    [Parameter]
+    public short EntryFee { get; set; }
+
+    [Parameter]
+    public GameMode GameMode { get; set; }
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        BindingContext.ModalInstance = ModalInstance;
+    }
+}

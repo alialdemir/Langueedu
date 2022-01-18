@@ -37,12 +37,19 @@ namespace Langueedu.Web.Components.ViewModels
 
         private void ShowGameModeCommandExecute()
         {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
             ShowModal<LeGameMode>(string.Empty, new ModalOptions()
             {
                 HideCloseButton = false,
                 HideHeader = true,
-                DisableBackgroundCancel=true
-             });
+                DisableBackgroundCancel = true
+            });
+
+            IsBusy = false;
         }
 
         public ICommand ShowGameModeCommand { get => _showGameModeCommand ??= new Command(ShowGameModeCommandExecute); }

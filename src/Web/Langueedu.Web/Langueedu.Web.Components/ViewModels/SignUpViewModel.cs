@@ -63,5 +63,5 @@ public class SignUpViewModel : ViewModelBase
         IsBusy = false;
     }
 
-    public ICommand SignUpCommand { get => _signUpCommand ??= new CommandAsync(SignUpCommandExecute); }
+    public ICommand SignUpCommand { get => _signUpCommand ??= new Command(SignUpCommandExecute); }
 }

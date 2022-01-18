@@ -1,0 +1,25 @@
+.le-duel {
+  @apply w-full
+    h-screen
+    absolute
+    left-0
+    top-0;
+
+  background: linear-gradient(180deg, #ffb347 0%, #ffcc33 100%);
+
+  &--close {
+    @apply absolute
+    right-2
+    top-2;
+  }
+
+  &-flex-wrap-reverse {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 575px) {
+  .le-duel-flex-wrap-reverse {
+    flex-direction: column-reverse;
+  }
+}

@@ -24,6 +24,7 @@ public static class ServiceRegistry
         services.AddScoped<SignUpViewModel>();
         services.AddScoped<TrackCoverViewModel>();
         services.AddScoped<GameModeViewModel>();
+        services.AddScoped<DuelViewModel>();
 
         services.AddBlazoredLocalStorage();
 

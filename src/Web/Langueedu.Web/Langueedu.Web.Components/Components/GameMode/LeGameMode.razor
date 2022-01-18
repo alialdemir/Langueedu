@@ -1,7 +1,7 @@
 @namespace Langueedu.Web.Components
 
 @inherits ComponentBase<GameModeViewModel>
-    
+
 <div class="leModal__game-mode--container">
     <div class="leModaL-game-mode-slider flex">
         @foreach (var gameMode in BindingContext.GameModes)
@@ -19,7 +19,7 @@
                             </div>
 
                             <span class="leModal__game-mode--title">@gameMode.Title</span>
-                            <span class="leModal__game-mode--sub-title">@gameMode.Description</span>
+                            <span class="leModal__game-mode--description">@gameMode.Description</span>
 
                             <img class="leModal__game-mode--badge" src=@gameMode.Image alt="Beginner" />
 
@@ -31,12 +31,17 @@
                             <LeCoinIcon IsNegative Gold=@gameMode.EntryFee />
                             <span class="mt-2 mb-4">ENRTY FEE</span>
 
-                            <LeProgressBar Value="@(gameMode.ProgressBar)" />
+                            <LeProgressBar Value=gameMode.ProgressBar />
                             <span class="text-sm w-full mt-1">@gameMode.Title</span>
                         </div>
                     </LeCardBody>
 
-                    <LeButton Class="leModal__game-mode--play" Color=Color.Success Rounded=@Rounded.Large FullWidth>
+                        <LeButton Command=@BindingContext.StartGameCommand
+                        CommandParameter=@gameMode
+                        Class="leModal__game-mode--play"
+                        Color=Color.Success
+                        Rounded=@Rounded.Large
+                        FullWidth>
                         PLAY
                     </LeButton>
                 </LeCard>

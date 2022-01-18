@@ -33,7 +33,7 @@ public sealed class Command<T> : Command
         if (canExecute == null)
             throw new ArgumentNullException(nameof(canExecute));
     }
-
+    
     static bool IsValidParameter(object o)
     {
         if (o != null)

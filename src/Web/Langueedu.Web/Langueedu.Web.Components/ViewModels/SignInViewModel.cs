@@ -52,5 +52,5 @@ public class SignInViewModel : ViewModelBase
         NavigateTo("/Learn");
     }
 
-    public ICommand LoginCommand { get => _loginCommand ??= new CommandAsync(LoginCommandExecute); }
+    public ICommand LoginCommand { get => _loginCommand ??= new Command(LoginCommandExecute); }
 }

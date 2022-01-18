@@ -8,4 +8,5 @@ public class GameModeModel
     public string Title { get; set; }
     public string Description { get; set; }
     public byte ProgressBar { get; set; }
+    public GameMode GameMode { get; set; }
 }

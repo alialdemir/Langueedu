@@ -21,7 +21,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     private SweetAlertService _swal;
     private NavigationManager _navigationManager;
     private IModalService _modal;
-    private CommandAsync _hideModalCommand;
+    private ICommand _hideModalCommand;
 
     #endregion
 
@@ -203,11 +203,16 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         return Modal.Show<TComponent>(title, options);
     }
 
+    protected IModalReference ShowModal<TComponent>(string title, ModalParameters parameters = null, ModalOptions options = null) where TComponent : ComponentBase
+    {
+        return Modal.Show<TComponent>(title, parameters, options);
+    }
+
     protected Task HideModal()
     {
         return ModalInstance?.CloseAsync();
     }
-    public ICommand HideModalCommand { get => _hideModalCommand ??= new CommandAsync(HideModal); }
+    public ICommand HideModalCommand { get => _hideModalCommand ??= new Command(HideModal); }
 
     #endregion
 
