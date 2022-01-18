@@ -22,4 +22,6 @@ public enum Color
     Dark,
     [Description("Link")]
     Link,
+    [Description("transparent")]
+    Transparent,
 }

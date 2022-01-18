@@ -1,4 +1,5 @@
-﻿using Langueedu.Web.Components.PropertyBinding;
+﻿using Blazored.Modal;
+using Langueedu.Web.Components.PropertyBinding;
 using Langueedu.Web.Components.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +11,6 @@ public abstract class ComponentBase<T> : ComponentBase where T : ViewModelBase
     private IServiceProvider _serviceProvider;
 
     private IViewModelParameterSetter? _viewModelParameterSetter;
-
     protected internal T BindingContext { get; set; } = null!;
 
     [Inject]
@@ -45,6 +45,11 @@ public abstract class ComponentBase<T> : ComponentBase where T : ViewModelBase
     protected override Task OnInitializedAsync()
     {
         return BindingContext?.OnInitializedAsync() ?? Task.CompletedTask;
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return BindingContext?.OnAfterRenderAsync(firstRender) ?? Task.CompletedTask;
     }
 
     protected override void OnParametersSet()

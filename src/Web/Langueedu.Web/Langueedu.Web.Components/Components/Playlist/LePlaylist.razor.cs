@@ -12,15 +12,13 @@ public partial class LePlaylist : ComponentBase
     [Inject]
     public ITinySlider TinySlider { get; set; }
 
-    protected override Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            // await TinySlider.StartLearnSlider(".learn-slider1");
+            await TinySlider.StartLearnSlider(".learn-slider1");
         }
 
-
-        base.OnAfterRenderAsync(firstRender);
-        return Task.CompletedTask;
+        await base.OnAfterRenderAsync(firstRender);
     }
 }

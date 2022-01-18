@@ -231,7 +231,7 @@ $sidebar-iconsmenu-width: 90px;
 $sidebar-icons-mainmenu-width: 210px;
 $sidebar-height: calc(100vh - 95px);
 $sidebar-bar-icon-padding: 20px 15px;
-$sidebar-bar-icon-z-index: 999;
+$sidebar-bar-icon-z-index: 100;
 $sidebar-bar-icon-font-size: 22px;
 $sidebar-iconbar-mainmenu-top-space: 95px;
 $sidebar-iconbar-mainmenu-font-weight: 600;
@@ -244,7 +244,7 @@ $sidebar-iconbar-main-menu-subheader-margin: 25px;
 $main-header-bg-color: $white;
 $main-header-position: fixed;
 $main-header-top: 0;
-$main-header-z-index: 999;
+$main-header-z-index: 99;
 $main-header-shadow: 0 0 41px 18px rgba(246, 250, 253, 1);
 
 //page settings

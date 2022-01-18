@@ -2,8 +2,12 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Blazored.Modal;
+using Blazored.Modal.Services;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Web.Components.Exceptions;
+using Langueedu.Web.Shared.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +20,8 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     private readonly IServiceProvider _serviceProvider;
     private SweetAlertService _swal;
     private NavigationManager _navigationManager;
+    private IModalService _modal;
+    private CommandAsync _hideModalCommand;
 
     #endregion
 
@@ -31,6 +37,22 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     #region Properties
 
     public bool IsBusy { get; set; }
+
+    private IModalService Modal
+    {
+        get
+        {
+            if (_serviceProvider == null)
+                throw new ArgumentNullException(nameof(_serviceProvider));
+
+            if (_modal == null)
+                _modal ??= _serviceProvider.GetRequiredService<IModalService>();
+
+            return _modal;
+        }
+    }
+
+    public BlazoredModalInstance ModalInstance { get; set; }
 
     private SweetAlertService Swal
     {
@@ -140,8 +162,13 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         return Task.CompletedTask;
     }
 
+    public virtual Task OnAfterRenderAsync(bool firstRender)
+    {
+        return Task.CompletedTask;
+    }
+
     public virtual void OnParametersSet() { }
-    
+
     public virtual Task SetParametersAsync(ParameterView parameters)
     {
         return Task.CompletedTask;
@@ -166,6 +193,21 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     {
         return ShowErrorAsync(errorMessages.ToArray());
     }
+
+    #endregion
+
+    #region Modals
+
+    protected IModalReference ShowModal<TComponent>(string title, ModalOptions options) where TComponent : ComponentBase
+    {
+        return Modal.Show<TComponent>(title, options);
+    }
+
+    protected Task HideModal()
+    {
+        return ModalInstance?.CloseAsync();
+    }
+    public ICommand HideModalCommand { get => _hideModalCommand ??= new CommandAsync(HideModal); }
 
     #endregion
 

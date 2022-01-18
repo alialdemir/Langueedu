@@ -1,0 +1,46 @@
+@namespace Langueedu.Web.Components
+
+@inherits ComponentBase<GameModeViewModel>
+    
+<div class="leModal__game-mode--container">
+    <div class="leModaL-game-mode-slider flex">
+        @foreach (var gameMode in BindingContext.GameModes)
+        {
+            <div class="w-full">
+
+                <LeCard Class="leModal__game-mode">
+                    <LeCardBody>
+                        <div class="leModal__game-mode--content">
+                            <div class="leModal__game-mode--close">
+                                <LeButton Color=Color.Transparent Rounded=@Rounded.Full
+                                Command=@BindingContext.HideModalCommand>
+                                    <i class="pe-7s-close-circle text-lg text-white"></i>
+                                </LeButton>
+                            </div>
+
+                            <span class="leModal__game-mode--title">@gameMode.Title</span>
+                            <span class="leModal__game-mode--sub-title">@gameMode.Description</span>
+
+                            <img class="leModal__game-mode--badge" src=@gameMode.Image alt="Beginner" />
+
+                            <LeCoinIcon Gold=@gameMode.Prize />
+                            <span class="mt-2">EARNED COIN</span>
+
+                            <div class="leModal__game-mode--hr"></div>
+
+                            <LeCoinIcon IsNegative Gold=@gameMode.EntryFee />
+                            <span class="mt-2 mb-4">ENRTY FEE</span>
+
+                            <LeProgressBar Value="@(gameMode.ProgressBar)" />
+                            <span class="text-sm w-full mt-1">@gameMode.Title</span>
+                        </div>
+                    </LeCardBody>
+
+                    <LeButton Class="leModal__game-mode--play" Color=Color.Success Rounded=@Rounded.Large FullWidth>
+                        PLAY
+                    </LeButton>
+                </LeCard>
+            </div>
+        }
+    </div>
+</div>

@@ -6,7 +6,7 @@ public enum Rounded
 {
     [Description("")]
     None,
-    [Description("rounded")]
+    [Description("small")]
     Small,
     [Description("md")]
     Middle,

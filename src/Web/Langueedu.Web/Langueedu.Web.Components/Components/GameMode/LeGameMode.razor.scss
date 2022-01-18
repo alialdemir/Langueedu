@@ -1,0 +1,72 @@
+.leModal__game-mode {
+  max-width: 345px;
+  height: 450px;
+
+  &--close {
+    @apply absolute
+    right-2
+    top-2;
+  }
+
+  &--content {
+    @apply flex
+    justify-center
+    items-center
+    flex-col;
+  }
+
+  &--title {
+    @apply text-lg
+    mt-9
+    uppercase
+    font-bold
+    text-primary;
+  }
+
+  &--sub-title {
+    @apply text-sm;
+  }
+
+  &--badge {
+    @apply mt-3
+    mb-3;
+  }
+
+  &--hr {
+    @apply w-2/4
+    rounded
+    mb-3
+    mt-3;
+
+    border: 0.4px solid #dedede;
+  }
+
+  &--play {
+    @apply -z-10
+    h-12;
+
+    bottom: -39px;
+  }
+}
+
+.blazored-modal {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 1em) {
+  .leModal__game-mode--container #tns1 > .tns-item {
+    @apply relative;
+
+    left: 215px;
+  }
+}
+
+@media (min-width: 24.375em) {
+  .leModal__game-mode--container #tns1 > .tns-item {
+    @apply relative;
+
+    left: 210px;
+  }
+}

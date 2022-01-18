@@ -31,6 +31,23 @@ namespace Langueedu.Web.Components.Services
                 fixedWidth = 230,
             });
         }
+
+        public async Task StartGameModeSlider(string container)
+        {
+            await _jSRuntime.InvokeVoidAsync("tinySlider", new
+            {
+                container = container,
+               items = 1.7,
+                slideBy = "page",
+                loop = false,
+                controls = false,
+                nav = false,
+                mouseDrag = true,
+                swipeAngle = false,
+                autoplay = false,
+                speed = 400,
+                gutter = 55,
+            });
+        }
     }
 }
-

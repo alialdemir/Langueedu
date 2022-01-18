@@ -1,0 +1,10 @@
+.coin-icon {
+  @apply flex
+    justify-between
+    items-center
+    gap-2;
+
+  & span {
+    @apply font-bold;
+  }
+}
