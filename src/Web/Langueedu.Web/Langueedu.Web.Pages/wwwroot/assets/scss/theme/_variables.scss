@@ -11,7 +11,7 @@ $success-color: #80cf00;
 $info-color: #06b5dd;
 $warning-color: #ffc717;
 $danger-color: #fd517d;
-$light-color: #f8f5fd;
+$light-color: #fdfeff;
 $semi-dark: #aaaaaa;
 $light-semi-gray: #efefef;
 $light-gray: #e8ebf2;
@@ -147,8 +147,8 @@ $according-btn-weight: 600;
 $according-btn-color: $theme-body-font-color;
 $according-card-header-padding: 0.75rem 1.25rem;
 $according-card-header-icon: $font-ICO;
-$according-open-icon: "\eb73";
-$according-close-icon: "\eb7a";
+$according-open-icon: '\eb73';
+$according-close-icon: '\eb7a';
 
 //Alert settings
 $alert-hover-color: $dark-color;
@@ -259,7 +259,7 @@ $page-small-title-display: block;
 $page-small-title-text-transform: uppercase;
 $page-small-title-letter-spacing: 4px;
 $page-small-title-font-weight: 700;
-$breadcrumb-content: "/";
+$breadcrumb-content: '/';
 
 //main header left settings
 $main-header-left-bg-color: $theme-font-color;

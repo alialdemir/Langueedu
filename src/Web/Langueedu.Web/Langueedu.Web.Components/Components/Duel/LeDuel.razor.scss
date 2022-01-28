@@ -3,9 +3,10 @@
     h-screen
     absolute
     left-0
-    top-0;
+    top-0
+    overflow-y-scroll;
 
-  background: linear-gradient(180deg, #ffb347 0%, #ffcc33 100%);
+  background-color: #fdfeff;
 
   &--close {
     @apply absolute
@@ -13,13 +14,24 @@
     top-2;
   }
 
+  // &-flex-wrap-reverse {
+  //   flex-direction: row;
+  // }
+
+  &-lyrics-container {
+    @apply text-center
+    max-h-96
+    overflow-hidden;
+  }
+
   &-flex-wrap-reverse {
-    flex-direction: row;
+    @apply flex-col-reverse
+    md:flex-col-reverse
+    lg:flex-row
+    xl:flex-row
+    2xl:flex-row;
   }
 }
-
-@media (max-width: 575px) {
-  .le-duel-flex-wrap-reverse {
-    flex-direction: column-reverse;
-  }
+.dark-only .le-duel {
+  background-color: #333a62;
 }

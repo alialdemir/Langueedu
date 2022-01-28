@@ -3,23 +3,38 @@
 @inherits ComponentBase<DuelViewModel>
 
 <div class="le-duel">
-   <div class="container">
+    <div class="container">
         <div class="le-duel--close">
-        <LeButton Color=Color.Transparent Rounded=@Rounded.Full Command=@BindingContext.HideModalCommand>
-            <i class="pe-7s-close-circle text-lg text-white"></i>
-        </LeButton>
-    </div>
-
-    <div class="row le-duel-flex-wrap-reverse">
-        <div class="col-12 col-xs-8 col-sm-8 col-md-8">
-            ads
+            <LeButton Color=Color.Transparent Rounded=@Rounded.Full Command=@BindingContext.HideModalCommand>
+                <i class="pe-7s-close-circle text-lg"></i>
+            </LeButton>
         </div>
 
-        <div class="col-12 col-xs-4 col-sm-4 col-md-4">
-            4sda
+        <div class="row le-duel-flex-wrap-reverse">
+            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                <LeCard>
+                    <LeCardBody class="le-duel-lyrics-container">
+                        @foreach (var item in BindingContext.Lyrics)
+                        {
+                            <div>
+                                (Duration >= item.time)
+                                @item.text</div>
+                        }
+                    </LeCardBody>
+                </LeCard>
+
+                <LeStylish />
+            </div>
+
+            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                <LeCard>
+                    <LeCardBody class="pr-0 pl-0">
+                        <LeVideo />
+                    </LeCardBody>
+                </LeCard>
+            </div>
         </div>
     </div>
-   </div>
 </div>
 
 @code {

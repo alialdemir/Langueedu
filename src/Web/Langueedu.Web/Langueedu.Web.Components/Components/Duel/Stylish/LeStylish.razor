@@ -1,0 +1,18 @@
+@namespace Langueedu.Web.Components
+
+<div class="le-stylish-container ">
+    @foreach (var item in stylish)
+    {
+        <LeCard>
+            <LeCardBody>
+             <span>
+                  Yaşarım belki
+             </span>
+            </LeCardBody>
+        </LeCard>
+    }
+</div>
+
+@code {
+    string[] stylish = new string[4] { "1", "2", "3", "4" };
+}

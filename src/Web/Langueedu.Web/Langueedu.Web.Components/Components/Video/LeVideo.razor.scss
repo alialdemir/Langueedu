@@ -1,0 +1,10 @@
+.le-video {
+  @apply overflow-hidden
+    relative;
+
+  &-oveylay {
+    @apply absolute
+      w-full
+      h-screen;
+  }
+}

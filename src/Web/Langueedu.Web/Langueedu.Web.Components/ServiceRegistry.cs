@@ -19,6 +19,7 @@ public static class ServiceRegistry
 
          services.AddScoped<ITinySlider, TinySlider>();
          services.AddScoped<ICultureService, CultureService>();
+         services.AddScoped<IYoutubePlayer, YoutubePlayer>();
 
         services.AddScoped<SignInViewModel>();
         services.AddScoped<SignUpViewModel>();
