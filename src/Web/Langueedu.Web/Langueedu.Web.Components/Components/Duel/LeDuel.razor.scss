@@ -14,29 +14,31 @@
     top-2;
   }
 
-  &__lyrics {
-    padding: 20px;
-    font-size: 1.2rem;
-
-    &--active {
-      border-radius: 1rem;
-      background-color: rgba(0, 0, 0, 0.2);
-      transition: all 1s;
-    }
-  }
-
-  &-lyrics-container {
-    @apply text-center
-    max-h-96
-    overflow-hidden;
-  }
-
-  &-flex-wrap-reverse {
+  &__container {
     @apply flex-col-reverse
     md:flex-col-reverse
     lg:flex-row
     xl:flex-row
-    2xl:flex-row;
+    2xl:flex-row
+    grid
+    grid-cols-12
+    gap-2;
+  }
+
+  &__lyrics {
+    @apply col-span-12
+    sm:col-span-12
+    md:col-span-12
+    lg:col-span-7
+    xl:col-span-7;
+  }
+
+  &__video {
+    @apply col-span-12
+    sm:col-span-12
+    md:col-span-12
+    lg:col-span-5
+    xl:col-span-5;
   }
 }
 .dark-only .le-duel {

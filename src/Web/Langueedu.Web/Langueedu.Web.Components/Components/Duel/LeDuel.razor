@@ -10,26 +10,16 @@
             </LeButton>
         </div>
 
-        <div class="row le-duel-flex-wrap-reverse">
-            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-                <LeCard>
-                    <LeCardBody class="le-duel-lyrics-container"  >
-                        @foreach (var item in BindingContext.Lyrics)
-                        {
-                            StylishInfoModel stylishInfo = Bind(x => x.StylishInfo);
-                            bool isShow = stylishInfo.CurrentDuration >= item.Duration && stylishInfo.NextDuration <= item.Duration;
+        <div class="le-duel__container">
+            <div class="le-duel__lyrics">
+                <LeLyrics LyricsModel=@BindingContext.Lyrics NextLyrics="@Bind(x=> x.NextLyrics)"
+                    CurrentLyrics="@Bind(x=> x.CurrentLyrics)" />
 
-                            <div id="id@(item.Duration)" class='le-duel__lyrics @(isShow ? "le-duel__lyrics--active":"")'>
-                                @item.Text
-                            </div>
-                        }
-                    </LeCardBody>
-                </LeCard>
+                <LeStylish StylishCommand=@BindingContext.StylishCommand
+                    Stylish="@BindingContext.CurrentLyrics.Stylish" />
 
-                <LeStylish />
             </div>
-
-            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <div class="le-duel__video">
                 <LeCard>
                     <LeCardBody class="pr-0 pl-0">
                         <LeVideo />

@@ -11,5 +11,19 @@
 
   & .card {
     @apply mb-1;
+
+    & .card-body {
+      @apply p-0;
+
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+
+      & button {
+        @apply shadow-none
+        h-20
+        capitalize
+        rounded-xl;
+      }
+    }
   }
 }
