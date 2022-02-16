@@ -7,5 +7,6 @@ public interface IYoutubePlayer
     Task LoadVideoById(string videoId, short startSeconds = 0);
     Task PauseVideo();
     Task PlayVideo();
+    Task ScrollIntoView(string elementId);
     Task StopVideo();
 }

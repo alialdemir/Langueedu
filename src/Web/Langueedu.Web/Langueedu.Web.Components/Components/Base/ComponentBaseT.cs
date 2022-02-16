@@ -1,5 +1,5 @@
-﻿using Blazored.Modal;
-using Langueedu.Web.Components.PropertyBinding;
+﻿using System.Linq.Expressions;
+using Langueedu.Web.Components.Internal.PropertyBinding;
 using Langueedu.Web.Components.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,17 +8,10 @@ namespace Langueedu.Web.Components;
 
 public abstract class ComponentBase<T> : ComponentBase where T : ViewModelBase
 {
-    private IServiceProvider _serviceProvider;
 
-    private IViewModelParameterSetter? _viewModelParameterSetter;
+    private IViewModelParameterSetter _viewModelParameterSetter;
     protected internal T BindingContext { get; set; } = null!;
 
-    [Inject]
-    public IServiceProvider ServiceProvider
-    {
-        get => _serviceProvider;
-        set => _serviceProvider = value;
-    }
 
     private void SetParameters()
     {
@@ -39,7 +32,7 @@ public abstract class ComponentBase<T> : ComponentBase where T : ViewModelBase
 
     private void SetBindingContext()
     {
-        BindingContext ??= _serviceProvider.GetRequiredService<T>();
+        BindingContext ??= ServiceProvider.GetRequiredService<T>();
     }
 
     protected override Task OnInitializedAsync()
@@ -65,4 +58,12 @@ public abstract class ComponentBase<T> : ComponentBase where T : ViewModelBase
         if (BindingContext != null)
             await BindingContext.SetParametersAsync(parameters).ConfigureAwait(false);
     }
+    protected internal TValue Bind<TValue>(Expression<Func<T, TValue>> property)
+    {
+        if (BindingContext is null)
+            throw new InvalidOperationException($"{nameof(BindingContext)} is not set");
+
+        return AddBinding(BindingContext, property);
+    }
+
 }

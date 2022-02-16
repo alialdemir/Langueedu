@@ -14,9 +14,16 @@
     top-2;
   }
 
-  // &-flex-wrap-reverse {
-  //   flex-direction: row;
-  // }
+  &__lyrics {
+    padding: 20px;
+    font-size: 1.2rem;
+
+    &--active {
+      border-radius: 1rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      transition: all 1s;
+    }
+  }
 
   &-lyrics-container {
     @apply text-center

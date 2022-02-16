@@ -1,6 +1,6 @@
 using System.Reflection;
 using Langueedu.Web.Components.ViewModels;
-namespace Langueedu.Web.Components.PropertyBinding;
+namespace Langueedu.Web.Components.Internal.PropertyBinding;
 
 internal interface IViewModelParameterSetter
 {

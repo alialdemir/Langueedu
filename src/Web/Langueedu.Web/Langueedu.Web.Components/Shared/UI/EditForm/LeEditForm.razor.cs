@@ -10,7 +10,7 @@ public partial class LeEditForm : UIComponentBase
     public ICommand ValidSubmitCommand { get; set; }
 
     [Parameter]
-    public object? Model { get; set; }
+    public object Model { get; set; }
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }

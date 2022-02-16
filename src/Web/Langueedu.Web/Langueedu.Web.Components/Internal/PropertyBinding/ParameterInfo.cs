@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Langueedu.Web.Components.PropertyBinding;
+namespace Langueedu.Web.Components.Internal.PropertyBinding;
 
 internal class ParameterInfo
 {

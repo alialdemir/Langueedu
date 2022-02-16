@@ -26,6 +26,10 @@ public class YoutubePlayer : IYoutubePlayer
     {
         return await _jSRuntime.InvokeAsync<double>("youtubePlayer.currentTime");
     }
+    public async Task ScrollIntoView(string elementId)
+    {
+        await _jSRuntime.InvokeVoidAsync("youtubePlayer.scrollIntoView", elementId);
+    }
 
     public async Task PlayVideo()
     {

@@ -1,5 +1,7 @@
 using Langueedu.Web.Components.Interfaces;
+using Langueedu.Web.Components.Models;
 using Langueedu.Web.Components.Services;
+using Langueedu.Web.Shared.Utilities;
 
 namespace Langueedu.Web.Components.ViewModels
 {
@@ -16,246 +18,260 @@ namespace Langueedu.Web.Components.ViewModels
 
         public GameMode GameMode { get; set; }
 
-        private double _duration;
+        private StylishInfoModel _stylishInfo = new();
 
-        public double Duration
+        public StylishInfoModel StylishInfo
         {
-            get => _duration;
-            set => Set(ref _duration, value);
+            get => _stylishInfo;
+            set => Set(ref _stylishInfo, value);
         }
 
-        public List<dynamic> Lyrics
+        public List<LyricsModel> Lyrics
         {
-            get => lyrics;
+            get => lyrics.Where(x => !string.IsNullOrEmpty(x.Text)).ToList();
         }
 
         public override async Task OnInitializedAsync()
         {
             await _youtubePlayer.InitYoutube("FxBnts2bZX8");
 
-            YoutubePlayer.OnPlayerReady = new Shared.Utilities.Command(async () =>
+            YoutubePlayer.OnPlayerReady = new Command(OnPlayerReady);
+        }
+
+        private async Task OnPlayerReady()
+        {
+            await _youtubePlayer.PlayVideo();
+
+            Services.Timer.Start(TimeSpan.FromSeconds(1), SetCurrentDuration);
+        }
+
+        private async Task<bool> SetCurrentDuration()
+        {
+            double currentDuration = (await _youtubePlayer.CurrentTime()) * 1000;// milliseconds
+            LyricsModel nextDuration = Lyrics.Where(x => x.Duration <= currentDuration).LastOrDefault();
+            if (nextDuration == null)
+                return true;
+
+            StylishInfo = new StylishInfoModel
             {
-                await _youtubePlayer.PlayVideo();
+                CurrentDuration = currentDuration,
+                NextDuration = nextDuration.Duration
+            };
 
-                Services.Timer.Start(TimeSpan.FromSeconds(1), async () =>
-                {
-                    Duration = await _youtubePlayer.CurrentTime();
+            await _youtubePlayer.ScrollIntoView($"id{nextDuration.Duration}");
 
-                    System.Console.WriteLine("duration: {0}", Duration);
-                    return true;
-                });
-            });
+            return true;
         }
 
 
-        List<dynamic> lyrics = new List<dynamic> {
-new {
-time= 870,
-text= "Bir deli dağ gibiydim, yıkılmazdım"
+        List<LyricsModel> lyrics = new List<LyricsModel> {
+new LyricsModel {
+Duration= 870,
+Text= "Bir deli dağ gibiydim, yıkılmazdım"
 },
-new {
-time= 5970,
-text= ""
+new LyricsModel {
+Duration= 5970,
+Text= ""
 },
-new {
-time= 6770,
-text= "Savrulmazdım, rüzgarlardan"
+new LyricsModel {
+Duration= 6770,
+Text= "Savrulmazdım, rüzgarlardan"
 },
-new {
-time= 13820,
-text= ""
+new LyricsModel {
+Duration= 13820,
+Text= ""
 },
-new {
-time= 15580,
-text= "Yedi düvel gelse sarsılmazdım"
+new LyricsModel {
+Duration= 15580,
+Text= "Yedi düvel gelse sarsılmazdım"
 },
-new {
-time= 20810,
-text= ""
+new LyricsModel {
+Duration= 20810,
+Text= ""
 },
-new {
-time= 22130,
-text= "Dağılmazdım, olanlardan…"
+new LyricsModel {
+Duration= 22130,
+Text= "Dağılmazdım, olanlardan…"
 },
-new {
-time= 28860,
-text= ""
+new LyricsModel {
+Duration= 28860,
+Text= ""
 },
-new {
-time= 30760,
-text= "Bilirim kendimi, alimi zalimi"
+new LyricsModel {
+Duration= 30760,
+Text= "Bilirim kendimi, alimi zalimi"
 },
-new {
-time= 34630,
-text= "Görmüş geçmişi…"
+new LyricsModel {
+Duration= 34630,
+Text= "Görmüş geçmişi…"
 },
-new {
-time= 37620,
-text= ""
+new LyricsModel {
+Duration= 37620,
+Text= ""
 },
-new {
-time= 38290,
-text= "Ne zaman nefesime işledi rüzgarın"
+new LyricsModel {
+Duration= 38290,
+Text= "Ne zaman nefesime işledi rüzgarın"
 },
-new {
-time= 42100,
-text= "Anladım, geçmişi…"
+new LyricsModel {
+Duration= 42100,
+Text= "Anladım, geçmişi…"
 },
-new {
-time= 46180,
-text= ""
+new LyricsModel {
+Duration= 46180,
+Text= ""
 },
-new {
-time= 46530,
-text= "Alırsan aşkını, benden geriye ne kalır?"
+new LyricsModel {
+Duration= 46530,
+Text= "Alırsan aşkını, benden geriye ne kalır?"
 },
-new {
-time= 52930,
-text= ""
+new LyricsModel {
+Duration= 52930,
+Text= ""
 },
-new {
-time= 53730,
-text= "Bilmem karanlığa sensiz nasıl alışılır?"
+new LyricsModel {
+Duration= 53730,
+Text= "Bilmem karanlığa sensiz nasıl alışılır?"
 },
-new {
-time= 60770,
-text= ""
+new LyricsModel {
+Duration= 60770,
+Text= ""
 },
-new {
-time= 61490,
-text= "Alırsan aşkını, benden geriye ne kalır?"
+new LyricsModel {
+Duration= 61490,
+Text= "Alırsan aşkını, benden geriye ne kalır?"
 },
-new {
-time= 67980,
-text= ""
+new LyricsModel {
+Duration= 67980,
+Text= ""
 },
-new {
-time= 68680,
-text= "Yaşarım belki, gözlerim kör kulağım sağır…"
+new LyricsModel {
+Duration= 68680,
+Text= "Yaşarım belki, gözlerim kör kulağım sağır…"
 },
-new {
-time= 76210,
-text= ""
+new LyricsModel {
+Duration= 76210,
+Text= ""
 },
-new {
-time= 92680,
-text= "Bir deli dağ gibiydim, yıkılmazdım"
+new LyricsModel {
+Duration= 92680,
+Text= "Bir deli dağ gibiydim, yıkılmazdım"
 },
-new {
-time= 97770,
-text= ""
+new LyricsModel {
+Duration= 97770,
+Text= ""
 },
-new {
-time= 98730,
-text= "Savrulmazdım, rüzgarlardan"
+new LyricsModel {
+Duration= 98730,
+Text= "Savrulmazdım, rüzgarlardan"
 },
-new {
-time= 105340,
-text= ""
+new LyricsModel {
+Duration= 105340,
+Text= ""
 },
-new {
-time= 107450,
-text= "Yedi düvel gelse sarsılmazdım"
+new LyricsModel {
+Duration= 107450,
+Text= "Yedi düvel gelse sarsılmazdım"
 },
-new {
-time= 112690,
-text= ""
+new LyricsModel {
+Duration= 112690,
+Text= ""
 },
-new {
-time= 114000,
-text= "Dağılmazdım, olanlardan…"
+new LyricsModel {
+Duration= 114000,
+Text= "Dağılmazdım, olanlardan…"
 },
-new {
-time= 120460,
-text= ""
+new LyricsModel {
+Duration= 120460,
+Text= ""
 },
-new {
-time= 122660,
-text= "Bilirim kendimi, alimi zalimi"
+new LyricsModel {
+Duration= 122660,
+Text= "Bilirim kendimi, alimi zalimi"
 },
-new {
-time= 126540,
-text= "Görmüş geçmişi…"
+new LyricsModel {
+Duration= 126540,
+Text= "Görmüş geçmişi…"
 },
-new {
-time= 129470,
-text= ""
+new LyricsModel {
+Duration= 129470,
+Text= ""
 },
-new {
-time= 130160,
-text= "Ne zaman nefesime işledi rüzgarın"
+new LyricsModel {
+Duration= 130160,
+Text= "Ne zaman nefesime işledi rüzgarın"
 },
-new {
-time= 133950,
-text= "Anladım, geçmişi…"
+new LyricsModel {
+Duration= 133950,
+Text= "Anladım, geçmişi…"
 },
-new {
-time= 138050,
-text= ""
+new LyricsModel {
+Duration= 138050,
+Text= ""
 },
-new {
-time= 138430,
-text= "Alırsan aşkını, benden geriye ne kalır?"
+new LyricsModel {
+Duration= 138430,
+Text= "Alırsan aşkını, benden geriye ne kalır?"
 },
-new {
-time= 144740,
-text= ""
+new LyricsModel {
+Duration= 144740,
+Text= ""
 },
-new {
-time= 145660,
-text= "Bilmem karanlığa sensiz nasıl alışılır?"
+new LyricsModel {
+Duration= 145660,
+Text= "Bilmem karanlığa sensiz nasıl alışılır?"
 },
-new {
-time= 152320,
-text= ""
+new LyricsModel {
+Duration= 152320,
+Text= ""
 },
-new {
-time= 153240,
-text= "Alırsan aşkını, benden geriye ne kalır?"
+new LyricsModel {
+Duration= 153240,
+Text= "Alırsan aşkını, benden geriye ne kalır?"
 },
-new {
-time= 159800,
-text= ""
+new LyricsModel {
+Duration= 159800,
+Text= ""
 },
-new {
-time= 160520,
-text= "Yaşarım belki, gözlerim kör kulağım sağır…"
+new LyricsModel {
+Duration= 160520,
+Text= "Yaşarım belki, gözlerim kör kulağım sağır…"
 },
-new {
-time= 168040,
-text= ""
+new LyricsModel {
+Duration= 168040,
+Text= ""
 },
-new {
-time= 168370,
-text= "Alırsan aşkını, benden geriye ne kalır?"
+new LyricsModel {
+Duration= 168370,
+Text= "Alırsan aşkını, benden geriye ne kalır?"
 },
-new {
-time= 174590,
-text= ""
+new LyricsModel {
+Duration= 174590,
+Text= ""
 },
-new {
-time= 175640,
-text= "Bilmem karanlığa sensiz nasıl alışılır?"
+new LyricsModel {
+Duration= 175640,
+Text= "Bilmem karanlığa sensiz nasıl alışılır?"
 },
-new {
-time= 182660,
-text= ""
+new LyricsModel {
+Duration= 182660,
+Text= ""
 },
-new {
-time= 183330,
-text= "Alırsan aşkını, benden geriye ne kalır?"
+new LyricsModel {
+Duration= 183330,
+Text= "Alırsan aşkını, benden geriye ne kalır?"
 },
-new {
-time= 189910,
-text= ""
+new LyricsModel {
+Duration= 189910,
+Text= ""
 },
-new {
-time= 190580,
-text= "Yaşarım belki, gözlerim kör kulağım sağır…"
+new LyricsModel {
+Duration= 190580,
+Text= "Yaşarım belki, gözlerim kör kulağım sağır…"
 },
-new {
-time= 198060,
-text= ""
+new LyricsModel {
+Duration= 198060,
+Text= ""
 }
 };
     }

@@ -85,13 +85,16 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     #endregion
 
     #region Notify property
-
+    protected void StateHasChanged()
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+    }
     private readonly Dictionary<string, List<Func<object, Task>>> _subscriptions
      = new();
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
 
-    protected bool Set<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    protected bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
     {
         if (!EqualityComparer<T>.Default.Equals(field, value))
         {
@@ -116,7 +119,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    protected void Subscribe<T>(Expression<Func<T>>? expression, Action<T> action)
+    protected void Subscribe<T>(Expression<Func<T>> expression, Action<T> action)
     {
         SubscribeAsync(expression, arg =>
         {
@@ -125,7 +128,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         });
     }
 
-    protected void SubscribeAsync<T>(Expression<Func<T>>? property, Func<T, Task> func)
+    protected void SubscribeAsync<T>(Expression<Func<T>> property, Func<T, Task> func)
     {
         if (property is null) throw new BindingException("Property cannot be null");
         if (!(property.Body is MemberExpression m))

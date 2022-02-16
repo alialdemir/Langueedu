@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Components;
 
-namespace Langueedu.Web.Components.PropertyBinding;
+namespace Langueedu.Web.Components.Internal.PropertyBinding;
 
 
 internal interface IParameterResolver
@@ -14,7 +14,7 @@ internal class ParameterResolver : IParameterResolver
     public IEnumerable<PropertyInfo> ResolveParameters(Type memberType)
     {
         if (memberType == null)
-         throw new ArgumentNullException(nameof(memberType));
+            throw new ArgumentNullException(nameof(memberType));
 
         var componentProperties = memberType.GetProperties();
 

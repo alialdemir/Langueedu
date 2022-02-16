@@ -52,6 +52,9 @@ public static class SeedData
 
         Track.Id = 1;
 
+        ArtistBeduk
+        .ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
+
         Track
         .ChangeContentStatus(ContentStatus.Active)
         .AddPerformsOnSong(Artist)

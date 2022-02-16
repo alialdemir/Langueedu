@@ -1,10 +1,14 @@
 .le-stylish-container {
   @apply grid
-  grid-cols-1
+  grid-cols-2
   gap-2
   md:grid-cols-4
   lg:grid-cols-4
   xl:grid-cols-4
   2xl:grid-cols-4
   text-center;
+
+  & .card {
+    @apply mb-1;
+  }
 }
