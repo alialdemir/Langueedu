@@ -46,7 +46,7 @@ public class IdentityController : IClassFixture<CustomWebApplicationFactory<WebM
     [Fact]
     public async Task ReturnsUnauthorizedGivenWrongUsernameAndPassword()
     {
-        var result = await _client.GetAsync("/api/playlists");
+        var result = await _client.GetAsync("/api/v1/playlists");
 
         Assert.Equal(HttpStatusCode.Unauthorized, result.StatusCode);
     }

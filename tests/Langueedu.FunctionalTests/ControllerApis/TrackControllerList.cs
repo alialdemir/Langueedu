@@ -31,7 +31,7 @@ public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<We
     {
         int trackId = 1;
 
-        var result = await _client.GetAndDeserialize<Result<TrackDetailViewModel>>($"/api/Tracks/{trackId}");
+        var result = await _client.GetAndDeserialize<Result<TrackDetailViewModel>>($"/api/v1/Tracks/{trackId}");
 
         Assert.NotNull(result.Value);
     }

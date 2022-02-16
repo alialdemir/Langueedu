@@ -19,7 +19,7 @@ public class GetAllPlaylistSpecificationConstructor
 
         var spec = new GetAllPlaylistSpec();
         List<Playlist> filteredList = items
-            .Where(spec.WhereExpressions.First().Compile())
+            .Where(spec.WhereExpressions.First().FilterFunc)
             .ToList();
 
         Assert.Contains(item1, filteredList);

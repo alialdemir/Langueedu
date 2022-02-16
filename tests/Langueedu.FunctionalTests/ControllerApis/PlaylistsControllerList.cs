@@ -20,7 +20,7 @@ public class PlaylistsControllerList : IClassFixture<CustomWebApplicationFactory
     [Fact]
     public async Task ReturnsAnyItemsPlaylists()
     {
-        var result = await _client.GetAndDeserialize<Result<IEnumerable<PlaylistViewModel>>>("/api/playlists");
+        var result = await _client.GetAndDeserialize<Result<IEnumerable<PlaylistViewModel>>>("/api/v1/playlists");
 
         Assert.True(result.Value.Any());
 
