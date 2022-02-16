@@ -27,7 +27,7 @@ namespace Langueedu.Web.Components.ViewModels
         public TrackDetailViewModel TrackDetail
         {
             get => _trackDetail;
-            set => Set(ref _trackDetail, value);
+            set => SetField(ref _trackDetail, value);
         }
 
         public override async Task OnInitializedAsync()

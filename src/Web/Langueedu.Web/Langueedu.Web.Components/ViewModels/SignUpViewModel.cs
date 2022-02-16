@@ -28,7 +28,7 @@ public class SignUpViewModel : ViewModelBase
     public SignUpModel SignUpModel
     {
         get => _signUpModel;
-        set => Set(ref _signUpModel, value);
+        set => SetField(ref _signUpModel, value);
     }
 
     private async Task SignUpCommandExecute()

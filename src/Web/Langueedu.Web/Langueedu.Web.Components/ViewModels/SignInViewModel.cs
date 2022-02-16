@@ -34,7 +34,7 @@ public class SignInViewModel : ViewModelBase
     public LoginModel LoginModel
     {
         get => _loginModel;
-        set => Set(ref _loginModel, value);
+        set => SetField(ref _loginModel, value);
     }
 
     private async Task LoginCommandExecute()

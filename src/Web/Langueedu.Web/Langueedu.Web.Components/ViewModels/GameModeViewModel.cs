@@ -23,7 +23,7 @@ namespace Langueedu.Web.Components.ViewModels
         public IEnumerable<GameModeModel> GameModes
         {
             get => _gameModes;
-            set => Set(ref _gameModes, value);
+            set => SetField(ref _gameModes, value);
         }
 
         public override async Task OnAfterRenderAsync(bool firstRender)
