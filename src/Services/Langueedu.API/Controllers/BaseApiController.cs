@@ -12,4 +12,19 @@ namespace Langueedu.API.Controllers;
 [Route("api/v{version:apiVersion}/[controller]")]
 public abstract class BaseApiController : Controller
 {
+
+  private string userId = String.Empty;
+
+  public string UserId
+  {
+    get
+    {
+      if (String.IsNullOrEmpty(userId))
+      {
+        userId = User.FindFirst("sub")?.Value;
+      }
+
+      return userId;
+    }
+  }
 }

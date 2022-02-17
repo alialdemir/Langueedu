@@ -81,7 +81,15 @@ public static class SeedData
     dbContext.Artists.Add(Artist);
     dbContext.Playlists.Add(Playlist);
 
+    dbContext.FollowerTracks.Add(new FollowerTrack
+    {
+      UserId = GetDefaultUser().FirstOrDefault().Id,
+      TrackId = Track.Id
+    });
+
     dbContext.SaveChanges();
+
+
   }
 
   private static List<IdentityRole> GetRoles()

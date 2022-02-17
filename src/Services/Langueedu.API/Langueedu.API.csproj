@@ -43,5 +43,7 @@
 	<ItemGroup>
 		<None Remove="Extensions\" />
 		<None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
+		<None Remove="database.sqlite-wal" />
+		<None Remove="database.sqlite-shm" />
 	</ItemGroup>
 </Project>

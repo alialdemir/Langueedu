@@ -49,6 +49,8 @@
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Features\Commands\Account\" />
     <None Remove="Features\Commands\Account\SignUp\" />
+    <None Remove="Features\Commands\Playlist\" />
+    <None Remove="Features\Commands\Playlist\FollowerTrack\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -70,5 +72,7 @@
     <Folder Include="Entities\User\" />
     <Folder Include="Features\Commands\Account\" />
     <Folder Include="Features\Commands\Account\SignUp\" />
+    <Folder Include="Features\Commands\Playlist\" />
+    <Folder Include="Features\Commands\Playlist\FollowerTrack\" />
   </ItemGroup>
 </Project>

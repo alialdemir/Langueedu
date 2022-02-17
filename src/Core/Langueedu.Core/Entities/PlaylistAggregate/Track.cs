@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Langueedu.Core.Enums;
+﻿using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using Langueedu.SharedKernel.Interfaces;
 
 namespace Langueedu.Core.Entities.PlaylistAggregate;
 
-public class Track : BaseEntity, IAggregateRoot
+public class Track : BaseEntity<short>, IAggregateRoot
 {
   public Track(string songTitle, string youtubeVideoId, string lang, float duration)
   {
@@ -16,6 +15,10 @@ public class Track : BaseEntity, IAggregateRoot
     Duration = duration;
   }
 
+  public Track()
+  {
+  }
+
   public string SongTitle { get; private set; }
 
   public float Duration { get; private set; }
@@ -23,7 +26,6 @@ public class Track : BaseEntity, IAggregateRoot
   public string Slug { get; private set; }
 
   public string YoutubeVideoId { get; private set; }
-  [NotMapped]
 
   public string PicturePath { get => $"https://img.youtube.com/vi/{YoutubeVideoId}/mqdefault.jpg"; }
 

@@ -20,6 +20,7 @@ public class AppDbContext : IdentityDbContext<User>
 
   public DbSet<Album> Albums => Set<Album>();
   public DbSet<Artist> Artists => Set<Artist>();
+  public DbSet<FollowerTrack> FollowerTracks => Set<FollowerTrack>();
   public DbSet<PerformsOnSong> PerformsOnSongs => Set<PerformsOnSong>();
   public DbSet<Playlist> Playlists => Set<Playlist>();
   public DbSet<Track> Tracks => Set<Track>();

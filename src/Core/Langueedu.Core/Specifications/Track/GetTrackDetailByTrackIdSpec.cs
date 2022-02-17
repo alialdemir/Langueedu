@@ -5,28 +5,28 @@ using Langueedu.SharedKernel.ViewModels;
 
 namespace Langueedu.Core.Specifications;
 
-public class GetTrackDetailByTrackIdSpec : Specification<Track, TrackDetailViewModel>
+public class GetTrackDetailByTrackIdSpec : Specification<Entities.PlaylistAggregate.Track, TrackDetailViewModel>
 {
-    public GetTrackDetailByTrackIdSpec(int trackId)
-    {
-        Query
-          .Where(x => x.Id == trackId && x.ContentStatus == ContentStatus.Active);
+  public GetTrackDetailByTrackIdSpec(int trackId)
+  {
+    Query
+      .Where(x => x.Id == trackId && x.ContentStatus == ContentStatus.Active);
 
-        Query
-        .Select(track => new TrackDetailViewModel
-        {
-            Id = track.Id,
-            YoutubeVideoId = track.YoutubeVideoId,
-            SongTitle = track.SongTitle,
-            PicturePath = track.PicturePath,
-            Slug = track.Slug,
-            AlbumName = track.Album.Name,
-            AlbumSlug = track.Album.Slug,
-            Artists = track.PerformsOnSongs.Select(artist => new ArtistViewModel
-            {
-                Slug = artist.Artist.Slug,
-                Name = artist.Artist.Name
-            }),
-        });
-    }
+    Query
+    .Select(track => new TrackDetailViewModel
+    {
+      Id = track.Id,
+      YoutubeVideoId = track.YoutubeVideoId,
+      SongTitle = track.SongTitle,
+      PicturePath = track.PicturePath,
+      Slug = track.Slug,
+      AlbumName = track.Album.Name,
+      AlbumSlug = track.Album.Slug,
+      Artists = track.PerformsOnSongs.Select(artist => new ArtistViewModel
+      {
+        Slug = artist.Artist.Slug,
+        Name = artist.Artist.Name
+      }),
+    });
+  }
 }
