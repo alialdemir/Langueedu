@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
 
-public class AddFollowerTrackCommand : IRequest<Result<string>>
+public class AddFollowerTrackCommand : IRequest<Result<bool>>
 {
   public AddFollowerTrackCommand(string userId, short trackId)
   {

@@ -19,27 +19,27 @@ public class FollowerTrackService : IFollowerTrackService
     _followedTrackReadRepository = followedTrackReadRepository;
   }
 
-  public async Task<Result<string>> Add(FollowerTrack followerTrack)
+  public async Task<Result<bool>> Add(FollowerTrack followerTrack)
   {
     if (followerTrack == null)
-      return Result<string>.Error("Followed information cannot be null.");
+      return Result<bool>.Error("Followed information cannot be null.");
 
     Result<bool> isTrackFollowed = await IsFollowed(followerTrack.UserId, followerTrack.TrackId);
     if (isTrackFollowed.Value)
-      return Result<string>.Error(isTrackFollowed.SuccessMessage);
+      return Result<bool>.Error(isTrackFollowed.SuccessMessage);
 
     await _followerTrack.AddAsync(followerTrack);
 
     await _followerTrack.SaveChangesAsync();
 
-    return Result<string>.Success("Track was followed!");
+    return Result<bool>.Success(true, "Track was followed!");
   }
 
-  public async Task<Result<string>> DeleteAsync(string userId, short trackId)
+  public async Task<Result<bool>> DeleteAsync(string userId, short trackId)
   {
     Result<bool> isTrackFollowed = await IsFollowed(userId, trackId);
     if (!isTrackFollowed.Value)
-      return Result<string>.Error(isTrackFollowed.SuccessMessage);
+      return Result<bool>.Error(isTrackFollowed.SuccessMessage);
 
     var spec = new GetFollowerTrackByUserIdSpec(userId, trackId);
     FollowerTrack? followerTrack = await _followerTrack.GetBySpecAsync(spec);
@@ -48,7 +48,7 @@ public class FollowerTrackService : IFollowerTrackService
 
     await _followerTrack.SaveChangesAsync();
 
-    return Result<string>.Success("Track was unfollowed!");
+    return Result<bool>.Success(true, "Track was unfollowed!");
   }
 
   public async Task<Result<bool>> IsFollowed(string userId, short trackId)

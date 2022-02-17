@@ -28,7 +28,7 @@ public class TracksController : BaseApiController
   [ProducesResponseType(typeof(Result<TrackDetailViewModel>), StatusCodes.Status200OK)]
   public async Task<IActionResult> GetTrackDetail(short trackId)
   {
-    var result = await _mediator.Send(new GetTrackDetailByIdQuery(trackId));
+    var result = await _mediator.Send(new GetTrackDetailByIdQuery(trackId, UserId));
 
     return result.ToActionResult();
   }

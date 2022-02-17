@@ -1,5 +1,4 @@
 ﻿using Ardalis.Specification;
-using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.Core.Enums;
 using Langueedu.SharedKernel.ViewModels;
 
@@ -7,7 +6,7 @@ namespace Langueedu.Core.Specifications;
 
 public class GetTrackDetailByTrackIdSpec : Specification<Entities.PlaylistAggregate.Track, TrackDetailViewModel>
 {
-  public GetTrackDetailByTrackIdSpec(int trackId)
+  public GetTrackDetailByTrackIdSpec(int trackId, string userId)
   {
     Query
       .Where(x => x.Id == trackId && x.ContentStatus == ContentStatus.Active);
@@ -22,6 +21,7 @@ public class GetTrackDetailByTrackIdSpec : Specification<Entities.PlaylistAggreg
       Slug = track.Slug,
       AlbumName = track.Album.Name,
       AlbumSlug = track.Album.Slug,
+      IsFollowed = track.FollowerTracks.Any(x => x.UserId == userId && x.TrackId == trackId),
       Artists = track.PerformsOnSongs.Select(artist => new ArtistViewModel
       {
         Slug = artist.Artist.Slug,

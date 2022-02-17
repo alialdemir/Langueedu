@@ -7,7 +7,7 @@ using Ardalis.Result.FluentValidation;
 
 namespace Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
 
-public class AddFollowerTrackCommandHandler : IRequestHandler<AddFollowerTrackCommand, Result<string>>
+public class AddFollowerTrackCommandHandler : IRequestHandler<AddFollowerTrackCommand, Result<bool>>
 {
   private readonly IFollowerTrackService _followerTrackService;
   private readonly IMapper _mapper;
@@ -19,14 +19,12 @@ public class AddFollowerTrackCommandHandler : IRequestHandler<AddFollowerTrackCo
     _mapper = mapper;
   }
 
-  public async Task<Result<string>> Handle(AddFollowerTrackCommand request, CancellationToken cancellationToken)
+  public async Task<Result<bool>> Handle(AddFollowerTrackCommand request, CancellationToken cancellationToken)
   {
     var validator = new AddFollowerTrackCommandHandlerValidator();
     var validate = validator.Validate(request);
     if (!validate.IsValid)
-    {
-      return Result<string>.Invalid(validate.AsErrors());
-    }
+      return Result<bool>.Invalid(validate.AsErrors());
 
     var followerTrack = _mapper.Map<Entities.PlaylistAggregate.FollowerTrack>(request);
 

@@ -5,9 +5,9 @@ namespace Langueedu.Core.Specifications.Track;
 
 public class GetFollowerTrackByUserIdSpec : Specification<FollowerTrack, FollowerTrack>
 {
-  public GetFollowerTrackByUserIdSpec(string userId, int trackId)
+  public GetFollowerTrackByUserIdSpec(string userId, short trackId)
   {
     Query
-      .Where(x => x.Id == trackId && x.UserId == userId);
+      .Where(x => x.TrackId == trackId && x.UserId == userId);
   }
 }
