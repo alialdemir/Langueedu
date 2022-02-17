@@ -6,41 +6,47 @@ namespace Langueedu.Core.Entities.PlaylistAggregate;
 
 public class Album : BaseEntity, IAggregateRoot
 {
-    public Album(string name, DateTime releaseDate)
-    {
-        Name = name;
-        ReleaseDate = releaseDate;
-        Slug = name.GenerateSlug();
-    }
+  public Album(string name)
+  {
+    Name = name;
+    Slug = name.GenerateSlug();
+  }
 
-    public ContentStatus ContentStatus { get; private set; } = ContentStatus.Passive;
+  public ContentStatus ContentStatus { get; private set; } = ContentStatus.Passive;
 
-    public string? AlbumCoverImage { get; set; }
+  public string? AlbumCoverImage { get; set; }
 
-    public string Name { get; private set; }
+  public string Name { get; private set; }
 
-    public string Slug { get; private set; }
+  public string Slug { get; private set; }
 
-    public DateTime ReleaseDate { get; private set; }
+  public DateTime ReleaseDate { get; private set; }
 
-    private readonly List<Track> _tracks = new();
+  private readonly List<Track> _tracks = new();
 
-    public IReadOnlyCollection<Track> Tracks => _tracks.AsReadOnly();
+  public IReadOnlyCollection<Track> Tracks => _tracks.AsReadOnly();
 
-    public Artist MainArtist { get; set; }
+  public Artist MainArtist { get; set; }
 
-    public Album ChangeContentStatus(ContentStatus contentStatus)
-    {
-        ContentStatus = contentStatus;
+  public Album ChangeContentStatus(ContentStatus contentStatus)
+  {
+    ContentStatus = contentStatus;
 
-        return this;
-    }
+    return this;
+  }
 
-    public Album AddTrack(Track track)
-    {
-        _tracks.Add(track);
+  public Album AddTrack(Track track)
+  {
+    _tracks.Add(track);
 
-        return this;
-    }
+    return this;
+  }
+
+  public Album SetReleaseDate(DateTime releaseDate)
+  {
+    ReleaseDate = releaseDate;
+
+    return this;
+  }
 }
 

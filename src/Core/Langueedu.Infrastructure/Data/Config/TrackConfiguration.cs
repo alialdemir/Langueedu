@@ -5,16 +5,30 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Langueedu.Infrastructure.Data.Config;
 
-public class PlaylistConfiguration : IEntityTypeConfiguration<Playlist>
+public class TrackConfiguration : IEntityTypeConfiguration<Track>
 {
-  public void Configure(EntityTypeBuilder<Playlist> builder)
+  public void Configure(EntityTypeBuilder<Track> builder)
   {
-    builder.Property(p => p.PlaylistName)
+    builder.Property(p => p.SongTitle)
         .HasMaxLength(72)
         .IsRequired();
 
     builder.Property(p => p.Slug)
         .HasMaxLength(72)
+        .IsRequired();
+
+    builder.Property(p => p.YoutubeVideoId)
+        .HasMaxLength(16)
+        .IsRequired();
+
+    builder.Property(p => p.Lang)
+        .HasMaxLength(2)
+        .IsRequired();
+
+    builder.Property(p => p.LangCc)
+        .HasMaxLength(2);
+
+    builder.Property(p => p.Duration)
         .IsRequired();
 
     builder.Property(p => p.ContentStatus)
