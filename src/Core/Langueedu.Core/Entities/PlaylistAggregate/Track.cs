@@ -32,6 +32,15 @@ public class Track : BaseEntity<short>, IAggregateRoot
   public string Lang { get; private set; }
 
   public string? LangCc { get; private set; }
+  private long _followerCount;
+  public long FollowerCount
+  {
+    get { return _followerCount; }
+    set
+    {
+      if (value >= 0) _followerCount = value;
+    }
+  }
 
   public ContentStatus ContentStatus { get; private set; } = ContentStatus.Passive;
 
@@ -56,6 +65,24 @@ public class Track : BaseEntity<short>, IAggregateRoot
       Artist = artist,
       Track = this
     });
+
+    return this;
+  }
+
+  public Track AddFollowerTrack(FollowerTrack followerTrack)
+  {
+    _followerTracks.Add(followerTrack);
+
+    FollowerCount += 1;
+
+    return this;
+  }
+
+  public Track RemoveFollowerTrack(FollowerTrack followerTrack)
+  {
+    _followerTracks.RemoveAll(x => x.TrackId == followerTrack.TrackId && x.UserId == followerTrack.UserId);
+
+    FollowerCount -= 1;
 
     return this;
   }

@@ -22,6 +22,7 @@ public class GetTrackDetailByTrackIdSpec : Specification<Entities.PlaylistAggreg
       AlbumName = track.Album.Name,
       AlbumSlug = track.Album.Slug,
       IsFollowed = track.FollowerTracks.Any(x => x.UserId == userId && x.TrackId == trackId),
+      FollowerCount = track.FollowerCount,
       Artists = track.PerformsOnSongs.Select(artist => new ArtistViewModel
       {
         Slug = artist.Artist.Slug,

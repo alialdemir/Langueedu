@@ -28,6 +28,6 @@ public class AddFollowerTrackCommandHandler : IRequestHandler<AddFollowerTrackCo
 
     var followerTrack = _mapper.Map<Entities.PlaylistAggregate.FollowerTrack>(request);
 
-    return await _followerTrackService.Add(followerTrack);
+    return await _followerTrackService.AddAsync(followerTrack);
   }
 }

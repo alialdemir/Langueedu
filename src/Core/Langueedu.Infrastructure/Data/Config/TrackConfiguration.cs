@@ -31,6 +31,9 @@ public class TrackConfiguration : IEntityTypeConfiguration<Track>
     builder.Property(p => p.Duration)
         .IsRequired();
 
+    builder.Property(p => p.FollowerCount)
+        .HasDefaultValue(0);
+
     builder.Property(p => p.ContentStatus)
         .HasDefaultValue(ContentStatus.Passive);
 
