@@ -28,6 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Core\Services\Playlist\" />
+    <None Remove="Core\Services\Track\" />
+    <None Remove="Core\Specifications\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="xunit.runner.json">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -35,6 +40,9 @@
 
   <ItemGroup>
     <Folder Include="Core\Services\" />
+    <Folder Include="Core\Services\Playlist\" />
+    <Folder Include="Core\Services\Track\" />
+    <Folder Include="Core\Specifications\" />
   </ItemGroup>
 
 </Project>

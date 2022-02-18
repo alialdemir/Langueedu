@@ -60,7 +60,7 @@ public class FollowerTrackService : IFollowerTrackService
 
   private async Task<Result<bool>> IsFollowed(string userId, short trackId)
   {
-    var spec = new GetFollowerTrackByUserIdSpec(userId, trackId);
+    var spec = new GetFollowerTrackByUserIdAndIdSpec(userId, trackId);
     var isFollowed = await _followedTrackReadRepository
       .AnyAsync(spec);
 

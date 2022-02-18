@@ -20,7 +20,8 @@ public class GetTrackDetailByTrackIdSpecConstructor
     var items = new List<Track>() { item1, item2, item3 };
 
     var spec = new GetTrackDetailByTrackIdSpec(1, Constants.UserId);
-    Track filteredList = items.FirstOrDefault(spec.WhereExpressions.First().FilterFunc);
+
+    var filteredList = items.FirstOrDefault(spec.WhereExpressions.First().FilterFunc);
 
     Assert.Equal(item1, filteredList);
   }

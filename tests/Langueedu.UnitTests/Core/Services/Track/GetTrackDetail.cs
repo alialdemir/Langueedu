@@ -6,12 +6,12 @@ using Xunit;
 
 namespace Langueedu.UnitTests.Core.Services;
 
-public class TrackService_GetTrackDetail
+public class GetTrackDetail
 {
   private Mock<IReadRepository<Track>> _mockRepo = new Mock<IReadRepository<Track>>();
   private TrackService _trackService;
 
-  public TrackService_GetTrackDetail()
+  public GetTrackDetail()
   {
     _trackService = new TrackService(_mockRepo.Object);
   }

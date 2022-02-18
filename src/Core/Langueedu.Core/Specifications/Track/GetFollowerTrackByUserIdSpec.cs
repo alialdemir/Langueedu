@@ -3,9 +3,9 @@ using Langueedu.Core.Entities.PlaylistAggregate;
 
 namespace Langueedu.Core.Specifications.Track;
 
-public class GetFollowerTrackByUserIdSpec : Specification<FollowerTrack, FollowerTrack>
+public class GetFollowerTrackByUserIdAndIdSpec : Specification<FollowerTrack, FollowerTrack>
 {
-  public GetFollowerTrackByUserIdSpec(string userId, short trackId)
+  public GetFollowerTrackByUserIdAndIdSpec(string userId, short trackId)
   {
     Query
       .Where(x => x.TrackId == trackId && x.UserId == userId);
