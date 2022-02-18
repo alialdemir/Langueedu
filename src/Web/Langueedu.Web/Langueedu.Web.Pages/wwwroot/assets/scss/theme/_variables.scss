@@ -73,7 +73,6 @@ $font-serif: sans-serif;
 $font-themify: themify;
 $font-awesome: FontAwesome;
 $font-ICO: IcoFont;
-$font-pe7-icon: Pe-icon-7-stroke;
 
 // dark layout variables
 $dark-body-background: #333a62;
@@ -147,8 +146,8 @@ $according-btn-weight: 600;
 $according-btn-color: $theme-body-font-color;
 $according-card-header-padding: 0.75rem 1.25rem;
 $according-card-header-icon: $font-ICO;
-$according-open-icon: '\eb73';
-$according-close-icon: '\eb7a';
+$according-open-icon: "\eb73";
+$according-close-icon: "\eb7a";
 
 //Alert settings
 $alert-hover-color: $dark-color;
@@ -259,7 +258,7 @@ $page-small-title-display: block;
 $page-small-title-text-transform: uppercase;
 $page-small-title-letter-spacing: 4px;
 $page-small-title-font-weight: 700;
-$breadcrumb-content: '/';
+$breadcrumb-content: "/";
 
 //main header left settings
 $main-header-left-bg-color: $theme-font-color;

@@ -3,47 +3,48 @@ using System.Threading.Tasks;
 using Langueedu.Sdk.Playlist.Response;
 using Langueedu.Sdk.Utilities;
 
-namespace Langueedu.Sdk.Track;
-
-public class TrackService : ServiceBase, ITrackService
+namespace Langueedu.Sdk.Track
 {
-  private const string API_URL_BASE = "/v1/Tracks";
-
-  public TrackService(IHttpClientFactory clientFactory)
-      : base(clientFactory.CreateClient("LangueeduApi"))
+  public class TrackService : ServiceBase, ITrackService
   {
-  }
+    private const string API_URL_BASE = "/v1/Tracks";
 
-  public async Task<Result<TrackDetailViewModel>> GetTrackDetail(int trackId)
-  {
-    if (trackId <= 0)
-      return Result<TrackDetailViewModel>.Invalid("Track id cannot be zero or less than zero.", nameof(trackId));
+    public TrackService(IHttpClientFactory clientFactory)
+        : base(clientFactory.CreateClient("LangueeduApi"))
+    {
+    }
 
-    string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, API_URL_BASE, trackId.ToString());
+    public async Task<Result<TrackDetailViewModel>> GetTrackDetailAsync(int trackId)
+    {
+      if (trackId <= 0)
+        return Result<TrackDetailViewModel>.Invalid("Track id cannot be zero or less than zero.", nameof(trackId));
 
-    var response = await GetAsync<TrackDetailViewModel>(uri);
-    return response;
-  }
+      string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, API_URL_BASE, trackId.ToString());
 
-  public async Task<Result<bool>> FollowTrack(int trackId)
-  {
-    if (trackId <= 0)
-      return Result<bool>.Invalid("Track id cannot be zero or less than zero.", nameof(trackId));
+      var response = await GetAsync<TrackDetailViewModel>(uri);
+      return response;
+    }
 
-    string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, $"{API_URL_BASE}/{trackId}/Follow", trackId.ToString());
+    public async Task<Result<bool>> FollowTrackAsync(int trackId)
+    {
+      if (trackId <= 0)
+        return Result<bool>.Invalid("Track id cannot be zero or less than zero.", nameof(trackId));
 
-    var response = await PostAsync<bool>(uri);
-    return response;
-  }
+      string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, $"{API_URL_BASE}/{trackId}/Follow");
 
-  public async Task<Result<bool>> UnFollowTrack(int trackId)
-  {
-    if (trackId <= 0)
-      return Result<bool>.Invalid("Track id cannot be zero or less than zero.", nameof(trackId));
+      var response = await PostAsync<bool>(uri);
+      return response;
+    }
 
-    string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, $"{API_URL_BASE}/{trackId}/Follow", trackId.ToString());
+    public async Task<Result<bool>> UnFollowTrackAsync(int trackId)
+    {
+      if (trackId <= 0)
+        return Result<bool>.Invalid("Track id cannot be zero or less than zero.", nameof(trackId));
 
-    var response = await DeleteAsync<bool>(uri);
-    return response;
+      string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, $"{API_URL_BASE}/{trackId}/Follow");
+
+      var response = await DeleteAsync<bool>(uri);
+      return response;
+    }
   }
 }

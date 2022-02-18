@@ -1,5 +1,4 @@
-
-@import "./pe7-icon";
+@import "./fontawesome";
 @import "./color-2";
 @import "./responsive";
 
@@ -8,16 +7,16 @@
 @tailwind utilities;
 
 .form-control.invalid {
-    border-color: $danger-color !important;
+  border-color: $danger-color !important;
 }
 
 .validation-message {
-    width: 100%;
-    margin-top: 0.25rem;
-    font-size: 80%;
-    color: $danger-color !important;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: $danger-color !important;
 }
 
 .tns-liveregion.tns-visually-hidden {
-    display: none;
+  display: none;
 }

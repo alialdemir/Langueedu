@@ -12,8 +12,8 @@ public class MenuItem
     get
     {
       return new List<MenuItem> {
-                        new MenuItem { Title = "Home", Href = "/Learn", Icon = "pe-7s-home", IsActive = true },
-                        new MenuItem { Title = "Explore", Href = "/Explore", Icon = "pe-7s-compass", IsActive = false }
+                        new MenuItem { Title = "Learn", Href = "/Learn", Icon = "fa-solid fa-music", IsActive = true },
+                        new MenuItem { Title = "Explore", Href = "/Explore", Icon = "fa-regular fa-compass", IsActive = false }
                     };
     }
   }

@@ -5,6 +5,8 @@ namespace Langueedu.Sdk.Track
 {
   public interface ITrackService
   {
-    Task<Result<TrackDetailViewModel>> GetTrackDetail(int trackId);
+    Task<Result<bool>> FollowTrackAsync(int trackId);
+    Task<Result<TrackDetailViewModel>> GetTrackDetailAsync(int trackId);
+    Task<Result<bool>> UnFollowTrackAsync(int trackId);
   }
 }

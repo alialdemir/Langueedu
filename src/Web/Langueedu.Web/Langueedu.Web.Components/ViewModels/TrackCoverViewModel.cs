@@ -11,6 +11,7 @@ public class TrackCoverViewModel : ViewModelBase
 {
   private readonly ITrackService _trackService;
   private ICommand _showGameModeCommand;
+  private ICommand _toggleFollowCommand;
 
   public TrackCoverViewModel(
       ITrackService trackService,
@@ -32,7 +33,7 @@ public class TrackCoverViewModel : ViewModelBase
 
   public override async Task OnInitializedAsync()
   {
-    TrackDetail = await _trackService.GetTrackDetail(TrackId);
+    TrackDetail = await _trackService.GetTrackDetailAsync(TrackId);
   }
 
   private void ShowGameModeCommandExecute()
@@ -52,5 +53,36 @@ public class TrackCoverViewModel : ViewModelBase
     IsBusy = false;
   }
 
-  public ICommand ShowGameModeCommand { get => _showGameModeCommand ??= new Command(ShowGameModeCommandExecute); }
+  private async Task ToggleFollowCommandExecute()
+  {
+    if (IsBusy)
+      return;
+
+    IsBusy = true;
+
+    TrackDetail.IsFollowed = !TrackDetail.IsFollowed;
+    StateHasChanged();
+
+    Sdk.Result<bool> result = null;
+
+    if (TrackDetail.IsFollowed)
+      result = await _trackService.FollowTrackAsync(TrackId);
+    else
+      result = await _trackService.UnFollowTrackAsync(TrackId);
+
+    if (result == null  || !result.Value)
+    {
+      TrackDetail.IsFollowed = !TrackDetail.IsFollowed;
+
+      StateHasChanged();
+    }
+
+
+    IsBusy = false;
+  }
+
+
+  public ICommand ToggleFollowCommand => _toggleFollowCommand ??= new CommandAsync(ToggleFollowCommandExecute);
+
+  public ICommand ShowGameModeCommand => _showGameModeCommand ??= new Command(ShowGameModeCommandExecute);
 }

@@ -20,10 +20,10 @@ public static class SeedData
         serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null))
     {
       // Look for any TODO items.
-      //if (dbContext.Users.Any())
-      //{
-      //  return; // DB has been seeded
-      //}
+      if (dbContext.Users.Any())
+      {
+        return; // DB has been seeded
+      }
 
       PopulateTestData(dbContext);
     }
@@ -50,7 +50,7 @@ public static class SeedData
       dbContext.SaveChanges();
     }
 
-    Track.Id = 1;
+    //Track.Id = 1;
 
     ArtistBeduk
     .ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
@@ -63,11 +63,10 @@ public static class SeedData
     //  TrackId = Track.Id,
     //  Id = 1
     //})
-    //.AddPerformsOnSong(Artist)
-    ;
-    //.AddPerformsOnSong(ArtistBeduk);
+    .AddPerformsOnSong(Artist)
+    .AddPerformsOnSong(ArtistBeduk);
 
-    Album.Id = 1;
+    //Album.Id = 1;
 
     Album
     .ChangeContentStatus(ContentStatus.Active)
@@ -80,7 +79,7 @@ public static class SeedData
     .AddAlbum(Album)
     .ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
 
-    Playlist.Id = 1;
+    //Playlist.Id = 1;
 
     Playlist
     .ChangeContentStatus(ContentStatus.Active)

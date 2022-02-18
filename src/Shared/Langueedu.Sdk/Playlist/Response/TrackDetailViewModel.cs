@@ -16,6 +16,8 @@ namespace Langueedu.Sdk.Playlist.Response
     public string AlbumSlug { get; set; }
     public string AlbumName { get; set; }
     public string YoutubeVideoId { get; set; }
+    public bool IsFollowed { get; set; }
+    public long FollowerCount { get; set; }
   }
 }
 

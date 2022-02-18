@@ -122,7 +122,6 @@ public class DuelViewModel : ViewModelBase
 
   public ICommand StylishCommand { get => _stylishCommand ??= new CommandAsync<StylishModel>(StylishCommandExecute); }
 
-
   List<LyricsModel> lyrics = new List<LyricsModel> {
 new LyricsModel {
 Duration= 870,

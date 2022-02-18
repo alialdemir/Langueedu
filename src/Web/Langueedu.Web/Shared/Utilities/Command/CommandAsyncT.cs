@@ -12,6 +12,12 @@ public class CommandAsync<T> : ICommand
     _execute = execute;
   }
 
+  public CommandAsync(Func<Task> execute) : this(o => execute())
+  {
+    if (execute == null)
+      throw new ArgumentNullException(nameof(execute));
+  }
+
   public event EventHandler CanExecuteChanged;
 
   public bool CanExecute(object parameter)
@@ -34,5 +40,12 @@ public class CommandAsync<T> : ICommand
                     : default, null);
       }
     }
+  }
+}
+
+public class CommandAsync : CommandAsync<object>
+{
+  public CommandAsync(Func<Task> execute) : base(execute)
+  {
   }
 }

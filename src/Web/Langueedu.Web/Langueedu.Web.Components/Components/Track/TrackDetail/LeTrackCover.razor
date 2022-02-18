@@ -3,25 +3,27 @@
 
 <div class="card hovercard text-center">
     <div class="gradient-info">
-    <div class="cardheader socialheader rounded-t-lg"
-    style="background-image: url(_content/Langueedu.Web.Pages/assets/images/track_bg.png);"></div>
+        <div class="cardheader socialheader rounded-t-lg"
+            style="background-image: url(_content/Langueedu.Web.Pages/assets/images/track_bg.png);"></div>
     </div>
 
     <div class="user-image flex justify-center">
         <LeAvatar Src="@BindingContext.TrackDetail.PicturePath" />
-        <ul class="share-icons"><li>
-            <LeButton Color="@Color.Success" Rounded="@Rounded.Full"
-             Command=@BindingContext.ShowGameModeCommand>
-                <i class="pe-7s-play"></i>
-            </LeButton>
-        </li><li>
-            <LeButton Color="@Color.Danger" Rounded="@Rounded.Full">
-                <i class="pe-7s-like"></i>
-            </LeButton>
-        </li>
+        <ul class="share-icons">
+            <li>
+                <LeButton Color="@Color.Success" Rounded="@Rounded.Full" Command=@BindingContext.ShowGameModeCommand>
+                    <i class="fa-solid fa-circle-play"></i>
+                </LeButton>
+            </li>
+            <li>
+
+                <LeButton Color="@Color.Danger" Rounded="@Rounded.Full" Command="@BindingContext.ToggleFollowCommand">
+                    <i class=@(@Bind(x=>x.TrackDetail).IsFollowed ? "fa-solid fa-heart" : "fa-regular fa-heart")></i>
+                </LeButton>
+            </li>
             <li>
                 <LeButton Color="@Color.Primary" Rounded="@Rounded.Full">
-                    <i class="pe-7s-share"></i>
+                    <i class="fa-solid fa-share-from-square"></i>
                 </LeButton>
             </li>
         </ul>
@@ -39,7 +41,7 @@
 </div>
 
 @code {
-     [Parameter]
+    [Parameter]
     public int TrackId { get; set; }
 
     [CascadingParameter]
