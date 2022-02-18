@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Langueedu.Core.Entities.PlaylistAggregate;
-using Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
+using Langueedu.Core.Features.Commands.Playlist.AddFollowerTrack;
 using Langueedu.Core.Interfaces;
 using Moq;
 using Xunit;

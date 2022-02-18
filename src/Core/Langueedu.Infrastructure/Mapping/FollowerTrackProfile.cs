@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Langueedu.Core.Entities.PlaylistAggregate;
-using Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
+using Langueedu.Core.Features.Commands.Playlist.AddFollowerTrack;
+using Langueedu.Core.Features.Commands.Playlist.RemoveFollowerTrack;
 
 namespace Langueedu.Infrastructure.Mapping;
 
@@ -8,8 +9,10 @@ public class FollowerTrackProfile : Profile
 {
   public FollowerTrackProfile()
   {
-    CreateMap<FollowerTrack, AddFollowerTrackCommand>()
-     .ReverseMap();
+    CreateMap<AddFollowerTrackCommand, FollowerTrack>();
+
+    CreateMap<RemoveFollowerTrackCommand, FollowerTrack>();
+
   }
 }
 

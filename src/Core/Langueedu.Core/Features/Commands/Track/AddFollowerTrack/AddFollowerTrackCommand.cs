@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
 
-namespace Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
+namespace Langueedu.Core.Features.Commands.Playlist.AddFollowerTrack;
 
 public class AddFollowerTrackCommand : IRequest<Result<bool>>
 {

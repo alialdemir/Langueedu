@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Langueedu.Core.Features.Commands.Playlist.AddFollowerTrack;
+using Langueedu.Core.Features.Commands.Playlist.RemoveFollowerTrack;
 
 namespace Langueedu.Core.Validations;
 
-public class AddFollowerTrackCommandHandlerValidator : AbstractValidator<AddFollowerTrackCommand>
+public class RemoveFollowerTrackCommandHandlerValidator : AbstractValidator<RemoveFollowerTrackCommand>
 {
-  public AddFollowerTrackCommandHandlerValidator()
+  public RemoveFollowerTrackCommandHandlerValidator()
   {
     RuleFor(p => p.TrackId)
         .GreaterThan(short.MinValue)

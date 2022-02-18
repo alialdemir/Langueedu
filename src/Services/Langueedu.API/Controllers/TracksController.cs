@@ -1,5 +1,6 @@
 ﻿using Ardalis.Result;
-using Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
+using Langueedu.Core.Features.Commands.Playlist.AddFollowerTrack;
+using Langueedu.Core.Features.Commands.Playlist.RemoveFollowerTrack;
 using Langueedu.Core.Features.Queries.Track.GetTrackDetailById;
 using Langueedu.SharedKernel.ViewModels;
 using MediatR;
@@ -35,7 +36,7 @@ public class TracksController : BaseApiController
 
   [SwaggerOperation(
       Summary = "Follow Track",
-      Description = "Follows a track",
+      Description = "Follow a track",
       OperationId = "Track.FollowTrack",
       Tags = new[] { "Tracks Endpoints" })
   ]
@@ -44,6 +45,21 @@ public class TracksController : BaseApiController
   public async Task<IActionResult> FollowTrack([FromRoute] short trackId)
   {
     var result = await _mediator.Send(new AddFollowerTrackCommand(UserId, trackId));
+
+    return result.ToActionResult();
+  }
+
+  [SwaggerOperation(
+      Summary = "UnFollow Track",
+      Description = "UnFollow a track",
+      OperationId = "Track.UnFollow",
+      Tags = new[] { "Tracks Endpoints" })
+  ]
+  [HttpDelete("{trackId}/Follow")]
+  [ProducesResponseType(typeof(Result<bool>), StatusCodes.Status200OK)]
+  public async Task<IActionResult> UnFollow([FromRoute] short trackId)
+  {
+    var result = await _mediator.Send(new RemoveFollowerTrackCommand(UserId, trackId));
 
     return result.ToActionResult();
   }

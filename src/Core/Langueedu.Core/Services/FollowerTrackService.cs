@@ -12,12 +12,11 @@ public class FollowerTrackService : IFollowerTrackService
   private readonly IRepository<Track> _trackRepository;
   private readonly IReadRepository<FollowerTrack> _followedTrackReadRepository;
 
-  public FollowerTrackService(
-    IRepository<FollowerTrack> _followerTrack,
-    IRepository<Track> trackRepository,
-    IReadRepository<FollowerTrack> followedTrackReadRepository)
+  public FollowerTrackService(IRepository<FollowerTrack> followerTrack,
+                              IRepository<Track> trackRepository,
+                              IReadRepository<FollowerTrack> followedTrackReadRepository)
   {
-    this._followerTrack = _followerTrack;
+    _followerTrack = followerTrack;
     _trackRepository = trackRepository;
     _followedTrackReadRepository = followedTrackReadRepository;
   }
@@ -35,7 +34,18 @@ public class FollowerTrackService : IFollowerTrackService
     return ToggleFollow(followerTrack,
     followedStatus: false,
     successMessage: "Track was unfollowed!",
-    callback: (track) => track.RemoveFollowerTrack(new FollowerTrack(followerTrack.TrackId, followerTrack.UserId)));
+    callback: async (track) =>
+    {
+
+      var spec = new GetFollowerTrackByUserIdAndIdSpec(followerTrack.UserId, followerTrack.TrackId);
+      var followTrack = await _followerTrack.GetBySpecAsync(spec);
+      if (followTrack is not null)
+      {
+        await _followerTrack.DeleteAsync(followTrack);
+
+        track.RemoveFollowerTrack(followTrack);
+      }
+    });
   }
 
   private async Task<Result<bool>> ToggleFollow(FollowerTrack followerTrack,

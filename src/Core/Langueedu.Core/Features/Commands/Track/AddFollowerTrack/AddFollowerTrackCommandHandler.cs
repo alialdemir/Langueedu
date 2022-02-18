@@ -5,7 +5,7 @@ using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
 using MediatR;
 
-namespace Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
+namespace Langueedu.Core.Features.Commands.Playlist.AddFollowerTrack;
 
 public class AddFollowerTrackCommandHandler : IRequestHandler<AddFollowerTrackCommand, Result<bool>>
 {

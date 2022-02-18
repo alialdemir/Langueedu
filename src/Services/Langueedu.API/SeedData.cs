@@ -20,15 +20,15 @@ public static class SeedData
         serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null))
     {
       // Look for any TODO items.
-      if (dbContext.Users.Any())
-      {
-        return; // DB has been seeded
-      }
+      //if (dbContext.Users.Any())
+      //{
+      //  return; // DB has been seeded
+      //}
 
       PopulateTestData(dbContext);
     }
   }
-  public static void PopulateTestData(AppDbContext dbContext)
+  public static async void PopulateTestData(AppDbContext dbContext)
   {
     //foreach (var item in dbContext.Artists)
     //{
@@ -36,10 +36,12 @@ public static class SeedData
     //}
     //dbContext.SaveChanges();
 
+    if (!dbContext.Roles.Any())
+    {
+      dbContext.Roles.AddRange(GetRoles());
 
-    dbContext.Roles.AddRange(GetRoles());
-
-    dbContext.SaveChanges();
+      dbContext.SaveChanges();
+    }
 
     if (!dbContext.Users.Any())
     {

@@ -10,11 +10,11 @@ using Xunit;
 namespace Langueedu.FunctionalTests.ControllerApis;
 
 [Collection("Sequential3")]
-public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<WebMarker>>
+public class TracksController : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
   private readonly HttpClient _client;
 
-  public TracksControllerList(CustomWebApplicationFactory<WebMarker> factory)
+  public TracksController(CustomWebApplicationFactory<WebMarker> factory)
   {
     _client = factory
         .CreateClient();
@@ -50,6 +50,19 @@ public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<We
     int trackId = 1;
 
     var result = await _client.PostAsJsonAsync($"/api/v1/Tracks/{trackId}/Follow", "");
+
+    Assert.True(result.IsSuccessStatusCode);
+  }
+
+  [Fact]
+  public async Task UnFollowTrackReturnsSuccess()
+  {
+    int trackId = 1;
+
+    var postResponse = await _client.PostAsJsonAsync($"/api/v1/Tracks/{trackId}/Follow", "");
+    Assert.True(postResponse.IsSuccessStatusCode);
+
+    var result = await _client.DeleteAsync($"/api/v1/Tracks/{trackId}/Follow");
 
     Assert.True(result.IsSuccessStatusCode);
   }
