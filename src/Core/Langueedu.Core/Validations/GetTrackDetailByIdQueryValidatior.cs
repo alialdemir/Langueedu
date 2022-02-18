@@ -8,7 +8,7 @@ public class GetTrackDetailByIdQueryValidatior : AbstractValidator<GetTrackDetai
   public GetTrackDetailByIdQueryValidatior()
   {
     RuleFor(p => p.TrackId)
-        .GreaterThan(short.MinValue)
+        .GreaterThan((short)0)
         .WithMessage("Track id must be greater than zero.");
   }
 }

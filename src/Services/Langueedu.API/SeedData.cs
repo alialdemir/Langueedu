@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Langueedu.Core.Entities.PlaylistAggregate;
+﻿using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.Core.Enums;
 using Langueedu.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
@@ -20,28 +19,26 @@ public static class SeedData
     using (var dbContext = new AppDbContext(
         serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null))
     {
-
-
       // Look for any TODO items.
       if (dbContext.Users.Any())
       {
         return; // DB has been seeded
       }
 
-      dbContext.Roles.AddRange(GetRoles());
-
-      dbContext.SaveChanges();
-
-
       PopulateTestData(dbContext);
     }
   }
   public static void PopulateTestData(AppDbContext dbContext)
   {
-    foreach (var item in dbContext.Artists)
-    {
-      dbContext.Remove(item);
-    }
+    //foreach (var item in dbContext.Artists)
+    //{
+    //  dbContext.Remove(item);
+    //}
+    //dbContext.SaveChanges();
+
+
+    dbContext.Roles.AddRange(GetRoles());
+
     dbContext.SaveChanges();
 
     if (!dbContext.Users.Any())
@@ -58,15 +55,23 @@ public static class SeedData
 
     Track
     .ChangeContentStatus(ContentStatus.Active)
-    .AddPerformsOnSong(Artist)
-    .AddPerformsOnSong(ArtistBeduk);
+    //.AddFollowerTrack(new FollowerTrack
+    //{
+    //  UserId = GetDefaultUser().Last().Id,
+    //  TrackId = Track.Id,
+    //  Id = 1
+    //})
+    //.AddPerformsOnSong(Artist)
+    ;
+    //.AddPerformsOnSong(ArtistBeduk);
 
     Album.Id = 1;
 
     Album
     .ChangeContentStatus(ContentStatus.Active)
     .SetReleaseDate(DateTime.Now)
-    .AddTrack(Track);
+    .AddTrack(Track)
+    ;
 
     Artist
     .ChangeContentStatus(ContentStatus.Active)
@@ -82,15 +87,7 @@ public static class SeedData
     dbContext.Artists.Add(Artist);
     dbContext.Playlists.Add(Playlist);
 
-    dbContext.FollowerTracks.Add(new FollowerTrack
-    {
-      UserId = GetDefaultUser().Last().Id,
-      TrackId = Track.Id
-    });
-
     dbContext.SaveChanges();
-
-
   }
 
   private static List<IdentityRole> GetRoles()
