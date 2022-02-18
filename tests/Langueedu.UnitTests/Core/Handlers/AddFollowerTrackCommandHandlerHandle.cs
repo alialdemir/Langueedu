@@ -31,7 +31,7 @@ public class AddFollowerTrackCommandHandlerHandle
   }
 
   [Fact]
-  public async Task SendsGetAllPlaylistGivenEventInstance()
+  public async Task SendsAddGivenVerify()
   {
     await _handler.Handle(_addFollowerTrackCommand, CancellationToken.None);
 

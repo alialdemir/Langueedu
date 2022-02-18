@@ -82,7 +82,8 @@ public class Track : BaseEntity<short>, IAggregateRoot
   {
     _followerTracks.RemoveAll(x => x.TrackId == followerTrack.TrackId && x.UserId == followerTrack.UserId);
 
-    FollowerCount -= 1;
+    if (FollowerCount > 0)
+      FollowerCount -= 1;
 
     return this;
   }
