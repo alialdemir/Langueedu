@@ -109,6 +109,18 @@ namespace Langueedu.Sdk
       return new Result<T>(ResultStatus.Invalid) { ValidationErrors = validationErrors };
     }
 
+    public static Result<T> Invalid(string errorMessage, string identifier)
+    {
+      return Result<T>.Invalid(new List<ValidationError>
+                {
+                    new ValidationError
+                    {
+                        Identifier = identifier,
+                         ErrorMessage = errorMessage
+                    }
+                });
+    }
+
     /// <summary>
     /// Represents the situation where a service was unable to find a requested resource.
     /// </summary>
