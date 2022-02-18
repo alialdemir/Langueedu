@@ -1,4 +1,5 @@
-﻿using Langueedu.Core.Entities.PlaylistAggregate;
+﻿using System.Linq;
+using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.Core.Enums;
 using Langueedu.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
@@ -83,7 +84,7 @@ public static class SeedData
 
     dbContext.FollowerTracks.Add(new FollowerTrack
     {
-      UserId = GetDefaultUser().FirstOrDefault().Id,
+      UserId = GetDefaultUser().Last().Id,
       TrackId = Track.Id
     });
 

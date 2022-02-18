@@ -12,11 +12,11 @@ namespace Langueedu.API.Controllers;
 public class TracksController : BaseApiController
 {
   private readonly IMediator _mediator;
-
   public TracksController(IMediator mediator)
   {
     _mediator = mediator;
   }
+
 
   [SwaggerOperation(
       Summary = "Get a detail of track",
@@ -40,7 +40,7 @@ public class TracksController : BaseApiController
       Tags = new[] { "Tracks Endpoints" })
   ]
   [HttpPost("{trackId}/Follow")]
-  [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
+  [ProducesResponseType(typeof(Result<bool>), StatusCodes.Status200OK)]
   public async Task<IActionResult> FollowTrack([FromRoute] short trackId)
   {
     var result = await _mediator.Send(new AddFollowerTrackCommand(UserId, trackId));
@@ -48,4 +48,3 @@ public class TracksController : BaseApiController
     return result.ToActionResult();
   }
 }
-

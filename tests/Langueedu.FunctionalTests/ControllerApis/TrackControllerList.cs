@@ -1,15 +1,10 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Ardalis.HttpClientTestExtensions;
 using Ardalis.Result;
 using Langueedu.API;
 using Langueedu.SharedKernel.ViewModels;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Langueedu.FunctionalTests.ControllerApis;
@@ -21,7 +16,6 @@ public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<We
 
   public TracksControllerList(CustomWebApplicationFactory<WebMarker> factory)
   {
-
     _client = factory
         .CreateClient();
   }
@@ -37,12 +31,26 @@ public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<We
   }
 
   [Fact]
-  public async Task ReturnsTrue()
+  public async Task FollowTrackReturnsAlready()
+  {
+    int trackId = 1;
+    string url = $"/api/v1/Tracks/{trackId}/Follow";
+
+    await _client.PostAsJsonAsync(url, "");
+
+    var result = await _client.PostAsJsonAsync(url, "");
+    var resultJson = await result.Content.ReadAsStringAsync();
+
+    Assert.True(resultJson?.Contains("The track is already being followed!"));
+  }
+
+  [Fact]
+  public async Task FollowTrackReturnsSuccess()
   {
     int trackId = 1;
 
-    var result = await _client.GetAndDeserialize<Result<bool>>($"/api/v1/Tracks/{trackId}/Follow");
+    var result = await _client.PostAsJsonAsync($"/api/v1/Tracks/{trackId}/Follow", "");
 
-    Assert.True(result.Value);
+    Assert.True(result.IsSuccessStatusCode);
   }
 }
