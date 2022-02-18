@@ -30,15 +30,15 @@ public class GetTrackDetailByIdQueryHandlerHandle
   [Fact]
   public async Task SendsGetTrackDetailGivenEventInstance()
   {
-    await _handler.Handle(new GetTrackDetailByIdQuery(1), CancellationToken.None);
+    await _handler.Handle(new GetTrackDetailByIdQuery(1, Constants.UserId), CancellationToken.None);
 
-    _trackServiceMock.Verify(sender => sender.GetTrackDetailByIdAsync(1));
+    _trackServiceMock.Verify(sender => sender.GetTrackDetailByIdAsync(1, Constants.UserId));
   }
 
   [Fact]
   public async Task ReturnsErrorIfGivenIdIsZero()
   {
-    var result = await _handler.Handle(new GetTrackDetailByIdQuery(0), CancellationToken.None);
+    var result = await _handler.Handle(new GetTrackDetailByIdQuery(0, Constants.UserId), CancellationToken.None);
 
     Assert.Equal(Ardalis.Result.ResultStatus.Invalid, result.Status);
     Assert.True(result.ValidationErrors.Any());
