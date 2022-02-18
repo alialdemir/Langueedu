@@ -1,4 +1,4 @@
-namespace Langueedu.SharedKernel.ViewModels;
+﻿namespace Langueedu.SharedKernel.ViewModels;
 
 public class ArtistViewModel
 {

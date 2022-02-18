@@ -1,4 +1,4 @@
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 using Blazored.Modal;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Web.Components.Interfaces;
@@ -11,34 +11,34 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceRegistry
 {
-    public static IServiceCollection AddComponents(this IServiceCollection services)
+  public static IServiceCollection AddComponents(this IServiceCollection services)
+  {
+    services.AddBlazoredModal();
+
+
+    services.AddSingleton<IWeakEventManagerFactory, WeakEventManagerFactory>();
+    services.AddSingleton<IBindingFactory, BindingFactory>();
+    services.AddSingleton<IParameterResolver, ParameterResolver>();
+    services.AddSingleton<IParameterCache, ParameterCache>();
+    services.AddSingleton<IViewModelParameterSetter, ViewModelParameterSetter>();
+
+    services.AddScoped<ITinySlider, TinySlider>();
+    services.AddScoped<ICultureService, CultureService>();
+    services.AddScoped<IYoutubePlayer, YoutubePlayer>();
+
+    services.AddScoped<SignInViewModel>();
+    services.AddScoped<SignUpViewModel>();
+    services.AddScoped<TrackCoverViewModel>();
+    services.AddScoped<GameModeViewModel>();
+    services.AddScoped<DuelViewModel>();
+
+    services.AddBlazoredLocalStorage();
+
+    services.AddSweetAlert2(options =>
     {
-        services.AddBlazoredModal();
+      options.Theme = SweetAlertTheme.Dark;
+    });
 
-
-        services.AddSingleton<IWeakEventManagerFactory, WeakEventManagerFactory>();
-        services.AddSingleton<IBindingFactory, BindingFactory>();
-        services.AddSingleton<IParameterResolver, ParameterResolver>();
-        services.AddSingleton<IParameterCache, ParameterCache>();
-        services.AddSingleton<IViewModelParameterSetter, ViewModelParameterSetter>();
-
-         services.AddScoped<ITinySlider, TinySlider>();
-         services.AddScoped<ICultureService, CultureService>();
-         services.AddScoped<IYoutubePlayer, YoutubePlayer>();
-
-        services.AddScoped<SignInViewModel>();
-        services.AddScoped<SignUpViewModel>();
-        services.AddScoped<TrackCoverViewModel>();
-        services.AddScoped<GameModeViewModel>();
-        services.AddScoped<DuelViewModel>();
-
-        services.AddBlazoredLocalStorage();
-
-        services.AddSweetAlert2(options =>
-        {
-            options.Theme = SweetAlertTheme.Dark;
-        });
-
-        return services;
-    }
+    return services;
+  }
 }

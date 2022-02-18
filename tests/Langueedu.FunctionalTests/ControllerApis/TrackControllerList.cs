@@ -17,22 +17,32 @@ namespace Langueedu.FunctionalTests.ControllerApis;
 [Collection("Sequential3")]
 public class TracksControllerList : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
-    private readonly HttpClient _client;
+  private readonly HttpClient _client;
 
-    public TracksControllerList(CustomWebApplicationFactory<WebMarker> factory)
-    {
+  public TracksControllerList(CustomWebApplicationFactory<WebMarker> factory)
+  {
 
-        _client = factory
-            .CreateClient();
-    }
+    _client = factory
+        .CreateClient();
+  }
 
-    [Fact]
-    public async Task ReturnsOneTrackDetailItem()
-    {
-        int trackId = 1;
+  [Fact]
+  public async Task ReturnsOneTrackDetailItem()
+  {
+    int trackId = 1;
 
-        var result = await _client.GetAndDeserialize<Result<TrackDetailViewModel>>($"/api/v1/Tracks/{trackId}");
+    var result = await _client.GetAndDeserialize<Result<TrackDetailViewModel>>($"/api/v1/Tracks/{trackId}");
 
-        Assert.NotNull(result.Value);
-    }
+    Assert.NotNull(result.Value);
+  }
+
+  [Fact]
+  public async Task ReturnsTrue()
+  {
+    int trackId = 1;
+
+    var result = await _client.GetAndDeserialize<Result<bool>>($"/api/v1/Tracks/{trackId}/Follow");
+
+    Assert.True(result.Value);
+  }
 }

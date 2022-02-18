@@ -4,8 +4,8 @@ namespace Langueedu.Web.Components;
 
 public enum Size
 {
-    [Description("sm")]
-    Small,
-    [Description("lg")]
-    Large
+  [Description("sm")]
+  Small,
+  [Description("lg")]
+  Large
 }

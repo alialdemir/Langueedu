@@ -9,46 +9,46 @@ namespace Langueedu.FunctionalTests.ControllerApis;
 [Collection("Sequential1")]
 public class IdentityController : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
-    private readonly HttpClient _client;
+  private readonly HttpClient _client;
 
-    public IdentityController(CustomWebApplicationFactory<WebMarker> factory)
-    {
-        factory.IsMockAuthentication = false;
-        _client = factory.CreateClient();
-    }
+  public IdentityController(CustomWebApplicationFactory<WebMarker> factory)
+  {
+    factory.IsMockAuthentication = false;
+    _client = factory.CreateClient();
+  }
 
-    [Fact]
-    public async Task ReturnsSuccessfulSignInOnPostWithValidCredentials()
-    {
-        string scopes = "langueedu_api langueedu_web offline_access openid profile";
+  [Fact]
+  public async Task ReturnsSuccessfulSignInOnPostWithValidCredentials()
+  {
+    string scopes = "langueedu_api langueedu_web offline_access openid profile";
 
-        var keyValues = new List<KeyValuePair<string, string>>();
-        keyValues.Add(new KeyValuePair<string, string>("grant_type", "password"));
-        keyValues.Add(new KeyValuePair<string, string>("username", "witcherfearless"));
-        keyValues.Add(new KeyValuePair<string, string>("password", "12345678"));
-        keyValues.Add(new KeyValuePair<string, string>("client_id", "blazor"));
-        keyValues.Add(new KeyValuePair<string, string>("client_secret", "Development Secret Key"));
-        keyValues.Add(new KeyValuePair<string, string>("scope", scopes));
+    var keyValues = new List<KeyValuePair<string, string>>();
+    keyValues.Add(new KeyValuePair<string, string>("grant_type", "password"));
+    keyValues.Add(new KeyValuePair<string, string>("username", "witcherfearless"));
+    keyValues.Add(new KeyValuePair<string, string>("password", "12345678"));
+    keyValues.Add(new KeyValuePair<string, string>("client_id", "blazor"));
+    keyValues.Add(new KeyValuePair<string, string>("client_secret", "Development Secret Key"));
+    keyValues.Add(new KeyValuePair<string, string>("scope", scopes));
 
-        var formContent = new FormUrlEncodedContent(keyValues);
+    var formContent = new FormUrlEncodedContent(keyValues);
 
-        var postResponse = await _client.PostAsync("/connect/token", formContent);
+    var postResponse = await _client.PostAsync("/connect/token", formContent);
 
-        TokenModel? token = await postResponse.Content.ReadFromJsonAsync<TokenModel>();
+    TokenModel? token = await postResponse.Content.ReadFromJsonAsync<TokenModel>();
 
-        Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
-        Assert.NotNull(token);
-        Assert.NotNull(token?.AccessToken);
-        Assert.Equal(scopes, token?.Scope);
-        Assert.Equal("Bearer", token?.TokenType);
-    }
+    Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
+    Assert.NotNull(token);
+    Assert.NotNull(token?.AccessToken);
+    Assert.Equal(scopes, token?.Scope);
+    Assert.Equal("Bearer", token?.TokenType);
+  }
 
-    [Fact]
-    public async Task ReturnsUnauthorizedGivenWrongUsernameAndPassword()
-    {
-        var result = await _client.GetAsync("/api/v1/playlists");
+  [Fact]
+  public async Task ReturnsUnauthorizedGivenWrongUsernameAndPassword()
+  {
+    var result = await _client.GetAsync("/api/v1/playlists");
 
-        Assert.Equal(HttpStatusCode.Unauthorized, result.StatusCode);
-    }
+    Assert.Equal(HttpStatusCode.Unauthorized, result.StatusCode);
+  }
 }
 

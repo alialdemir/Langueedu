@@ -10,26 +10,26 @@ namespace Langueedu.API.Controllers;
 [ApiVersion("1.0")]
 public class PlaylistsController : BaseApiController
 {
-    private readonly IMediator _mediator;
+  private readonly IMediator _mediator;
 
-    public PlaylistsController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+  public PlaylistsController(IMediator mediator)
+  {
+    _mediator = mediator;
+  }
 
-    [SwaggerOperation(
-        Summary = "Gets a list of all PlayList",
-        Description = "Gets a list of all PlayList",
-        OperationId = "PlayList.GetAllPlaylist",
-        Tags = new[] { "PlayList Endpoints" })
-    ]
-    [HttpGet]
-    [ProducesResponseType(typeof(Result<IEnumerable<PlaylistViewModel>>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAllPlaylists()
-    {
-        var playList = await _mediator.Send(new GetAllPlaylistsQuery());
+  [SwaggerOperation(
+      Summary = "Gets a list of all PlayList",
+      Description = "Gets a list of all PlayList",
+      OperationId = "PlayList.GetAllPlaylist",
+      Tags = new[] { "PlayList Endpoints" })
+  ]
+  [HttpGet]
+  [ProducesResponseType(typeof(Result<IEnumerable<PlaylistViewModel>>), StatusCodes.Status200OK)]
+  public async Task<IActionResult> GetAllPlaylists()
+  {
+    var playList = await _mediator.Send(new GetAllPlaylistsQuery());
 
-        return playList.ToActionResult();
-    }
+    return playList.ToActionResult();
+  }
 }
 

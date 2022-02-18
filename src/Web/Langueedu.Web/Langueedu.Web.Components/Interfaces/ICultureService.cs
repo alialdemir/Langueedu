@@ -2,6 +2,6 @@
 
 public interface ICultureService
 {
-    Task<string> GetCulture();
+  Task<string> GetCulture();
 }
 

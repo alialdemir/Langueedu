@@ -10,38 +10,38 @@ namespace Langueedu.UnitTests.Core.Handlers;
 
 public class GetTrackDetailByIdQueryHandlerHandle
 {
-    private GetTrackDetailByIdQueryHandler _handler;
-    private Mock<ITrackService> _trackServiceMock;
+  private GetTrackDetailByIdQueryHandler _handler;
+  private Mock<ITrackService> _trackServiceMock;
 
-    public GetTrackDetailByIdQueryHandlerHandle()
-    {
-        _trackServiceMock = new Mock<ITrackService>();
-        _handler = new GetTrackDetailByIdQueryHandler(_trackServiceMock.Object);
-    }
+  public GetTrackDetailByIdQueryHandlerHandle()
+  {
+    _trackServiceMock = new Mock<ITrackService>();
+    _handler = new GetTrackDetailByIdQueryHandler(_trackServiceMock.Object);
+  }
 
-    [Fact]
-    public async Task ThrowsExceptionGivenNullEventArgument()
-    {
+  [Fact]
+  public async Task ThrowsExceptionGivenNullEventArgument()
+  {
 #nullable disable
-        Exception ex = await Assert.ThrowsAsync<ArgumentNullException>(() => _handler.Handle(null, CancellationToken.None));
+    Exception ex = await Assert.ThrowsAsync<ArgumentNullException>(() => _handler.Handle(null, CancellationToken.None));
 #nullable enable
-    }
+  }
 
-    [Fact]
-    public async Task SendsGetTrackDetailGivenEventInstance()
-    {
-        await _handler.Handle(new GetTrackDetailByIdQuery(1), CancellationToken.None);
+  [Fact]
+  public async Task SendsGetTrackDetailGivenEventInstance()
+  {
+    await _handler.Handle(new GetTrackDetailByIdQuery(1), CancellationToken.None);
 
-        _trackServiceMock.Verify(sender => sender.GetTrackDetailByIdAsync(1));
-    }
+    _trackServiceMock.Verify(sender => sender.GetTrackDetailByIdAsync(1));
+  }
 
-    [Fact]
-    public async Task ReturnsErrorIfGivenIdIsZero()
-    {
-        var result = await _handler.Handle(new GetTrackDetailByIdQuery(0), CancellationToken.None);
+  [Fact]
+  public async Task ReturnsErrorIfGivenIdIsZero()
+  {
+    var result = await _handler.Handle(new GetTrackDetailByIdQuery(0), CancellationToken.None);
 
-        Assert.Equal(Ardalis.Result.ResultStatus.Invalid, result.Status);
-        Assert.True(result.ValidationErrors.Any());
-    }
+    Assert.Equal(Ardalis.Result.ResultStatus.Invalid, result.Status);
+    Assert.True(result.ValidationErrors.Any());
+  }
 }
 

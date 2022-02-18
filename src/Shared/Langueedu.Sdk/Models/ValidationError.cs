@@ -1,11 +1,11 @@
 ﻿namespace Langueedu.Sdk.Models
 {
-    public class ValidationError
-    {
-        public string Identifier { get; set; }
+  public class ValidationError
+  {
+    public string Identifier { get; set; }
 
-        public string ErrorMessage { get; set; }
+    public string ErrorMessage { get; set; }
 
-        public ValidationSeverity Severity { get; set; } = ValidationSeverity.Error;
-    }
+    public ValidationSeverity Severity { get; set; } = ValidationSeverity.Error;
+  }
 }

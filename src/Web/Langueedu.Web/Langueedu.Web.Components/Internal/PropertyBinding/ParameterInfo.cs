@@ -1,31 +1,31 @@
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Langueedu.Web.Components.Internal.PropertyBinding;
 
 internal class ParameterInfo
 {
-    private readonly Dictionary<PropertyInfo, PropertyInfo> _parameters =
-        new();
+  private readonly Dictionary<PropertyInfo, PropertyInfo> _parameters =
+      new();
 
-    public ParameterInfo(IEnumerable<PropertyInfo> componentProperties,
-        IEnumerable<PropertyInfo> viewModelProperties)
+  public ParameterInfo(IEnumerable<PropertyInfo> componentProperties,
+      IEnumerable<PropertyInfo> viewModelProperties)
+  {
+    if (componentProperties == null)
+      throw new ArgumentNullException(nameof(componentProperties));
+
+    if (viewModelProperties == null)
+      throw new ArgumentNullException(nameof(viewModelProperties));
+
+    var viewModelPropDict = viewModelProperties.ToDictionary(x => x.Name);
+
+    foreach (var componentProperty in componentProperties)
     {
-        if (componentProperties == null)
-            throw new ArgumentNullException(nameof(componentProperties));
+      if (!viewModelPropDict.TryGetValue(componentProperty.Name, out var viewModelProperty))
+        continue;
 
-        if (viewModelProperties == null)
-            throw new ArgumentNullException(nameof(viewModelProperties));
-
-        var viewModelPropDict = viewModelProperties.ToDictionary(x => x.Name);
-
-        foreach (var componentProperty in componentProperties)
-        {
-            if (!viewModelPropDict.TryGetValue(componentProperty.Name, out var viewModelProperty))
-                continue;
-
-            _parameters.Add(componentProperty, viewModelProperty);
-        }
+      _parameters.Add(componentProperty, viewModelProperty);
     }
+  }
 
-    public IReadOnlyDictionary<PropertyInfo, PropertyInfo> Parameters => _parameters;
+  public IReadOnlyDictionary<PropertyInfo, PropertyInfo> Parameters => _parameters;
 }

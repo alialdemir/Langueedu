@@ -4,10 +4,10 @@ using Langueedu.Sdk.Identity.Response;
 
 namespace Langueedu.Sdk.Identity
 {
-    public interface IIdentityService
-    {
-        Task<Result<TokenModel>> SignInAsync(LoginModel loginModel);
-        Task SignOutAsync();
-        Task<Result<string>> SignUpAsync(SignUpModel signUpModel);
-    }
+  public interface IIdentityService
+  {
+    Task<Result<TokenModel>> SignInAsync(LoginModel loginModel);
+    Task SignOutAsync();
+    Task<Result<string>> SignUpAsync(SignUpModel signUpModel);
+  }
 }

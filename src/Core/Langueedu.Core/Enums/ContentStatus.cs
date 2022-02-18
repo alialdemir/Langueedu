@@ -1,9 +1,8 @@
-﻿namespace Langueedu.Core.Enums
+﻿namespace Langueedu.Core.Enums;
+
+public enum ContentStatus : byte
 {
-  public enum ContentStatus : byte
-  {
-    Passive = 0,
-    Active = 1,
-  }
+  Passive = 0,
+  Active = 1,
 }
 

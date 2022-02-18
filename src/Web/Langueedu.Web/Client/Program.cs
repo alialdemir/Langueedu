@@ -11,18 +11,18 @@ string langueeduApiUrl = builder.Configuration.GetValue<string>("LangueeduApiUrl
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri(langueeduApiUrl)
+  BaseAddress = new Uri(langueeduApiUrl)
 });
 
 services.AddComponents();
 
 using (ServiceProvider serviceProvider = services.BuildServiceProvider())
 {
-    var localStorageService = serviceProvider.GetRequiredService<ILocalStorageService>();
+  var localStorageService = serviceProvider.GetRequiredService<ILocalStorageService>();
 
-    TokenModel? token = await localStorageService.GetItemAsync<TokenModel>("token");
+  TokenModel? token = await localStorageService.GetItemAsync<TokenModel>("token");
 
-    services.AddLangueeduSdk(langueeduApiUrl, token?.AccessToken);
+  services.AddLangueeduSdk(langueeduApiUrl, token?.AccessToken);
 }
 
 

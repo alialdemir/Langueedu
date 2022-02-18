@@ -15,90 +15,90 @@ namespace Langueedu.FunctionalTests;
 
 public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
-    public bool IsMockAuthentication { get; set; } = true;
+  public bool IsMockAuthentication { get; set; } = true;
 
-    /// <summary>
-    /// Overriding CreateHost to avoid creating a separate ServiceProvider per this thread:
-    /// https://github.com/dotnet-architecture/eShopOnWeb/issues/465
-    /// </summary>
-    /// <param name="builder"></param>
-    /// <returns></returns>
-    protected override IHost CreateHost(IHostBuilder builder)
+  /// <summary>
+  /// Overriding CreateHost to avoid creating a separate ServiceProvider per this thread:
+  /// https://github.com/dotnet-architecture/eShopOnWeb/issues/465
+  /// </summary>
+  /// <param name="builder"></param>
+  /// <returns></returns>
+  protected override IHost CreateHost(IHostBuilder builder)
+  {
+    var host = builder.Build();
+
+    builder.ConfigureWebHost(ConfigureWebHost);
+
+    // Get service provider.
+    var serviceProvider = host.Services;
+
+    // Create a scope to obtain a reference to the database
+    // context (AppDbContext).
+    using (var scope = serviceProvider.CreateScope())
     {
-        var host = builder.Build();
+      var scopedServices = scope.ServiceProvider;
+      var db = scopedServices.GetRequiredService<AppDbContext>();
 
-        builder.ConfigureWebHost(ConfigureWebHost);
+      var logger = scopedServices
+          .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
-        // Get service provider.
-        var serviceProvider = host.Services;
+      // Ensure the database is created.
+      db.Database.EnsureCreated();
 
-        // Create a scope to obtain a reference to the database
-        // context (AppDbContext).
-        using (var scope = serviceProvider.CreateScope())
+      try
+      {
+        // Seed the database with test data.
+        SeedData.PopulateTestData(db);
+      }
+      catch (Exception ex)
+      {
+        logger.LogError(ex, "An error occurred seeding the " +
+                            $"database with test messages. Error: {ex.Message}");
+      }
+    }
+
+
+    host.Start();
+    return host;
+  }
+
+  protected override void ConfigureWebHost(IWebHostBuilder builder)
+  {
+    builder
+        .ConfigureServices(services =>
         {
-            var scopedServices = scope.ServiceProvider;
-            var db = scopedServices.GetRequiredService<AppDbContext>();
+          // Remove the app's ApplicationDbContext registration.
+          var descriptor = services.SingleOrDefault(
+          d => d.ServiceType ==
+              typeof(DbContextOptions<AppDbContext>));
 
-            var logger = scopedServices
-                .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+          if (descriptor != null)
+          {
+            services.Remove(descriptor);
+          }
 
-            // Ensure the database is created.
-            db.Database.EnsureCreated();
+          if (IsMockAuthentication)
+          {
+            var basicAuth = services.SingleOrDefault(
+                                  s => s.ServiceType ==
+                                      typeof(JwtBearerHandler));
 
-            try
-            {
-                // Seed the database with test data.
-                SeedData.PopulateTestData(db);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "An error occurred seeding the " +
-                                    $"database with test messages. Error: {ex.Message}");
-            }
-        }
+            services.Remove(basicAuth);
 
+            services.AddTransient<IAuthenticationSchemeProvider, MockSchemeProvider>();
+          }
 
-        host.Start();
-        return host;
-    }
+          // This should be set for each individual test run
+          string inMemoryCollectionName = Guid.NewGuid().ToString();
 
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        builder
-            .ConfigureServices(services =>
-            {
-                // Remove the app's ApplicationDbContext registration.
-                var descriptor = services.SingleOrDefault(
-                d => d.ServiceType ==
-                    typeof(DbContextOptions<AppDbContext>));
+          // Add ApplicationDbContext using an in-memory database for testing.
+          services.AddDbContext<AppDbContext>(options =>
+      {
+        options.UseInMemoryDatabase(inMemoryCollectionName);
+      });
 
-                if (descriptor != null)
-                {
-                    services.Remove(descriptor);
-                }
-
-                if (IsMockAuthentication)
-                {
-                    var basicAuth = services.SingleOrDefault(
-                                      s => s.ServiceType ==
-                                          typeof(JwtBearerHandler));
-
-                    services.Remove(basicAuth);
-
-                    services.AddTransient<IAuthenticationSchemeProvider, MockSchemeProvider>();
-                }
-
-                // This should be set for each individual test run
-                string inMemoryCollectionName = Guid.NewGuid().ToString();
-
-                // Add ApplicationDbContext using an in-memory database for testing.
-                services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseInMemoryDatabase(inMemoryCollectionName);
-            });
-
-                services.AddScoped<IMediator, NoOpMediator>();
-            });
-    }
+          services.AddScoped<IMediator, NoOpMediator>();
+        });
+  }
 }
 

@@ -1,11 +1,10 @@
 ﻿using Ardalis.Result;
 using Langueedu.SharedKernel.ViewModels;
 
-namespace Langueedu.Core.Interfaces
+namespace Langueedu.Core.Interfaces;
+
+public interface IPlaylistService
 {
-    public interface IPlaylistService
-    {
-        Task<Result<IEnumerable<PlaylistViewModel>>> GetAllPlaylistsAsync();
-    }
+  Task<Result<IEnumerable<PlaylistViewModel>>> GetAllPlaylistsAsync();
 }
 

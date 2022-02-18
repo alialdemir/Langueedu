@@ -6,19 +6,19 @@ namespace Langueedu.Web.Components;
 
 public partial class LePlaylist : ComponentBase
 {
-    [Parameter]
-    public IEnumerable<PlaylistViewModel> Playlists { get; set; }
+  [Parameter]
+  public IEnumerable<PlaylistViewModel> Playlists { get; set; }
 
-    [Inject]
-    public ITinySlider TinySlider { get; set; }
+  [Inject]
+  public ITinySlider TinySlider { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
     {
-        if (firstRender)
-        {
-            await TinySlider.StartLearnSlider(".learn-slider1");
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
+      await TinySlider.StartLearnSlider(".learn-slider1");
     }
+
+    await base.OnAfterRenderAsync(firstRender);
+  }
 }

@@ -6,49 +6,49 @@ namespace Langueedu.Core.Entities.PlaylistAggregate;
 
 public class Artist : BaseEntity, IAggregateRoot
 {
-    public Artist(string name, string picturePath)
-    {
-        Name = name;
-        PicturePath = picturePath;
-        Slug = name.GenerateSlug();
-    }
+  public Artist(string name, string picturePath)
+  {
+    Name = name;
+    PicturePath = picturePath;
+    Slug = name.GenerateSlug();
+  }
 
-    public ContentStatus ContentStatus { get; private set; } = ContentStatus.Passive;
+  public ContentStatus ContentStatus { get; private set; } = ContentStatus.Passive;
 
-    public string Name { get; private set; }
+  public string Name { get; private set; }
 
-    public string Slug { get; private set; }
+  public string Slug { get; private set; }
 
-    private readonly List<Album> _albums = new();
+  private readonly List<Album> _albums = new();
 
-    public IReadOnlyCollection<Album> Albums => _albums.AsReadOnly();
+  public IReadOnlyCollection<Album> Albums => _albums.AsReadOnly();
 
-    public string PicturePath { get; set; }
-    public string CoverPicturePath { get; set; }
+  public string PicturePath { get; set; }
+  public string CoverPicturePath { get; set; }
 
-    private readonly List<PerformsOnSong> _performsOnSongs = new();
+  private readonly List<PerformsOnSong> _performsOnSongs = new();
 
-    public IReadOnlyCollection<PerformsOnSong> PerformsOnSongs => _performsOnSongs.AsReadOnly();
+  public IReadOnlyCollection<PerformsOnSong> PerformsOnSongs => _performsOnSongs.AsReadOnly();
 
-    public Artist AddAlbum(Album album)
-    {
-        _albums.Add(album);
+  public Artist AddAlbum(Album album)
+  {
+    _albums.Add(album);
 
-        return this;
-    }
+    return this;
+  }
 
-    public Artist ChangeContentStatus(ContentStatus contentStatus)
-    {
-        ContentStatus = contentStatus;
+  public Artist ChangeContentStatus(ContentStatus contentStatus)
+  {
+    ContentStatus = contentStatus;
 
-        return this;
-    }
+    return this;
+  }
 
-    public Artist ChangeCoverPicture(string coverPicturePath)
-    {
-        CoverPicturePath = coverPicturePath;
+  public Artist ChangeCoverPicture(string coverPicturePath)
+  {
+    CoverPicturePath = coverPicturePath;
 
-        return this;
-    }
+    return this;
+  }
 }
 

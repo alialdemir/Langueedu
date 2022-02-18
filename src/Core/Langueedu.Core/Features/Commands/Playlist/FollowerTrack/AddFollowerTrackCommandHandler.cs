@@ -1,9 +1,9 @@
 ﻿using Ardalis.Result;
+using Ardalis.Result.FluentValidation;
 using AutoMapper;
 using Langueedu.Core.Interfaces;
-using MediatR;
 using Langueedu.Core.Validations;
-using Ardalis.Result.FluentValidation;
+using MediatR;
 
 namespace Langueedu.Core.Features.Commands.Playlist.FollowerTrack;
 

@@ -5,78 +5,77 @@ using Langueedu.Sdk.Identity.Response;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Logging;
 
-namespace Langueedu.Web.Components.Provider
+namespace Langueedu.Web.Components.Provider;
+
+public class AuthStateProvider : AuthenticationStateProvider
 {
-    public class AuthStateProvider : AuthenticationStateProvider
+  private readonly ILocalStorageService _localStorageService;
+  private readonly AuthenticationState _anonymous;
+
+  public AuthStateProvider(ILocalStorageService localStorageService)
+  {
+    _localStorageService = localStorageService;
+    _anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+  }
+
+  public async override Task<AuthenticationState> GetAuthenticationStateAsync()
+  {
+    try
     {
-        private readonly ILocalStorageService _localStorageService;
-        private readonly AuthenticationState _anonymous;
+      TokenModel token = await _localStorageService.GetItemAsync<TokenModel>("token");
 
-        public AuthStateProvider(ILocalStorageService localStorageService)
-        {
-            _localStorageService = localStorageService;
-            _anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
-        }
+      if (token == null || string.IsNullOrEmpty(token.AccessToken))
+        return _anonymous;
 
-        public async override Task<AuthenticationState> GetAuthenticationStateAsync()
-        {
-            try
-            {
-                TokenModel token = await _localStorageService.GetItemAsync<TokenModel>("token");
+      var tokenDecode = GetClaims(token.AccessToken);
+      if (tokenDecode == null)
+        return _anonymous;
 
-                if (token == null || string.IsNullOrEmpty(token.AccessToken))
-                    return _anonymous;
+      var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(tokenDecode, "jwtAuthType"));
 
-                var tokenDecode = GetClaims(token.AccessToken);
-                if (tokenDecode == null)
-                    return _anonymous;
-
-                var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(tokenDecode, "jwtAuthType"));
-
-                return new AuthenticationState(claimsPrincipal);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-
-                await _localStorageService.RemoveItemAsync("token");
-
-                return _anonymous;
-            }
-        }
-
-        public async Task NotifyUserLogin(TokenModel token)
-        {
-            if (token == null)
-                return;
-
-            var tokenDecode = GetClaims(token.AccessToken);
-            if (tokenDecode == null)
-                return;
-
-            await _localStorageService.SetItemAsync<TokenModel>("token", token);
-
-            var cp = new ClaimsPrincipal(new ClaimsIdentity(tokenDecode, "jwtAuthType"));
-            var authState = Task.FromResult(new AuthenticationState(cp));
-
-            NotifyAuthenticationStateChanged(authState);
-        }
-
-        public void NotifyUserLogout()
-        {
-            var authState = Task.FromResult(_anonymous);
-            NotifyAuthenticationStateChanged(authState);
-        }
-
-        private IEnumerable<Claim> GetClaims(string accessToken)
-        {
-            if (string.IsNullOrEmpty(accessToken))
-                return null;
-
-            IdentityModelEventSource.ShowPII = true;
-
-            var tokenDecode = new JwtSecurityToken(jwtEncodedString: accessToken);
-            return tokenDecode?.Claims ?? null;
-        }
+      return new AuthenticationState(claimsPrincipal);
     }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+
+      await _localStorageService.RemoveItemAsync("token");
+
+      return _anonymous;
+    }
+  }
+
+  public async Task NotifyUserLogin(TokenModel token)
+  {
+    if (token == null)
+      return;
+
+    var tokenDecode = GetClaims(token.AccessToken);
+    if (tokenDecode == null)
+      return;
+
+    await _localStorageService.SetItemAsync<TokenModel>("token", token);
+
+    var cp = new ClaimsPrincipal(new ClaimsIdentity(tokenDecode, "jwtAuthType"));
+    var authState = Task.FromResult(new AuthenticationState(cp));
+
+    NotifyAuthenticationStateChanged(authState);
+  }
+
+  public void NotifyUserLogout()
+  {
+    var authState = Task.FromResult(_anonymous);
+    NotifyAuthenticationStateChanged(authState);
+  }
+
+  private IEnumerable<Claim> GetClaims(string accessToken)
+  {
+    if (string.IsNullOrEmpty(accessToken))
+      return null;
+
+    IdentityModelEventSource.ShowPII = true;
+
+    var tokenDecode = new JwtSecurityToken(jwtEncodedString: accessToken);
+    return tokenDecode?.Claims ?? null;
+  }
 }

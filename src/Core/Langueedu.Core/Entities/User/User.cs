@@ -1,8 +1,7 @@
-﻿namespace Langueedu.Core.Entities.User
+﻿namespace Langueedu.Core.Entities.User;
+
+public interface IUser
 {
-  public interface IUser
-  {
-    bool IsActive { get; set; }
-  }
+  bool IsActive { get; set; }
 }
 

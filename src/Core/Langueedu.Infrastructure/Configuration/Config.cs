@@ -5,31 +5,31 @@ namespace Langueedu.Infrastructure.Configuration;
 
 public static class Config
 {
-    public static IEnumerable<IdentityResource> Ids =>
-        new IdentityResource[]
-        {
+  public static IEnumerable<IdentityResource> Ids =>
+      new IdentityResource[]
+      {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-        };
+      };
 
 
-    public static IEnumerable<ApiResource> Apis =>
-        new ApiResource[]
-        {
+  public static IEnumerable<ApiResource> Apis =>
+      new ApiResource[]
+      {
                 // the api requires the role claim
                 new ApiResource("langueedu_web", "The Languedu API"),
                 new ApiResource("langueedu_api", "The Web API"),
-        };
+      };
 
-    public static IEnumerable<ApiScope> GetApiScopes => new List<ApiScope>
+  public static IEnumerable<ApiScope> GetApiScopes => new List<ApiScope>
              {
                  new ApiScope(name: "langueedu_web"),
                  new ApiScope(name: "langueedu_api"),
              };
 
-    public static IEnumerable<Client> Clients(string identityUrl, string identitySecret) =>
-        new Client[]
-        {
+  public static IEnumerable<Client> Clients(string identityUrl, string identitySecret) =>
+      new Client[]
+      {
                 new Client
                 {
                     ClientId = "blazor",
@@ -56,5 +56,5 @@ public static class Config
                         "langueedu_api",
                     },
                 },
-        };
+      };
 }

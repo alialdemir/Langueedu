@@ -1,9 +1,9 @@
 ﻿namespace Langueedu.Sdk
 {
-    public enum ValidationSeverity
-    {
-        Error = 0,
-        Warning = 1,
-        Info = 2
-    }
+  public enum ValidationSeverity
+  {
+    Error = 0,
+    Warning = 1,
+    Info = 2
+  }
 }

@@ -1,129 +1,129 @@
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Langueedu.Web.Components.Interfaces;
 using Langueedu.Web.Components.Models;
 using Langueedu.Web.Components.Services;
 using Langueedu.Web.Shared.Utilities;
 
-namespace Langueedu.Web.Components.ViewModels
+namespace Langueedu.Web.Components.ViewModels;
+
+public class DuelViewModel : ViewModelBase
 {
-  public class DuelViewModel : ViewModelBase
+  private readonly IYoutubePlayer _youtubePlayer;
+  private ICommand _stylishCommand;
+
+  public DuelViewModel(IYoutubePlayer _youtubePlayer)
   {
-    private readonly IYoutubePlayer _youtubePlayer;
-    private ICommand _stylishCommand;
+    this._youtubePlayer = _youtubePlayer;
+  }
 
-    public DuelViewModel(IYoutubePlayer _youtubePlayer)
+  public short EntryFee { get; set; }
+
+  public GameMode GameMode { get; set; }
+
+  private bool IsTimeActive { get; set; } = true;
+  private double _currentDuration;
+  public double CurrentDuration
+  {
+    get => _currentDuration;
+    set => SetField(ref _currentDuration, value);
+  }
+
+  private LyricsModel _nextLyrics = new();
+  public LyricsModel NextLyrics
+  {
+    get => _nextLyrics;
+    set => SetField(ref _nextLyrics, value);
+  }
+
+  private LyricsModel _currentLyrics = new();
+  public LyricsModel CurrentLyrics
+  {
+    get => _currentLyrics;
+    set => SetField(ref _currentLyrics, value);
+  }
+
+  public List<LyricsModel> Lyrics
+  {
+    get => lyrics.Where(x => !string.IsNullOrEmpty(x.Text)).ToList();
+  }
+
+  public override async Task OnInitializedAsync()
+  {
+    await _youtubePlayer.InitYoutube("FxBnts2bZX8");
+    YoutubePlayer.OnPlayerReady = new Command(OnPlayerReady);
+  }
+
+  private async Task OnPlayerReady()
+  {
+    await _youtubePlayer.PlayVideo();
+
+    Services.Timer.Start(TimeSpan.FromSeconds(1), SetCurrentDuration);
+  }
+
+  private async Task<bool> SetCurrentDuration()
+  {
+    if (!IsTimeActive)
+      return false;
+
+    double currentDuration = (await _youtubePlayer.CurrentTime()) * 1000;// milliseconds
+    LyricsModel nextDuration = Lyrics.Where(x => x.Duration <= currentDuration).LastOrDefault();
+    if (nextDuration == null)
+      return true;
+
+    nextDuration.Stylish = nextDuration.Text.Split(" ").Take(4).Select(x => new StylishModel
     {
-      this._youtubePlayer = _youtubePlayer;
-    }
+      Answer = x,
 
-    public short EntryFee { get; set; }
+    }).ToList();
 
-    public GameMode GameMode { get; set; }
+    CurrentDuration = currentDuration;
+    CurrentLyrics = NextLyrics;
+    NextLyrics = nextDuration;
 
-    private bool IsTimeActive { get; set; } = true;
-    private double _currentDuration;
-    public double CurrentDuration
-    {
-      get => _currentDuration;
-      set => SetField(ref _currentDuration, value);
-    }
+    await _youtubePlayer.ScrollIntoView($"id{nextDuration.Duration}");
 
-    private LyricsModel _nextLyrics = new();
-    public LyricsModel NextLyrics
-    {
-      get => _nextLyrics;
-      set => SetField(ref _nextLyrics, value);
-    }
+    return IsTimeActive;
+  }
 
-    private LyricsModel _currentLyrics = new();
-    public LyricsModel CurrentLyrics
-    {
-      get => _currentLyrics;
-      set => SetField(ref _currentLyrics, value);
-    }
+  private async Task StylishCommandExecute(StylishModel stylish)
+  {
+    if (IsBusy)
+      return;
 
-    public List<LyricsModel> Lyrics
-    {
-      get => lyrics.Where(x => !string.IsNullOrEmpty(x.Text)).ToList();
-    }
+    IsBusy = true;
 
-    public override async Task OnInitializedAsync()
-    {
-      await _youtubePlayer.InitYoutube("FxBnts2bZX8");
-      YoutubePlayer.OnPlayerReady = new Command(OnPlayerReady);
-    }
+    IsTimeActive = false;
 
-    private async Task OnPlayerReady()
-    {
-      await _youtubePlayer.PlayVideo();
+    await _youtubePlayer.PauseVideo();
 
-      Services.Timer.Start(TimeSpan.FromSeconds(1), SetCurrentDuration);
-    }
+    ChangeStylishColor(Color.Danger, stylish.Answer);
+    StateHasChanged();
 
-    private async Task<bool> SetCurrentDuration()
-    {
-      if (!IsTimeActive)
-        return false;
+    IsBusy = false;
+  }
 
-      double currentDuration = (await _youtubePlayer.CurrentTime()) * 1000;// milliseconds
-      LyricsModel nextDuration = Lyrics.Where(x => x.Duration <= currentDuration).LastOrDefault();
-      if (nextDuration == null)
-        return true;
+  private void ChangeStylishColor(Color color, string answer)
+  {
+    CurrentLyrics
+    .Stylish
+    .ForEach(stylish =>
+               {
+                 // Set default value
+                 stylish.Color = Color.Transparent;
+                 stylish.IsLeftArrowVisible = false;
+                 stylish.IsRightArrowVisible = false;
 
-      nextDuration.Stylish = nextDuration.Text.Split(" ").Take(4).Select(x => new StylishModel
-      {
-        Answer = x,
-
-      }).ToList();
-
-      CurrentDuration = currentDuration;
-      CurrentLyrics = NextLyrics;
-      NextLyrics = nextDuration;
-
-      await _youtubePlayer.ScrollIntoView($"id{nextDuration.Duration}");
-
-      return IsTimeActive;
-    }
-
-    private async Task StylishCommandExecute(StylishModel stylish)
-    {
-      if (IsBusy)
-        return;
-
-      IsBusy = true;
-
-      IsTimeActive = false;
-
-      await _youtubePlayer.PauseVideo();
-
-      ChangeStylishColor(Color.Danger, stylish.Answer);
-      StateHasChanged();
-
-      IsBusy = false;
-    }
-
-    private void ChangeStylishColor(Color color, string answer)
-    {
-      CurrentLyrics
-      .Stylish
-      .ForEach(stylish =>
+                 if (stylish.Answer == answer)
                  {
-                   // Set default value
-                   stylish.Color = Color.Transparent;
-                   stylish.IsLeftArrowVisible = false;
-                   stylish.IsRightArrowVisible = false;
+                   stylish.Color = color;
+                 }
+               });
+  }
 
-                   if (stylish.Answer == answer)
-                   {
-                     stylish.Color = color;
-                   }
-                 });
-    }
-
-    public ICommand StylishCommand { get => _stylishCommand ??= new CommandAsync<StylishModel>(StylishCommandExecute); }
+  public ICommand StylishCommand { get => _stylishCommand ??= new CommandAsync<StylishModel>(StylishCommandExecute); }
 
 
-    List<LyricsModel> lyrics = new List<LyricsModel> {
+  List<LyricsModel> lyrics = new List<LyricsModel> {
 new LyricsModel {
 Duration= 870,
 Text= "Bir deli dağ gibiydim, yıkılmazdım",
@@ -333,5 +333,4 @@ Duration= 198060,
 Text= ""
 }
 };
-  }
 }

@@ -1,10 +1,10 @@
-namespace Langueedu.Web.Components.Models;
+﻿namespace Langueedu.Web.Components.Models;
 
 public class LyricsModel
 {
-    public double Duration { get; set; }
+  public double Duration { get; set; }
 
-    public string Text { get; set; }
+  public string Text { get; set; }
 
-    public List<StylishModel> Stylish { get; set; } = new();
+  public List<StylishModel> Stylish { get; set; } = new();
 }

@@ -1,4 +1,4 @@
-using Blazored.Modal;
+﻿using Blazored.Modal;
 using Langueedu.Web.Components.ViewModels;
 using Microsoft.AspNetCore.Components;
 
@@ -6,13 +6,13 @@ namespace Langueedu.Web.Components;
 
 public partial class LeGameMode : ComponentBase<GameModeViewModel>
 {
-    [CascadingParameter]
-    BlazoredModalInstance ModalInstance { get; set; }
+  [CascadingParameter]
+  BlazoredModalInstance ModalInstance { get; set; }
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
 
-        BindingContext.ModalInstance = ModalInstance;
-    }
+    BindingContext.ModalInstance = ModalInstance;
+  }
 }

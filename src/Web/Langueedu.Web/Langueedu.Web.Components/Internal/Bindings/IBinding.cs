@@ -1,4 +1,4 @@
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Reflection;
 using Langueedu.Web.Components.Internal.WeakEventListener;
@@ -7,123 +7,123 @@ namespace Langueedu.Web.Components.Internal.Bindings;
 
 public interface IBinding : IDisposable
 {
-    INotifyPropertyChanged Source { get; }
-    PropertyInfo PropertyInfo { get; }
-    event EventHandler BindingValueChanged;
-    void Initialize();
-    object GetValue();
+  INotifyPropertyChanged Source { get; }
+  PropertyInfo PropertyInfo { get; }
+  event EventHandler BindingValueChanged;
+  void Initialize();
+  object GetValue();
 }
 
 internal class Binding : IBinding
 {
-    private readonly IWeakEventManager _weakEventManager;
-    private INotifyCollectionChanged _boundCollection;
-    private bool _isCollection;
+  private readonly IWeakEventManager _weakEventManager;
+  private INotifyCollectionChanged _boundCollection;
+  private bool _isCollection;
 
-    public Binding(INotifyPropertyChanged source, PropertyInfo propertyInfo, IWeakEventManager weakEventManager)
+  public Binding(INotifyPropertyChanged source, PropertyInfo propertyInfo, IWeakEventManager weakEventManager)
+  {
+    _weakEventManager = weakEventManager ?? throw new ArgumentNullException(nameof(weakEventManager));
+    Source = source ?? throw new ArgumentNullException(nameof(source));
+    PropertyInfo = propertyInfo ?? throw new ArgumentNullException(nameof(propertyInfo));
+  }
+
+  public INotifyPropertyChanged Source { get; }
+  public PropertyInfo PropertyInfo { get; }
+
+  public event EventHandler BindingValueChanged;
+
+  public void Initialize()
+  {
+    _isCollection = typeof(INotifyCollectionChanged).IsAssignableFrom(PropertyInfo.PropertyType);
+    _weakEventManager.AddWeakEventListener(Source, SourceOnPropertyChanged);
+    AddCollectionBindings();
+  }
+
+  public object GetValue()
+  {
+    return PropertyInfo.GetValue(Source, null)!;
+  }
+
+  private void AddCollectionBindings()
+  {
+    if (!_isCollection || !(GetValue() is INotifyCollectionChanged collection))
+      return;
+
+    _weakEventManager.AddWeakEventListener(collection, CollectionOnCollectionChanged);
+    _boundCollection = collection;
+  }
+
+  private void SourceOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+  {
+    if (e.PropertyName is null)
     {
-        _weakEventManager = weakEventManager ?? throw new ArgumentNullException(nameof(weakEventManager));
-        Source = source ?? throw new ArgumentNullException(nameof(source));
-        PropertyInfo = propertyInfo ?? throw new ArgumentNullException(nameof(propertyInfo));
+      BindingValueChanged?.Invoke(this, EventArgs.Empty);
+      return;
     }
 
-    public INotifyPropertyChanged Source { get; }
-    public PropertyInfo PropertyInfo { get; }
+    // This should just listen to the bindings property
+    if (e.PropertyName != PropertyInfo.Name)
+      return;
 
-    public event EventHandler BindingValueChanged;
-
-    public void Initialize()
+    if (_isCollection)
     {
-        _isCollection = typeof(INotifyCollectionChanged).IsAssignableFrom(PropertyInfo.PropertyType);
-        _weakEventManager.AddWeakEventListener(Source, SourceOnPropertyChanged);
-        AddCollectionBindings();
+      // If our binding is a collection binding we need to remove the event
+      // and reinitialize the collection bindings
+      if (_boundCollection != null) _weakEventManager.RemoveWeakEventListener(_boundCollection);
+
+      AddCollectionBindings();
     }
 
-    public object GetValue()
+
+    BindingValueChanged?.Invoke(this, EventArgs.Empty);
+  }
+
+  private void CollectionOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+  {
+    BindingValueChanged?.Invoke(this, EventArgs.Empty);
+  }
+
+  #region IDisposable Support
+
+  public void Dispose()
+  {
+    Dispose(true);
+    GC.SuppressFinalize(this);
+  }
+
+  protected virtual void Dispose(bool disposing)
+  {
+    if (disposing)
     {
-        return PropertyInfo.GetValue(Source, null)!;
+      if (_boundCollection != null)
+        _weakEventManager.RemoveWeakEventListener(_boundCollection);
+
+      _weakEventManager.RemoveWeakEventListener(Source);
     }
+  }
 
-    private void AddCollectionBindings()
-    {
-        if (!_isCollection || !(GetValue() is INotifyCollectionChanged collection))
-            return;
+  #endregion
 
-        _weakEventManager.AddWeakEventListener(collection, CollectionOnCollectionChanged);
-        _boundCollection = collection;
-    }
+  #region Base overrides
 
-    private void SourceOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName is null)
-        {
-            BindingValueChanged?.Invoke(this, EventArgs.Empty);
-            return;
-        }
+  public override string ToString()
+  {
+    return $"{PropertyInfo?.DeclaringType?.Name}.{PropertyInfo?.Name}";
+  }
 
-        // This should just listen to the bindings property
-        if (e.PropertyName != PropertyInfo.Name)
-            return;
+  public override bool Equals(object obj)
+  {
+    return obj is Binding b && ReferenceEquals(b.Source, Source) && b.PropertyInfo.Name == PropertyInfo.Name;
+  }
 
-        if (_isCollection)
-        {
-            // If our binding is a collection binding we need to remove the event
-            // and reinitialize the collection bindings
-            if (_boundCollection != null) _weakEventManager.RemoveWeakEventListener(_boundCollection);
+  public override int GetHashCode()
+  {
+    var hash = 13;
+    hash = hash * 7 + Source.GetHashCode();
+    hash = hash * 7 + PropertyInfo.Name.GetHashCode(StringComparison.InvariantCulture);
 
-            AddCollectionBindings();
-        }
+    return hash;
+  }
 
-
-        BindingValueChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void CollectionOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        BindingValueChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    #region IDisposable Support
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (_boundCollection != null)
-                _weakEventManager.RemoveWeakEventListener(_boundCollection);
-
-            _weakEventManager.RemoveWeakEventListener(Source);
-        }
-    }
-
-    #endregion
-
-    #region Base overrides
-
-    public override string ToString()
-    {
-        return $"{PropertyInfo?.DeclaringType?.Name}.{PropertyInfo?.Name}";
-    }
-
-    public override bool Equals(object obj)
-    {
-        return obj is Binding b && ReferenceEquals(b.Source, Source) && b.PropertyInfo.Name == PropertyInfo.Name;
-    }
-
-    public override int GetHashCode()
-    {
-        var hash = 13;
-        hash = hash * 7 + Source.GetHashCode();
-        hash = hash * 7 + PropertyInfo.Name.GetHashCode(StringComparison.InvariantCulture);
-
-        return hash;
-    }
-
-    #endregion
+  #endregion
 }

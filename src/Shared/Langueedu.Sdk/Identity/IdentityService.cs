@@ -8,29 +8,29 @@ using Langueedu.Sdk.Utilities;
 
 namespace Langueedu.Sdk.Identity
 {
-    internal class IdentityService : ServiceBase, IIdentityService
+  internal class IdentityService : ServiceBase, IIdentityService
+  {
+    private const string API_URL_BASE = "/v1/Accounts";
+
+    public IdentityService(IHttpClientFactory clientFactory)
+        : base(clientFactory.CreateClient("LangueeduApi"))
     {
-        private const string API_URL_BASE = "/v1/Accounts";
+    }
 
-        public IdentityService(IHttpClientFactory clientFactory)
-            : base(clientFactory.CreateClient("LangueeduApi"))
-        {
-        }
+    public async Task<Result<string>> SignUpAsync(SignUpModel signUpModel)
+    {
+      if (signUpModel == null)
+        throw new ArgumentNullException(nameof(signUpModel));
 
-        public async Task<Result<string>> SignUpAsync(SignUpModel signUpModel)
-        {
-            if (signUpModel == null)
-                throw new ArgumentNullException(nameof(signUpModel));
+      string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, API_URL_BASE);
 
-            string uri = UriHelper.CombineUri(Configs.GatewaEndpoint, API_URL_BASE);
+      var response = await PostAsync<string>(uri, signUpModel);
+      return response;
+    }
 
-            var response = await PostAsync<string>(uri, signUpModel);
-            return response;
-        }
-
-        public async Task<Result<TokenModel>> SignInAsync(LoginModel loginModel)
-        {
-            var from = new Dictionary<string, string>
+    public async Task<Result<TokenModel>> SignInAsync(LoginModel loginModel)
+    {
+      var from = new Dictionary<string, string>
                 {
                     {"username", loginModel.UserName },
                     {"password", loginModel.Password },
@@ -40,26 +40,26 @@ namespace Langueedu.Sdk.Identity
                     {"scope", Configs.Scope },
                 };
 
-            SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            var response = await _httpClient.SendAsync(new HttpRequestMessage(System.Net.Http.HttpMethod.Post, Configs.TokenEndpoint)
-            {
-                Content = new FormUrlEncodedContent((Dictionary<string, string>)from)
-            });
+      var response = await _httpClient.SendAsync(new HttpRequestMessage(System.Net.Http.HttpMethod.Post, Configs.TokenEndpoint)
+      {
+        Content = new FormUrlEncodedContent((Dictionary<string, string>)from)
+      });
 
-            if (response.IsSuccessStatusCode)
-            {
-                var token = await RequestAsResultAsync<TokenModel>(response);
-                return Result<TokenModel>.Success(token);
-            }
+      if (response.IsSuccessStatusCode)
+      {
+        var token = await RequestAsResultAsync<TokenModel>(response);
+        return Result<TokenModel>.Success(token);
+      }
 
-            var error = await RequestAsResultAsync<TokenErrorModel>(response);
-            return Result<TokenModel>.Error(error.ErrorDescription.Replace("_", " "));
-        }
-
-        public async Task SignOutAsync()
-        {
-            await PostAsync<string>(Configs.LogoutEndpoint);
-        }
+      var error = await RequestAsResultAsync<TokenErrorModel>(response);
+      return Result<TokenModel>.Error(error.ErrorDescription.Replace("_", " "));
     }
+
+    public async Task SignOutAsync()
+    {
+      await PostAsync<string>(Configs.LogoutEndpoint);
+    }
+  }
 }

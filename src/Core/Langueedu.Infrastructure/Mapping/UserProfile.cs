@@ -2,15 +2,14 @@
 using Langueedu.Core.Features.Commands.Account.SignUp;
 using Langueedu.Infrastructure.Data;
 
-namespace Langueedu.Infrastructure.Mapping
+namespace Langueedu.Infrastructure.Mapping;
+
+public class UserProfile : Profile
 {
-    public class UserProfile : Profile
-    {
-        public UserProfile()
-        {
-            CreateMap<User, SignUpCommand>()
-                .ReverseMap();
-        }
-    }
+  public UserProfile()
+  {
+    CreateMap<User, SignUpCommand>()
+        .ReverseMap();
+  }
 }
 

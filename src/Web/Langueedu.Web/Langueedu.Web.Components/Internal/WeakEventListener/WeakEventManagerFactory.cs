@@ -1,14 +1,14 @@
-namespace Langueedu.Web.Components.Internal.WeakEventListener;
+﻿namespace Langueedu.Web.Components.Internal.WeakEventListener;
 
 internal interface IWeakEventManagerFactory
 {
-    IWeakEventManager Create();
+  IWeakEventManager Create();
 }
 
 internal class WeakEventManagerFactory : IWeakEventManagerFactory
 {
-    public IWeakEventManager Create()
-    {
-        return new WeakEventManager();
-    }
+  public IWeakEventManager Create()
+  {
+    return new WeakEventManager();
+  }
 }
