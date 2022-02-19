@@ -1,0 +1,38 @@
+@namespace Langueedu.Web.Components
+
+<li class="le-dropdown-menu__item">
+    @if (!string.IsNullOrEmpty(Href))
+    {
+        <a href="@(Href)" target="@(Target.ToDescriptionString())">
+            @if (!string.IsNullOrEmpty(IconClass))
+            {
+                <i class="@(IconClass)"></i>
+            }
+            @Text
+        </a>
+    }
+    else
+    {
+        <div class="le-dropdown-menu__item-text">
+            @if (!string.IsNullOrEmpty(IconClass))
+            {
+            <i class="@(IconClass)"></i>
+            }
+            @Text
+        </div>
+    }
+</li>
+
+@code {
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public string IconClass { get; set; }
+    [Parameter]
+    public string Href { get; set; }
+
+    [Parameter]
+    public LinkTarget Target { get; set; } = LinkTarget.Self;
+}

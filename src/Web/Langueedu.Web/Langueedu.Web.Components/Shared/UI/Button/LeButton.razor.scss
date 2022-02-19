@@ -22,6 +22,7 @@
     padding: 1.5rem !important;
     & i {
       @apply text-2xl;
+      line-height: 0;
     }
   }
 

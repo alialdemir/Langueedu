@@ -1196,7 +1196,7 @@
                 font-size: 18px;
               }
             }
-            color: #fff;
+            color: $theme-font-color;
             font-size: 25px;
           }
         }
@@ -4502,10 +4502,11 @@
           }
         }
         .share-icons {
-          right: 15px;
-          li {
-            margin-right: 0px;
-          }
+          top: 42px;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          left: 0;
         }
       }
       .info {
@@ -6222,8 +6223,6 @@
     .hovercard {
       .user-image {
         .share-icons {
-          right: 6px;
-          top: -15px;
           li {
             .social-icon {
               width: 25px;

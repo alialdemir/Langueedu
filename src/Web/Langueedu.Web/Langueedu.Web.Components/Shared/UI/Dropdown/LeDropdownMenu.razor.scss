@@ -1,0 +1,43 @@
+.le-dropdown-menu {
+  .onhover-show-div {
+    @apply top-16
+    rounded-2xl;
+
+    left: -150px;
+  }
+
+  & .onhover-dropdown:hover .onhover-show-div:after,
+  & .onhover-dropdown:hover .onhover-show-div:before {
+    right: 10px !important;
+    left: initial;
+  }
+
+  &__item {
+    @apply w-44
+      gap-2;
+
+    display: flex !important;
+    margin-right: 0 !important;
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+
+    & a {
+      @apply w-full
+      text-left;
+
+      &:hover {
+        @apply text-inherit;
+      }
+    }
+
+    &-text,
+    & a {
+      @apply p-4
+      flex
+      items-center
+      gap-2;
+    }
+  }
+}

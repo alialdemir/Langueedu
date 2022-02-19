@@ -1,0 +1,13 @@
+@namespace Langueedu.Web.Components
+
+<ul class="onhover-show-div profile-dropdown">
+    @if (ChildContent is not null)
+    {
+      @ChildContent
+    }
+</ul>
+
+@code {
+  [Parameter]
+  public RenderFragment ChildContent { get; set; }
+}

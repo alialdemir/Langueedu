@@ -22,9 +22,23 @@
                 </LeButton>
             </li>
             <li>
-                <LeButton Color="@Color.Primary" Rounded="@Rounded.Full">
-                    <i class="fa-solid fa-share-from-square"></i>
-                </LeButton>
+                <LeDropdownMenu>
+                    <LeButton Color="@Color.Primary" Rounded="@Rounded.Full">
+                        <i class="fa-solid fa-share-from-square dropdown"></i>
+                    </LeButton>
+
+                    <LeDropdownMenuItems>
+                        <LeDropdownItem Text="Facebook" IconClass="fa-brands fa-facebook"
+                            Href=@BindingContext.TrackDetail.FacebookShare Target=@LinkTarget.Blank />
+
+                        <LeDropdownItem Text="Twitter" IconClass="fa-brands fa-twitter"
+                            Href=@BindingContext.TrackDetail.TwitterShare Target=@LinkTarget.Blank />
+
+                        <LeDropdownItem Text="E-mail" IconClass="fa-solid fa-envelope"
+                            Href=@BindingContext.TrackDetail.MailTo Target=@LinkTarget.Blank />
+                    </LeDropdownMenuItems>
+                </LeDropdownMenu>
+
             </li>
         </ul>
     </div>
