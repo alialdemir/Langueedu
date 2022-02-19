@@ -3,7 +3,7 @@ using Langueedu.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Langueedu.Infrastructure.Data.Config;
+namespace Langueedu.Infrastructure.Data.Config.PlaylistConfigs;
 
 public class TrackConfiguration : IEntityTypeConfiguration<Track>
 {

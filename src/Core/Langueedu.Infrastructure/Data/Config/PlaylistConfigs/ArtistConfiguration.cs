@@ -3,12 +3,11 @@ using Langueedu.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Langueedu.Infrastructure.Data.Config;
+namespace Langueedu.Infrastructure.Data.Config.PlaylistConfigs;
 
-public class AlbumConfiguration : IEntityTypeConfiguration<Album>
+public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
 {
-
-  public void Configure(EntityTypeBuilder<Album> builder)
+  public void Configure(EntityTypeBuilder<Artist> builder)
   {
     builder.Property(p => p.Name)
         .HasMaxLength(72)
@@ -18,9 +17,10 @@ public class AlbumConfiguration : IEntityTypeConfiguration<Album>
         .HasMaxLength(100)
         .IsRequired();
 
-    builder.Property(p => p.ReleaseDate);
+    builder.Property(p => p.PicturePath)
+        .HasMaxLength(150);
 
-    builder.Property(p => p.AlbumCoverImage)
+    builder.Property(p => p.CoverPicturePath)
         .HasMaxLength(150);
 
     builder.Property(p => p.ContentStatus)
