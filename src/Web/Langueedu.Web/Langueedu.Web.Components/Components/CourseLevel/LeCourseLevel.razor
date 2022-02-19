@@ -2,34 +2,37 @@
 
 @inherits ComponentBase<GameModeViewModel>
 
-<div class="leModal__game-mode--container">
-    <div class="leModaL-game-mode-slider flex">
+<div class="leModal__course-level--container">
+    <div class="leModaL-course-level-slider flex">
         @foreach (var gameMode in BindingContext.GameModes)
         {
             <div class="w-full">
 
-                <LeCard Class="leModal__game-mode">
+                <LeCard Class="leModal__course-level">
                     <LeCardBody>
-                        <div class="leModal__game-mode--content">
-                            <div class="leModal__game-mode--close">
+                        <div class="leModal__course-level--content">
+                            <div class="leModal__course-level--close">
                                 <LeButton Color=Color.Transparent Rounded=@Rounded.Full
                                 Command=@BindingContext.HideModalCommand>
                                     <i class="fa-solid fa-xmark text-lg"></i>
                                 </LeButton>
                             </div>
 
-                            <span class="leModal__game-mode--title">@gameMode.Title</span>
-                            <span class="leModal__game-mode--description">@gameMode.Description</span>
+                                <span class="leModal__course-level--title">@gameMode.Title</span>
+                              <span class="leModal__course-level--description">@gameMode.Description</span>
 
-                            <img class="leModal__game-mode--badge" src=@gameMode.Image alt="Beginner" />
+                                <img class="leModal__course-level--badge" src=@gameMode.Image alt=@gameMode.Title />
 
-                            <LeCoinIcon Gold=@gameMode.Prize />
-                            <span class="mt-2">EARNED COIN</span>
+                               <LeCoinIcon IsNegative Gold=@gameMode.CourseFee />
+                            <span class="mt-2">Course Fee</span>
 
-                            <div class="leModal__game-mode--hr"></div>
+                            <div class="leModal__course-level--hr"></div>
 
+                            <div class="h-24"></div>
+                            @*
                             <LeCoinIcon IsNegative Gold=@gameMode.EntryFee />
                             <span class="mt-2 mb-4">ENRTY FEE</span>
+                            *@
 
                             <LeProgressBar Value=gameMode.ProgressBar />
                             <span class="text-sm w-full mt-1">@gameMode.Title</span>
@@ -38,7 +41,7 @@
 
                         <LeButton Command=@BindingContext.StartGameCommand
                         CommandParameter=@gameMode
-                        Class="leModal__game-mode--play"
+                        Class="leModal__course-level--play"
                         Color=Color.Success
                         Rounded=@Rounded.Large
                         FullWidth>

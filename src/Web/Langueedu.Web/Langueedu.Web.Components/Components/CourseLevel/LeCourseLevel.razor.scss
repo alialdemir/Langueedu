@@ -1,4 +1,4 @@
-.leModal__game-mode {
+.leModal__course-level {
   margin-bottom: 0px !important;
   max-width: 345px;
   height: 450px;
@@ -57,7 +57,7 @@
 }
 
 @media (min-width: 1em) {
-  .leModal__game-mode--container #tns1 > .tns-item {
+  .leModal__course-level--container #tns1 > .tns-item {
     @apply relative;
 
     left: 215px;
@@ -65,7 +65,7 @@
 }
 
 @media (min-width: 24.375em) {
-  .leModal__game-mode--container #tns1 > .tns-item {
+  .leModal__course-level--container #tns1 > .tns-item {
     @apply relative;
 
     left: 210px;

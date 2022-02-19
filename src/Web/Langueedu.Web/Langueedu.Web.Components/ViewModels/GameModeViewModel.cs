@@ -29,7 +29,7 @@ public class GameModeViewModel : ViewModelBase
   public override async Task OnAfterRenderAsync(bool firstRender)
   {
     if (firstRender)
-      await _tinySlider.StartGameModeSlider(".leModaL-game-mode-slider");
+      await _tinySlider.StartGameModeSlider(".leModaL-course-level-slider");
   }
 
   public override void OnInitialized()
@@ -42,7 +42,7 @@ public class GameModeViewModel : ViewModelBase
                     Description = "Complete the 10% of the lyrics",
                     Image = $"{rootPicturePath}/prizeicon1.png",
                     GameMode = GameMode.Beginner,
-                    Prize = 80,
+                    CourseFee = 80,
                     EntryFee = 40,
                     ProgressBar = 25,
                 },
@@ -52,7 +52,7 @@ public class GameModeViewModel : ViewModelBase
                     Description = "Complete the 25% of the lyrics",
                     Image = $"{rootPicturePath}/prizeicon2.png",
                     GameMode = GameMode.Intermediate,
-                    Prize = 600,
+                    CourseFee= 600,
                     EntryFee = 300,
                     ProgressBar = 50,
                 },
@@ -62,7 +62,7 @@ public class GameModeViewModel : ViewModelBase
                     Description = "Complete the 50% of the lyrics",
                     Image = $"{rootPicturePath}/prizeicon3.png",
                     GameMode = GameMode.Advanced,
-                    Prize = 2000,
+                    CourseFee= 2000,
                     EntryFee = 1000,
                     ProgressBar = 75,
                 },
@@ -72,7 +72,7 @@ public class GameModeViewModel : ViewModelBase
                     Description = "Complete the 100% of the lyrics",
                     Image = $"{rootPicturePath}/prizeicon4.png",
                     GameMode = GameMode.Expert,
-                    Prize = 6000,
+                    CourseFee= 6000,
                     EntryFee = 3000,
                     ProgressBar = 100,
                 },

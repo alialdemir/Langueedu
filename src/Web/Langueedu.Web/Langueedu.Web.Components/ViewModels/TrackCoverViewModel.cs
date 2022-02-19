@@ -43,7 +43,7 @@ public class TrackCoverViewModel : ViewModelBase
 
     IsBusy = true;
 
-    ShowModal<LeGameMode>(string.Empty, new ModalOptions()
+    ShowModal<LeCourseLevel>(string.Empty, new ModalOptions()
     {
       HideCloseButton = false,
       HideHeader = true,

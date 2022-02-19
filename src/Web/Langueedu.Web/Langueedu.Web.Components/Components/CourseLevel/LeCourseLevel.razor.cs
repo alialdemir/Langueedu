@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Langueedu.Web.Components;
 
-public partial class LeGameMode : ComponentBase<GameModeViewModel>
+public partial class LeCourseLevel : ComponentBase<GameModeViewModel>
 {
   [CascadingParameter]
   BlazoredModalInstance ModalInstance { get; set; }
