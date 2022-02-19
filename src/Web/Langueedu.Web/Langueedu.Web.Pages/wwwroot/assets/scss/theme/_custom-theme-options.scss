@@ -2174,6 +2174,13 @@ body {
           .onhover-dropdown {
             &:hover {
               .onhover-show-div {
+                background-color: $dark-body-background;
+                box-shadow: 0 0 2px 2px $dark-border-color;
+
+                & li:hover {
+                  background-color: $dark-card-background;
+                }
+
                 &:before {
                   border-bottom: 7px solid $dark-body-background;
                 }
