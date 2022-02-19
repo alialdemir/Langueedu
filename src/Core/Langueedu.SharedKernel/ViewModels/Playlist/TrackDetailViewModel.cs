@@ -16,5 +16,6 @@ public class TrackDetailViewModel
   public string YoutubeVideoId { get; set; }
   public bool IsFollowed { get; set; }
   public long FollowerCount { get; set; }
+  public int MainArtistId { get; set; }
 }
 
