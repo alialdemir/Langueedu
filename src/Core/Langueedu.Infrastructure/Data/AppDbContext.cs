@@ -1,4 +1,5 @@
 ﻿using Ardalis.EFCore.Extensions;
+using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Entities.CourseAggregate;
 using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.SharedKernel;
@@ -28,6 +29,8 @@ public class AppDbContext : IdentityDbContext<User>
   public DbSet<Course> Courses => Set<Course>();
   public DbSet<CourseParticipant> CourseParticipants => Set<CourseParticipant>();
   public DbSet<CourseParticipantDetail> CourseParticipantDetails => Set<CourseParticipantDetail>();
+  public DbSet<Balance> Balances => Set<Balance>();
+  public DbSet<BalanceHistory> BalanceHistories => Set<BalanceHistory>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

@@ -1,8 +1,9 @@
 ﻿using Langueedu.SharedKernel;
+using Langueedu.SharedKernel.Interfaces;
 
 namespace Langueedu.Core.Entities.BalanceAggregate;
 
-public class Balance : BaseEntity
+public class Balance : BaseEntity, IAggregateRoot
 {
   public Balance(string userId)
   {

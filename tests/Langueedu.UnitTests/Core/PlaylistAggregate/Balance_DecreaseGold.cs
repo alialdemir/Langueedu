@@ -8,7 +8,7 @@ public class Balance_DecreaseGold
   [Fact]
   public void DecreaseGoldAndCheckGoldBalance()
   {
-    Balance balance = new Balance("some name");
+    Balance balance = new Balance("test user id");
 
     decimal gold = 9999;
 
@@ -20,7 +20,7 @@ public class Balance_DecreaseGold
   [Fact]
   public void IncreaseGoldAndCheckNewAmount()
   {
-    Balance balance = new Balance("some name");
+    Balance balance = new Balance("test user id");
 
     decimal increasegold = 9999;
     decimal decreaseGold = 1000;

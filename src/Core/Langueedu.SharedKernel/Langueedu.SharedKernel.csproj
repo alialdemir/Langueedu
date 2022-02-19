@@ -20,9 +20,13 @@
     <None Remove="FluentValidation" />
     <None Remove="ViewModels\" />
     <None Remove="ViewModels\Playlist\" />
+    <None Remove="ViewModels\Course\" />
+    <None Remove="ViewModels\Balance\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Playlist\" />
+    <Folder Include="ViewModels\Course\" />
+    <Folder Include="ViewModels\Balance\" />
   </ItemGroup>
 </Project>
