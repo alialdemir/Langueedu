@@ -6,14 +6,14 @@ namespace Langueedu.Core.Entities.CourseAggregate;
 public class CourseParticipant : BaseEntity
 {
   public CourseParticipant(string userId,
-                         CourseStatus duelTypes,
-                         short totalScore,
-                         short finishScore,
-                         short victoryScore,
-                         byte totalFails,
-                         byte totalHits,
-                         byte totalUserGaps,
-                         byte gapsCount)
+                           CourseStatus duelTypes,
+                           short totalScore,
+                           short finishScore,
+                           short victoryScore,
+                           byte totalFails,
+                           byte totalHits,
+                           byte totalUserGaps,
+                           byte gaps)
   {
     UserId = userId;
     DuelTypes = duelTypes;
@@ -23,19 +23,28 @@ public class CourseParticipant : BaseEntity
     TotalFails = totalFails;
     TotalHits = totalHits;
     TotalUserGaps = totalUserGaps;
-    GapsCount = gapsCount;
+    Gaps = gaps;
   }
 
   public Course Duel { get; }
+
   public string UserId { get; }
+
   public CourseStatus DuelTypes { get; }
+
   public short TotalScore { get; }
+
   public short FinishScore { get; }
+
   public short VictoryScore { get; }
+
   public byte TotalFails { get; }
+
   public byte TotalHits { get; }
+
   public byte TotalUserGaps { get; }
-  public byte GapsCount { get; }
+
+  public byte Gaps { get; }
 
   private readonly List<CourseParticipantDetail> _duelParticipantDetails = new();
 

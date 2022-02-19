@@ -6,7 +6,10 @@ namespace Langueedu.Core.Entities.CourseAggregate;
 
 public class CourseParticipantDetail : BaseEntity
 {
-  public CourseParticipantDetail(short score, byte answerTime, Stylish stylish, CourseSuccessStatus courseSuccessStatus)
+  public CourseParticipantDetail(short score,
+                                 byte answerTime,
+                                 Stylish stylish,
+                                 CourseSuccessStatus courseSuccessStatus)
   {
     Score = score;
     AnswerTime = answerTime;
@@ -17,9 +20,13 @@ public class CourseParticipantDetail : BaseEntity
   public CourseParticipant DuelParticipant { get; set; }
 
   public Lyrics lyrics { get; set; }
+
   public short Score { get; }
+
   public byte AnswerTime { get; }
+
   public Stylish Stylish { get; }
+
   public CourseSuccessStatus CourseSuccessStatus { get; }
 }
 

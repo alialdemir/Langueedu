@@ -36,14 +36,13 @@
 		<None Remove="Configs\" />
 		<None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
 		<None Remove="Services\" />
-		<None Remove="Data\Config\Course\" />
 		<None Remove="Data\Config\Playlist\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Mapping\" />
 		<Folder Include="Configuration\" />
 		<Folder Include="Services\" />
-		<Folder Include="Data\Config\Course\" />
-		<Folder Include="Data\Config\Playlist\" />
+		<Folder Include="Data\Config\CourseConfigs\" />
+		<Folder Include="Data\Config\PlaylistConfigs\" />
 	</ItemGroup>
 </Project>

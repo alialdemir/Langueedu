@@ -5,7 +5,10 @@ namespace Langueedu.Core.Entities.CourseAggregate;
 
 public class Course : BaseEntity
 {
-  public Course(BalanceTypes balanceType, CourseLevel courseLevel, CourseModes gameMode, decimal courseFee)
+  public Course(BalanceTypes balanceType,
+                CourseLevel courseLevel,
+                CourseModes gameMode,
+                decimal courseFee)
   {
     BalanceType = balanceType;
     CourseLevel = courseLevel;
