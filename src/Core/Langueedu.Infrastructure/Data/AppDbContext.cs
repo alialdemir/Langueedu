@@ -24,6 +24,7 @@ public class AppDbContext : IdentityDbContext<User>
   public DbSet<PerformsOnSong> PerformsOnSongs => Set<PerformsOnSong>();
   public DbSet<Playlist> Playlists => Set<Playlist>();
   public DbSet<Track> Tracks => Set<Track>();
+  public DbSet<Lyrics> Lyrics => Set<Lyrics>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

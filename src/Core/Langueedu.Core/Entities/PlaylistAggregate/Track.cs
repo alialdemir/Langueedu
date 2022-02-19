@@ -57,6 +57,9 @@ public class Track : BaseEntity<short>, IAggregateRoot
 
   public IReadOnlyCollection<FollowerTrack> FollowerTracks => _followerTracks.AsReadOnly();
 
+  private readonly List<Lyrics> _lyrics = new();
+
+  public IReadOnlyCollection<Lyrics> Lyrics => _lyrics.AsReadOnly();
 
   public Track AddPerformsOnSong(Artist artist)
   {

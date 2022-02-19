@@ -52,6 +52,7 @@
     <None Remove="Features\Commands\Playlist\" />
     <None Remove="Features\Commands\Playlist\FollowerTrack\" />
     <None Remove="Features\Commands\Track\AddFollowerTrack %28copy%29\" />
+    <None Remove="Entities\Duel\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -76,5 +77,6 @@
     <Folder Include="Features\Commands\Playlist\" />
     <Folder Include="Features\Commands\Playlist\FollowerTrack\" />
     <Folder Include="Features\Commands\Track\RemoveFollowerTrack\" />
+    <Folder Include="Entities\CourseAggregate\" />
   </ItemGroup>
 </Project>
