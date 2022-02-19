@@ -1,6 +1,6 @@
 ﻿using Ardalis.EFCore.Extensions;
+using Langueedu.Core.Entities.CourseAggregate;
 using Langueedu.Core.Entities.PlaylistAggregate;
-using Langueedu.Infrastructure.Data.Config;
 using Langueedu.SharedKernel;
 using MediatR;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -25,6 +25,9 @@ public class AppDbContext : IdentityDbContext<User>
   public DbSet<Playlist> Playlists => Set<Playlist>();
   public DbSet<Track> Tracks => Set<Track>();
   public DbSet<Lyrics> Lyrics => Set<Lyrics>();
+  public DbSet<Course> Courses => Set<Course>();
+  public DbSet<CourseParticipant> CourseParticipants => Set<CourseParticipant>();
+  public DbSet<CourseParticipantDetail> CourseParticipantDetails => Set<CourseParticipantDetail>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

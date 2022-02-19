@@ -13,6 +13,11 @@ public class Lyrics : BaseEntity, IAggregateRoot
     Time = time;
   }
 
+  public Lyrics()
+  {
+    
+  }
+
   public Track Track { get; set; }
 
   public string Text { get; }
