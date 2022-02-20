@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ardalis.Result;
 using Langueedu.Core.Entities.BalanceAggregate;
-using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
+using Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.SharedKernel.Interfaces;
@@ -12,17 +12,16 @@ using Xunit;
 
 namespace Langueedu.UnitTests.Core.Handlers;
 
-public class BalanceDecreaseCommandHandlerHandler
+public class BalanceIncreaseCommandHandlerHandle
 {
   private readonly Mock<IRepository<Balance>> _balanceService = new();
-  private readonly Mock<ILogger<BalanceDecreaseCommandHandler>> _logger = new();
+  private readonly Mock<ILogger<BalanceIncreaseCommandHandler>> _logger = new();
   private readonly Mock<IMediator> _mediator = new();
 
   [Fact]
-  public async Task GivenBalanceGoldThenDecreaseGold()
+  public async Task GivenBalanceGoldThenIncreaseGold()
   {
     BalanceGold balanceGold = new BalanceGold(Constants.UserId);
-    balanceGold.Increase(balanceGold, 1000);
 
     _balanceService
       .Setup(x => x.GetBySpecAsync(It.IsAny<GetBalanceByUserIdSpec>(), default).Result)
@@ -32,15 +31,15 @@ public class BalanceDecreaseCommandHandlerHandler
       .Setup(x => x.Send(It.IsAny<GetBalanceByUserIdQuery>(), default).Result)
       .Returns(balanceGold);
 
-    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
+    var handler = new BalanceIncreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
 
-    var command = new BalanceDecreaseCommand(balanceGold, 100);
+    var command = new BalanceIncreaseCommand(balanceGold, 100);
 
     await handler.Handle(command, CancellationToken.None);
 
     _balanceService.Verify(sender => sender.UpdateAsync(balanceGold, default));
 
-    Assert.Equal(900, balanceGold.Gold);
+    Assert.Equal(100, balanceGold.Gold);
   }
 
   [Fact]
@@ -48,8 +47,8 @@ public class BalanceDecreaseCommandHandlerHandler
   {
     decimal negativeAmount = -100;
 
-    BalanceDecreaseCommand command = new BalanceDecreaseCommand(new Balance(Constants.UserId), negativeAmount);
-    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
+    BalanceIncreaseCommand command = new BalanceIncreaseCommand(new Balance(Constants.UserId), negativeAmount);
+    var handler = new BalanceIncreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
 
 #nullable disable
     Exception ex = await Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
@@ -57,11 +56,9 @@ public class BalanceDecreaseCommandHandlerHandler
   }
 
   [Fact]
-  public async Task GivenBalanceGoldThenDecreaseSilver()
+  public async Task GivenBalanceGoldThenIncreaseSilver()
   {
     BalanceSilver balanceSilver = new BalanceSilver(Constants.UserId);
-    balanceSilver.Increase(balanceSilver, 300);
-
 
     _balanceService
       .Setup(x => x.GetBySpecAsync(It.IsAny<GetBalanceByUserIdSpec>(), default).Result)
@@ -71,15 +68,15 @@ public class BalanceDecreaseCommandHandlerHandler
       .Setup(x => x.Send(It.IsAny<GetBalanceByUserIdQuery>(), default).Result)
       .Returns(balanceSilver);
 
-    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
+    var handler = new BalanceIncreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
 
-    var command = new BalanceDecreaseCommand(balanceSilver, 100);
+    var command = new BalanceIncreaseCommand(balanceSilver, 100);
 
     await handler.Handle(command, CancellationToken.None);
 
     _balanceService.Verify(sender => sender.UpdateAsync(balanceSilver, default));
 
-    Assert.Equal(200, balanceSilver.Silver);
+    Assert.Equal(100, balanceSilver.Silver);
   }
 }
 

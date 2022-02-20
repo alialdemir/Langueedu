@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using Langueedu.Core.Entities.BalanceAggregate;
+﻿using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Features.Queries.BalanceQuesries;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.SharedKernel.Interfaces;
-using Langueedu.SharedKernel.ViewModels.Balance;
 using Moq;
 using Xunit;
 
@@ -14,13 +12,14 @@ public class GetBalanceByUserIdQueryHandlerHandle
 {
   private readonly GetBalanceByUserIdQueryHandler _handler;
   private readonly Mock<IReadRepository<Balance>> _balanceReadRepository = new();
+  private readonly Mock<IRepository<Balance>> _balanceRepository = new();
   private readonly BalanceGold _balance = new(Constants.UserId);
 
   public GetBalanceByUserIdQueryHandlerHandle()
   {
     _balanceReadRepository.Setup(foo => foo.GetBySpecAsync(It.IsAny<GetBalanceByUserIdSpec>(), default).Result).Returns(_balance);
 
-    _handler = new GetBalanceByUserIdQueryHandler(_balanceReadRepository.Object);
+    _handler = new GetBalanceByUserIdQueryHandler(_balanceReadRepository.Object, _balanceRepository.Object);
   }
 
   [Fact]
