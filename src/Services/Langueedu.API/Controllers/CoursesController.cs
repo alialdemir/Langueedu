@@ -25,7 +25,7 @@ public class CoursesController : BaseApiController
   ]
   [HttpPost]
   [ProducesResponseType(typeof(Result<CourseDetailViewModel>), StatusCodes.Status200OK)]
-  public async Task<IActionResult> FollowTrack([FromBody] CreateCourseCommand course)
+  public async Task<IActionResult> CreateCourse([FromBody] CreateCourseCommand course)
   {
     course.UserId = UserId;
 

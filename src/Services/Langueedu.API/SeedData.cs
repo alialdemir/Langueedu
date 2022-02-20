@@ -1,4 +1,5 @@
-﻿using Langueedu.Core.Entities.PlaylistAggregate;
+﻿using Langueedu.Core.Entities.BalanceAggregate;
+using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.Core.Enums;
 using Langueedu.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
@@ -8,11 +9,14 @@ namespace Langueedu.API;
 
 public static class SeedData
 {
+  private static readonly string WitcherUserId = "1111-1111-1111-1111";
   public static readonly PlayList Playlist = new("Türkçe pop");
   public static readonly Artist Artist = new("Sıla GençOğlu", "https://i.scdn.co/image/ab67706c0000da84f541aebb4e40b2632f39884a");
   public static readonly Artist ArtistBeduk = new("Bedük", "https://i.scdn.co/image/ab67616d00001e028196de80c29e4b4ed0138b1d");
   public static readonly Album Album = new("Mürekkep - Bedük version");
   public static readonly Track Track = new("Engerek", "RhL7B7iXgyE", "tr", 41248);
+  public static BalanceGold Balance = new BalanceGold(WitcherUserId);
+
 
   public static void Initialize(IServiceProvider serviceProvider)
   {
@@ -49,6 +53,9 @@ public static class SeedData
 
       dbContext.SaveChanges();
     }
+
+    Balance = (BalanceGold)Balance.Increase(Balance, 999999);
+    dbContext.Balances.Add(Balance);
 
     //Track.Id = 1;
 
@@ -121,7 +128,7 @@ public static class SeedData
     var witcherUser =
         new User()
         {
-          Id = "1111-1111-1111-1111",
+          Id = WitcherUserId,
           UserName = "witcherfearless",
           Email = "aldemirali93@gmail.com",
           PhoneNumber = "5444261154",
