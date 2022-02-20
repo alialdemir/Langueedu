@@ -1,21 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Langueedu.Core.Specifications.Balance;
+using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Langueedu.Core.Features.Commands.Balance;
+namespace Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 
 public class BalanceDecreaseCommandHandler : INotificationHandler<BalanceDecreaseCommand>
 {
   private readonly IRepository<Entities.BalanceAggregate.Balance> _balanceRepository;
   private readonly ILogger<BalanceDecreaseCommandHandler> _logger;
+  private readonly IMediator _mediator;
 
-  public BalanceDecreaseCommandHandler(IRepository<Entities.BalanceAggregate.Balance> balanceRepository, ILogger<BalanceDecreaseCommandHandler> logger)
+  public BalanceDecreaseCommandHandler(IRepository<Entities.BalanceAggregate.Balance> balanceRepository,
+                                       ILogger<BalanceDecreaseCommandHandler> logger,
+                                       IMediator mediator)
   {
     _balanceRepository = balanceRepository;
     _logger = logger;
+    _mediator = mediator;
   }
 
   public async Task Handle(BalanceDecreaseCommand request, CancellationToken cancellationToken)
@@ -28,14 +32,7 @@ public class BalanceDecreaseCommandHandler : INotificationHandler<BalanceDecreas
       throw new ValidationException(error?.ErrorMessage);
     }
 
-    var spec = new GetBalanceByUserIdSpec(request.Balance.UserId);
-    var balance = await _balanceRepository.GetBySpecAsync(spec);
-    if (balance == null)
-    {
-      balance = await _balanceRepository.AddAsync((Entities.BalanceAggregate.Balance)request.Balance, cancellationToken);
-
-      await _balanceRepository.SaveChangesAsync();
-    }
+    var balance = await _mediator.Send(new GetBalanceByUserIdQuery(request.Balance.UserId));
 
     balance = request.Balance.Decrease(balance, request.Amount);
 

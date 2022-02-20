@@ -1,10 +1,16 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using AutoMapper;
+using Langueedu.Core.Entities.BalanceAggregate;
+using Langueedu.Core.Enums;
+using Langueedu.Core.Factories;
 using Langueedu.Core.Features.Commands.Account.SignUp;
+using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
+using Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
 using Langueedu.Infrastructure.Data;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace Langueedu.Infrastructure.Services;
@@ -13,12 +19,15 @@ public class AccountService : IAccountService
 {
   private readonly UserManager<User> _userManager;
   private readonly IMapper _mapper;
+  private readonly IMediator _mediator;
 
   public AccountService(UserManager<User> userManager,
-                        IMapper mapper)
+                        IMapper mapper,
+                        IMediator mediator)
   {
     _userManager = userManager;
     _mapper = mapper;
+    _mediator = mediator;
   }
 
   public async Task<Result<string>> SingUpAsync(SignUpCommand signUp)
@@ -45,6 +54,14 @@ public class AccountService : IAccountService
 
       if (!roleIdentity.Succeeded && roleIdentity.Errors.Any())
         return Result<string>.Error(roleIdentity.Errors.Select(x => x.Description).ToArray());
+    }
+
+    // Gold has been added to the user who is a member
+    decimal gold = 999999;
+    var balance = BalanceFactory.Create(BalanceTypes.Gold, user.Id);
+    if (balance != null)
+    {
+      await _mediator.Publish(new BalanceIncreaseCommand(balance, gold));
     }
 
     return Result<string>.Success("User registred.");

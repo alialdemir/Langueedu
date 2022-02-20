@@ -9,10 +9,6 @@ public class Balance : BaseEntity, IAggregateRoot, IBalance
   {
     UserId = userId;
   }
-  public Balance()
-  {
-
-  }
 
   public string UserId { get; }
 
@@ -29,14 +25,4 @@ public class Balance : BaseEntity, IAggregateRoot, IBalance
   public decimal Gold { get; internal set; }
 
   public decimal Silver { get; internal set; }
-}
-
-public interface IBalance : IAggregateRoot
-{
-  decimal Gold { get; }
-
-  decimal Silver { get; }
-  string UserId { get; }
-  Balance Increase(Balance balance, decimal amount);
-  Balance Decrease(Balance balance, decimal amount);
 }

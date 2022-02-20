@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ardalis.Result;
 using Langueedu.Core.Entities.BalanceAggregate;
-using Langueedu.Core.Features.Commands.Balance;
+using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.SharedKernel.Interfaces;
 using Microsoft.Extensions.Logging;

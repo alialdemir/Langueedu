@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using Langueedu.Core.Factories;
-using Langueedu.Core.Features.Commands.Balance;
+using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
@@ -38,7 +38,7 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, R
       return Result<CourseDetailViewModel>.Invalid(validate.AsErrors());
 
     // Get user balance
-    var userBalance = (await _mediator.Send(new GetBalanceByUserIdQuery(request.UserId)));
+    var userBalance = await _mediator.Send(new GetBalanceByUserIdQuery(request.UserId));
     if (!userBalance.IsSuccess)
       return Result<CourseDetailViewModel>.Invalid(userBalance.ValidationErrors);
 
@@ -59,7 +59,7 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, R
     // Create balance instance based on balance type
     var balance = BalanceFactory.Create(request.BalanceType, request.UserId);
     if (balance == null)
-      return Result<CourseDetailViewModel>.Error("Balance type is not found");
+      return Result<CourseDetailViewModel>.Error("Balance type is not found!");
 
     // User balance has been reduced
     await _mediator.Publish(new BalanceDecreaseCommand(balance, request.CourseFee));

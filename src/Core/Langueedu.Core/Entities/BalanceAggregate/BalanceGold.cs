@@ -1,15 +1,9 @@
-﻿using Langueedu.Core.Features.Commands.Course.CreateCourse;
-
-namespace Langueedu.Core.Entities.BalanceAggregate;
+﻿namespace Langueedu.Core.Entities.BalanceAggregate;
 
 public class BalanceGold : Balance
 {
   public BalanceGold(string userId) : base(userId)
   {
-  }
-  public BalanceGold()
-  {
-
   }
 
   public override Balance Increase(Balance balance, decimal amount)
@@ -21,7 +15,7 @@ public class BalanceGold : Balance
 
   public override Balance Decrease(Balance balance, decimal amount)
   {
-    balance.Gold = balance.Gold - amount;
+    balance.Gold -= amount;
 
     return balance;
   }

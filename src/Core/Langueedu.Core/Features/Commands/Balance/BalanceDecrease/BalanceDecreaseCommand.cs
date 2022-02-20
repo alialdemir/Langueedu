@@ -1,7 +1,6 @@
-﻿using Langueedu.Core.Entities.BalanceAggregate;
-using MediatR;
+﻿using MediatR;
 
-namespace Langueedu.Core.Features.Commands.Balance;
+namespace Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 
 public class BalanceDecreaseCommand : INotification
 {

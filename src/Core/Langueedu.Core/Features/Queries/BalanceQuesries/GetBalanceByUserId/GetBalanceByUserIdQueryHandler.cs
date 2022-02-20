@@ -12,11 +12,13 @@ namespace Langueedu.Core.Features.Queries.BalanceQuesries;
 public class GetBalanceByUserIdQueryHandler : IRequestHandler<GetBalanceByUserIdQuery, Result<Balance>>
 {
   private readonly IReadRepository<Balance> _balanceReadRepository;
+  private readonly IRepository<Balance> _balanceRepository;
 
-  public GetBalanceByUserIdQueryHandler(IReadRepository<Balance> balanceReadRepository
-    )
+  public GetBalanceByUserIdQueryHandler(IReadRepository<Balance> balanceReadRepository,
+                                        IRepository<Balance> balanceRepository)
   {
     _balanceReadRepository = balanceReadRepository;
+    _balanceRepository = balanceRepository;
   }
 
   public async Task<Result<Balance>> Handle(GetBalanceByUserIdQuery request, CancellationToken cancellationToken)
@@ -29,7 +31,11 @@ public class GetBalanceByUserIdQueryHandler : IRequestHandler<GetBalanceByUserId
     var spec = new GetBalanceByUserIdSpec(request.UserId);
     var balance = await _balanceReadRepository.GetBySpecAsync(spec);
     if (balance == null)
-      return Result<Balance>.Error("Balance not found!");
+    {
+      balance = await _balanceRepository.AddAsync(new Balance(request.UserId));
+
+      await _balanceRepository.SaveChangesAsync();
+    }
 
     return Result<Balance>.Success(balance);
   }

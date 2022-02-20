@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
+using Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 
 namespace Langueedu.Core.Validations;
 
-public class BalanceDecreaseCommandValidator : AbstractValidator<BalanceDecreaseCommand>
+public class BalanceIncreaseCommandValidator : AbstractValidator<BalanceIncreaseCommand>
 {
-  public BalanceDecreaseCommandValidator()
+  public BalanceIncreaseCommandValidator()
   {
     RuleFor(x => x.Balance.UserId)
       .NotEmpty()
@@ -16,4 +16,3 @@ public class BalanceDecreaseCommandValidator : AbstractValidator<BalanceDecrease
       .WithMessage("Amount must be greater than zero.");
   }
 }
-

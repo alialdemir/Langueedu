@@ -1,16 +1,9 @@
-﻿using Langueedu.Core.Features.Commands.Course.CreateCourse;
-
-namespace Langueedu.Core.Entities.BalanceAggregate;
+﻿namespace Langueedu.Core.Entities.BalanceAggregate;
 
 public class BalanceSilver : Balance
 {
   public BalanceSilver(string userId) : base(userId)
   {
-  }
-
-  public BalanceSilver()
-  {
-
   }
 
   public override Balance Increase(Balance balance, decimal amount)

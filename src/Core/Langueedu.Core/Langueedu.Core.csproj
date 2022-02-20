@@ -58,6 +58,8 @@
     <None Remove="Features\Commands\Balance\" />
     <None Remove="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
     <None Remove="Factories\" />
+    <None Remove="Features\Commands\Balance\BalanceIncrease\" />
+    <None Remove="Features\Commands\Balance\BalanceDecrease\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -88,5 +90,7 @@
     <Folder Include="Features\Commands\Balance\" />
     <Folder Include="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
     <Folder Include="Factories\" />
+    <Folder Include="Features\Commands\Balance\BalanceIncrease\" />
+    <Folder Include="Features\Commands\Balance\BalanceDecrease\" />
   </ItemGroup>
 </Project>
