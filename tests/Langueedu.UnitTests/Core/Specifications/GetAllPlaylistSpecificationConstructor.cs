@@ -11,14 +11,14 @@ public class GetAllPlaylistSpecificationConstructor
   [Fact]
   public void FilterCollectionToOnlyReturnItemsWithIsDoneFalse()
   {
-    var item1 = new Playlist("Playlist 1").ChangeContentStatus(ContentStatus.Active);
-    var item2 = new Playlist("Playlist 2").ChangeContentStatus(ContentStatus.Active);
-    var item3 = new Playlist("Playlist 3").ChangeContentStatus(ContentStatus.Passive);
+    var item1 = new PlayList("Playlist 1").ChangeContentStatus(ContentStatus.Active);
+    var item2 = new PlayList("Playlist 2").ChangeContentStatus(ContentStatus.Active);
+    var item3 = new PlayList("Playlist 3").ChangeContentStatus(ContentStatus.Passive);
 
-    var items = new List<Playlist>() { item1, item2, item3 };
+    var items = new List<PlayList>() { item1, item2, item3 };
 
     var spec = new GetAllPlaylistSpec();
-    List<Playlist> filteredList = items
+    List<PlayList> filteredList = items
         .Where(spec.WhereExpressions.First().FilterFunc)
         .ToList();
 

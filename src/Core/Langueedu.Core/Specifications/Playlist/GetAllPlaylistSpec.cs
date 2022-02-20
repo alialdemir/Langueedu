@@ -5,7 +5,7 @@ using Langueedu.SharedKernel.ViewModels;
 
 namespace Langueedu.Core.Specifications;
 
-public class GetAllPlaylistSpec : Specification<Playlist, PlaylistViewModel>
+public class GetAllPlaylistSpec : Specification<PlayList, PlaylistViewModel>
 {
   public GetAllPlaylistSpec()
   {
@@ -26,7 +26,6 @@ public class GetAllPlaylistSpec : Specification<Playlist, PlaylistViewModel>
       .Select(track => new TrackViewModel
       {
         TrackId = track.Id,
-        YoutubeId = track.YoutubeVideoId,
         TrackSlug = track.Slug,
         SongTitle = track.SongTitle,
         TrackImage = track.PicturePath,

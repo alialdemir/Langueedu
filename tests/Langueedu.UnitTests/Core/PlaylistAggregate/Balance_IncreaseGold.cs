@@ -8,11 +8,11 @@ public class Balance_IncreaseGold
   [Fact]
   public void IncreaseGoldAndCheckGoldBalance()
   {
-    Balance balance = new Balance("test user id");
+    BalanceGold balance = new BalanceGold("test user id");
 
     decimal gold = 9999;
 
-    balance.IncreaseGold(gold);
+    balance.Increase(balance, gold);
 
     Assert.Equal(gold, balance.Gold);
   }
@@ -20,15 +20,15 @@ public class Balance_IncreaseGold
   [Fact]
   public void DecreaseGoldAndCheckNewAmount()
   {
-    Balance balance = new Balance("test user id");
+    BalanceGold balance = new BalanceGold("test user id");
 
     decimal increasegold = 9999;
     decimal decreaseGold = 1000;
     decimal diff = increasegold - decreaseGold;
 
-    balance.DecreaseGold(decreaseGold);
+    balance.Increase(balance, increasegold);
 
-    balance.IncreaseGold(increasegold);
+    balance.Decrease(balance, decreaseGold);
 
     Assert.Equal(diff, balance.Gold);
   }

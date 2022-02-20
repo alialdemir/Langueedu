@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Langueedu.Core.Features.Queries.BalanceQuesries;
+using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 
 namespace Langueedu.Core.Validations;
 

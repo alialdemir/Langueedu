@@ -6,47 +6,33 @@ namespace Langueedu.Core.Entities.CourseAggregate;
 public class CourseParticipant : BaseEntity
 {
   public CourseParticipant(string userId,
-                           CourseStatus duelTypes,
-                           short totalScore,
-                           short finishScore,
-                           short victoryScore,
-                           byte totalFails,
-                           byte totalHits,
-                           byte totalUserGaps,
-                           byte gaps)
+                           CourseStatus duelTypes)
   {
     UserId = userId;
     DuelTypes = duelTypes;
-    TotalScore = totalScore;
-    FinishScore = finishScore;
-    VictoryScore = victoryScore;
-    TotalFails = totalFails;
-    TotalHits = totalHits;
-    TotalUserGaps = totalUserGaps;
-    Gaps = gaps;
   }
 
-  public Course Duel { get; }
+  public Course Course { get; }
 
   public string UserId { get; }
 
   public CourseStatus DuelTypes { get; }
 
-  public short TotalScore { get; }
+  public short? TotalScore { get; }
 
-  public short FinishScore { get; }
+  public short? FinishScore { get; }
 
-  public short VictoryScore { get; }
+  public short? VictoryScore { get; }
 
-  public byte TotalFails { get; }
+  public short? TotalFails { get; }
 
-  public byte TotalHits { get; }
+  public short? TotalHits { get; }
 
-  public byte TotalUserGaps { get; }
+  public short? TotalUserGaps { get; }
 
-  public byte Gaps { get; }
+  public short? Gaps { get; }
 
-  private readonly List<CourseParticipantDetail> _duelParticipantDetails = new();
+  private readonly List<CourseParticipantDetail> _courseParticipantDetails = new();
 
-  public IReadOnlyCollection<CourseParticipantDetail> DuelParticipantDetails => _duelParticipantDetails.AsReadOnly();
+  public IReadOnlyCollection<CourseParticipantDetail> CourseParticipantDetail => _courseParticipantDetails.AsReadOnly();
 }

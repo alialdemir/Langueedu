@@ -8,7 +8,7 @@ namespace Langueedu.UnitTests.Core.Services;
 
 public class GetAllPlaylists
 {
-  private Mock<IReadRepository<Playlist>> _mockRepo = new Mock<IReadRepository<Playlist>>();
+  private Mock<IReadRepository<PlayList>> _mockRepo = new Mock<IReadRepository<PlayList>>();
   private PlaylistService _playlistService;
 
   public GetAllPlaylists()

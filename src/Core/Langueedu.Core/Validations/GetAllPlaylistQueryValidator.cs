@@ -7,12 +7,12 @@ public class GetAllPlaylistQueryValidator : AbstractValidator<GetAllPlaylistsQue
 {
   public GetAllPlaylistQueryValidator()
   {
-    // RuleFor(p => p.CategoryName)
-    //     .NotNull()
-    //     .WithMessage("Lütfen 'Name'i boş geçmeyiniz.")
-    //     .MaximumLength(20)
-    //     .MinimumLength(3)
-    //     .WithMessage("'Name' değeri 3 ile 20 karakter arasında olmalıdır.");
+    //RuleFor(p => p.UserId)
+    //    .NotNull()
+    //    .WithMessage("Please fill in the 'user id' blank!")
+    //    .MaximumLength(20)
+    //    .MinimumLength(3)
+    //    .WithMessage("'User Id' must be between 3 and 20 characters.");
   }
 }
 

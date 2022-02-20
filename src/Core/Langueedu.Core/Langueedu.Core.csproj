@@ -49,13 +49,15 @@
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Features\Commands\Account\" />
     <None Remove="Features\Commands\Account\SignUp\" />
-    <None Remove="Features\Commands\Playlist\" />
-    <None Remove="Features\Commands\Playlist\FollowerTrack\" />
     <None Remove="Features\Commands\Track\AddFollowerTrack %28copy%29\" />
     <None Remove="Entities\Duel\" />
     <None Remove="Entities\BalanceAggregate\" />
     <None Remove="Features\Queries\Balance\" />
     <None Remove="Specifications\Balance\" />
+    <None Remove="Specifications\Lyrics\" />
+    <None Remove="Features\Commands\Balance\" />
+    <None Remove="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
+    <None Remove="Factories\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -77,12 +79,14 @@
     <Folder Include="Entities\User\" />
     <Folder Include="Features\Commands\Account\" />
     <Folder Include="Features\Commands\Account\SignUp\" />
-    <Folder Include="Features\Commands\Playlist\" />
-    <Folder Include="Features\Commands\Playlist\FollowerTrack\" />
     <Folder Include="Features\Commands\Track\RemoveFollowerTrack\" />
     <Folder Include="Entities\CourseAggregate\" />
     <Folder Include="Entities\BalanceAggregate\" />
     <Folder Include="Features\Queries\BalanceQuesries\" />
     <Folder Include="Specifications\Balance\" />
+    <Folder Include="Specifications\Lyrics\" />
+    <Folder Include="Features\Commands\Balance\" />
+    <Folder Include="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
+    <Folder Include="Factories\" />
   </ItemGroup>
 </Project>

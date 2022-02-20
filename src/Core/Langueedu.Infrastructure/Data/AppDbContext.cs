@@ -19,18 +19,20 @@ public class AppDbContext : IdentityDbContext<User>
     _mediator = mediator;
   }
 
-  public DbSet<Album> Albums => Set<Album>();
-  public DbSet<Artist> Artists => Set<Artist>();
-  public DbSet<FollowerTrack> FollowerTracks => Set<FollowerTrack>();
-  public DbSet<PerformsOnSong> PerformsOnSongs => Set<PerformsOnSong>();
-  public DbSet<Playlist> Playlists => Set<Playlist>();
-  public DbSet<Track> Tracks => Set<Track>();
-  public DbSet<Lyrics> Lyrics => Set<Lyrics>();
+  public DbSet<Balance> Balances => Set<Balance>();
+  public DbSet<BalanceHistory> BalanceHistories => Set<BalanceHistory>();
+
   public DbSet<Course> Courses => Set<Course>();
   public DbSet<CourseParticipant> CourseParticipants => Set<CourseParticipant>();
   public DbSet<CourseParticipantDetail> CourseParticipantDetails => Set<CourseParticipantDetail>();
-  public DbSet<Balance> Balances => Set<Balance>();
-  public DbSet<BalanceHistory> BalanceHistories => Set<BalanceHistory>();
+
+  public DbSet<Album> Albums => Set<Album>();
+  public DbSet<Artist> Artists => Set<Artist>();
+  public DbSet<FollowerTrack> FollowerTracks => Set<FollowerTrack>();
+  public DbSet<PlayList> Lyrics => Set<PlayList>();
+  public DbSet<PerformsOnSong> PerformsOnSongs => Set<PerformsOnSong>();
+  public DbSet<PlayList> Playlists => Set<PlayList>();
+  public DbSet<Track> Tracks => Set<Track>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

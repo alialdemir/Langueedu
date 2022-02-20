@@ -15,7 +15,7 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
     builder.Property(p => p.CourseLevel)
         .IsRequired();
 
-    builder.Property(p => p.GameMode)
+    builder.Property(p => p.CourseMode)
         .IsRequired();
 
     builder.Property(p => p.CourseFee)

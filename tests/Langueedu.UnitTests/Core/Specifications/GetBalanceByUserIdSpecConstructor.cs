@@ -10,11 +10,15 @@ public class GetBalanceByUserIdSpecConstructor
   [Fact]
   public void FilterCollectionToOnlyReturnItemsWithIsDoneFalse()
   {
-    var item1 = new Balance(Constants.UserId).IncreaseGold(10);
-    var item2 = new Balance("User 2").IncreaseGold(20);
-    var item3 = new Balance("User 3").IncreaseGold(30);
+    var item1 = new Balance(Constants.UserId);
+    var item2 = new Balance("User 2");
+    var item3 = new Balance("User 3");
 
-    var items = new List<Balance>() { item1, item2, item3 };
+    item1.Increase(item1, 10);
+    item2.Increase(item2, 10);
+    item3.Increase(item3, 10);
+
+    var items = new List<Balance>() { item2, item1, item3 };
 
     var spec = new GetBalanceByUserIdSpec(Constants.UserId);
     var balance = items

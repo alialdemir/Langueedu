@@ -1,5 +1,7 @@
-﻿using Langueedu.Core.Entities.BalanceAggregate;
+﻿using AutoMapper;
+using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Features.Queries.BalanceQuesries;
+using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.SharedKernel.Interfaces;
 using Langueedu.SharedKernel.ViewModels.Balance;
@@ -12,10 +14,7 @@ public class GetBalanceByUserIdQueryHandlerHandle
 {
   private readonly GetBalanceByUserIdQueryHandler _handler;
   private readonly Mock<IReadRepository<Balance>> _balanceReadRepository = new();
-  private readonly BalanceViewModel _balance = new BalanceViewModel()
-  {
-    Gold = 1234456
-  };
+  private readonly BalanceGold _balance = new(Constants.UserId);
 
   public GetBalanceByUserIdQueryHandlerHandle()
   {

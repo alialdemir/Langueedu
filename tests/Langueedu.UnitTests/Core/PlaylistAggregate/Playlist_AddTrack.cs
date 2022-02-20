@@ -5,7 +5,7 @@ namespace Langueedu.UnitTests.Core.PlaylistAggregate;
 
 public class Playlist_AddTrack
 {
-  private Playlist _testPlaylist = new Playlist("some name");
+  private PlayList _testPlaylist = new PlayList("some name");
 
   [Fact]
   public void AddsTrackToTracks()

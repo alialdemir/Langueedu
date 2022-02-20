@@ -11,7 +11,7 @@ public class EfRepositoryDelete : BaseEfRepoTestFixture
     // add a Playlist
     var repository = GetRepository();
     var initialName = Guid.NewGuid().ToString();
-    var Playlist = new Playlist(initialName);
+    var Playlist = new PlayList(initialName);
     await repository.AddAsync(Playlist);
 
     // delete the item

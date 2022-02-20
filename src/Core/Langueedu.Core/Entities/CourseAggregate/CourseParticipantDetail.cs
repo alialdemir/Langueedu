@@ -17,9 +17,9 @@ public class CourseParticipantDetail : BaseEntity
     CourseSuccessStatus = courseSuccessStatus;
   }
 
-  public CourseParticipant DuelParticipant { get; set; }
+  public CourseParticipant CourseParticipant { get; set; }
 
-  public Lyrics lyrics { get; set; }
+  public Entities.PlaylistAggregate.Lyrics lyrics { get; set; }
 
   public short Score { get; }
 

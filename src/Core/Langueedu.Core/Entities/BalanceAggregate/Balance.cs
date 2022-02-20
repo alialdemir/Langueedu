@@ -3,29 +3,40 @@ using Langueedu.SharedKernel.Interfaces;
 
 namespace Langueedu.Core.Entities.BalanceAggregate;
 
-public class Balance : BaseEntity, IAggregateRoot
+public class Balance : BaseEntity, IAggregateRoot, IBalance
 {
   public Balance(string userId)
   {
     UserId = userId;
   }
+  public Balance()
+  {
+
+  }
 
   public string UserId { get; }
 
-  public decimal Gold { get; private set; }
-
-  public Balance IncreaseGold(decimal gold)
+  public virtual Balance Increase(Balance balance, decimal amount)
   {
-    Gold += gold;
-
     return this;
   }
 
-  public Balance DecreaseGold(decimal gold)
+  public virtual Balance Decrease(Balance balance, decimal amount)
   {
-    Gold -= gold;
-
     return this;
   }
+
+  public decimal Gold { get; internal set; }
+
+  public decimal Silver { get; internal set; }
 }
 
+public interface IBalance : IAggregateRoot
+{
+  decimal Gold { get; }
+
+  decimal Silver { get; }
+  string UserId { get; }
+  Balance Increase(Balance balance, decimal amount);
+  Balance Decrease(Balance balance, decimal amount);
+}

@@ -17,25 +17,25 @@ public class CourseParticipantConfiguration : IEntityTypeConfiguration<CoursePar
         .IsRequired();
 
     builder.Property(p => p.TotalScore)
-        .IsRequired();
+        .IsRequired(false);
 
     builder.Property(p => p.FinishScore)
-        .IsRequired();
+        .IsRequired(false);
 
     builder.Property(p => p.VictoryScore)
-        .IsRequired();
+        .IsRequired(false);
 
     builder.Property(p => p.TotalFails)
-        .IsRequired();
+        .IsRequired(false);
 
     builder.Property(p => p.TotalHits)
-        .IsRequired();
+        .IsRequired(false);
 
     builder.Property(p => p.TotalUserGaps)
-        .IsRequired();
+        .IsRequired(false);
 
     builder.Property(p => p.Gaps)
-        .IsRequired();
+        .IsRequired(false);
   }
 }
 

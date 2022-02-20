@@ -36,9 +36,6 @@ public class TrackConfiguration : IEntityTypeConfiguration<Track>
 
     builder.Property(p => p.ContentStatus)
         .HasDefaultValue(ContentStatus.Passive);
-
-    builder.Property(p => p.DisplayOrder)
-        .HasDefaultValue(0);
   }
 }
 

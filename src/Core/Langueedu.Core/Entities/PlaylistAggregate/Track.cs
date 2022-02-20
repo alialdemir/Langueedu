@@ -1,4 +1,6 @@
-﻿using Langueedu.Core.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Langueedu.Core.Entities.CourseAggregate;
+using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using Langueedu.SharedKernel.Interfaces;
 
@@ -46,7 +48,7 @@ public class Track : BaseEntity<short>, IAggregateRoot
 
   public byte DisplayOrder { get; set; }
 
-  public Playlist Playlist { get; set; }
+  public PlayList Playlist { get; set; }
   public Album Album { get; set; }
 
   private readonly List<PerformsOnSong> _performsOnSongs = new();
@@ -60,6 +62,10 @@ public class Track : BaseEntity<short>, IAggregateRoot
   private readonly List<Lyrics> _lyrics = new();
 
   public IReadOnlyCollection<Lyrics> Lyrics => _lyrics.AsReadOnly();
+
+  private readonly List<Course> _courses = new();
+
+  public IReadOnlyCollection<Course> Courses => _courses.AsReadOnly();
 
   public Track AddPerformsOnSong(Artist artist)
   {
@@ -77,6 +83,14 @@ public class Track : BaseEntity<short>, IAggregateRoot
     _followerTracks.Add(followerTrack);
 
     FollowerCount += 1;
+
+    return this;
+  }
+
+
+  public Track AddCourse(Course course)
+  {
+    _courses.Add(course);
 
     return this;
   }

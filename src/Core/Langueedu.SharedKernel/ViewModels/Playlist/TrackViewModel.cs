@@ -6,8 +6,6 @@ public class TrackViewModel
   public int TrackId { get; set; }
   public string AlbumnName { get; set; }
 
-  public string YoutubeId { get; set; }
-
   public string AlbumSlug { get; set; }
 
   public string TrackSlug { get; set; }

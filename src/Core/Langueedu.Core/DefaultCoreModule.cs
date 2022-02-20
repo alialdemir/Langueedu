@@ -22,5 +22,15 @@ public class DefaultCoreModule : Module
        .RegisterType<FollowerTrackService>()
        .As<IFollowerTrackService>()
        .InstancePerLifetimeScope();
+
+    builder
+       .RegisterType<CourseService>()
+       .As<ICourseService>()
+       .InstancePerLifetimeScope();
+
+    builder
+       .RegisterType<LyricsService>()
+       .As<ILyricsService>()
+       .InstancePerLifetimeScope();
   }
 }

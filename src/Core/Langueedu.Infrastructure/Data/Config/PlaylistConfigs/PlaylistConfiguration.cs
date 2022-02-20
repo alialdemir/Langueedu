@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Langueedu.Infrastructure.Data.Config.PlaylistConfigs;
 
-public class PlaylistConfiguration : IEntityTypeConfiguration<Playlist>
+public class PlaylistConfiguration : IEntityTypeConfiguration<PlayList>
 {
-  public void Configure(EntityTypeBuilder<Playlist> builder)
+  public void Configure(EntityTypeBuilder<PlayList> builder)
   {
     builder.Property(p => p.PlaylistName)
         .HasMaxLength(72)

@@ -36,9 +36,9 @@ public abstract class BaseEfRepoTestFixture
     return builder.Options;
   }
 
-  protected EfRepository<Playlist> GetRepository()
+  protected EfRepository<PlayList> GetRepository()
   {
-    return new EfRepository<Playlist>(_dbContext);
+    return new EfRepository<PlayList>(_dbContext);
   }
 }
 

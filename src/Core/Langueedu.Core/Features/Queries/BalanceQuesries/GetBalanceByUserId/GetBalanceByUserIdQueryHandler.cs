@@ -1,35 +1,36 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using Langueedu.Core.Entities.BalanceAggregate;
+using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.Interfaces;
-using Langueedu.SharedKernel.ViewModels.Balance;
 using MediatR;
 
 namespace Langueedu.Core.Features.Queries.BalanceQuesries;
 
-public class GetBalanceByUserIdQueryHandler : IRequestHandler<GetBalanceByUserIdQuery, Result<BalanceViewModel>>
+public class GetBalanceByUserIdQueryHandler : IRequestHandler<GetBalanceByUserIdQuery, Result<Balance>>
 {
   private readonly IReadRepository<Balance> _balanceReadRepository;
 
-  public GetBalanceByUserIdQueryHandler(IReadRepository<Balance> balanceReadRepository)
+  public GetBalanceByUserIdQueryHandler(IReadRepository<Balance> balanceReadRepository
+    )
   {
     _balanceReadRepository = balanceReadRepository;
   }
 
-  public async Task<Result<BalanceViewModel>> Handle(GetBalanceByUserIdQuery request, CancellationToken cancellationToken)
+  public async Task<Result<Balance>> Handle(GetBalanceByUserIdQuery request, CancellationToken cancellationToken)
   {
     var validator = new GetBalanceByUserIdQueryValidator();
     var validate = validator.Validate(request);
     if (!validate.IsValid)
-      return Result<BalanceViewModel>.Invalid(validate.AsErrors());
+      return Result<Balance>.Invalid(validate.AsErrors());
 
     var spec = new GetBalanceByUserIdSpec(request.UserId);
     var balance = await _balanceReadRepository.GetBySpecAsync(spec);
     if (balance == null)
-      balance = new BalanceViewModel();
+      return Result<Balance>.Error("Balance not found!");
 
-    return Result<BalanceViewModel>.Success(balance);
+    return Result<Balance>.Success(balance);
   }
 }

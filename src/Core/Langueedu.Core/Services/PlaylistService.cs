@@ -8,9 +8,9 @@ namespace Langueedu.Core.Services;
 
 public class PlaylistService : IPlaylistService
 {
-  private readonly IReadRepository<Langueedu.Core.Entities.PlaylistAggregate.Playlist> _playlistRepository;
+  private readonly IReadRepository<Langueedu.Core.Entities.PlaylistAggregate.PlayList> _playlistRepository;
 
-  public PlaylistService(IReadRepository<Langueedu.Core.Entities.PlaylistAggregate.Playlist> playlistRepository)
+  public PlaylistService(IReadRepository<Langueedu.Core.Entities.PlaylistAggregate.PlayList> playlistRepository)
   {
     _playlistRepository = playlistRepository;
   }

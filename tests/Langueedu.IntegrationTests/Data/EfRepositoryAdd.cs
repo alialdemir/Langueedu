@@ -10,7 +10,7 @@ public class EfRepositoryAdd : BaseEfRepoTestFixture
   {
     var testPlaylistName = "testPlaylist";
     var repository = GetRepository();
-    var Playlist = new Playlist(testPlaylistName);
+    var Playlist = new PlayList(testPlaylistName);
 
     await repository.AddAsync(Playlist);
 

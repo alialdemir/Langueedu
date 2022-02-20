@@ -1,9 +1,8 @@
 ﻿using Ardalis.Specification;
-using Langueedu.SharedKernel.ViewModels.Balance;
 
 namespace Langueedu.Core.Specifications.Balance;
 
-public class GetBalanceByUserIdSpec : Specification<Entities.BalanceAggregate.Balance, BalanceViewModel>
+public class GetBalanceByUserIdSpec : Specification<Entities.BalanceAggregate.Balance, Entities.BalanceAggregate.Balance>
 {
   public GetBalanceByUserIdSpec(string userId)
   {
@@ -11,11 +10,7 @@ public class GetBalanceByUserIdSpec : Specification<Entities.BalanceAggregate.Ba
       .Where(x => x.UserId == userId);
 
     Query
-      .Select(x => new BalanceViewModel
-      {
-        Gold = x.Gold
-      });
-
+      .Select(balance => balance);
   }
 }
 

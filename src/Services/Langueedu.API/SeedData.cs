@@ -8,7 +8,7 @@ namespace Langueedu.API;
 
 public static class SeedData
 {
-  public static readonly Playlist Playlist = new("Türkçe pop");
+  public static readonly PlayList Playlist = new("Türkçe pop");
   public static readonly Artist Artist = new("Sıla GençOğlu", "https://i.scdn.co/image/ab67706c0000da84f541aebb4e40b2632f39884a");
   public static readonly Artist ArtistBeduk = new("Bedük", "https://i.scdn.co/image/ab67616d00001e028196de80c29e4b4ed0138b1d");
   public static readonly Album Album = new("Mürekkep - Bedük version");
