@@ -20,7 +20,7 @@ public class AccountsController : BaseApiController
       Summary = "Sign up a user",
       Description = "Sign up a user",
       OperationId = "Accounts.SignInAsnc",
-      Tags = new[] { "Sign up Endpoints" })
+      Tags = new[] { "Account Endpoints" })
   ]
   [HttpPost]
   [AllowAnonymous]

@@ -8,5 +8,6 @@ public class AlbumViewModel
 
   public string Name { get; set; }
   public string Slug { get; set; }
+  public IEnumerable<ImageViewModel> Images { get; set; }
 }
 

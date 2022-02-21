@@ -6,12 +6,12 @@ namespace Langueedu.Core.Entities.PlaylistAggregate;
 
 public class Lyrics : BaseEntity, IAggregateRoot
 {
-  public Lyrics(string text, string answer, int? answerIndex, int time)
+  public Lyrics(string text, string answer, int? answerIndex, int duration)
   {
     Text = text;
     Answer = answer;
     AnswerIndex = answerIndex;
-    Time = time;
+    Duration = duration;
   }
 
   public Lyrics()
@@ -26,7 +26,7 @@ public class Lyrics : BaseEntity, IAggregateRoot
 
   public int? AnswerIndex { get; }
 
-  public int Time { get; }
+  public int Duration { get; }
 
   private readonly List<CourseParticipantDetail> _duelParticipantDetails = new();
 

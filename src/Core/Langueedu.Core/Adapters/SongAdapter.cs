@@ -126,8 +126,8 @@ public class TrackAdapter : ITrackAdapter
 
         Console.WriteLine($"track: {track.Name} - artist: {artist.Name} - album: {album.Name}");
 
-        //if (playList.Tracks.Count() >= 3)// test
-        //  break;
+        if (playList.Tracks.Count() >= 10)// test
+          break;
 
         if (artist.Id > 0)
           await _artstRepository.UpdateAsync(artist);

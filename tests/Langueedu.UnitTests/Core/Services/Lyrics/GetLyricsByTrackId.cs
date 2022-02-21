@@ -13,7 +13,7 @@ public class GetLyricsByTrackId
   private LyricsService _lyricsService;
   private readonly List<LyricsViewModel> _lyricsViewModels = new List<LyricsViewModel>()
   {
-    new LyricsViewModel(){ LyricsId=1,}
+    new LyricsViewModel(){ Id=1,}
   };
 
   public GetLyricsByTrackId()

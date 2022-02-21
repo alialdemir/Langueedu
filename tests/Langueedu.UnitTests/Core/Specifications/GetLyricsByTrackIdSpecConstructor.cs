@@ -11,9 +11,9 @@ public class GetLyricsByTrackIdSpecConstructor
   {
     short trackId = 1;
 
-    var item1 = new Lyrics("text", "answer", 2);
-    var item2 = new Lyrics("text", "answer", 1);
-    var item3 = new Lyrics("text", "answer", 3);
+    var item1 = new Lyrics("text", "answer", 0, 2);
+    var item2 = new Lyrics("text", "answer", 1, 1);
+    var item3 = new Lyrics("text", "answer", 2, 3);
 
     item1.Id = 1;
     item2.Id = 2;

@@ -18,6 +18,8 @@ public static class SeedData
         return; // DB has been seeded
       }
 
+      dbContext.Database.EnsureDeleted();
+
       PopulateTestData(dbContext);
     }
   }

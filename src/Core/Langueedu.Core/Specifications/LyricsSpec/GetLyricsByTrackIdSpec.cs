@@ -14,10 +14,10 @@ public class GetLyricsByTrackIdSpec : Specification<Core.Entities.PlaylistAggreg
       .Select(x => new LyricsViewModel
       {
         Answer = x.Answer,
-        LyricsId = x.Id,
+        Id = x.Id,
         Text = x.Text,
-        Time = x.Time
+        Duration = x.Duration
       })
-      .OrderBy(x => x.Time);
+      .OrderBy(x => x.Duration);
   }
 }

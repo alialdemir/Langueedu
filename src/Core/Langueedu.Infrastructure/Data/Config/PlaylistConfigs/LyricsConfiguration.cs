@@ -18,7 +18,7 @@ public class LyricsConfiguration : IEntityTypeConfiguration<Lyrics>
 
     builder.Property(p => p.AnswerIndex);
 
-    builder.Property(p => p.Time)
+    builder.Property(p => p.Duration)
         .IsRequired();
   }
 }

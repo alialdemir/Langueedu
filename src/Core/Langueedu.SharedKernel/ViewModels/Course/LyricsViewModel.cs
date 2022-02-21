@@ -7,7 +7,7 @@ public class LyricsViewModel
 
   public string Answer { get; set; }
 
-  public int Time { get; set; }
-  public int LyricsId { get; set; }
+  public int Duration { get; set; }
+  public int Id { get; set; }
 }
 

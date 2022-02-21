@@ -10,7 +10,7 @@ public class Playlist_AddTrack
   [Fact]
   public void AddsTrackToTracks()
   {
-    var _testTrack = new Track("test title", "test video id", "test lang", 12);
+    var _testTrack = new Track("test title", "test video id", 12);
 
     _testPlaylist.AddTrack(_testTrack);
 

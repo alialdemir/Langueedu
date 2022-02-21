@@ -1,12 +1,11 @@
-﻿using System;
-using Langueedu.Core.Entities.PlaylistAggregate;
+﻿using Langueedu.Core.Entities.PlaylistAggregate;
 using Xunit;
 
 namespace Langueedu.UnitTests.Core.PlaylistAggregate;
 
 public class Track_RemoveFollowerTrack
 {
-  private Track _track = new("some name", "youtube video id", "lang", 12);
+  private Track _track = new("some name", "youtube video id", 12);
 
   [Fact]
   public void RemoveFollowedTrackCheckNenativeFollowerCount()

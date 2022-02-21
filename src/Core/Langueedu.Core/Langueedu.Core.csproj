@@ -106,6 +106,5 @@
     <Folder Include="Specifications\ArtistSpec\" />
     <Folder Include="Specifications\AlbumSpec\" />
     <Folder Include="Specifications\TrackSpec\" />
-    <Folder Include="Specifications\ArtistGenreSpec\" />
   </ItemGroup>
 </Project>

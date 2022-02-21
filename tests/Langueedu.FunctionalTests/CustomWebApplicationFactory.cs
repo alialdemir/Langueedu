@@ -42,14 +42,14 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
         .ConfigureServices(services =>
         {
           // Remove the app's ApplicationDbContext registration.
-          var descriptor = services.SingleOrDefault(
-          d => d.ServiceType ==
-              typeof(DbContextOptions<AppDbContext>));
+          //var descriptor = services.SingleOrDefault(
+          //d => d.ServiceType ==
+          //    typeof(DbContextOptions<AppDbContext>));
 
-          if (descriptor != null)
-          {
-            services.Remove(descriptor);
-          }
+          //if (descriptor != null)
+          //{
+          //  services.Remove(descriptor);
+          //}
 
           if (IsMockAuthentication)
           {
@@ -66,10 +66,10 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
           string inMemoryCollectionName = Guid.NewGuid().ToString();
 
           // Add ApplicationDbContext using an in-memory database for testing.
-          services.AddDbContext<AppDbContext>(options =>
-      {
-        options.UseInMemoryDatabase(inMemoryCollectionName);
-      });
+          //    services.AddDbContext<AppDbContext>(options =>
+          //{
+          //  options.UseInMemoryDatabase(inMemoryCollectionName);
+          //});
 
           services.AddScoped<IMediator, NoOpMediator>();
         });

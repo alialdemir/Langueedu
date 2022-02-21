@@ -14,7 +14,7 @@ public class FollowTrack
   private readonly Mock<IRepository<Track>> _mockTrackRepo = new();
   private readonly FollowerTrackService _followTrackService;
   private readonly FollowerTrack _followerTrack = new(1, Constants.UserId);
-  private Track _track = new("test", "test", "test", 1);
+  private Track _track = new("test", "test", 1);
   public FollowTrack()
   {
     _track.Id = 1;
