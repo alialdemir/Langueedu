@@ -19,7 +19,7 @@ public class PlaylistConstructor
   {
     _testPlaylist = CreatePlaylist();
 
-    Assert.Equal(_testName, _testPlaylist.PlaylistName);
+    Assert.Equal(_testName, _testPlaylist.Name);
   }
 
   [Fact]

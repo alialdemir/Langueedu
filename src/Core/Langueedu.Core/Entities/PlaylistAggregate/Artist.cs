@@ -6,10 +6,9 @@ namespace Langueedu.Core.Entities.PlaylistAggregate;
 
 public class Artist : BaseEntity, IAggregateRoot
 {
-  public Artist(string name, string picturePath)
+  public Artist(string name)
   {
     Name = name;
-    PicturePath = picturePath;
     Slug = name.GenerateSlug();
   }
 
@@ -21,14 +20,69 @@ public class Artist : BaseEntity, IAggregateRoot
 
   private readonly List<Album> _albums = new();
 
-  public IReadOnlyCollection<Album> Albums => _albums.AsReadOnly();
+  public string? SpotifyId { get; private set; }
 
-  public string PicturePath { get; set; }
-  public string CoverPicturePath { get; set; }
+  public IReadOnlyCollection<Album> Albums => _albums.AsReadOnly();
 
   private readonly List<PerformsOnSong> _performsOnSongs = new();
 
   public IReadOnlyCollection<PerformsOnSong> PerformsOnSongs => _performsOnSongs.AsReadOnly();
+  private readonly List<ArtistGenre> _artistGenres = new();
+
+  public IReadOnlyCollection<ArtistGenre> ArtistGenres => _artistGenres.AsReadOnly();
+
+  private readonly List<Image> _images = new();
+
+  public IReadOnlyCollection<Image> Images => _images.AsReadOnly();
+
+  public Artist AddImage(Image image)
+  {
+    _images.Add(image);
+
+    return this;
+  }
+
+  public Artist AddPerformsOnSongs(Track track)
+  {
+    if (track is not null)
+    {
+      _performsOnSongs.Add(new PerformsOnSong
+      {
+        Artist = this,
+        Track = track
+      });
+    }
+
+    return this;
+  }
+
+  public Artist AddGenres(IEnumerable<Genre> genres)
+  {
+    if (genres is not null && genres.Any())
+    {
+      var filterGenres = genres
+             .Where(x => !_artistGenres.Any(g => g.Genre.Description == x.Description))
+             .Select(genre => new ArtistGenre
+             {
+               Artist = this,
+               Genre = genre
+             });
+
+      _artistGenres.AddRange(filterGenres);
+    }
+
+    return this;
+  }
+
+  public Artist AddImages(IEnumerable<Image> images)
+  {
+    if (images is not null && images.Any())
+    {
+      _images.AddRange(images.Where(x => !_images.Any(i => i.Url == x.Url)));
+    }
+
+    return this;
+  }
 
   public Artist AddAlbum(Album album)
   {
@@ -44,11 +98,16 @@ public class Artist : BaseEntity, IAggregateRoot
     return this;
   }
 
-  public Artist ChangeCoverPicture(string coverPicturePath)
+  public Artist SetSpotifyId(string? spotifyId)
   {
-    CoverPicturePath = coverPicturePath;
+    SpotifyId = spotifyId;
 
     return this;
+  }
+
+  internal void AddGenres(IEnumerable<Task<Genre>> enumerable)
+  {
+    throw new NotImplementedException();
   }
 }
 

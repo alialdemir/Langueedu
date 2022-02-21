@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Langueedu.Core.Adapters;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Services;
 
@@ -31,6 +32,11 @@ public class DefaultCoreModule : Module
     builder
        .RegisterType<LyricsService>()
        .As<ILyricsService>()
+       .InstancePerLifetimeScope();
+
+    builder
+       .RegisterType<TrackAdapter>()
+       .As<ITrackAdapter>()
        .InstancePerLifetimeScope();
   }
 }

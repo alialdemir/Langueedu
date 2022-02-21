@@ -3,7 +3,7 @@ using Langueedu.SharedKernel.Interfaces;
 
 namespace Langueedu.Core.Entities.BalanceAggregate;
 
-public class Balance : BaseEntity, IAggregateRoot, IBalance
+public class Balance : BaseEntityNoId, IAggregateRoot, IBalance
 {
   public Balance(string userId)
   {

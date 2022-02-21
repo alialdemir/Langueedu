@@ -11,12 +11,11 @@ public static class SeedData
 {
   private static readonly string WitcherUserId = "1111-1111-1111-1111";
   public static readonly PlayList Playlist = new("Türkçe pop");
-  public static readonly Artist Artist = new("Sıla GençOğlu", "https://i.scdn.co/image/ab67706c0000da84f541aebb4e40b2632f39884a");
-  public static readonly Artist ArtistBeduk = new("Bedük", "https://i.scdn.co/image/ab67616d00001e028196de80c29e4b4ed0138b1d");
+  public static readonly Artist Artist = new("Sıla GençOğlu");//, "https://i.scdn.co/image/ab67706c0000da84f541aebb4e40b2632f39884a"
+  public static readonly Artist ArtistBeduk = new("Bedük");//, "https://i.scdn.co/image/ab67616d00001e028196de80c29e4b4ed0138b1d"
   public static readonly Album Album = new("Mürekkep - Bedük version");
-  public static readonly Track Track = new("Engerek", "RhL7B7iXgyE", "tr", 41248);
+  public static readonly Track Track = new("Engerek", "RhL7B7iXgyE", 41248);
   public static BalanceGold Balance = new BalanceGold(WitcherUserId);
-
 
   public static void Initialize(IServiceProvider serviceProvider)
   {
@@ -29,7 +28,7 @@ public static class SeedData
         return; // DB has been seeded
       }
 
-      PopulateTestData(dbContext);
+      //PopulateTestData(dbContext);
     }
   }
   public static async void PopulateTestData(AppDbContext dbContext)
@@ -59,32 +58,26 @@ public static class SeedData
 
     //Track.Id = 1;
 
-    ArtistBeduk
-    .ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
+    //ArtistBeduk;
+
+    //.ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
 
     Track
     .ChangeContentStatus(ContentStatus.Active)
-    //.AddFollowerTrack(new FollowerTrack
-    //{
-    //  UserId = GetDefaultUser().Last().Id,
-    //  TrackId = Track.Id,
-    //  Id = 1
-    //})
-    .AddPerformsOnSong(Artist)
-    .AddPerformsOnSong(ArtistBeduk);
+    .SetLang(new Core.Entities.LanguageAggregate.Language("tr"))
+    .AddPerformsOnSongs(new List<Artist> { Artist, ArtistBeduk });
 
     //Album.Id = 1;
 
     Album
     .ChangeContentStatus(ContentStatus.Active)
-    .SetReleaseDate(DateTime.Now)
     .AddTrack(Track)
     ;
 
     Artist
     .ChangeContentStatus(ContentStatus.Active)
-    .AddAlbum(Album)
-    .ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
+    .AddAlbum(Album);
+    //.ChangeCoverPicture("https://i.scdn.co/image/ab67618600001016dc99f737fcb8abd5a063f928");
 
     //Playlist.Id = 1;
 
@@ -94,6 +87,8 @@ public static class SeedData
 
     dbContext.Artists.Add(Artist);
     dbContext.Playlists.Add(Playlist);
+
+    dbContext.Genres.AddRange(Genres.Select(x => new Genre(x)));
 
     dbContext.SaveChanges();
   }
@@ -178,5 +173,135 @@ public static class SeedData
 };
   }
 
+
+  private static readonly string[] Genres = new string[]
+  {
+  "Acoustic",
+  "Afrobeat",
+  "Alt-rock",
+  "Alternative",
+  "Ambient",
+  "Anime",
+  "Black-metal",
+  "Bluegrass",
+  "Blues",
+  "Bossanova",
+  "Brazil",
+  "Breakbeat",
+  "British",
+  "Cantopop",
+  "Chicago-house",
+  "Children",
+  "Chill",
+  "Classical",
+  "Club",
+  "Comedy",
+  "Country",
+  "Dance",
+  "Dancehall",
+  "Death-metal",
+  "Deep-house",
+  "Detroit-techno",
+  "Disco",
+  "Disney",
+  "Drum-and-bass",
+  "Dub",
+  "Dubstep",
+  "Edm",
+  "Electro",
+  "Electronic",
+  "Emo",
+  "Folk",
+  "Forro",
+  "French",
+  "Funk",
+  "Garage",
+  "German",
+  "Gospel",
+  "Goth",
+  "Grindcore",
+  "Groove",
+  "Grunge",
+  "Guitar",
+  "Happy",
+  "Hard-rock",
+  "Hardcore",
+  "Hardstyle",
+  "Heavy-metal",
+  "Hip-hop",
+  "Holidays",
+  "Honky-tonk",
+  "House",
+  "Idm",
+  "Indian",
+  "Indie",
+  "Indie-pop",
+  "Industrial",
+  "Iranian",
+  "J-dance",
+  "J-idol",
+  "J-pop",
+  "J-rock",
+  "Jazz",
+  "K-pop",
+  "Kids",
+  "Latin",
+  "Latino",
+  "Malay",
+  "Mandopop",
+  "Metal",
+  "Metal-misc",
+  "Metalcore",
+  "Minimal-techno",
+  "Movies",
+  "Mpb",
+  "New-age",
+  "New-release",
+  "Opera",
+  "Pagode",
+  "Party",
+  "Philippines-opm",
+  "Piano",
+  "Pop",
+  "Pop-film",
+  "Post-dubstep",
+  "Power-pop",
+  "Progressive-house",
+  "Psych-rock",
+  "Punk",
+  "Punk-rock",
+  "R-n-b",
+  "Rainy-day",
+  "Reggae",
+  "Reggaeton",
+  "Road-trip",
+  "Rock",
+  "Rock-n-roll",
+  "Rockabilly",
+  "Romance",
+  "Sad",
+  "Salsa",
+  "Samba",
+  "Sertanejo",
+  "Show-tunes",
+  "Singer-songwriter",
+  "Ska",
+  "Sleep",
+  "Songwriter",
+  "Soul",
+  "Soundtracks",
+  "Spanish",
+  "Study",
+  "Summer",
+  "Swedish",
+  "Synth-pop",
+  "Tango",
+  "Techno",
+  "Trance",
+  "Trip-hop",
+  "Turkish",
+  "Work-out",
+  "World-music"
+  };
 }
 

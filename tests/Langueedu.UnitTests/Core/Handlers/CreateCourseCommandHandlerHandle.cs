@@ -33,7 +33,7 @@ public class CreateCourseCommandHandlerHandle
                              CourseModes.GapFilling,
                              100));
     _course.Value.Id = 1;
-    _course.Value.Track = new();
+    _course.Value.Track = new("", "", "", 1);
     _course.Value.Track.Id = 1;
 
 

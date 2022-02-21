@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Ardalis.GuardClauses;
+﻿using Ardalis.GuardClauses;
 using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using Langueedu.SharedKernel.Interfaces;
@@ -8,17 +7,17 @@ namespace Langueedu.Core.Entities.PlaylistAggregate;
 
 public class PlayList : BaseEntity<short>, IAggregateRoot
 {
-  public PlayList(string playlistName)
+  public PlayList(string name)
   {
-    PlaylistName = playlistName;
-    Slug = playlistName.GenerateSlug();
+    Name = name;
+    Slug = name.GenerateSlug();
   }
 
   public byte DisplayOrder { get; set; }
 
   public string Slug { get; private set; }
 
-  public string PlaylistName { get; private set; }
+  public string Name { get; private set; }
   private readonly List<Track> _tracks = new();
   public IReadOnlyCollection<Track> Tracks => _tracks.AsReadOnly();
 
@@ -42,6 +41,6 @@ public class PlayList : BaseEntity<short>, IAggregateRoot
 
   public void UpdateName(string newName)
   {
-    PlaylistName = Guard.Against.NullOrEmpty(newName, nameof(newName));
+    Name = Guard.Against.NullOrEmpty(newName, nameof(newName));
   }
 }

@@ -10,7 +10,6 @@ namespace Langueedu.FunctionalTests.ControllerApis;
 
 public class CoursesController : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
-
   private readonly HttpClient _client;
 
   public CoursesController(CustomWebApplicationFactory<WebMarker> factory)

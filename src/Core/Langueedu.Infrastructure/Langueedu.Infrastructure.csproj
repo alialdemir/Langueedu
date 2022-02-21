@@ -38,6 +38,8 @@
 		<None Remove="Services\" />
 		<None Remove="Data\Config\Playlist\" />
 		<None Remove="Data\Config\BalanceConfigs\" />
+		<None Remove="SpotifyAPI.Web" />
+		<None Remove="Data\Config\LanguageConfig\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Mapping\" />
@@ -46,5 +48,6 @@
 		<Folder Include="Data\Config\CourseConfigs\" />
 		<Folder Include="Data\Config\PlaylistConfigs\" />
 		<Folder Include="Data\Config\BalanceConfigs\" />
+		<Folder Include="Data\Config\LanguageConfig\" />
 	</ItemGroup>
 </Project>

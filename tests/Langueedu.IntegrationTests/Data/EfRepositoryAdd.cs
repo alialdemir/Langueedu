@@ -17,7 +17,7 @@ public class EfRepositoryAdd : BaseEfRepoTestFixture
     var newPlaylist = (await repository.ListAsync())
                     .FirstOrDefault();
 
-    Assert.Equal(testPlaylistName, newPlaylist?.PlaylistName);
+    Assert.Equal(testPlaylistName, newPlaylist?.Name);
     Assert.True(newPlaylist?.Id > 0);
   }
 }

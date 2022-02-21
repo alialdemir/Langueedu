@@ -9,10 +9,15 @@ public class BalanceConfiguration : IEntityTypeConfiguration<Balance>
 
   public void Configure(EntityTypeBuilder<Balance> builder)
   {
+    builder.HasKey(x => x.UserId);
+
     builder.Property(p => p.UserId)
         .IsRequired();
 
     builder.Property(p => p.Gold)
+        .IsRequired();
+
+    builder.Property(p => p.Silver)
         .IsRequired();
   }
 }

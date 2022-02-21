@@ -6,7 +6,6 @@ using Langueedu.API.Extensions;
 using Langueedu.Core;
 using Langueedu.Infrastructure;
 using Langueedu.Infrastructure.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 
@@ -23,7 +22,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddCorsConfigure(builder.Configuration);
 
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddCore();
+builder.Services.AddCore(builder.Configuration);
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {

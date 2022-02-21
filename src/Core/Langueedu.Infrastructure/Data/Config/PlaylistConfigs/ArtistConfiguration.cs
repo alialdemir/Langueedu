@@ -15,16 +15,17 @@ public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
 
     builder.Property(p => p.Slug)
         .HasMaxLength(100)
+        .IsUnicode()
         .IsRequired();
-
-    builder.Property(p => p.PicturePath)
-        .HasMaxLength(150);
-
-    builder.Property(p => p.CoverPicturePath)
-        .HasMaxLength(150);
 
     builder.Property(p => p.ContentStatus)
         .HasDefaultValue(ContentStatus.Passive);
+
+
+    //builder
+    //  .HasMany(dm => dm.Images)
+    //  .WithOne()
+    //  .OnDelete(DeleteBehavior.NoAction);
   }
 }
 

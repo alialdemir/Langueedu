@@ -12,8 +12,13 @@ public class LyricsConfiguration : IEntityTypeConfiguration<Lyrics>
         .HasMaxLength(300)
         .IsRequired();
 
+    builder.Property(p => p.Answer)
+        .HasMaxLength(50)
+        .IsRequired();
+
+    builder.Property(p => p.AnswerIndex);
+
     builder.Property(p => p.Time)
         .IsRequired();
   }
 }
-

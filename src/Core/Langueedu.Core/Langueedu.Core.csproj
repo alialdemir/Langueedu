@@ -14,6 +14,7 @@
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Ardalis.Result.FluentValidation" Version="3.1.2" />
+    <PackageReference Include="SpotifyAPI.Web" Version="6.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +61,14 @@
     <None Remove="Factories\" />
     <None Remove="Features\Commands\Balance\BalanceIncrease\" />
     <None Remove="Features\Commands\Balance\BalanceDecrease\" />
+    <None Remove="Entities\LanguageAggregate\" />
+    <None Remove="Features\Commands\Track\TrackAdapter\" />
+    <None Remove="Adapters\" />
+    <None Remove="SpotifyAPI.Web" />
+    <None Remove="Specifications\Artist\" />
+    <None Remove="Specifications\AlbumSpec\" />
+    <None Remove="Specifications\TrackSearch\" />
+    <None Remove="Specifications\ArtistGenre\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -74,8 +83,7 @@
     <Folder Include="Validations\" />
     <Folder Include="Entities\" />
     <Folder Include="Features\Queries\Playlist\GetAllPlaylist\" />
-    <Folder Include="Specifications\Playlist\" />
-    <Folder Include="Specifications\Track\" />
+    <Folder Include="Specifications\PlaylistSpec\" />
     <Folder Include="Features\Queries\Track\" />
     <Folder Include="Features\Queries\Track\GetTrackDetailById\" />
     <Folder Include="Entities\User\" />
@@ -85,12 +93,19 @@
     <Folder Include="Entities\CourseAggregate\" />
     <Folder Include="Entities\BalanceAggregate\" />
     <Folder Include="Features\Queries\BalanceQuesries\" />
-    <Folder Include="Specifications\Balance\" />
-    <Folder Include="Specifications\Lyrics\" />
+    <Folder Include="Specifications\BalanceSpec\" />
+    <Folder Include="Specifications\LyricsSpec\" />
     <Folder Include="Features\Commands\Balance\" />
     <Folder Include="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
     <Folder Include="Factories\" />
     <Folder Include="Features\Commands\Balance\BalanceIncrease\" />
     <Folder Include="Features\Commands\Balance\BalanceDecrease\" />
+    <Folder Include="Entities\LanguageAggregate\" />
+    <Folder Include="Features\Commands\Track\TrackAdapter\" />
+    <Folder Include="Adapters\" />
+    <Folder Include="Specifications\ArtistSpec\" />
+    <Folder Include="Specifications\AlbumSpec\" />
+    <Folder Include="Specifications\TrackSpec\" />
+    <Folder Include="Specifications\ArtistGenreSpec\" />
   </ItemGroup>
 </Project>

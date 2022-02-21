@@ -1,39 +1,44 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Langueedu.Core.Entities.CourseAggregate;
+﻿using Langueedu.Core.Entities.CourseAggregate;
+using Langueedu.Core.Entities.LanguageAggregate;
 using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using Langueedu.SharedKernel.Interfaces;
+using Langueedu.SharedKernel.ViewModels.Playlist;
 
 namespace Langueedu.Core.Entities.PlaylistAggregate;
 
 public class Track : BaseEntity<short>, IAggregateRoot
 {
-  public Track(string songTitle, string youtubeVideoId, string lang, float duration)
+  public Track(string name, string youtubeVideoId, int duration)
   {
-    SongTitle = songTitle;
-    Slug = songTitle.GenerateSlug();
+    Name = name;
+    Slug = name.GenerateSlug();
     YoutubeVideoId = youtubeVideoId;
-    Lang = lang;
     Duration = duration;
   }
 
-  public Track()
-  {
-  }
+  public string Name { get; private set; }
 
-  public string SongTitle { get; private set; }
-
-  public float Duration { get; private set; }
+  public int Duration { get; private set; }
 
   public string Slug { get; private set; }
 
   public string YoutubeVideoId { get; private set; }
 
-  public string PicturePath { get => $"https://img.youtube.com/vi/{YoutubeVideoId}/mqdefault.jpg"; }
+  private string _youtubeImageUrl = "https://img.youtube.com/vi/";
 
-  public string Lang { get; private set; }
+  public IEnumerable<ImageViewModel> Images
+  {
+    get
+    {
+      return new List<ImageViewModel>
+      {
+        new ImageViewModel{ Url = $"{_youtubeImageUrl}{YoutubeVideoId}/hqdefault.jpg", Width = 480, Height=360},
+        new ImageViewModel{ Url = $"{_youtubeImageUrl}{YoutubeVideoId}/mqdefault.jpg", Width = 320, Height=180}
+      };
+    }
+  }
 
-  public string? LangCc { get; private set; }
   private long _followerCount;
   public long FollowerCount
   {
@@ -46,10 +51,17 @@ public class Track : BaseEntity<short>, IAggregateRoot
 
   public ContentStatus ContentStatus { get; private set; } = ContentStatus.Passive;
 
+  public TrackLevel TrackLevel { get; set; } = TrackLevel.Easy;
+
+  public int Hits { get; set; }
+
   public byte DisplayOrder { get; set; }
 
   public PlayList Playlist { get; set; }
+
   public Album Album { get; set; }
+
+  public Language Language { get; set; }
 
   private readonly List<PerformsOnSong> _performsOnSongs = new();
 
@@ -67,13 +79,35 @@ public class Track : BaseEntity<short>, IAggregateRoot
 
   public IReadOnlyCollection<Course> Courses => _courses.AsReadOnly();
 
-  public Track AddPerformsOnSong(Artist artist)
+  public string? SpotifyId { get; private set; }
+
+  public Track SetSpotifyId(string? spotifyId)
   {
-    _performsOnSongs.Add(new PerformsOnSong
+    SpotifyId = spotifyId;
+
+    return this;
+  }
+
+  public Track AddLyrics(IEnumerable<Lyrics> lyrics)
+  {
+    _lyrics.AddRange(lyrics);
+
+    return this;
+  }
+
+  public Track AddPerformsOnSongs(IEnumerable<Artist> artists)
+  {
+    if (artists is not null && artists.Any())
     {
-      Artist = artist,
-      Track = this
-    });
+      foreach (var artist in artists)
+      {
+        _performsOnSongs.Add(new PerformsOnSong
+        {
+          Artist = artist,
+          Track = this
+        });
+      }
+    }
 
     return this;
   }
@@ -83,6 +117,27 @@ public class Track : BaseEntity<short>, IAggregateRoot
     _followerTracks.Add(followerTrack);
 
     FollowerCount += 1;
+
+    return this;
+  }
+
+  public Track SetHits(int hits)
+  {
+    Hits = hits;
+
+    return this;
+  }
+
+  public Track SetFollowerCount(long followerCount)
+  {
+    FollowerCount = followerCount;
+
+    return this;
+  }
+
+  public Track SetTrackLevel(TrackLevel trackLevel)
+  {
+    TrackLevel = trackLevel;
 
     return this;
   }
@@ -112,9 +167,19 @@ public class Track : BaseEntity<short>, IAggregateRoot
     return this;
   }
 
+  public Track SetLang(Language language)
+  {
+    Language = language;
+
+    return this;
+  }
+
   public Track SetLangCc(string langCc)
   {
-    LangCc = langCc;
+    if (Language is null)
+      Language = new Language(langCc);
+
+    Language.SetLangCc(langCc);
 
     return this;
   }

@@ -9,21 +9,23 @@ public class GetTrackDetailByTrackIdSpec : Specification<Entities.PlaylistAggreg
   public GetTrackDetailByTrackIdSpec(int trackId, string userId)
   {
     Query
-      .Where(x => x.Id == trackId && x.ContentStatus == ContentStatus.Active);
+      .Where(x => x.Id == trackId &&
+      x.ContentStatus == ContentStatus.Active &&
+      x.Album.ContentStatus == ContentStatus.Active &&
+      x.PerformsOnSongs.Any(x => x.Artist.ContentStatus == ContentStatus.Active));
 
     Query
     .Select(track => new TrackDetailViewModel
     {
       Id = track.Id,
       YoutubeVideoId = track.YoutubeVideoId,
-      SongTitle = track.SongTitle,
-      PicturePath = track.PicturePath,
+      SongTitle = track.Name,
+      //PicturePath = track.PicturePath,
       Slug = track.Slug,
       AlbumName = track.Album.Name,
       AlbumSlug = track.Album.Slug,
       IsFollowed = track.FollowerTracks.Any(x => x.UserId == userId && x.TrackId == trackId),
       FollowerCount = track.FollowerCount,
-      MainArtistId = track.Album.MainArtist.Id,
       Artists = track.PerformsOnSongs.Select(artist => new ArtistViewModel
       {
         Id = artist.Id,

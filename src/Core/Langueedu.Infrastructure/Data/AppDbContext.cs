@@ -1,7 +1,9 @@
 ﻿using Ardalis.EFCore.Extensions;
 using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Entities.CourseAggregate;
+using Langueedu.Core.Entities.LanguageAggregate;
 using Langueedu.Core.Entities.PlaylistAggregate;
+using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using MediatR;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -26,9 +28,15 @@ public class AppDbContext : IdentityDbContext<User>
   public DbSet<CourseParticipant> CourseParticipants => Set<CourseParticipant>();
   public DbSet<CourseParticipantDetail> CourseParticipantDetails => Set<CourseParticipantDetail>();
 
+  public DbSet<Language> Languages => Set<Language>();
+
   public DbSet<Album> Albums => Set<Album>();
+  public DbSet<AlbumGenre> AlbumGenres => Set<AlbumGenre>();
   public DbSet<Artist> Artists => Set<Artist>();
+  public DbSet<ArtistGenre> ArtistGenres => Set<ArtistGenre>();
   public DbSet<FollowerTrack> FollowerTracks => Set<FollowerTrack>();
+  public DbSet<Genre> Genres => Set<Genre>();
+  public DbSet<Image> Images => Set<Image>();
   public DbSet<PlayList> Lyrics => Set<PlayList>();
   public DbSet<PerformsOnSong> PerformsOnSongs => Set<PerformsOnSong>();
   public DbSet<PlayList> Playlists => Set<PlayList>();

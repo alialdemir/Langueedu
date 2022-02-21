@@ -21,7 +21,7 @@ public class EfRepositoryUpdate : BaseEfRepoTestFixture
 
     // fetch the item and update its title
     var newPlaylist = (await repository.ListAsync())
-        .FirstOrDefault(playlist => playlist.PlaylistName == initialName);
+        .FirstOrDefault(playlist => playlist.Name == initialName);
     if (newPlaylist == null)
     {
       Assert.NotNull(newPlaylist);
@@ -36,10 +36,10 @@ public class EfRepositoryUpdate : BaseEfRepoTestFixture
     var test = (await repository.ListAsync());
     // Fetch the updated item
     var updatedItem = (await repository.ListAsync())
-        .FirstOrDefault(playlist => playlist.PlaylistName == newName);
+        .FirstOrDefault(playlist => playlist.Name == newName);
 
     Assert.NotNull(updatedItem);
-    Assert.NotEqual(Playlist.PlaylistName, updatedItem?.PlaylistName);
+    Assert.NotEqual(Playlist.Name, updatedItem?.Name);
     Assert.Equal(newPlaylist.Id, updatedItem?.Id);
   }
 }

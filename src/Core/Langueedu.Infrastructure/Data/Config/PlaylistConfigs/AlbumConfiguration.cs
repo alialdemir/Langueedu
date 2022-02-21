@@ -16,15 +16,17 @@ public class AlbumConfiguration : IEntityTypeConfiguration<Album>
 
     builder.Property(p => p.Slug)
         .HasMaxLength(100)
+        .IsUnicode()
         .IsRequired();
-
-    builder.Property(p => p.ReleaseDate);
-
-    builder.Property(p => p.AlbumCoverImage)
-        .HasMaxLength(150);
 
     builder.Property(p => p.ContentStatus)
         .HasDefaultValue(ContentStatus.Passive);
+
+
+    //builder
+    //  .HasMany(dm => dm.Images)
+    //  .WithOne()
+    //  .OnDelete(DeleteBehavior.Restrict);
   }
 }
 

@@ -19,7 +19,7 @@ public class EfRepositoryDelete : BaseEfRepoTestFixture
 
     // verify it's no longer there
     Assert.DoesNotContain(await repository.ListAsync(),
-        Playlist => Playlist.PlaylistName == initialName);
+        Playlist => Playlist.Name == initialName);
   }
 }
 

@@ -9,12 +9,13 @@ public class PlaylistConfiguration : IEntityTypeConfiguration<PlayList>
 {
   public void Configure(EntityTypeBuilder<PlayList> builder)
   {
-    builder.Property(p => p.PlaylistName)
+    builder.Property(p => p.Name)
         .HasMaxLength(72)
         .IsRequired();
 
     builder.Property(p => p.Slug)
         .HasMaxLength(72)
+        .IsUnicode()
         .IsRequired();
 
     builder.Property(p => p.ContentStatus)
