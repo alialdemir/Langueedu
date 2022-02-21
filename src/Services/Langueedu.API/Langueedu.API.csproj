@@ -49,5 +49,35 @@
 		<None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
 		<None Remove="database.sqlite-wal" />
 		<None Remove="database.sqlite-shm" />
+		<None Remove="SampleData\AlbumGenres.sql" />
+		<None Remove="SampleData\Albums.sql" />
+		<None Remove="SampleData\ArtistGenres.sql" />
+		<None Remove="SampleData\Artists.sql" />
+		<None Remove="SampleData\AspNetRoles.sql" />
+		<None Remove="SampleData\AspNetUsers.sql" />
+		<None Remove="SampleData\Balances.sql" />
+		<None Remove="SampleData\Genres.sql" />
+		<None Remove="SampleData\Images.sql" />
+		<None Remove="SampleData\Languages.sql" />
+		<None Remove="SampleData\Lyrics.sql" />
+		<None Remove="SampleData\PerformsOnSongs.sql" />
+		<None Remove="SampleData\PlayList.sql" />
+		<None Remove="SampleData\Tracks.sql" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="SampleData\AlbumGenres.sql" />
+	  <EmbeddedResource Include="SampleData\Albums.sql" />
+	  <EmbeddedResource Include="SampleData\ArtistGenres.sql" />
+	  <EmbeddedResource Include="SampleData\Artists.sql" />
+	  <EmbeddedResource Include="SampleData\AspNetRoles.sql" />
+	  <EmbeddedResource Include="SampleData\AspNetUsers.sql" />
+	  <EmbeddedResource Include="SampleData\Balances.sql" />
+	  <EmbeddedResource Include="SampleData\Genres.sql" />
+	  <EmbeddedResource Include="SampleData\Images.sql" />
+	  <EmbeddedResource Include="SampleData\Languages.sql" />
+	  <EmbeddedResource Include="SampleData\Lyrics.sql" />
+	  <EmbeddedResource Include="SampleData\PerformsOnSongs.sql" />
+	  <EmbeddedResource Include="SampleData\PlayList.sql" />
+	  <EmbeddedResource Include="SampleData\Tracks.sql" />
 	</ItemGroup>
 </Project>

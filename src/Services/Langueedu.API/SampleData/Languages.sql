@@ -1,0 +1,5 @@
+BEGIN;
+
+INSERT INTO Languages(Lang, LangCc, ModifiedDate, CreatedDate) VALUES('TR', NULL, '2022-02-21 11:26:12.735919', '2022-02-21 11:26:12.73592');
+
+COMMIT;
