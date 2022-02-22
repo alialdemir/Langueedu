@@ -12,9 +12,9 @@ public partial class LeTrack : ComponentBase
   {
     get
     {
-      string mainArtistSlug = Track.Artists.FirstOrDefault(x => x.Id == Track.MainArtistId).Slug;
+      string mainArtistSlug = Track.Artists.FirstOrDefault().Slug;
 
-      return $"/{mainArtistSlug}/{Track.AlbumSlug}/{Track.TrackSlug}/{Track.TrackId}";
+      return $"/{mainArtistSlug}/{Track.Slug}/{Track.Id}";
     }
   }
 }

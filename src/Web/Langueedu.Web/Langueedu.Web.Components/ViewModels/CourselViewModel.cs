@@ -6,14 +6,14 @@ using Langueedu.Web.Shared.Utilities;
 
 namespace Langueedu.Web.Components.ViewModels;
 
-public class DuelViewModel : ViewModelBase
+public class CourseViewModel : ViewModelBase
 {
   private readonly IYoutubePlayer _youtubePlayer;
   private ICommand _stylishCommand;
 
-  public DuelViewModel(IYoutubePlayer _youtubePlayer)
+  public CourseViewModel(IYoutubePlayer youtubePlayer)
   {
-    this._youtubePlayer = _youtubePlayer;
+    _youtubePlayer = youtubePlayer;
   }
 
   public short EntryFee { get; set; }

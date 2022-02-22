@@ -2,13 +2,10 @@
 
 namespace Langueedu.Sdk.Playlist.Response
 {
-
   public class PlaylistViewModel
   {
-    public int PlaylistId { get; set; }
+    public string Name { get; set; }
 
-    public string PlaylistName { get; set; }
-
-    public List<TrackViewModel> Tracks { get; set; }
+    public IEnumerable<TrackViewModel> Tracks { get; set; }
   }
 }

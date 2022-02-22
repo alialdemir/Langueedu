@@ -24,6 +24,7 @@ public class GetTrackDetailByTrackIdSpec : Specification<Entities.PlaylistAggreg
       Slug = track.Slug,
       IsFollowed = track.FollowerTracks.Any(x => x.UserId == userId && x.TrackId == trackId),
       FollowerCount = track.FollowerCount,
+      Images = track.Images,
       Album = new AlbumViewModel
       {
         Name = track.Album.Name,

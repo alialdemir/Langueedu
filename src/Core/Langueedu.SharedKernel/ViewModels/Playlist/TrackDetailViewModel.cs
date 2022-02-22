@@ -16,5 +16,6 @@ public class TrackDetailViewModel
   public bool IsFollowed { get; set; }
   public long FollowerCount { get; set; }
   public AlbumViewModel Album { get; set; }
+  public IEnumerable<ImageViewModel> Images { get; set; }
 }
 

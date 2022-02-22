@@ -43,7 +43,10 @@ public class TrackCoverViewModel : ViewModelBase
 
     IsBusy = true;
 
-    ShowModal<LeCourseLevel>(string.Empty, new ModalOptions()
+    var parameters = new ModalParameters();
+    parameters.Add(nameof(TrackId), TrackId);
+
+    ShowModal<LeCourseLevel>(string.Empty,parameters, new ModalOptions()
     {
       HideCloseButton = false,
       HideHeader = true,

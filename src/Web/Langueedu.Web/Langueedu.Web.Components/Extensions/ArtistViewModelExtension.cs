@@ -4,7 +4,6 @@ namespace Langueedu.Web.Components.Extensions;
 
 public static class ArtistViewModelExtension
 {
-
   public static string GetArtistNames(this IEnumerable<ArtistViewModel> artists)
   {
     if (artists == null || !artists.Any())

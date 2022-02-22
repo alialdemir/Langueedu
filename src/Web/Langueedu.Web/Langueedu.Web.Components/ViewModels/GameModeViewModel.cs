@@ -8,7 +8,6 @@ namespace Langueedu.Web.Components.ViewModels;
 
 public class GameModeViewModel : ViewModelBase
 {
-  private readonly string rootPicturePath = "_content/Langueedu.Web.Pages/assets/images/";
   private readonly ITinySlider _tinySlider;
 
   private IEnumerable<GameModeModel> _gameModes;
@@ -34,49 +33,7 @@ public class GameModeViewModel : ViewModelBase
 
   public override void OnInitialized()
   {
-    GameModes = new[]
-{
-                new GameModeModel
-                {
-                    Title = "Beginner",
-                    Description = "Complete the 10% of the lyrics",
-                    Image = $"{rootPicturePath}/prizeicon1.png",
-                    GameMode = GameMode.Beginner,
-                    CourseFee = 80,
-                    EntryFee = 40,
-                    ProgressBar = 25,
-                },
-                new GameModeModel
-                {
-                    Title = "Intermediate",
-                    Description = "Complete the 25% of the lyrics",
-                    Image = $"{rootPicturePath}/prizeicon2.png",
-                    GameMode = GameMode.Intermediate,
-                    CourseFee= 600,
-                    EntryFee = 300,
-                    ProgressBar = 50,
-                },
-                new GameModeModel
-                {
-                    Title = "Advanced",
-                    Description = "Complete the 50% of the lyrics",
-                    Image = $"{rootPicturePath}/prizeicon3.png",
-                    GameMode = GameMode.Advanced,
-                    CourseFee= 2000,
-                    EntryFee = 1000,
-                    ProgressBar = 75,
-                },
-                new GameModeModel
-                {
-                    Title = "Expert",
-                    Description = "Complete the 100% of the lyrics",
-                    Image = $"{rootPicturePath}/prizeicon4.png",
-                    GameMode = GameMode.Expert,
-                    CourseFee= 6000,
-                    EntryFee = 3000,
-                    ProgressBar = 100,
-                },
-    };
+    GameModes = GameModeModel.GameModes();
   }
 
   private async Task StartGameCommandExecute(GameModeModel gameMode)
