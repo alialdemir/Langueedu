@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Langueedu.Sdk.Interfaces;
 using Langueedu.Sdk.Playlist.Response;
 using Langueedu.Sdk.Utilities;
 
@@ -10,8 +11,9 @@ namespace Langueedu.Sdk.Playlist
   {
     private const string API_URL_BASE = "/v1/Playlists";
 
-    public PlaylistService(IHttpClientFactory clientFactory)
-        : base(clientFactory.CreateClient("LangueeduApi"))
+    public PlaylistService(IHttpClientFactory clientFactory,
+                           IToastService toastService)
+        : base(clientFactory.CreateClient("LangueeduApi"),toastService)
     {
     }
 

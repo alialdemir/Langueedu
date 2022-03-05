@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Sdk.Identity.Response;
 using Langueedu.Web.Components.Provider;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -15,6 +16,10 @@ builder.Services.AddScoped(sp => new HttpClient
 });
 
 services.AddComponents();
+
+services.AddSweetAlert2(options => {
+  options.Theme = SweetAlertTheme.Dark;
+});
 
 using (ServiceProvider serviceProvider = services.BuildServiceProvider())
 {

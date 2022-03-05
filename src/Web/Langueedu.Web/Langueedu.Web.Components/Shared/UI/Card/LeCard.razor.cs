@@ -7,6 +7,7 @@ public partial class LeCard : UIComponentBase
 {
   protected string Classname =>
   new ClassnameBuilder("card")
+      .AddClass("mb-0")
       .AddClass(Class)
       .Build();
 

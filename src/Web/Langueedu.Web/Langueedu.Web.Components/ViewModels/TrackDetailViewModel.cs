@@ -1,31 +1,29 @@
 ﻿using System.Windows.Input;
 using Blazored.Modal;
-using Langueedu.Sdk.Playlist.Response;
 using Langueedu.Sdk.Track;
 using Langueedu.Web.Shared.Utilities;
 using Microsoft.AspNetCore.Components;
 
 namespace Langueedu.Web.Components.ViewModels;
 
-public class TrackCoverViewModel : ViewModelBase
+public class TrackDetailViewModel : ViewModelBase
 {
   private readonly ITrackService _trackService;
   private ICommand _showGameModeCommand;
   private ICommand _toggleFollowCommand;
 
-  public TrackCoverViewModel(
+  public TrackDetailViewModel(
       ITrackService trackService,
       IServiceProvider serviceProvider) : base(serviceProvider)
   {
     _trackService = trackService;
   }
-
   [Parameter]
-  public int TrackId { get; set; }
+  public short TrackId { get; set; }
 
-  private TrackDetailViewModel _trackDetail = new();
+  private Sdk.Playlist.Response.TrackDetailViewModel _trackDetail = new();
 
-  public TrackDetailViewModel TrackDetail
+  public Sdk.Playlist.Response.TrackDetailViewModel TrackDetail
   {
     get => _trackDetail;
     set => SetField(ref _trackDetail, value);
@@ -33,7 +31,9 @@ public class TrackCoverViewModel : ViewModelBase
 
   public override async Task OnInitializedAsync()
   {
-    TrackDetail = await _trackService.GetTrackDetailAsync(TrackId);
+    var trackDetail = await _trackService.GetTrackDetailAsync(TrackId);
+    if (trackDetail is not null && trackDetail.Value is not null)
+      TrackDetail = trackDetail.Value;
   }
 
   private void ShowGameModeCommandExecute()
@@ -46,7 +46,7 @@ public class TrackCoverViewModel : ViewModelBase
     var parameters = new ModalParameters();
     parameters.Add(nameof(TrackId), TrackId);
 
-    ShowModal<LeCourseLevel>(string.Empty,parameters, new ModalOptions()
+    ShowModal<LeCourseLevel>(string.Empty, parameters, new ModalOptions()
     {
       HideCloseButton = false,
       HideHeader = true,
@@ -73,13 +73,12 @@ public class TrackCoverViewModel : ViewModelBase
     else
       result = await _trackService.UnFollowTrackAsync(TrackId);
 
-    if (result == null  || !result.Value)
+    if (result == null || !result.Value)
     {
       TrackDetail.IsFollowed = !TrackDetail.IsFollowed;
 
       StateHasChanged();
     }
-
 
     IsBusy = false;
   }

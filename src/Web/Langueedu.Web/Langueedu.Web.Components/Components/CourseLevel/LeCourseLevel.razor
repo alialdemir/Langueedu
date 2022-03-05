@@ -12,26 +12,26 @@
                     <LeCardBody>
                         <div class="leModal__course-level--content">
                             <div class="leModal__course-level--close">
-                                <LeButton Color=Color.Transparent Rounded=@Rounded.Full
-                                Command=@BindingContext.HideModalCommand>
+                                <LeButton Color=Color.Transparent Rounded=@Rounded.Full IsShadow="false"
+                                          Command=@BindingContext.HideModalCommand>
                                     <i class="fa-solid fa-xmark text-lg"></i>
                                 </LeButton>
                             </div>
 
-                                <span class="leModal__course-level--title">@gameMode.Title</span>
-                              <span class="leModal__course-level--description">@gameMode.Description</span>
+                            <span class="leModal__course-level--title">@gameMode.Title</span>
+                            <span class="leModal__course-level--description">@gameMode.Description</span>
 
-                                <img class="leModal__course-level--badge" src=@gameMode.Image alt=@gameMode.Title />
+                            <img class="leModal__course-level--badge" src=@gameMode.Image alt=@gameMode.Title />
 
-                               <LeCoinIcon IsNegative Gold=@gameMode.CourseFee />
+                            <LeCoinIcon IsNegative Gold=@gameMode.CourseFee />
                             <span class="mt-2">Course Fee</span>
 
                             <div class="leModal__course-level--hr"></div>
 
                             <div class="h-24"></div>
                             @*
-                            <LeCoinIcon IsNegative Gold=@gameMode.EntryFee />
-                            <span class="mt-2 mb-4">ENRTY FEE</span>
+                                <LeCoinIcon IsNegative Gold=@gameMode.EntryFee />
+                                <span class="mt-2 mb-4">ENRTY FEE</span>
                             *@
 
                             <LeProgressBar Value=gameMode.ProgressBar />
@@ -39,12 +39,12 @@
                         </div>
                     </LeCardBody>
 
-                        <LeButton Command=@BindingContext.StartGameCommand
-                        CommandParameter=@gameMode
-                        Class="leModal__course-level--play"
-                        Color=Color.Success
-                        Rounded=@Rounded.Large
-                        FullWidth>
+                    <LeButton Command=@BindingContext.StartGameCommand
+                              CommandParameter=@gameMode
+                              Class="leModal__course-level--play"
+                              Color=Color.Success
+                              Rounded=@Rounded.Large
+                              FullWidth>
                         PLAY
                     </LeButton>
                 </LeCard>

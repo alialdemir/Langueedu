@@ -6,6 +6,5 @@ public enum Stylish : byte
   B = 2,
   C = 3,
   D = 4,
-  NotSeeQuestion = 5,
-  Gaps = 6
+  Gaps = 5
 }

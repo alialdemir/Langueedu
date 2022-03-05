@@ -19,7 +19,7 @@ public class CourseParticipantDetail : BaseEntity
 
   public CourseParticipant CourseParticipant { get; set; }
 
-  public Entities.PlaylistAggregate.Lyrics lyrics { get; set; }
+  public Lyrics Lyrics { get; set; }
 
   public short Score { get; }
 

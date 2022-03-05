@@ -1,4 +1,5 @@
-﻿using Langueedu.Web.Components.Provider;
+﻿using CurrieTechnologies.Razor.SweetAlert2;
+using Langueedu.Web.Components.Provider;
 using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,10 @@ services.AddControllersWithViews();
 services.AddRazorPages();
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+
+services.AddSweetAlert2(options => {
+  options.Theme = SweetAlertTheme.Dark;
+});
 
 var app = builder.Build();
 

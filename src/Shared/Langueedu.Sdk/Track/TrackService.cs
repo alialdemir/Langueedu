@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Langueedu.Sdk.Interfaces;
 using Langueedu.Sdk.Playlist.Response;
 using Langueedu.Sdk.Utilities;
 
@@ -9,8 +10,9 @@ namespace Langueedu.Sdk.Track
   {
     private const string API_URL_BASE = "/v1/Tracks";
 
-    public TrackService(IHttpClientFactory clientFactory)
-        : base(clientFactory.CreateClient("LangueeduApi"))
+    public TrackService(IHttpClientFactory clientFactory,
+                        IToastService toastService)
+        : base(clientFactory.CreateClient("LangueeduApi"),toastService)
     {
     }
 

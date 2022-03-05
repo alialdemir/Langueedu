@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http.Headers;
+using Langueedu.Sdk.Course;
 using Langueedu.Sdk.Identity;
 using Langueedu.Sdk.Playlist;
 using Langueedu.Sdk.Track;
@@ -22,6 +23,7 @@ public static class ServiceRegistry
     services.AddScoped<IIdentityService, IdentityService>();
     services.AddScoped<IPlaylistService, PlaylistService>();
     services.AddScoped<ITrackService, TrackService>();
+    services.AddScoped<ICourseService, CourseService>();
 
     return services;
   }

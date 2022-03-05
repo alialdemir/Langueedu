@@ -44,6 +44,8 @@
     <Folder Include="Extensions\" />
     <Folder Include="Shared\UI\Card\" />
     <Folder Include="Components\Playlist\" />
+    <Folder Include="Components\Toast\" />
+    <Folder Include="Components\Course\CourseIndicator\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Shared\" />
@@ -70,6 +72,8 @@
     <None Remove="Extensions\" />
     <None Remove="Shared\UI\Card\" />
     <None Remove="Components\Playlist\" />
+    <None Remove="Components\Toast\" />
+    <None Remove="Components\Course\CourseHeader\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Shared\UI\Input\TextField">

@@ -23,6 +23,8 @@
     <None Remove="Playlist\" />
     <None Remove="Playlist\Response\" />
     <None Remove="Playlist\Request\" />
+    <None Remove="Course\Response\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Identity\" />
@@ -37,6 +39,8 @@
     <Folder Include="Playlist\" />
     <Folder Include="Playlist\Response\" />
     <Folder Include="Playlist\Request\" />
+    <Folder Include="Course\Response\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />

@@ -10,11 +10,11 @@ public class CreateCourseCommandValidatior : AbstractValidator<CreateCourseComma
     RuleFor(p => p.TrackId)
         .GreaterThan(short.MinValue)
         .WithMessage("Track id must be greater than zero.");
-
+    /*
     RuleFor(x => x.UserId)
     .NotEmpty()
     .WithMessage("You must enter a username");
-
+    */
     RuleFor(x => x.CourseMode)
     .NotNull()
     .WithMessage("Course mode required field!");

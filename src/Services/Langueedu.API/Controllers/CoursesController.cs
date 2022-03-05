@@ -21,7 +21,7 @@ public class CoursesController : BaseApiController
       Summary = "Create Course",
       Description = "Create a new course",
       OperationId = "Course.CreateCourse",
-      Tags = new[] { "Course Endpoints" })
+      Tags = new[] { "Courses Endpoints" })
   ]
   [HttpPost]
   [ProducesResponseType(typeof(Result<CourseDetailViewModel>), StatusCodes.Status200OK)]

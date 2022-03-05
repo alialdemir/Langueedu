@@ -182,7 +182,7 @@ public class TrackAdapter : ITrackAdapter
       return (string.Empty, null);
 
     var textSplit = text.Split(" ");
-    if (!textSplit.Any() || textSplit.Length - 1 < 0)
+    if (!textSplit.Any() || textSplit.Length - 1 < 1)
       return (string.Empty, null);
 
     var randomIndex = new Random().Next(0, textSplit.Length - 1);
@@ -210,7 +210,7 @@ public class TrackAdapter : ITrackAdapter
   {
     var url5 = "https://accounts.spotify.com/api/token";
 
-    var encode_clientid_clientsecret = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", clientId, secretId)));
+    var encode_clientid_clientsecret = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{secretId}"));
 
     var webRequest = (HttpWebRequest)WebRequest.Create(url5);
 

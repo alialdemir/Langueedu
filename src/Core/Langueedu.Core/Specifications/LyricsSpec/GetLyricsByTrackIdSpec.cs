@@ -11,6 +11,9 @@ public class GetLyricsByTrackIdSpec : Specification<Core.Entities.PlaylistAggreg
       .Where(x => x.Track.Id == trackId);
 
     Query
+      .Where(x => !string.IsNullOrEmpty(x.Answer));
+
+    Query
       .Select(x => new LyricsViewModel
       {
         Answer = x.Answer,

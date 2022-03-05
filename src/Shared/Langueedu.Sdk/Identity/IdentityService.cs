@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Langueedu.Sdk.Identity.Request;
 using Langueedu.Sdk.Identity.Response;
+using Langueedu.Sdk.Interfaces;
 using Langueedu.Sdk.Utilities;
 
 namespace Langueedu.Sdk.Identity
@@ -12,8 +13,10 @@ namespace Langueedu.Sdk.Identity
   {
     private const string API_URL_BASE = "/v1/Accounts";
 
-    public IdentityService(IHttpClientFactory clientFactory)
-        : base(clientFactory.CreateClient("LangueeduApi"))
+    public IdentityService(IHttpClientFactory clientFactory,
+                           IToastService toastService)
+        : base(clientFactory.CreateClient("LangueeduApi"),
+               toastService)
     {
     }
 

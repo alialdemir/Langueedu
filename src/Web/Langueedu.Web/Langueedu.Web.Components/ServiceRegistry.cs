@@ -1,6 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using Blazored.Modal;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Langueedu.Sdk.Interfaces;
 using Langueedu.Web.Components.Interfaces;
 using Langueedu.Web.Components.Internal.Bindings;
 using Langueedu.Web.Components.Internal.PropertyBinding;
@@ -28,9 +29,11 @@ public static class ServiceRegistry
 
     services.AddScoped<SignInViewModel>();
     services.AddScoped<SignUpViewModel>();
-    services.AddScoped<TrackCoverViewModel>();
+    services.AddScoped<TrackDetailViewModel>();
     services.AddScoped<GameModeViewModel>();
     services.AddScoped<CourseViewModel>();
+
+    services.AddScoped<IToastService, ToastService>();
 
     services.AddBlazoredLocalStorage();
 

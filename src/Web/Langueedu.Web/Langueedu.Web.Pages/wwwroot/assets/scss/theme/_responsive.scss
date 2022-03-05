@@ -1185,6 +1185,7 @@
     .hovercard {
       .user-image {
         .share-icons {
+            z-index:1;
           position: absolute;
           right: 45px;
           top: -22px;
@@ -4104,10 +4105,10 @@
   .page-wrapper .page-main-header .main-header-right .nav-right > ul {
     top: 61px;
   }
-  .btc-earning {
-    height: 250px;
-    padding-top: 0px;
-  }
+    .btc-earning {
+        height: 250px;
+        padding-top: 0px;
+    }
   .btc-overview span {
     font-size: 120px !important;
   }

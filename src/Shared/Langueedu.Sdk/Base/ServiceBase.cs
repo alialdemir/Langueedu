@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Langueedu.Sdk.Interfaces;
 
 namespace Langueedu.Sdk
 {
   public abstract class ServiceBase
   {
     protected readonly HttpClient _httpClient;
-
+    private readonly IToastService _toastService;
     private readonly JsonSerializerOptions _serializerSettings;
-    public ServiceBase(HttpClient httpClient)
+    public ServiceBase(HttpClient httpClient, IToastService toastService)
     {
       _httpClient = httpClient;
-
+      _toastService = toastService;
       _serializerSettings = new JsonSerializerOptions
       {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -100,12 +102,25 @@ namespace Langueedu.Sdk
       {
         Console.WriteLine("Service base error: \n {0}", ex.Message);
 
+        _toastService.ShowToast(ex.Message, ToastLevel.Error);
+
         return Result<TResult>.Error(ex.Message);
       }
     }
 
     protected async Task<TResult> RequestAsResultAsync<TResult>(HttpResponseMessage response)
     {
+      if (!response.IsSuccessStatusCode)
+      {
+        var errors = await response.Content.ReadFromJsonAsync<Result<string>>(_serializerSettings);
+        foreach (var error in errors.Errors)
+        {
+          _toastService.ShowToast(error, ToastLevel.Error);
+        }
+
+        return default(TResult);
+      }
+
       var result = await response.Content.ReadFromJsonAsync<TResult>(_serializerSettings);
       return result;
     }

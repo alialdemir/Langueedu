@@ -5,8 +5,8 @@
     {
         <LeCard>
             <LeCardBody>
-                <LeButton Command=@StylishCommand CommandParameter=@item Color=@item.Color FullWidth>
-                    @item.Answer
+                <LeButton Command=@StylishCommand CommandParameter=@item FullWidth Color=@((Color)item.Color)>
+                   @item.Answer
                 </LeButton>
             </LeCardBody>
         </LeCard>

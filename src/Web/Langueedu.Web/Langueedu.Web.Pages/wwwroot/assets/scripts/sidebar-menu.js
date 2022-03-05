@@ -53,12 +53,30 @@ class SidebarMenu {
             }
         });
 
-        if (cash(window).width() <= 991) {
-            cash('.iconsidebar-menu').addClass('iconbar-mainmenu-close');
-            cash('.iconMenu-bar').removeClass('active');
-            cash('.iconsidebar-menu').addClass('iconbar-second-close');
-            cash('.iconsidebar-menu').removeClass('iconbar-mainmenu-close');
-        };
+        const resize = (width) => {
+            if (width <= 991) {
+                cash('.iconsidebar-menu').addClass('iconbar-mainmenu-close');
+                cash('.iconMenu-bar').removeClass('active');
+                cash('.iconsidebar-menu').addClass('iconbar-second-close');
+                cash('.iconsidebar-menu').removeClass('iconbar-mainmenu-close');
+            } else {
+                cash('.iconsidebar-menu').removeClass('iconbar-mainmenu-close');
+                cash('.iconMenu-bar').addClass('active');
+                cash('.iconsidebar-menu').removeClass('iconbar-second-close');
+                cash('.iconsidebar-menu').addClass('iconbar-mainmenu-close');
+            }
+        }
+
+        window.addEventListener('resize', function (event) {
+            resize(event.target.innerWidth)
+        }, true);
+
+        var sidebarInterval = setInterval(() => {
+            if (cash('.iconsidebar-menu').length > 0) {
+                clearInterval(sidebarInterval)
+                resize(window.innerWidth);
+            }
+        }, 500)
     }
 }
 

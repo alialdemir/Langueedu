@@ -45,10 +45,8 @@ public abstract class ViewModelBase : INotifyPropertyChanged
       if (_serviceProvider == null)
         throw new ArgumentNullException(nameof(_serviceProvider));
 
-      if (_modal == null)
-        _modal ??= _serviceProvider.GetRequiredService<IModalService>();
-
-      return _modal;
+      return _modal ??= _serviceProvider.GetRequiredService<IModalService>();
+      ;
     }
   }
 
@@ -61,10 +59,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
       if (_serviceProvider == null)
         throw new ArgumentNullException(nameof(_serviceProvider));
 
-      if (_swal == null)
-        _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
-
-      return _swal;
+      return _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
     }
   }
 
@@ -75,10 +70,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
       if (_serviceProvider == null)
         throw new ArgumentNullException(nameof(_serviceProvider));
 
-      if (_navigationManager == null)
-        _navigationManager ??= _serviceProvider.GetRequiredService<NavigationManager>();
-
-      return _navigationManager;
+      return _navigationManager ??= _serviceProvider.GetRequiredService<NavigationManager>();
     }
   }
 
@@ -211,10 +203,11 @@ public abstract class ViewModelBase : INotifyPropertyChanged
     return Modal.Show<TComponent>(title, parameters, options);
   }
 
-  protected Task HideModal()
+  protected virtual Task HideModal()
   {
     return ModalInstance?.CloseAsync();
   }
+
   public ICommand HideModalCommand { get => _hideModalCommand ??= new Command(HideModal); }
 
   #endregion

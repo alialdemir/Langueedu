@@ -19,6 +19,7 @@ public static class SeedData
       }
 
       dbContext.Database.EnsureDeleted();
+      dbContext.Database.EnsureCreatedAsync();
 
       PopulateTestData(dbContext);
     }
@@ -29,7 +30,6 @@ public static class SeedData
     var sampleDataSql = assembly.GetManifestResourceNames().Where(x => x.StartsWith("Langueedu.API.SampleData"));
     foreach (var sqlFileName in sampleDataSql)
     {
-
       using (var stream = assembly.GetManifestResourceStream(sqlFileName))
       using (var reader = new StreamReader(stream, Encoding.UTF8))
       {

@@ -1,11 +1,19 @@
 ﻿using System.Windows.Input;
 using Langueedu.Web.Components.Interfaces;
+using Langueedu.Web.Components.Models;
+using Langueedu.Web.Shared.Utilities;
 using Microsoft.JSInterop;
 
 namespace Langueedu.Web.Components.Services;
 
 public class YoutubePlayer : IYoutubePlayer
 {
+  public enum PlayerState
+  {
+    VideoFinish = 0,
+    Unknown = 100,
+  }
+
   private readonly IJSRuntime _jSRuntime;
 
   public YoutubePlayer(IJSRuntime jSRuntime)
@@ -14,7 +22,7 @@ public class YoutubePlayer : IYoutubePlayer
   }
 
   public static ICommand OnPlayerReady;
-  public static ICommand OnPlayerStateChange;
+  public static Command<YoutubePlayerStateModel> OnPlayerStateChange;
 
   public async Task InitYoutube(string videoId)
   {
@@ -26,6 +34,7 @@ public class YoutubePlayer : IYoutubePlayer
   {
     return await _jSRuntime.InvokeAsync<double>("youtubePlayer.currentTime");
   }
+
   public async Task ScrollIntoView(string elementId)
   {
     await _jSRuntime.InvokeVoidAsync("youtubePlayer.scrollIntoView", elementId);
@@ -58,8 +67,8 @@ public class YoutubePlayer : IYoutubePlayer
   }
 
   [JSInvokable]
-  public static void PlayerStateChange(object data)
+  public static void PlayerStateChange(YoutubePlayerStateModel youtubePlayerState)
   {
-    OnPlayerStateChange?.Execute(null);
+    OnPlayerStateChange?.Execute(youtubePlayerState);
   }
 }

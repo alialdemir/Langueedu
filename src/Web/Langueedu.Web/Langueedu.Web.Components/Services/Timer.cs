@@ -6,7 +6,7 @@ public class Timer : IDisposable
 
   public static void Start(TimeSpan timeSpan, Func<Task<bool>> action)
   {
-    double value = (timeSpan.Hours + timeSpan.Minutes / 100.0 + timeSpan.Seconds / 10000.0) * (timeSpan > TimeSpan.Zero ? 1 : -1);
+    double value = timeSpan.TotalMilliseconds;
 
     _timer = new System.Timers.Timer(value);
     _timer.Elapsed += async (source, e) =>

@@ -9,6 +9,7 @@ public partial class LeButton : LeButtonBase
   protected string Classname =>
   new ClassnameBuilder("btn")
       .AddClass("btn-block", FullWidth)
+      .AddClass("btn-shadow", IsShadow)
       .AddClass($"btn-{Color.ToDescriptionString()}")
       .AddClass($"btn-rounded-{Rounded.ToDescriptionString()}", Rounded != Rounded.None)
       .AddClass($"btn-{Size.ToDescriptionString()}")
@@ -17,6 +18,9 @@ public partial class LeButton : LeButtonBase
 
   [Parameter]
   public bool FullWidth { get; set; }
+
+  [Parameter]
+  public bool IsShadow { get; set; } = true;
 
   [Parameter]
   public Color Color { get; set; } = Color.Primary;

@@ -14,5 +14,7 @@ public partial class TrackDetail
   public string TrackSlug { get; set; }
 
   [Parameter]
-  public int TrackId { get; set; }
+  public float TrackId { get; set; }
+
+  public short TrackIdShort { get => Convert.ToInt16(TrackId); }
 }

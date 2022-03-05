@@ -1,0 +1,7 @@
+﻿.le-indicator-card {
+    @apply flex justify-evenly text-center;
+
+    & p {
+        @apply font-bold;
+    }
+}
