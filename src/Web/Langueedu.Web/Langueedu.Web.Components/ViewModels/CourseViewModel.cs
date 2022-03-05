@@ -169,6 +169,8 @@ public class CourseViewModel : ViewModelBase
     {
       await _youtubePlayer.PauseVideo();
 
+      CourseIndicator.Time = 10;
+
       Services.Timer.Start(TimeSpan.FromMilliseconds(1), WaitinAnswerTimer);
 
       return IsTimeActive;
