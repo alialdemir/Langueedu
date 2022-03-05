@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http.Headers;
+using Langueedu.Sdk;
 using Langueedu.Sdk.Course;
 using Langueedu.Sdk.Identity;
 using Langueedu.Sdk.Playlist;
@@ -11,6 +12,8 @@ public static class ServiceRegistry
   public static IServiceCollection AddLangueeduSdk(this IServiceCollection services, string langueeduApiUrl, string accessToken)
   {
     services.AddHttpClient();
+
+    Configs.BaseIdentityEndpoint = langueeduApiUrl;
 
     services.AddHttpClient("LangueeduApi", c =>
     {

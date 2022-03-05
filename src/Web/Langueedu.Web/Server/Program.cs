@@ -1,6 +1,10 @@
-﻿using CurrieTechnologies.Razor.SweetAlert2;
+﻿using System.Text.Json;
+using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Web.Components.Provider;
+using Langueedu.Web.Server.Models;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -12,11 +16,17 @@ services.AddComponents();
 services.AddLangueeduSdk(langueeduApiUrl, string.Empty);
 
 services.AddControllersWithViews();
+
 services.AddRazorPages();
+
+services
+    .AddOptions<LangueeduWebConfiguration>()
+    .Bind(builder.Configuration);
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 
-services.AddSweetAlert2(options => {
+services.AddSweetAlert2(options =>
+{
   options.Theme = SweetAlertTheme.Dark;
 });
 
@@ -47,5 +57,17 @@ app.MapControllers();
 
 app.MapFallbackToPage("{*path:nonfile}", "/_Host");
 app.MapFallbackToPage("/", "/Landing");
+
+app.Use(async (context, next) =>
+{
+  using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+  {
+    var langueeduWebConfiguration = serviceProvider.GetRequiredService<IOptions<LangueeduWebConfiguration>>();
+
+    context.Response.Cookies.Append("LangueeduWebConfiguration", JsonSerializer.Serialize(langueeduWebConfiguration.Value));
+  }
+
+  await next(context);
+});
 
 app.Run();

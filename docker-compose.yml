@@ -11,4 +11,4 @@ services:
     image: ${DOCKER_REGISTRY-}web
     build:
       context: .
-      dockerfile: src/Web/Langueedu.Web/Server/Dockerfile
+      dockerfile: src/Web/Langueedu.Web/Server/Dockerfile.dev

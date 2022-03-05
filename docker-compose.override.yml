@@ -12,9 +12,7 @@ services:
       - "5201:443"
     volumes:
       - ./certificate/https/:/https/
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
-
+    command: ["dotnet", "watch", "run"]
   web:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -28,5 +26,4 @@ services:
       - "5203:443"
     volumes:
       - ./certificate/https/:/https/
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    command: ["dotnet", "watch", "run"]
