@@ -62,7 +62,7 @@ public static class StartupSetup
    {
      options.IssuerUri = identityUrl;
    })
-       //  .AddDeveloperSigningCredential()// not recommended for production - you need to store your key material somewhere secure
+       .AddDeveloperSigningCredential()// not recommended for production - you need to store your key material somewhere secure
        .AddInMemoryApiScopes(Config.GetApiScopes)
        .AddInMemoryApiResources(Config.Apis)
        .AddInMemoryClients(Config.Clients(identityUrl, identitySecret))

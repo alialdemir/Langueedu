@@ -1,14 +1,16 @@
 version: "3.4"
 
 services:
-  langueeduapi:
-    image: ${DOCKER_REGISTRY-}langueeduapi
-    build:
-      context: .
-      dockerfile: src/Services/Langueedu.API/Dockerfile
+  # langueeduapi:
+  #   image: ${DOCKER_REGISTRY-}langueeduapi
+  #   build:
+  #     context: .
+  #     dockerfile: src/Services/Langueedu.API/Dockerfile
 
   web:
     image: ${DOCKER_REGISTRY-}web
     build:
       context: .
       dockerfile: src/Web/Langueedu.Web/Server/Dockerfile.dev
+    # depends_on:
+    #   - langueeduapi

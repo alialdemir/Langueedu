@@ -5,7 +5,7 @@
     /// <summary>
     /// Defines the DefaultEndpoint
     /// </summary>
-    public static string DefaultEndpoint = "http://localhost:57679";
+    public static string DefaultEndpoint = "https://localhost:5201";
 
     /// <summary>
     /// Defines the _baseGatewayShoppingEndpoint
