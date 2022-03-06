@@ -7,7 +7,12 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 COPY . .
 
-COPY ["src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj", "./Server/"]
+COPY ["src/Web/Langueedu.Web/Client/Langueedu.Web.Client.csproj", "Web/Langueedu.Web/Client/"]
+COPY ["src/Web/Langueedu.Web/Langueedu.Web.Components/Langueedu.Web.Components.csproj", "Web/Langueedu.Web/Langueedu.Web.Components/"]
+COPY ["src/Web/Langueedu.Web/Langueedu.Web.Pages/Langueedu.Web.Pages.csproj", "Web/Langueedu.Web/Langueedu.Web.Pages/"]
+COPY ["src/Web/Langueedu.Web/Shared/Langueedu.Web.Shared.csproj", "Web/Langueedu.Web/Shared/"]
+COPY ["src/Shared/Langueedu.Sdk/Langueedu.Sdk.csproj", "Shared/Langueedu.Sdk/"]
+COPY ["src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj", "Web/Langueedu.Web/Server/"]
 RUN dotnet restore "./Server/Langueedu.Web.Server.csproj"
 COPY . .
 
