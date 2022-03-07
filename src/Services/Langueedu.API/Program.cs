@@ -4,6 +4,7 @@ using Autofac.Extensions.DependencyInjection;
 using Langueedu.API;
 using Langueedu.API.Extensions;
 using Langueedu.Core;
+using Langueedu.Core.Interfaces;
 using Langueedu.Infrastructure;
 using Langueedu.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,6 @@ builder.Services.AddApiVersioning(config =>
 });
 
 builder.Services.AddRazorPages();
-
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -157,7 +157,7 @@ using (var scope = app.Services.CreateScope())
   }
   catch (Exception ex)
   {
-    var logger = services.GetRequiredService<ILogger<Program>>();
+    var logger = services.GetRequiredService<IAppLogger<Program>>();
     logger.LogError(ex, "An error occurred seeding the DB.");
   }
 }

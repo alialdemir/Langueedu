@@ -16,12 +16,12 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, R
   private readonly IMediator _mediator;
   private readonly ICourseService _courseService;
   private readonly ILyricsService _lyricsService;
-  private readonly ILogger<CreateCourseCommandHandler> _logger;
+  private readonly IAppLogger<CreateCourseCommandHandler> _logger;
 
   public CreateCourseCommandHandler(IMediator mediator,
                                     ICourseService courseService,
                                     ILyricsService lyricsService,
-                                    ILogger<CreateCourseCommandHandler> logger)
+                                    IAppLogger<CreateCourseCommandHandler> logger)
   {
     _mediator = mediator;
     _courseService = courseService;

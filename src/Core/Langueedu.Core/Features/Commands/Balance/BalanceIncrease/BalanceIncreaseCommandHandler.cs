@@ -1,20 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
+using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 
 public class BalanceIncreaseCommandHandler : INotificationHandler<BalanceIncreaseCommand>
 {
   private readonly IRepository<Entities.BalanceAggregate.Balance> _balanceRepository;
-  private readonly ILogger<BalanceIncreaseCommandHandler> _logger;
+  private readonly IAppLogger<BalanceIncreaseCommandHandler> _logger;
   private readonly IMediator _mediator;
 
   public BalanceIncreaseCommandHandler(IRepository<Entities.BalanceAggregate.Balance> balanceRepository,
-                                       ILogger<BalanceIncreaseCommandHandler> logger,
+                                       IAppLogger<BalanceIncreaseCommandHandler> logger,
                                        IMediator mediator)
   {
     _balanceRepository = balanceRepository;

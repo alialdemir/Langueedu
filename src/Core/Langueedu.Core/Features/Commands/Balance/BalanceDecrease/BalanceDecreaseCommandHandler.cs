@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
+using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
@@ -10,11 +11,11 @@ namespace Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 public class BalanceDecreaseCommandHandler : INotificationHandler<BalanceDecreaseCommand>
 {
   private readonly IRepository<Entities.BalanceAggregate.Balance> _balanceRepository;
-  private readonly ILogger<BalanceDecreaseCommandHandler> _logger;
+  private readonly IAppLogger<BalanceDecreaseCommandHandler> _logger;
   private readonly IMediator _mediator;
 
   public BalanceDecreaseCommandHandler(IRepository<Entities.BalanceAggregate.Balance> balanceRepository,
-                                       ILogger<BalanceDecreaseCommandHandler> logger,
+                                       IAppLogger<BalanceDecreaseCommandHandler> logger,
                                        IMediator mediator)
   {
     _balanceRepository = balanceRepository;

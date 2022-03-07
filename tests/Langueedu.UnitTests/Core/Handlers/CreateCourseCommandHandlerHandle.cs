@@ -19,7 +19,7 @@ public class CreateCourseCommandHandlerHandle
   private readonly Mock<ICourseService> _courseService = new();
   private readonly Mock<ILyricsService> _lyricsService = new();
   private readonly Mock<IMediator> _mediator = new();
-  private readonly Mock<ILogger<CreateCourseCommandHandler>> _logger = new();
+  private readonly Mock<IAppLogger<CreateCourseCommandHandler>> _logger = new();
   private readonly GetBalanceByUserIdQuery _getBalanceByUserIdQuery = new(Constants.UserId);
   private readonly Balance _balance = new BalanceGold(Constants.UserId);
   private readonly Result<Course> _course;
