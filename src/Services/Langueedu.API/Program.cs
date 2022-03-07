@@ -6,6 +6,7 @@ using Langueedu.API.Extensions;
 using Langueedu.Core;
 using Langueedu.Infrastructure;
 using Langueedu.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 
@@ -29,9 +30,23 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
   options.SerializerSettings.Converters.Add(new StringEnumConverter());
 });
 
-builder.Services.AddApiVersioning();
+builder.Services.AddVersionedApiExplorer(options =>
+   {
+     options.GroupNameFormat = "'v'VVV";
+     options.SubstituteApiVersionInUrl = true;
+     options.AssumeDefaultVersionWhenUnspecified = true;
+     options.DefaultApiVersion = new ApiVersion(1, 0);
+   });
+
+builder.Services.AddApiVersioning(config =>
+{
+  config.DefaultApiVersion = new ApiVersion(1, 0);
+  config.ReportApiVersions = true;
+  config.AssumeDefaultVersionWhenUnspecified = true;
+});
 
 builder.Services.AddRazorPages();
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -85,8 +100,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 });
 
 
-builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+// builder.Logging.ClearProviders();
+// builder.Logging.AddConsole();
 
 var app = builder.Build();
 
@@ -106,7 +121,7 @@ app.AddCors();
 
 
 app.UseDefaultFiles();
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCookiePolicy();
 app.ConfigureInfrastructure();
