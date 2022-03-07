@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Blazored.Modal;
-using CurrieTechnologies.Razor.SweetAlert2;
+// using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Sdk.Interfaces;
 using Langueedu.Web.Components.Interfaces;
 using Langueedu.Web.Components.Internal.Bindings;
@@ -37,10 +37,10 @@ public static class ServiceRegistry
 
     services.AddBlazoredLocalStorage();
 
-    services.AddSweetAlert2(options =>
-    {
-      options.Theme = SweetAlertTheme.Dark;
-    });
+    // services.AddSweetAlert2(options =>
+    // {
+    //   options.Theme = SweetAlertTheme.Dark;
+    // });
 
     return services;
   }

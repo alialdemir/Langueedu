@@ -1,0 +1,33 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  langueeduapi:
+    image: langueeduapi
+    build:
+      context: .
+      dockerfile: src/Services/Langueedu.API/Dockerfile
+    ports:
+      - 5200:80
+    environment:
+      - Audience=langueedu_api
+      - IdentitySecret=Development Secret Key
+      - IdentityUrl=http://host.docker.internal:5200
+      - ClientDomain=http://host.docker.internal:5205
+      - SpotifyClientId=-
+      - SpotifySecretId=-
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+
+  blazor:
+    image: blazor
+    build:
+      context: .
+      dockerfile: src/Web/Langueedu.Web/Server/Dockerfile
+    ports:
+      - 5205:80
+    environment:
+      - LangueeduApiUrl=http://localhost:5200
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw

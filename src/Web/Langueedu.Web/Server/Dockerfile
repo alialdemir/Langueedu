@@ -1,25 +1,26 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /app
+#install debugger for NET Core
+RUN apt-get update
+RUN apt-get install -y unzip
+RUN curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l ~/vsdbg
+
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /src
+COPY ["src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj", "src/Web/Langueedu.Web/Server/"]
+RUN dotnet restore "src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj"
 COPY . .
-
-COPY ["src/Web/Langueedu.Web/Client/Langueedu.Web.Client.csproj", "Web/Langueedu.Web/Client/"]
-COPY ["src/Web/Langueedu.Web/Langueedu.Web.Components/Langueedu.Web.Components.csproj", "Web/Langueedu.Web/Langueedu.Web.Components/"]
-COPY ["src/Web/Langueedu.Web/Langueedu.Web.Pages/Langueedu.Web.Pages.csproj", "Web/Langueedu.Web/Langueedu.Web.Pages/"]
-COPY ["src/Web/Langueedu.Web/Shared/Langueedu.Web.Shared.csproj", "Web/Langueedu.Web/Shared/"]
-COPY ["src/Shared/Langueedu.Sdk/Langueedu.Sdk.csproj", "Shared/Langueedu.Sdk/"]
-COPY ["src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj", "Web/Langueedu.Web/Server/"]
-RUN dotnet restore "./Server/Langueedu.Web.Server.csproj"
-COPY . .
-
-RUN dotnet build "./src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj" -c Release -o /app/build
+WORKDIR "/src/src/Web/Langueedu.Web/Server"
+RUN dotnet build "Langueedu.Web.Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "./src/Web/Langueedu.Web/Server/Langueedu.Web.Server.csproj" -c Release -o /app/publish
+RUN dotnet publish "Langueedu.Web.Server.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

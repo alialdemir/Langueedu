@@ -5,7 +5,7 @@
     /// <summary>
     /// Defines the DefaultEndpoint
     /// </summary>
-    public static string DefaultEndpoint = "https://localhost:5201";
+    public static string DefaultEndpoint = "http://localhost:5200";
 
     /// <summary>
     /// Defines the _baseGatewayShoppingEndpoint
@@ -54,6 +54,7 @@
       get { return _baseIdentityEndpoint; }
       set
       {
+        DefaultEndpoint = value;
         _baseIdentityEndpoint = value;
         UpdateEndpoint(_baseIdentityEndpoint);
       }

@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using CurrieTechnologies.Razor.SweetAlert2;
+// using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Web.Components.Provider;
 using Langueedu.Web.Server.Models;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -25,10 +25,10 @@ services
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 
-services.AddSweetAlert2(options =>
-{
-  options.Theme = SweetAlertTheme.Dark;
-});
+// services.AddSweetAlert2(options =>
+// {
+//   options.Theme = SweetAlertTheme.Dark;
+// });
 
 var app = builder.Build();
 
@@ -44,7 +44,7 @@ else
   app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Blazored.Modal;
 using Blazored.Modal.Services;
-using CurrieTechnologies.Razor.SweetAlert2;
+//using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Web.Components.Exceptions;
 using Langueedu.Web.Shared.Utilities;
 using Microsoft.AspNetCore.Components;
@@ -18,7 +18,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
   #region Private fields
 
   private readonly IServiceProvider _serviceProvider;
-  private SweetAlertService _swal;
+  //private SweetAlertService _swal;
   private NavigationManager _navigationManager;
   private IModalService _modal;
   private ICommand _hideModalCommand;
@@ -52,16 +52,16 @@ public abstract class ViewModelBase : INotifyPropertyChanged
 
   public BlazoredModalInstance ModalInstance { get; set; }
 
-  private SweetAlertService Swal
-  {
-    get
-    {
-      if (_serviceProvider == null)
-        throw new ArgumentNullException(nameof(_serviceProvider));
+  //private SweetAlertService Swal
+  //{
+  //  get
+  //  {
+  //    if (_serviceProvider == null)
+  //      throw new ArgumentNullException(nameof(_serviceProvider));
 
-      return _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
-    }
-  }
+  //    return _swal ??= _serviceProvider.GetRequiredService<SweetAlertService>();
+  //  }
+  //}
 
   private NavigationManager Navigation
   {
@@ -180,7 +180,7 @@ public abstract class ViewModelBase : INotifyPropertyChanged
 
     foreach (var errorMessage in errorMessages)
     {
-      await Swal.FireAsync(errorMessage, icon: SweetAlertIcon.Error);
+      //await Swal.FireAsync(errorMessage, icon: SweetAlertIcon.Error);
     }
   }
 

@@ -2,6 +2,7 @@
 using Langueedu.Core.Interfaces;
 using Langueedu.Infrastructure.Configuration;
 using Langueedu.Infrastructure.Data;
+using Langueedu.Infrastructure.Logging;
 using Langueedu.Infrastructure.Mapping;
 using Langueedu.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 
 namespace Langueedu.Infrastructure;
 
@@ -17,6 +19,13 @@ public static class StartupSetup
 {
   public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
   {
+    // services.AddLogging(logging =>
+    //    {
+    //      logging.AddDebug();
+    //      logging.AddConsole();
+    //    });
+    services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
     services.AddScoped<IAccountService, AccountService>();
 
     services.AddAutoMapper(typeof(UserProfile));
@@ -47,8 +56,9 @@ public static class StartupSetup
 
   internal static void AddIdentity(this IServiceCollection services, IConfiguration configuration)
   {
-
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+    IdentityModelEventSource.ShowPII = true; //To show detail of error and see the problem
 
     services.AddIdentity<User, IdentityRole>()
         .AddEntityFrameworkStores<AppDbContext>()
@@ -79,7 +89,7 @@ public static class StartupSetup
         {
           options.Authority = identityUrl;
           options.Audience = audience;
-          options.RequireHttpsMetadata = false;
+          options.RequireHttpsMetadata = false;//identityUrl.StartsWith("https://");
           options.TokenValidationParameters.ValidateAudience = false;
         });
 
@@ -87,7 +97,7 @@ public static class StartupSetup
     {
       // Password settings
       options.Password.RequireDigit = false;
-      options.Password.RequiredLength = 6;
+      options.Password.RequiredLength = 8;
       options.Password.RequireNonAlphanumeric = false;
       options.Password.RequireUppercase = false;
       options.Password.RequireLowercase = false;

@@ -1,5 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using CurrieTechnologies.Razor.SweetAlert2;
+// using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Sdk.Identity.Response;
 using Langueedu.Web.Client.Models;
 using Langueedu.Web.Components.Provider;
@@ -18,22 +18,28 @@ using (ServiceProvider serviceProvider = services.BuildServiceProvider())
   var localStorageService = serviceProvider.GetRequiredService<ILocalStorageService>();
   var _JSRuntime = serviceProvider.GetRequiredService<IJSRuntime>();
 
+  System.Console.WriteLine($"localStorageService is null {localStorageService is null}");
+
   string langueeduwebConfiguration = await _JSRuntime.InvokeAsync<string>("methods.getCookie", "LangueeduWebConfiguration");
-  var webConfiguration = JsonConvert.DeserializeObject<LangueeduWebConfiguration>(langueeduwebConfiguration);
+  LangueeduWebConfiguration? webConfiguration = new LangueeduWebConfiguration();
+  if (!string.IsNullOrEmpty(langueeduwebConfiguration))
+    webConfiguration = JsonConvert.DeserializeObject<LangueeduWebConfiguration>(langueeduwebConfiguration);
 
-  TokenModel? token = await localStorageService.GetItemAsync<TokenModel>("token");
 
-  services.AddSweetAlert2(options =>
-  {
-    options.Theme = SweetAlertTheme.Dark;
-  });
+  TokenModel token = new();
+  bool isTokenExits = await localStorageService.ContainKeyAsync("token");
+  if (isTokenExits)
+    token = await localStorageService.GetItemAsync<TokenModel>("token");
+
+  System.Console.WriteLine($"token {token?.AccessToken}");
+  // System.Console.WriteLine($"token.AccessToken: {token?.AccessToken}");
+
+  // services.AddSweetAlert2(options =>
+  // {
+  //   options.Theme = SweetAlertTheme.Dark;
+  // });
 
   services.AddLangueeduSdk(webConfiguration?.LangueeduApiUrl, token?.AccessToken);
-
-  builder.Services.AddScoped(sp => new HttpClient
-  {
-    BaseAddress = new Uri(webConfiguration?.LangueeduApiUrl)
-  });
 }
 
 builder.Services.AddAuthorizationCore();
