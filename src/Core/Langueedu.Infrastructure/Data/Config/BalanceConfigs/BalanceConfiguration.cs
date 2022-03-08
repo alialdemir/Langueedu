@@ -9,7 +9,7 @@ public class BalanceConfiguration : IEntityTypeConfiguration<Balance>
 
   public void Configure(EntityTypeBuilder<Balance> builder)
   {
-    builder.HasKey(x => x.UserId);
+    builder.HasKey(x => x.UserId).HasName("Id");
 
     builder.Property(p => p.UserId)
         .IsRequired();

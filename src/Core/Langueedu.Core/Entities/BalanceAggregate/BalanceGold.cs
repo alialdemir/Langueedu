@@ -1,22 +1,22 @@
 ﻿namespace Langueedu.Core.Entities.BalanceAggregate;
 
-public class BalanceGold : Balance
+public class BalanceGold : Balance,IBalance
 {
   public BalanceGold(string userId) : base(userId)
   {
   }
 
-  public override Balance Increase(Balance balance, decimal amount)
+  public override Balance Increase(decimal amount)
   {
-    balance.Gold += amount;
+    Gold += amount;
 
-    return balance;
+    return this;
   }
 
-  public override Balance Decrease(Balance balance, decimal amount)
+  public override Balance Decrease(decimal amount)
   {
-    balance.Gold -= amount;
+    Gold -= amount;
 
-    return balance;
+    return this;
   }
 }

@@ -1,13 +1,11 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
-using Langueedu.Core.Factories;
 using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.ViewModels.Course;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Langueedu.Core.Features.Commands.Course.CreateCourse;
 
@@ -46,6 +44,10 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, R
     if (userBalance.Value.Gold < request.CourseFee)
       return Result<CourseDetailViewModel>.Error("You do not have enough balance to participate in the course!");
 
+    // User balance has been reduced
+    await _mediator.Publish(new BalanceDecreaseCommand(request.UserId,
+                                                       request.BalanceType,
+                                                       request.CourseFee));
     // Create new couse
     var course = await _courseService.CreateCourse(request);
     if (!course.IsSuccess)
@@ -56,13 +58,7 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, R
     if (!lyrics.IsSuccess)
       return Result<CourseDetailViewModel>.Error(lyrics.Errors.ToArray());
 
-    // Create balance instance based on balance type
-    var balance = BalanceFactory.Create(request.BalanceType, request.UserId);
-    if (balance == null)
-      return Result<CourseDetailViewModel>.Error("Balance type is not found!");
 
-    // User balance has been reduced
-    await _mediator.Publish(new BalanceDecreaseCommand(balance, request.CourseFee));
 
     _logger.LogInformation($"Course number {course.Value.Id} has been created.", course);
 

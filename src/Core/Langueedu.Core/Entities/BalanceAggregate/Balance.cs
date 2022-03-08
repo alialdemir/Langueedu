@@ -12,12 +12,12 @@ public class Balance : BaseEntityNoId, IAggregateRoot, IBalance
 
   public string UserId { get; }
 
-  public virtual Balance Increase(Balance balance, decimal amount)
+  public virtual Balance Increase(decimal amount)
   {
     return this;
   }
 
-  public virtual Balance Decrease(Balance balance, decimal amount)
+  public virtual Balance Decrease(decimal amount)
   {
     return this;
   }

@@ -8,6 +8,6 @@ public interface IBalance : IAggregateRoot
 
   decimal Silver { get; }
   string UserId { get; }
-  Balance Increase(Balance balance, decimal amount);
-  Balance Decrease(Balance balance, decimal amount);
+  Balance Increase(decimal amount);
+  Balance Decrease(decimal amount);
 }

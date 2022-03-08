@@ -7,9 +7,13 @@ public class BalanceIncreaseCommandValidator : AbstractValidator<BalanceIncrease
 {
   public BalanceIncreaseCommandValidator()
   {
-    RuleFor(x => x.Balance.UserId)
+    RuleFor(x => x.UserId)
       .NotEmpty()
       .WithMessage("User id required field!");
+
+    RuleFor(x => x.BalanceType)
+    .NotNull()
+    .WithMessage("BalanceType must be greater than zero.");
 
     RuleFor(x => x.Amount)
       .GreaterThan((short)0)

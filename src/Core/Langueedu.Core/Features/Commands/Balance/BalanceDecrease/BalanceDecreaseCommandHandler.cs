@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
+using Langueedu.Core.Factories;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 
@@ -13,14 +14,17 @@ public class BalanceDecreaseCommandHandler : INotificationHandler<BalanceDecreas
   private readonly IRepository<Entities.BalanceAggregate.Balance> _balanceRepository;
   private readonly IAppLogger<BalanceDecreaseCommandHandler> _logger;
   private readonly IMediator _mediator;
+  private readonly IMapper _mapper;
 
   public BalanceDecreaseCommandHandler(IRepository<Entities.BalanceAggregate.Balance> balanceRepository,
                                        IAppLogger<BalanceDecreaseCommandHandler> logger,
-                                       IMediator mediator)
+                                       IMediator mediator,
+                                       IMapper mapper)
   {
     _balanceRepository = balanceRepository;
     _logger = logger;
     _mediator = mediator;
+    _mapper = mapper;
   }
 
   public async Task Handle(BalanceDecreaseCommand request, CancellationToken cancellationToken)
@@ -33,9 +37,17 @@ public class BalanceDecreaseCommandHandler : INotificationHandler<BalanceDecreas
       throw new ValidationException(error?.ErrorMessage);
     }
 
-    var balance = await _mediator.Send(new GetBalanceByUserIdQuery(request.Balance.UserId));
+    var balance = (await _mediator.Send(new GetBalanceByUserIdQuery(request.UserId))).Value;
 
-    balance = request.Balance.Decrease(balance, request.Amount);
+    var balanceByType = BalanceFactory.Create(request.BalanceType, request.UserId);
+    if (balanceByType == null)
+      throw new ArgumentNullException(nameof(balanceByType));
+
+    balanceByType = _mapper.Map(balance, balanceByType);
+
+    balanceByType.Decrease(request.Amount);
+
+    balance = _mapper.Map(balanceByType, balance);
 
     await _balanceRepository.UpdateAsync(balance);
 

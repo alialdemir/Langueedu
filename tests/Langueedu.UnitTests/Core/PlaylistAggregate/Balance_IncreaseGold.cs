@@ -12,7 +12,7 @@ public class Balance_IncreaseGold
 
     decimal gold = 9999;
 
-    balance.Increase(balance, gold);
+    balance.Increase(gold);
 
     Assert.Equal(gold, balance.Gold);
   }
@@ -26,9 +26,9 @@ public class Balance_IncreaseGold
     decimal decreaseGold = 1000;
     decimal diff = increasegold - decreaseGold;
 
-    balance.Increase(balance, increasegold);
+    balance.Increase(increasegold);
 
-    balance.Decrease(balance, decreaseGold);
+    balance.Decrease(decreaseGold);
 
     Assert.Equal(diff, balance.Gold);
   }

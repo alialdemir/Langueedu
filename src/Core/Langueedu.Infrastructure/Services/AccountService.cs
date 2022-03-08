@@ -1,11 +1,8 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using AutoMapper;
-using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Enums;
-using Langueedu.Core.Factories;
 using Langueedu.Core.Features.Commands.Account.SignUp;
-using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 using Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Validations;
@@ -58,11 +55,7 @@ public class AccountService : IAccountService
 
     // Gold has been added to the user who is a member
     decimal gold = 999999;
-    var balance = BalanceFactory.Create(BalanceTypes.Gold, user.Id);
-    if (balance != null)
-    {
-      await _mediator.Publish(new BalanceIncreaseCommand(balance, gold));
-    }
+    await _mediator.Publish(new BalanceIncreaseCommand(user.Id, BalanceTypes.Gold, gold));
 
     return Result<string>.Success("User registred.");
   }

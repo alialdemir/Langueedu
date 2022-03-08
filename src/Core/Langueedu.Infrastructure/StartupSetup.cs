@@ -84,7 +84,7 @@ public static class StartupSetup
         {
           options.Authority = identityUrl;
           options.Audience = audience;
-          options.RequireHttpsMetadata = false;//identityUrl.StartsWith("https://");
+          options.RequireHttpsMetadata = false;
           options.TokenValidationParameters.ValidateAudience = false;
         });
 

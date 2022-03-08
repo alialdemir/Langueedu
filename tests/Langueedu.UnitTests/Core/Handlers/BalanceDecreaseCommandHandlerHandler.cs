@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ardalis.Result;
+using AutoMapper;
 using Langueedu.Core.Entities.BalanceAggregate;
+using Langueedu.Core.Enums;
 using Langueedu.Core.Features.Commands.Balance.BalanceDecrease;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Interfaces;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -18,12 +19,15 @@ public class BalanceDecreaseCommandHandlerHandler
   private readonly Mock<IRepository<Balance>> _balanceService = new();
   private readonly Mock<IAppLogger<BalanceDecreaseCommandHandler>> _logger = new();
   private readonly Mock<IMediator> _mediator = new();
+  private readonly Mock<IMapper> _mapper = new();
+  private readonly Balance _balance = new(Constants.UserId);
 
   [Fact]
   public async Task GivenBalanceGoldThenDecreaseGold()
   {
     BalanceGold balanceGold = new BalanceGold(Constants.UserId);
-    balanceGold.Increase(balanceGold, 1000);
+    balanceGold.Increase(1000);
+
 
     _balanceService
       .Setup(x => x.GetBySpecAsync(It.IsAny<GetBalanceByUserIdSpec>(), default).Result)
@@ -31,11 +35,18 @@ public class BalanceDecreaseCommandHandlerHandler
 
     _mediator
       .Setup(x => x.Send(It.IsAny<GetBalanceByUserIdQuery>(), default).Result)
-      .Returns(balanceGold);
+      .Returns(_balance);
 
-    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
+    _mapper
+          .Setup(x => x.Map(It.IsAny<Balance>(), It.IsAny<Balance>()))
+          .Returns(balanceGold);
 
-    var command = new BalanceDecreaseCommand(balanceGold, 100);
+    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object,
+                                                    _logger.Object,
+                                                    _mediator.Object,
+                                                    _mapper.Object);
+
+    var command = new BalanceDecreaseCommand(Constants.UserId, BalanceTypes.Gold, 100);
 
     await handler.Handle(command, CancellationToken.None);
 
@@ -49,8 +60,13 @@ public class BalanceDecreaseCommandHandlerHandler
   {
     decimal negativeAmount = -100;
 
-    BalanceDecreaseCommand command = new BalanceDecreaseCommand(new Balance(Constants.UserId), negativeAmount);
-    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
+    IMapper mapper = Mock.Of<IMapper>();
+
+    BalanceDecreaseCommand command = new BalanceDecreaseCommand(Constants.UserId, BalanceTypes.Gold, negativeAmount);
+    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object,
+                                                    _logger.Object,
+                                                    _mediator.Object,
+                                                    mapper);
 
 #nullable disable
     Exception ex = await Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
@@ -58,11 +74,11 @@ public class BalanceDecreaseCommandHandlerHandler
   }
 
   [Fact]
-  public async Task GivenBalanceGoldThenDecreaseSilver()
+
+    public async Task GivenBalanceSilverThenDecreaseSilver()
   {
     BalanceSilver balanceSilver = new BalanceSilver(Constants.UserId);
-    balanceSilver.Increase(balanceSilver, 300);
-
+    balanceSilver.Increase(300);
 
     _balanceService
       .Setup(x => x.GetBySpecAsync(It.IsAny<GetBalanceByUserIdSpec>(), default).Result)
@@ -72,9 +88,16 @@ public class BalanceDecreaseCommandHandlerHandler
       .Setup(x => x.Send(It.IsAny<GetBalanceByUserIdQuery>(), default).Result)
       .Returns(balanceSilver);
 
-    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object, _logger.Object, _mediator.Object);
+    _mapper
+          .Setup(x => x.Map(It.IsAny<Balance>(), It.IsAny<Balance>()))
+          .Returns(balanceSilver);
 
-    var command = new BalanceDecreaseCommand(balanceSilver, 100);
+    var handler = new BalanceDecreaseCommandHandler(_balanceService.Object,
+                                                    _logger.Object,
+                                                    _mediator.Object,
+                                                    _mapper.Object);
+
+    var command = new BalanceDecreaseCommand(Constants.UserId, BalanceTypes.Silver, 100);
 
     await handler.Handle(command, CancellationToken.None);
 

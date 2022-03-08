@@ -7,7 +7,6 @@ using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
 using Langueedu.Core.Interfaces;
 using Langueedu.SharedKernel.ViewModels.Course;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -27,7 +26,7 @@ public class CreateCourseCommandHandlerHandle
 
   public CreateCourseCommandHandlerHandle()
   {
-    _balance.Increase(_balance, 1000);
+    _balance.Increase(1000);
     _course = new(new Course(BalanceTypes.Gold,
                              CourseLevel.Advanced,
                              CourseModes.GapFilling,

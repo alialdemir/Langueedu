@@ -14,9 +14,9 @@ public class GetBalanceByUserIdSpecConstructor
     var item2 = new Balance("User 2");
     var item3 = new Balance("User 3");
 
-    item1.Increase(item1, 10);
-    item2.Increase(item2, 10);
-    item3.Increase(item3, 10);
+    item1.Increase(10);
+    item2.Increase(10);
+    item3.Increase(10);
 
     var items = new List<Balance>() { item2, item1, item3 };
 

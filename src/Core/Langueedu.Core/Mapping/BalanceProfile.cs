@@ -10,6 +10,12 @@ public class BalanceProfile : Profile
   {
     CreateMap<BalanceViewModel, Balance>()
       .ReverseMap();
+
+    CreateMap<BalanceGold, Balance>()
+      .ReverseMap();
+      
+    CreateMap<BalanceSilver, Balance>()
+      .ReverseMap();
   }
 }
 

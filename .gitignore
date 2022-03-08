@@ -47,3 +47,4 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 src/Services/Langueedu.API/tempkey.jwk
+src/Services/Langueedu.API/tempkey.jwk
