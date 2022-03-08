@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Langueedu.API;
 using Langueedu.API.Extensions;
+using Langueedu.API.Middlewares;
 using Langueedu.Core;
 using Langueedu.Core.Interfaces;
 using Langueedu.Infrastructure;
@@ -119,6 +120,7 @@ app.UseRouting();
 
 app.AddCors();
 
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseDefaultFiles();
 // app.UseHttpsRedirection();

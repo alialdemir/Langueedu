@@ -41,7 +41,7 @@ public class BalanceDecreaseCommandHandler : INotificationHandler<BalanceDecreas
 
     var balanceByType = BalanceFactory.Create(request.BalanceType, request.UserId);
     if (balanceByType == null)
-      throw new ArgumentNullException(nameof(balanceByType));
+      throw new ValidationException("The balance type is invalid!");
 
     balanceByType = _mapper.Map(balance, balanceByType);
 

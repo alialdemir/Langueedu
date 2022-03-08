@@ -18,8 +18,6 @@ using (ServiceProvider serviceProvider = services.BuildServiceProvider())
   var localStorageService = serviceProvider.GetRequiredService<ILocalStorageService>();
   var _JSRuntime = serviceProvider.GetRequiredService<IJSRuntime>();
 
-  System.Console.WriteLine($"localStorageService is null {localStorageService is null}");
-
   string langueeduwebConfiguration = await _JSRuntime.InvokeAsync<string>("methods.getCookie", "LangueeduWebConfiguration");
   LangueeduWebConfiguration webConfiguration = new LangueeduWebConfiguration();
   if (!string.IsNullOrEmpty(langueeduwebConfiguration))
@@ -30,9 +28,6 @@ using (ServiceProvider serviceProvider = services.BuildServiceProvider())
   bool isTokenExits = await localStorageService.ContainKeyAsync("token");
   if (isTokenExits)
     token = await localStorageService.GetItemAsync<TokenModel>("token");
-
-  System.Console.WriteLine($"token {token?.AccessToken}");
-  // System.Console.WriteLine($"token.AccessToken: {token?.AccessToken}");
 
   // services.AddSweetAlert2(options =>
   // {

@@ -171,12 +171,14 @@ public class CourseViewModel : ViewModelBase
 
       CourseIndicator.Time = 10;
 
-      Services.Timer.Start(TimeSpan.FromMilliseconds(1), WaitinAnswerTimer);
+      Services.Timer.Start(TimeSpan.FromSeconds(1), WaitinAnswerTimer);
 
       return IsTimeActive;
     }
 
     SetNextLyrics(NextLyrics.Id);
+
+    System.Console.WriteLine("test");
 
     await _youtubePlayer.ScrollIntoView($"id{NextLyrics.Id}");
 
@@ -186,6 +188,7 @@ public class CourseViewModel : ViewModelBase
   private async Task<bool> WaitinAnswerTimer()
   {
     CourseIndicator.Time--;
+    System.Console.WriteLine($"time: {CourseIndicator.Time}");
 
     if (CourseIndicator.Time <= 0)
     {

@@ -14,11 +14,11 @@ public static partial class Startup
                    {
                      if (configuration != null)
                      {
-                       string clientDomain = configuration.GetValue<string>("ClientDomain");
-                       if (!string.IsNullOrEmpty(clientDomain))
+                       string[] clientDomains = configuration.GetValue<string>("ClientDomain").Split("|");
+                       if (clientDomains.Any())
                          builder = builder
-                         .WithOrigins(clientDomain.Replace("host.docker.internal", "localhost")
-                         .TrimEnd('/'));
+                          .WithOrigins(clientDomains.Select(x=>x.Replace("host.docker.internal", "localhost")
+                         .TrimEnd('/')).ToArray());
                      }
                      builder.AllowAnyMethod();
                      builder.AllowAnyHeader();

@@ -12,7 +12,6 @@ public static class ServiceRegistry
   public static IServiceCollection AddLangueeduSdk(this IServiceCollection services, string langueeduApiUrl, string accessToken)
   {
     services.AddHttpClient();
-    System.Console.WriteLine($"sdk client {accessToken}");
 
     Configs.BaseIdentityEndpoint = langueeduApiUrl;
 
