@@ -3,10 +3,10 @@ using Ardalis.Result;
 using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 using Langueedu.Core.Features.Queries.BalanceQuesries.GetBalanceByUserId;
+using Langueedu.Core.Interfaces;
 using Langueedu.Core.Specifications.Balance;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -15,7 +15,7 @@ namespace Langueedu.UnitTests.Core.Handlers;
 public class BalanceIncreaseCommandHandlerHandle
 {
   private readonly Mock<IRepository<Balance>> _balanceService = new();
-  private readonly Mock<ILogger<BalanceIncreaseCommandHandler>> _logger = new();
+  private readonly Mock<IAppLogger<BalanceIncreaseCommandHandler>> _logger = new();
   private readonly Mock<IMediator> _mediator = new();
 
   [Fact]

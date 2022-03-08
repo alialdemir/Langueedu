@@ -142,7 +142,6 @@ app.UseEndpoints(endpoints =>
   endpoints.MapRazorPages();
 });
 
-
 // Seed Database
 using (var scope = app.Services.CreateScope())
 {

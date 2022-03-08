@@ -19,11 +19,6 @@ public static class StartupSetup
 {
   public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
   {
-    // services.AddLogging(logging =>
-    //    {
-    //      logging.AddDebug();
-    //      logging.AddConsole();
-    //    });
     services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
     services.AddScoped<IAccountService, AccountService>();
