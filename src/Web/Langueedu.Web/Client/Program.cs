@@ -21,7 +21,7 @@ using (ServiceProvider serviceProvider = services.BuildServiceProvider())
   System.Console.WriteLine($"localStorageService is null {localStorageService is null}");
 
   string langueeduwebConfiguration = await _JSRuntime.InvokeAsync<string>("methods.getCookie", "LangueeduWebConfiguration");
-  LangueeduWebConfiguration? webConfiguration = new LangueeduWebConfiguration();
+  LangueeduWebConfiguration webConfiguration = new LangueeduWebConfiguration();
   if (!string.IsNullOrEmpty(langueeduwebConfiguration))
     webConfiguration = JsonConvert.DeserializeObject<LangueeduWebConfiguration>(langueeduwebConfiguration);
 

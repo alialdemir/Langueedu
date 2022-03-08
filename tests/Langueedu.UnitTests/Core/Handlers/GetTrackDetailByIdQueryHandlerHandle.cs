@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Langueedu.Core.Features.Queries.Track.GetTrackDetailById;
+﻿using Langueedu.Core.Features.Queries.Track.GetTrackDetailById;
 using Langueedu.Core.Interfaces;
 using Moq;
 using Xunit;

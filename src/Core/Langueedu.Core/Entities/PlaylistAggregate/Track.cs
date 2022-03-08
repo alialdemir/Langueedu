@@ -79,9 +79,9 @@ public class Track : BaseEntity<short>, IAggregateRoot
 
   public IReadOnlyCollection<Course> Courses => _courses.AsReadOnly();
 
-  public string? SpotifyId { get; private set; }
+  public string SpotifyId { get; private set; }
 
-  public Track SetSpotifyId(string? spotifyId)
+  public Track SetSpotifyId(string spotifyId)
   {
     SpotifyId = spotifyId;
 

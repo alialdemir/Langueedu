@@ -7,7 +7,7 @@ namespace Langueedu.Core.Entities.LanguageAggregate;
 public class Language : BaseEntityNoId, IAggregateRoot
 {
   public Language(string lang,
-                  string? langCc = null)
+                  string langCc = null)
   {
     Lang = lang.ToUpper();
 
@@ -16,9 +16,9 @@ public class Language : BaseEntityNoId, IAggregateRoot
 
   public string Lang { get; private set; }
 
-  public string? LangCc { get; private set; }
+  public string LangCc { get; private set; }
 
-  public Language SetLangCc(string? langCc)
+  public Language SetLangCc(string langCc)
   {
     if (!string.IsNullOrEmpty(langCc))
       LangCc = langCc.ToUpper();

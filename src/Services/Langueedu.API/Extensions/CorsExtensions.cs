@@ -5,7 +5,7 @@ public static partial class Startup
 {
   public static string CORS_POLICY => "CORS_POLICY";
 
-  public static IServiceCollection AddCorsConfigure(this IServiceCollection services, IConfiguration? configuration = null)
+  public static IServiceCollection AddCorsConfigure(this IServiceCollection services, IConfiguration configuration = null)
   {
     services.AddCors(options =>
     {

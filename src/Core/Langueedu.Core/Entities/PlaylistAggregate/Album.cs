@@ -25,7 +25,7 @@ public class Album : BaseEntity, IAggregateRoot
   private readonly List<Image> _images = new();
   public IReadOnlyCollection<Image> Images => _images.AsReadOnly();
 
-  public string? SpotifyId { get; private set; }
+  public string SpotifyId { get; private set; }
 
   private readonly List<AlbumGenre> _albumGenres = new();
 
@@ -46,7 +46,7 @@ public class Album : BaseEntity, IAggregateRoot
   }
 
 
-  public Album SetSpotifyId(string? spotifyId)
+  public Album SetSpotifyId(string spotifyId)
   {
     SpotifyId = spotifyId;
 

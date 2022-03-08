@@ -7,7 +7,7 @@ namespace Langueedu.UnitTests.Core.PlaylistAggregate;
 public class PlaylistConstructor
 {
   private string _testName = "test name";
-  private PlayList? _testPlaylist;
+  private PlayList _testPlaylist;
 
   private PlayList CreatePlaylist()
   {

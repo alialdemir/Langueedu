@@ -3,7 +3,6 @@ using Langueedu.Core.Entities.BalanceAggregate;
 using Langueedu.Core.Entities.CourseAggregate;
 using Langueedu.Core.Entities.LanguageAggregate;
 using Langueedu.Core.Entities.PlaylistAggregate;
-using Langueedu.Core.Enums;
 using Langueedu.SharedKernel;
 using MediatR;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -13,9 +12,9 @@ namespace Langueedu.Infrastructure.Data;
 
 public class AppDbContext : IdentityDbContext<User>
 {
-  private readonly IMediator? _mediator;
+  private readonly IMediator _mediator;
 
-  public AppDbContext(DbContextOptions<AppDbContext> options, IMediator? mediator)
+  public AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator)
       : base(options)
   {
     _mediator = mediator;

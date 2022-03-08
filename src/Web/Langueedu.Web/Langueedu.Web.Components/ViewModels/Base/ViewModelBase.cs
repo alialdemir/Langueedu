@@ -173,15 +173,16 @@ public abstract class ViewModelBase : INotifyPropertyChanged
 
   #region Dialogs
 
-  protected async Task ShowErrorAsync(params string[] errorMessages)
+  protected Task ShowErrorAsync(params string[] errorMessages)
   {
     if (errorMessages == null || !errorMessages.Any())
-      return;
-
+      return Task.CompletedTask;
     foreach (var errorMessage in errorMessages)
     {
       //await Swal.FireAsync(errorMessage, icon: SweetAlertIcon.Error);
     }
+
+    return Task.CompletedTask;
   }
 
   protected Task ShowErrorAsync(IEnumerable<string> errorMessages)

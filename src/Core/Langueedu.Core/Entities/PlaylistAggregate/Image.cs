@@ -18,7 +18,7 @@ public class Image : BaseEntity, IAggregateRoot
 
   public int Height { get; set; }
 
-  public Artist? Artist { get; set; }
+  public Artist Artist { get; set; }
 
   public Album Album { get; set; }
 }

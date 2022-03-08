@@ -1,15 +1,11 @@
-﻿using Langueedu.API;
-using Langueedu.Infrastructure.Data;
-using Langueedu.UnitTests;
+﻿using Langueedu.UnitTests;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Langueedu.FunctionalTests;
 

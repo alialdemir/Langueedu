@@ -25,7 +25,7 @@ public class CreateCourseCommand : IRequest<Result<CourseDetailViewModel>>
   public decimal CourseFee { get; }
   public BalanceTypes BalanceType { get; }
   [JsonIgnore]
-  public string? UserId { get; set; }
+  public string UserId { get; set; }
   public short TrackId { get; set; }
   public CourseModes CourseMode { get; }
   public CourseLevel CourseLevel { get; }

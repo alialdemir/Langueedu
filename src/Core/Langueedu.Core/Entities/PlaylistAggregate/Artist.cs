@@ -20,7 +20,7 @@ public class Artist : BaseEntity, IAggregateRoot
 
   private readonly List<Album> _albums = new();
 
-  public string? SpotifyId { get; private set; }
+  public string SpotifyId { get; private set; }
 
   public IReadOnlyCollection<Album> Albums => _albums.AsReadOnly();
 
@@ -98,7 +98,7 @@ public class Artist : BaseEntity, IAggregateRoot
     return this;
   }
 
-  public Artist SetSpotifyId(string? spotifyId)
+  public Artist SetSpotifyId(string spotifyId)
   {
     SpotifyId = spotifyId;
 

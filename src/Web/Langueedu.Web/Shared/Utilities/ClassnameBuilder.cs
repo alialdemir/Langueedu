@@ -22,15 +22,15 @@ public struct ClassnameBuilder
 
   public ClassnameBuilder AddClass(string value, bool? when = true) => when == true ? this.AddClass(value) : this;
 
-  public ClassnameBuilder AddClass(string value, Func<bool>? when = null) => this.AddClass(value, when != null && when());
+  public ClassnameBuilder AddClass(string value, Func<bool> when = null) => this.AddClass(value, when != null && when());
 
   public ClassnameBuilder AddClass(Func<string> value, bool when = true) => when ? this.AddClass(value()) : this;
 
-  public ClassnameBuilder AddClass(Func<string> value, Func<bool>? when = null) => this.AddClass(value, when != null && when());
+  public ClassnameBuilder AddClass(Func<string> value, Func<bool> when = null) => this.AddClass(value, when != null && when());
 
   public ClassnameBuilder AddClass(ClassnameBuilder builder, bool when = true) => when ? this.AddClass(builder.Build()) : this;
 
-  public ClassnameBuilder AddClass(ClassnameBuilder builder, Func<bool>? when = null) => this.AddClass(builder, when != null && when());
+  public ClassnameBuilder AddClass(ClassnameBuilder builder, Func<bool> when = null) => this.AddClass(builder, when != null && when());
 
   public ClassnameBuilder AddClassFromAttributes(IReadOnlyDictionary<string, object> additionalAttributes) =>
       additionalAttributes == null ? this :

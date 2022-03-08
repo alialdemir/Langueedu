@@ -34,7 +34,7 @@ public class IdentityController : IClassFixture<CustomWebApplicationFactory<WebM
 
     var postResponse = await _client.PostAsync("/connect/token", formContent);
 
-    TokenModel? token = await postResponse.Content.ReadFromJsonAsync<TokenModel>();
+    TokenModel token = await postResponse.Content.ReadFromJsonAsync<TokenModel>();
 
     Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
     Assert.NotNull(token);

@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Langueedu.Sdk.Course.Response
 {

@@ -53,7 +53,7 @@ public class FollowerTrackService : IFollowerTrackService
                                                 string successMessage,
                                                 Action<Track> callback)
   {
-    Track? track = await _trackRepository.GetByIdAsync(followerTrack.TrackId);
+    Track track = await _trackRepository.GetByIdAsync(followerTrack.TrackId);
     if (followerTrack == null || track == null)
       return Result<bool>.Error("Followed information cannot be null.");
 

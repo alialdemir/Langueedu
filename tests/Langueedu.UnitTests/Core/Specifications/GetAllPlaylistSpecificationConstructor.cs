@@ -1,7 +1,6 @@
 ﻿using Langueedu.Core.Entities.PlaylistAggregate;
 using Langueedu.Core.Enums;
 using Langueedu.Core.Specifications;
-using Langueedu.SharedKernel.ViewModels;
 using Xunit;
 
 namespace Langueedu.UnitTests.Core.Specifications;

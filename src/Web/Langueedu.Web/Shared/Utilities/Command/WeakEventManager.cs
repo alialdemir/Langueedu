@@ -9,7 +9,7 @@ public class WeakEventManager
 {
   readonly Dictionary<string, List<Subscription>> _eventHandlers = new Dictionary<string, List<Subscription>>();
 
-  public void AddEventHandler<TEventArgs>(EventHandler<TEventArgs> handler, [CallerMemberName] string? eventName = null)
+  public void AddEventHandler<TEventArgs>(EventHandler<TEventArgs> handler, [CallerMemberName] string eventName = null)
       where TEventArgs : EventArgs
   {
     if (IsNullOrEmpty(eventName))
@@ -21,7 +21,7 @@ public class WeakEventManager
     AddEventHandler(eventName, handler.Target, handler.GetMethodInfo());
   }
 
-  public void AddEventHandler(EventHandler handler, [CallerMemberName] string? eventName = null)
+  public void AddEventHandler(EventHandler handler, [CallerMemberName] string eventName = null)
   {
     if (IsNullOrEmpty(eventName))
       throw new ArgumentNullException(nameof(eventName));
@@ -71,7 +71,7 @@ public class WeakEventManager
     }
   }
 
-  public void RemoveEventHandler<TEventArgs>(EventHandler<TEventArgs> handler, [CallerMemberName] string? eventName = null)
+  public void RemoveEventHandler<TEventArgs>(EventHandler<TEventArgs> handler, [CallerMemberName] string eventName = null)
       where TEventArgs : EventArgs
   {
     if (IsNullOrEmpty(eventName))
@@ -83,7 +83,7 @@ public class WeakEventManager
     RemoveEventHandler(eventName, handler.Target, handler.GetMethodInfo());
   }
 
-  public void RemoveEventHandler(EventHandler handler, [CallerMemberName] string? eventName = null)
+  public void RemoveEventHandler(EventHandler handler, [CallerMemberName] string eventName = null)
   {
     if (IsNullOrEmpty(eventName))
       throw new ArgumentNullException(nameof(eventName));
