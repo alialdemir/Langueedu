@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
     <NullableReferenceTypes>true</NullableReferenceTypes>
     <NullableContextOptions>enable</NullableContextOptions>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>

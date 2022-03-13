@@ -59,9 +59,9 @@ public class GameModeViewModel : ViewModelBase
       CourseLevel = gameMode.CourseLevel,
       BalanceType = BalanceTypes.Gold,
       CourseMode = CourseModes.GapFilling,
-    }); 
+    });
 
-    ShowModal<LeCourse>(string.Empty, modalParams, new ModalOptions()
+    ShowModal<Components.LeCourse>(string.Empty, modalParams, new ModalOptions()
     {
       HideCloseButton = false,
       HideHeader = true,

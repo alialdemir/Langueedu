@@ -60,9 +60,9 @@ builder.Services.AddSwaggerGen(c =>
                     Example: 'Bearer 12345abcdef'",
     Name = "Authorization",
     In = ParameterLocation.Header,
-    Type = SecuritySchemeType.ApiKey,
+    Type = SecuritySchemeType.Http,
     Scheme = "Bearer",
-    OpenIdConnectUrl = new Uri("/api/v1/token"),
+    OpenIdConnectUrl = new Uri("/connect/token"),
   });
 
   c.AddSecurityRequirement(new OpenApiSecurityRequirement()

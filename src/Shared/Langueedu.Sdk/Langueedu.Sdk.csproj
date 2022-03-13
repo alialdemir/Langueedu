@@ -3,48 +3,48 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Identity\"/>
-    <None Remove="Identity\Models\"/>
-    <None Remove="Microsoft.Extensions.DependencyInjection"/>
-    <None Remove="Base\"/>
-    <None Remove="Microsoft.Extensions.Http"/>
-    <None Remove="Ardalis.Result"/>
-    <None Remove="Microsoft.AspNetCore.Http.Extensions"/>
-    <None Remove="System.Net.Http.Json"/>
-    <None Remove="FluentValidation"/>
-    <None Remove="Identity\Validators\"/>
-    <None Remove="Identity\Response\"/>
-    <None Remove="Configurations\"/>
-    <None Remove="Utilities\"/>
-    <None Remove="Enums\"/>
-    <None Remove="Models\"/>
-    <None Remove="Playlist\"/>
-    <None Remove="Playlist\Response\"/>
-    <None Remove="Playlist\Request\"/>
-    <None Remove="Course\Response\"/>
-    <None Remove="Interfaces\"/>
+    <None Remove="Identity\" />
+    <None Remove="Identity\Models\" />
+    <None Remove="Microsoft.Extensions.DependencyInjection" />
+    <None Remove="Base\" />
+    <None Remove="Microsoft.Extensions.Http" />
+    <None Remove="Ardalis.Result" />
+    <None Remove="Microsoft.AspNetCore.Http.Extensions" />
+    <None Remove="System.Net.Http.Json" />
+    <None Remove="FluentValidation" />
+    <None Remove="Identity\Validators\" />
+    <None Remove="Identity\Response\" />
+    <None Remove="Configurations\" />
+    <None Remove="Utilities\" />
+    <None Remove="Enums\" />
+    <None Remove="Models\" />
+    <None Remove="Playlist\" />
+    <None Remove="Playlist\Response\" />
+    <None Remove="Playlist\Request\" />
+    <None Remove="Course\Response\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Identity\"/>
-    <Folder Include="Identity\Request\"/>
-    <Folder Include="Base\"/>
-    <Folder Include="Identity\Validators\"/>
-    <Folder Include="Identity\Response\"/>
-    <Folder Include="Configurations\"/>
-    <Folder Include="Utilities\"/>
-    <Folder Include="Enums\"/>
-    <Folder Include="Models\"/>
-    <Folder Include="Playlist\"/>
-    <Folder Include="Playlist\Response\"/>
-    <Folder Include="Playlist\Request\"/>
-    <Folder Include="Course\Response\"/>
-    <Folder Include="Interfaces\"/>
+    <Folder Include="Identity\" />
+    <Folder Include="Identity\Request\" />
+    <Folder Include="Base\" />
+    <Folder Include="Identity\Validators\" />
+    <Folder Include="Identity\Response\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Models\" />
+    <Folder Include="Playlist\" />
+    <Folder Include="Playlist\Response\" />
+    <Folder Include="Playlist\Request\" />
+    <Folder Include="Course\Response\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.0"/>
-    <PackageReference Include="FluentValidation" Version="10.3.6"/>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0"/>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+    <PackageReference Include="FluentValidation" Version="10.3.6" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
+
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>Langueedu.Maui.Components</RootNamespace>
+		<PackageId>Langueedu.Maui.Components</PackageId>
+		<OutputType>Library</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.2" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.1" />
+    <PackageReference Include="Blazored.Modal" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\css\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Shared\Sidebar\" />
+    <Folder Include="Models\" />
+    <Folder Include="Shared\NavMenu\" />
+    <Folder Include="Shared\Logo\" />
+    <Folder Include="Components\" />
+    <Folder Include="Components\Auth\" />
+    <Folder Include="Components\Base\" />
+    <Folder Include="Shared\UI\" />
+    <Folder Include="Shared\UI\Button\" />
+    <Folder Include="Shared\UI\Element\" />
+    <Folder Include="enums\" />
+    <Folder Include="Shared\UI\Base\" />
+    <Folder Include="Shared\UI\EditForm\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Shared\UI\TextField\" />
+    <Folder Include="Provider\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Shared\UI\Card\" />
+    <Folder Include="Components\Playlist\" />
+    <Folder Include="Components\Toast\" />
+    <Folder Include="Components\Course\CourseIndicator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Shared\" />
+    <None Remove="Shared\Sidebar\" />
+    <None Remove="MenuItem\" />
+    <None Remove="Shared\NavMenu\" />
+    <None Remove="Shared\Logo\" />
+    <None Remove="Components\" />
+    <None Remove="Components\Auth\" />
+    <None Remove="Components\Base\" />
+    <None Remove="Shared\UI\" />
+    <None Remove="Shared\UI\Button\" />
+    <None Remove="Shared\UI\Element\" />
+    <None Remove="enums\" />
+    <None Remove="Shared\UI\Base\" />
+    <None Remove="Shared\UI\EditForm\" />
+    <None Remove="Exceptions\" />
+    <None Remove="Shared\UI\Input\" />
+    <None Remove="Microsoft.AspNetCore.Components.Authorization" />
+    <None Remove="Blazored.LocalStorage" />
+    <None Remove="Provider\" />
+    <None Remove="CurrieTechnologies.Razor.SweetAlert2" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="Extensions\" />
+    <None Remove="Shared\UI\Card\" />
+    <None Remove="Components\Playlist\" />
+    <None Remove="Components\Toast\" />
+    <None Remove="Components\Course\CourseHeader\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Shared\UI\Input\TextField">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Langueedu.Sdk\Langueedu.Sdk.csproj" />
+  </ItemGroup>
+</Project>

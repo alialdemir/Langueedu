@@ -1,4 +1,4 @@
-namespace Langueedu.Web.Client.Models;
+namespace Langueedu.Web.Shared.Models;
 
 public class LangueeduWebConfiguration
 {

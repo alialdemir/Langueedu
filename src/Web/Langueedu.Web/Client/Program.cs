@@ -1,7 +1,7 @@
 ﻿using Blazored.LocalStorage;
 // using CurrieTechnologies.Razor.SweetAlert2;
 using Langueedu.Sdk.Identity.Response;
-using Langueedu.Web.Client.Models;
+using Langueedu.Web.Shared.Models;
 using Langueedu.Web.Components.Provider;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
