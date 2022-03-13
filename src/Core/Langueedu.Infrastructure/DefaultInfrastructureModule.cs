@@ -1,7 +1,10 @@
 ﻿using System.Reflection;
 using Autofac;
 using Langueedu.Core.Entities.PlaylistAggregate;
+using Langueedu.Core.Interfaces;
 using Langueedu.Infrastructure.Data;
+using Langueedu.Infrastructure.Logging;
+using Langueedu.Infrastructure.Services;
 using Langueedu.SharedKernel.Interfaces;
 using MediatR;
 using MediatR.Pipeline;
@@ -57,6 +60,15 @@ public class DefaultInfrastructureModule : Module
     builder
         .RegisterType<Mediator>()
         .As<IMediator>()
+        .InstancePerLifetimeScope();
+
+    builder.RegisterGeneric(typeof(LoggerAdapter<>))
+        .As(typeof(IAppLogger<>))
+        .InstancePerLifetimeScope();
+
+    builder
+        .RegisterType<AccountService>()
+        .As<IAccountService>()
         .InstancePerLifetimeScope();
 
     builder.Register<ServiceFactory>(context =>

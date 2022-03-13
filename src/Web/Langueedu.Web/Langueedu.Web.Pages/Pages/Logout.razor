@@ -1,5 +1,5 @@
 ﻿@page "/logout"
-@using Langueedu.Sdk.Identity
+@using Langueedu.Sdk.Account
 
 @code {
 
@@ -16,13 +16,13 @@
     NavigationManager NavManeger { get; set; }
 
     [Inject]
-    IIdentityService IdentityService { get; set; }
+    IAccountService IdentityService { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        await IdentityService.SignOutAsync();
+        @* await IdentityService.SignOutAsync(); *@
 
-        await localStorageService.RemoveItemAsync("token");
+        @* await localStorageService.RemoveItemAsync("token"); *@
 
         (AuthenticationStateProvider as AuthStateProvider).NotifyUserLogout();
 

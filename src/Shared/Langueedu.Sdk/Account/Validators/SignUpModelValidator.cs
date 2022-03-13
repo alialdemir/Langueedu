@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
-using Langueedu.Sdk.Identity.Response;
+using Langueedu.Sdk.Account.Response;
 
-namespace Langueedu.Sdk.Identity.Validators
+namespace Langueedu.Sdk.Account.Validators
 {
   public class SignUpModelValidator : AbstractValidator<SignUpModel>
   {

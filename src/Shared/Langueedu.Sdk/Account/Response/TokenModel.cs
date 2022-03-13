@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Langueedu.Sdk.Identity.Response
+namespace Langueedu.Sdk.Account.Response
 {
   public class TokenModel
   {
@@ -12,11 +12,5 @@ namespace Langueedu.Sdk.Identity.Response
 
     [JsonPropertyName("token_type")]
     public string TokenType { get; set; }
-
-    [JsonPropertyName("refresh_token")]
-    public string RefreshToken { get; set; }
-
-    [JsonPropertyName("scope")]
-    public string Scope { get; set; }
   }
 }

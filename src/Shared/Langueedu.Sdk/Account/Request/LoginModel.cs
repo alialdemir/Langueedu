@@ -1,4 +1,4 @@
-﻿namespace Langueedu.Sdk.Identity.Request
+﻿namespace Langueedu.Sdk.Account.Request
 {
   public class LoginModel
   {

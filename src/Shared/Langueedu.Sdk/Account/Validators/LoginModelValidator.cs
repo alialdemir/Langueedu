@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Langueedu.Sdk.Identity.Request;
+using Langueedu.Sdk.Account.Request;
 
-namespace Langueedu.Sdk.Identity.Validators
+namespace Langueedu.Sdk.Account.Validators
 {
   public class LoginModelValidator : AbstractValidator<LoginModel>
   {

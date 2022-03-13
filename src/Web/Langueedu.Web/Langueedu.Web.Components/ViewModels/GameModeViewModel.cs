@@ -61,7 +61,7 @@ public class GameModeViewModel : ViewModelBase
       CourseMode = CourseModes.GapFilling,
     });
 
-    ShowModal<Components.LeCourse>(string.Empty, modalParams, new ModalOptions()
+    ShowModal<Langueedu.Web.Components.LeCourse>(string.Empty, modalParams, new ModalOptions()
     {
       HideCloseButton = false,
       HideHeader = true,

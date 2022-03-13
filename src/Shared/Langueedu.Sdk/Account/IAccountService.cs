@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Langueedu.Sdk.Identity.Request;
-using Langueedu.Sdk.Identity.Response;
+using Langueedu.Sdk.Account.Request;
+using Langueedu.Sdk.Account.Response;
 
-namespace Langueedu.Sdk.Identity
+namespace Langueedu.Sdk.Account
 {
-  public interface IIdentityService
+  public interface IAccountService
   {
     Task<Result<TokenModel>> SignInAsync(LoginModel loginModel);
     Task SignOutAsync();

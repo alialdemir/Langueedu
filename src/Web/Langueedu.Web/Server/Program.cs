@@ -13,8 +13,6 @@ string langueeduApiUrl = builder.Configuration.GetValue<string>("LangueeduApiUrl
 
 services.AddComponents();
 
-services.AddLangueeduSdk(langueeduApiUrl, string.Empty);
-
 services.AddControllersWithViews();
 
 services.AddRazorPages();
@@ -24,11 +22,6 @@ services
     .Bind(builder.Configuration);
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
-
-// services.AddSweetAlert2(options =>
-// {
-//   options.Theme = SweetAlertTheme.Dark;
-// });
 
 var app = builder.Build();
 
@@ -64,7 +57,7 @@ app.Use(async (context, next) =>
   {
     var langueeduWebConfiguration = serviceProvider.GetRequiredService<IOptions<LangueeduWebConfiguration>>();
 
-    context.Response.Cookies.Append("LangueeduWebConfiguration", JsonSerializer.Serialize(langueeduWebConfiguration.Value));
+    context.Response.Cookies.Append(nameof(LangueeduWebConfiguration), JsonSerializer.Serialize(langueeduWebConfiguration.Value));
   }
 
   await next(context);

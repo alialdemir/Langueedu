@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
-using Langueedu.Sdk.Identity;
-using Langueedu.Sdk.Identity.Request;
-using Langueedu.Sdk.Identity.Response;
+using Langueedu.Sdk.Account;
+using Langueedu.Sdk.Account.Request;
+using Langueedu.Sdk.Account.Response;
 using Langueedu.Web.Components.Interfaces;
 using Langueedu.Web.Shared.Utilities;
 
@@ -11,16 +11,16 @@ public class SignUpViewModel : ViewModelBase
 {
   private SignUpModel _signUpModel = new();
   private ICommand _signUpCommand;
-  private readonly IIdentityService _identityService;
+  private readonly IAccountService _accountService;
   private readonly SignInViewModel _signInViewModel;
   private readonly ICultureService _cultureService;
 
-  public SignUpViewModel(IIdentityService identityService,
+  public SignUpViewModel(IAccountService accountService,
                          SignInViewModel signInViewModel,
                          IServiceProvider serviceProvider,
                          ICultureService cultureService) : base(serviceProvider)
   {
-    _identityService = identityService;
+    _accountService = accountService;
     _signInViewModel = signInViewModel;
     _cultureService = cultureService;
   }
@@ -42,7 +42,7 @@ public class SignUpViewModel : ViewModelBase
 
     SignUpModel.LanguageCode = culture;
 
-    var response = await _identityService.SignUpAsync(SignUpModel);
+    var response = await _accountService.SignUpAsync(SignUpModel);
     if (!response.IsSuccess)
     {
       await ShowErrorAsync(response.Errors);

@@ -1,10 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using Langueedu.Core.Interfaces;
-using Langueedu.Infrastructure.Configuration;
+using System.Text;
 using Langueedu.Infrastructure.Data;
-using Langueedu.Infrastructure.Logging;
 using Langueedu.Infrastructure.Mapping;
-using Langueedu.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Langueedu.Infrastructure;
 
@@ -19,10 +17,6 @@ public static class StartupSetup
 {
   public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
   {
-    services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-
-    services.AddScoped<IAccountService, AccountService>();
-
     services.AddAutoMapper(typeof(UserProfile));
 
     services.AddDbContext(configuration);
@@ -37,9 +31,8 @@ public static class StartupSetup
 
   internal static void ConfigureIdentity(this IApplicationBuilder app)
   {
-    app.UseIdentityServer();
-    app.UseAuthentication();
     app.UseAuthorization();
+    app.UseAuthentication();
   }
 
   internal static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
@@ -59,34 +52,25 @@ public static class StartupSetup
         .AddEntityFrameworkStores<AppDbContext>()
         .AddDefaultTokenProviders();
 
-    var identityUrl = configuration.GetValue<string>("IdentityUrl");
+    var issuer = configuration.GetValue<string>("Issuer");
     var audience = configuration.GetValue<string>("Audience");
-    var identitySecret = configuration.GetValue<string>("IdentitySecret");
-
-    var builder = services.AddIdentityServer(options =>
-   {
-     options.IssuerUri = identityUrl;
-   })
-       .AddDeveloperSigningCredential()// not recommended for production - you need to store your key material somewhere secure
-       .AddInMemoryApiScopes(Config.GetApiScopes)
-       .AddInMemoryApiResources(Config.Apis)
-       .AddInMemoryClients(Config.Clients(identityUrl, identitySecret))
-       .AddInMemoryIdentityResources(Config.Ids)
-       .AddAspNetIdentity<User>();
+    var signingKey = configuration.GetValue<string>("SigningKey");
 
     services
-        .AddAuthentication(options =>
-        {
-          options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-          options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-        .AddJwtBearer(options =>
-        {
-          options.Authority = identityUrl;
-          options.Audience = audience;
-          options.RequireHttpsMetadata = false;
-          options.TokenValidationParameters.ValidateAudience = false;
-        });
+    .AddAuthorization()
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+ {
+   options.TokenValidationParameters = new TokenValidationParameters()
+   {
+     ValidateActor = true,
+     ValidateAudience = true,
+     ValidateLifetime = true,
+     ValidateIssuerSigningKey = true,
+     ValidIssuer = issuer,
+     ValidAudience = audience,
+     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey))
+   };
+ });
 
     services.Configure<IdentityOptions>(options =>
     {

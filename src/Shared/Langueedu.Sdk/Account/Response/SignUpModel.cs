@@ -1,4 +1,4 @@
-﻿namespace Langueedu.Sdk.Identity.Response
+﻿namespace Langueedu.Sdk.Account.Response
 {
   public class SignUpModel
   {

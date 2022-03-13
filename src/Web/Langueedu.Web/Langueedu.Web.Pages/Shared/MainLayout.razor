@@ -1,5 +1,5 @@
-﻿@inherits LayoutComponentBase
-@namespace Langueedu.Web.Pages
+﻿@namespace Langueedu.Pages.Shared
+@inherits LayoutComponentBase
 
 <div class="page-wrapper">
     <div class="page-main-header">
@@ -26,7 +26,7 @@
 
 @code
 {
-    @* [CascadingParameter]
+    [CascadingParameter]
     public Task<AuthenticationState> AuthState { get; set; }
 
 
@@ -41,5 +41,5 @@
 
         if (!authState.User.Identity.IsAuthenticated)
             NavigationManager.NavigateTo("/SignIn");
-    } *@
+    }
 }

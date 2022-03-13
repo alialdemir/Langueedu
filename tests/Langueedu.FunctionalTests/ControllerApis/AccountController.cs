@@ -1,17 +1,17 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using Langueedu.API;
-using Langueedu.Sdk.Identity.Response;
+using Langueedu.Sdk.Account.Response;
 using Xunit;
 
 namespace Langueedu.FunctionalTests.ControllerApis;
 
 [Collection("Sequential1")]
-public class IdentityController : IClassFixture<CustomWebApplicationFactory<WebMarker>>
+public class AccountController : IClassFixture<CustomWebApplicationFactory<WebMarker>>
 {
   private readonly HttpClient _client;
 
-  public IdentityController(CustomWebApplicationFactory<WebMarker> factory)
+  public AccountController(CustomWebApplicationFactory<WebMarker> factory)
   {
     factory.IsMockAuthentication = false;
     _client = factory.CreateClient();
@@ -39,7 +39,6 @@ public class IdentityController : IClassFixture<CustomWebApplicationFactory<WebM
     Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
     Assert.NotNull(token);
     Assert.NotNull(token?.AccessToken);
-    Assert.Equal(scopes, token?.Scope);
     Assert.Equal("Bearer", token?.TokenType);
   }
 

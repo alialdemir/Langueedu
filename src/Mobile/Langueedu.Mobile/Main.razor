@@ -1,22 +1,23 @@
 ﻿@* <Router AppAssembly="@GetType().Assembly"
-AdditionalAssemblies="new[] { typeof(MainLayout).Assembly}">
-	<Found Context="routeData">
-		<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-	</Found>
-	<NotFound>
-		<LayoutView Layout="@typeof(MainLayout)">
-			<p>Sorry, there's nothing at this address.</p>
-		</LayoutView>
-	</NotFound>
-</Router> *@
+    AdditionalAssemblies="new[] { typeof(MainLayout).Assembly}">
+    <Found Context="routeData">
+    <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+    <LayoutView Layout="@typeof(MainLayout)">
+    <p>Sorry, there's nothing at this address.</p>
+    </LayoutView>
+    </NotFound>
+    </Router> *@
 
 <LeToast />
 
 <CascadingAuthenticationState>
     <CascadingBlazoredModal>
-        <Router AppAssembly="@GetType().Assembly" AdditionalAssemblies="new[] { typeof(Langueedu.Web.Pages.MainLayout).Assembly}">
+        <Router AppAssembly="@GetType().Assembly"
+            AdditionalAssemblies="new[] { typeof(Langueedu.Maui.Pages.MainLayout).Assembly}">
             <Found Context="routeData">
-                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Langueedu.Web.Pages.MainLayout)">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Langueedu.Maui.Pages.MainLayout)">
 
                     <Authorizing>
                         <text> Please wait, we are authorizing the user </text>
@@ -29,7 +30,7 @@ AdditionalAssemblies="new[] { typeof(MainLayout).Assembly}">
 
             </Found>
             <NotFound>
-                <LayoutView Layout="@typeof(Langueedu.Web.Pages.MainLayout)">
+                <LayoutView Layout="@typeof(Langueedu.Maui.Pages.MainLayout)">
                     <p>Sorry, there's nothing at this address.</p>
                 </LayoutView>
             </NotFound>

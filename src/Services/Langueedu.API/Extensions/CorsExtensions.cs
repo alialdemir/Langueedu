@@ -12,14 +12,15 @@ public static partial class Startup
       options.AddPolicy(name: CORS_POLICY,
                    builder =>
                    {
-                     if (configuration != null)
-                     {
-                       string[] clientDomains = configuration.GetValue<string>("ClientDomain").Split("|");
-                       if (clientDomains.Any())
-                         builder = builder
-                          .WithOrigins(clientDomains.Select(x=>x.Replace("host.docker.internal", "localhost")
-                         .TrimEnd('/')).ToArray());
-                     }
+                     //  if (configuration != null)
+                     //  {
+                     //    string[] clientDomains = configuration.GetValue<string>("ClientDomain").Split("|");
+                     //    if (clientDomains.Any())
+                     //      builder = builder
+                     //       .WithOrigins(clientDomains.Select(x=>x.Replace("host.docker.internal", "localhost")
+                     //      .TrimEnd('/')).ToArray());
+                     //  }
+                     builder.AllowAnyOrigin();
                      builder.AllowAnyMethod();
                      builder.AllowAnyHeader();
                    });

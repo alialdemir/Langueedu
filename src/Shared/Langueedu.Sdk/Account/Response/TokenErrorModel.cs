@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Langueedu.Sdk.Identity.Response
+namespace Langueedu.Sdk.Account.Response
 {
   public class TokenErrorModel
   {

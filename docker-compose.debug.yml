@@ -12,8 +12,8 @@ services:
       - 5200:80
     environment:
       - Audience=langueedu_api
-      - IdentitySecret=Development Secret Key
-      - IdentityUrl=http://localhost:5200
+      - SigningKey=Development Secret Key
+      - Issuer=http://localhost:5200
       - ClientDomain=http://host.docker.internal:5205
       - SpotifyClientId=-
       - SpotifySecretId=-

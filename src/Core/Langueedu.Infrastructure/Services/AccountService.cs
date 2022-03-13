@@ -1,7 +1,9 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using AutoMapper;
+using Langueedu.Core.Entities.User;
 using Langueedu.Core.Enums;
+using Langueedu.Core.Features.Commands.Account.SignIn;
 using Langueedu.Core.Features.Commands.Account.SignUp;
 using Langueedu.Core.Features.Commands.Balance.BalanceIncrease;
 using Langueedu.Core.Interfaces;
@@ -25,6 +27,27 @@ public class AccountService : IAccountService
     _userManager = userManager;
     _mapper = mapper;
     _mediator = mediator;
+  }
+
+  public async Task<Result<IUser>> SingInAsync(SignInCommand signIn)
+  {
+    if (signIn == null)
+      return Result<IUser>.Error("User information cannot be null.");
+
+    var validator = new SignInCommandValidator();
+    var valid = validator.Validate(signIn);
+    if (!valid.IsValid)
+      return Result<IUser>.Invalid(valid.AsErrors());
+
+    var user = await _userManager.FindByNameAsync(signIn.UserName);
+    if (user == null)
+      return Result<IUser>.Error("Username or password is incorrect.");
+
+    bool checkPassword = await _userManager.CheckPasswordAsync(user, signIn.Password);
+    if (!checkPassword)
+      return Result<IUser>.Error("Username or password is incorrect.");
+
+    return Result<IUser>.Success(user);
   }
 
   public async Task<Result<string>> SingUpAsync(SignUpCommand signUp)

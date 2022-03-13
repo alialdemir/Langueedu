@@ -24,24 +24,24 @@
     <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
-    <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4"/>
-    <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4"/>
-    <MauiImage Include="Resources\Images\*"/>
-    <MauiFont Include="Resources\Fonts\*"/>
+    <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+    <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+    <MauiImage Include="Resources\Images\*" />
+    <MauiFont Include="Resources\Fonts\*" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0"/>
-    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.0.30"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.2"/>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Properties\launchSettings.json"/>
+    <Content Remove="Properties\launchSettings.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Shared/*.razor.css" CssScope="my-custom-scope"/>
+    <None Update="Shared/*.razor.css" CssScope="my-custom-scope" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Web\Langueedu.Web\Langueedu.Web.Pages\Langueedu.Maui.Pages.csproj"/>
+    <ProjectReference Include="..\..\Web\Langueedu.Web\Langueedu.Web.Pages\Langueedu.Maui.Pages.csproj" />
   </ItemGroup>
 </Project>

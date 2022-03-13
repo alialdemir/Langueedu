@@ -38,5 +38,10 @@ public class DefaultCoreModule : Module
        .RegisterType<TrackAdapter>()
        .As<ITrackAdapter>()
        .InstancePerLifetimeScope();
+
+    builder
+       .RegisterType<TokenService>()
+       .As<ITokenService>()
+       .InstancePerLifetimeScope();
   }
 }

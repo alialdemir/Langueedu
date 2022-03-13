@@ -60,15 +60,6 @@
       }
     }
 
-    /// <summary>
-    /// Gets the ClientId
-    /// </summary>
-    public static string ClientId = "blazor";
-
-    /// <summary>
-    /// Gets the ClientId
-    /// </summary>
-    public static string ClientSecret = "Development Secret Key";
 
     /// <summary>
     /// Gets or sets the GatewaEndpoint
@@ -81,11 +72,6 @@
     public static string LogoutEndpoint { get; set; }
 
     /// <summary>
-    /// Gets or sets the Scope
-    /// </summary>
-    public static string Scope = "langueedu_api langueedu_web offline_access openid profile";
-
-    /// <summary>
     /// Gets or sets the TokenEndpoint
     /// </summary>
     public static string TokenEndpoint { get; set; }
@@ -96,9 +82,9 @@
     /// <param name="endpoint">The endpoint <see cref="string"/></param>
     private static void UpdateEndpoint(string endpoint)
     {
-      var connectBaseEndpoint = $"{endpoint}/connect";
+      var connectBaseEndpoint = $"{endpoint}";
       AuthorizeEndpoint = $"{connectBaseEndpoint}/authorize";
-      TokenEndpoint = $"{connectBaseEndpoint}/token";
+      TokenEndpoint = $"{connectBaseEndpoint}/api/v1/accounts/token";
       LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
     }
 

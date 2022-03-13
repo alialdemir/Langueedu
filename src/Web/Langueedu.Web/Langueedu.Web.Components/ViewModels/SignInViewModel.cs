@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using Blazored.LocalStorage;
-using Langueedu.Sdk.Identity;
-using Langueedu.Sdk.Identity.Request;
+using Langueedu.Sdk.Account;
+using Langueedu.Sdk.Account.Request;
 using Langueedu.Web.Components.Provider;
 using Langueedu.Web.Shared.Utilities;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -12,18 +12,18 @@ public class SignInViewModel : ViewModelBase
 {
   private LoginModel _loginModel = new() { UserName = "witcherfearless", Password = "12345678" };
   private ICommand _loginCommand;
-  private readonly IIdentityService _identityService;
+  private readonly IAccountService _accountService;
   private readonly ILocalStorageService _localStorageService;
   private readonly HttpClient _httpClient;
   private readonly AuthenticationStateProvider _authenticationStateProvider;
 
-  public SignInViewModel(IIdentityService identityService,
+  public SignInViewModel(IAccountService accountService,
                          ILocalStorageService localStorageService,
                          HttpClient httpClient,
                          IServiceProvider serviceProvider,
                          AuthenticationStateProvider authenticationStateProvider) : base(serviceProvider)
   {
-    _identityService = identityService;
+    _accountService = accountService;
     _localStorageService = localStorageService;
     _httpClient = httpClient;
     _authenticationStateProvider = authenticationStateProvider;
@@ -39,7 +39,7 @@ public class SignInViewModel : ViewModelBase
 
   private async Task LoginCommandExecute()
   {
-    var response = await _identityService.SignInAsync(LoginModel);
+    var response = await _accountService.SignInAsync(LoginModel);
     if (!response.IsSuccess)
     {
       await ShowErrorAsync(response.Errors);
@@ -47,9 +47,11 @@ public class SignInViewModel : ViewModelBase
       return;
     }
 
+    System.Console.WriteLine($"token: {response.Value.AccessToken}");
+
     await (_authenticationStateProvider as AuthStateProvider).NotifyUserLogin(response.Value);
 
-    NavigateTo("/Learn");
+    NavigateTo("/Learn", true);
   }
 
   public ICommand LoginCommand { get => _loginCommand ??= new Command(LoginCommandExecute); }

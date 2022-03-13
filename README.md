@@ -12,8 +12,8 @@ docker-compose up
 For mobile apps
 
 ```
-dotnet build -t:Run -f net6.0-android
-dotnet build -t:Run -f net6.0-ios
+dotnet watch build -t:Run -f net6.0-android
+dotnet watch build -t:Run -f net6.0-ios
 ```
 
 You should be able to make requests to localhost:5200 for the Web API, and localhost:5201 for the Web project once these commands complete. If you have any problems, especially with login. User name witcherfearless and password 12345678

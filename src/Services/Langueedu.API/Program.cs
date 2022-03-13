@@ -10,7 +10,6 @@ using Langueedu.Infrastructure;
 using Langueedu.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,10 +26,7 @@ builder.Services.AddCorsConfigure(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCore(builder.Configuration);
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-{
-  options.SerializerSettings.Converters.Add(new StringEnumConverter());
-});
+builder.Services.AddControllers();
 
 builder.Services.AddVersionedApiExplorer(options =>
    {
