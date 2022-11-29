@@ -1,0 +1,22 @@
+@namespace Langueedu.Components
+
+<div class="le-stylish-container">
+    @foreach (var item in Stylish)
+    {
+        <LeCard>
+            <LeCardBody>
+                <LeButton Command=@StylishCommand CommandParameter=@item FullWidth Color=@((Color)item.Color)>
+                    @item.Answer
+                </LeButton>
+            </LeCardBody>
+        </LeCard>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<StylishModel> Stylish { get; set; }
+
+    [Parameter]
+    public ICommand StylishCommand { get; set; }
+}

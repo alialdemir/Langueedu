@@ -1,0 +1,19 @@
+﻿@namespace Langueedu.Components
+
+@inherits UIComponentBase
+
+<LeElement HtmlTag="div" Class="form-group">
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <LeElement HtmlTag="label" Class="col-form-label pt-0">@Label</LeElement>
+    }
+
+    <InputText type=@InputType.ToDescriptionString() Class="form-control" @attributes="UserAttributes"
+        @bind-Value=@Value Placeholder=@Placeholder />
+
+
+    @if (ValidationFor != null)
+    {
+        <ValidationMessage For="@ValidationFor" />
+    }
+</LeElement>

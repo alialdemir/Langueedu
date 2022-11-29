@@ -1,0 +1,16 @@
+@namespace Langueedu.Components
+
+<div class="nav-right col pull-right right-menu le-dropdown-menu p-0">
+    <ul class="nav-menus">
+        <li class="onhover-dropdown">
+            @ChildContent
+        </li>
+    </ul>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+
+}

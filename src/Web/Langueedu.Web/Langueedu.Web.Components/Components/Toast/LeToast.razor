@@ -1,9 +1,0 @@
-﻿@inherits ToastBase
-
-@namespace Langueedu.Web.Components
-
-<div class='toastify toastify-right toastify-top @(IsVisible ? "on" : null) @BackgroundCssClass'>
-    <i onclick=@HideToast aria-label="Close" class="toast-close fa-solid fa-xmark"/>
-    <h5>@Heading</h5>
-    <p>@Message</p>
-</div>

@@ -7,7 +7,7 @@
 	  <UserSecretsId>91938b617a43f4f089eca175f953315c</UserSecretsId>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Client\Langueedu.Web.Client.csproj" />
@@ -21,4 +21,4 @@
 	<ItemGroup>
 		<Folder Include="Controllers\" />
 	</ItemGroup>
-</Project>
+</Project>	

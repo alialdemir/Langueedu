@@ -8,7 +8,7 @@ using Langueedu.Sdk.Utilities;
 
 namespace Langueedu.Sdk.Account
 {
-  internal class AccountService : ServiceBase, IAccountService
+  public class AccountService : ServiceBase, IAccountService
   {
     private const string API_URL_BASE = "/v1/Accounts";
 

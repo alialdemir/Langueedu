@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<NullableReferenceTypes>true</NullableReferenceTypes>
+		<NullableContextOptions>enable</NullableContextOptions>
+		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+	</PropertyGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.4" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj" />
+		<ProjectReference Include="..\Components\Langueedu.Components.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Pages\" />
+		<None Remove="Shared\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Pages\" />
+		<Folder Include="Shared\" />
+		<Folder Include="wwwroot\assets\" />
+		<Folder Include="wwwroot\assets\fonts\" />
+		<Folder Include="wwwroot\assets\images\" />
+		<Folder Include="wwwroot\assets\scripts\" />
+		<Folder Include="wwwroot\assets\scss\" />
+		<Folder Include="wwwroot\scripts\" />
+		<Folder Include="wwwroot\css\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="wwwroot\service-worker.js" />
+		<Content Remove="wwwroot\assets\" />
+		<Content Remove="wwwroot\assets\fonts\" />
+		<Content Remove="wwwroot\assets\images\" />
+		<Content Remove="wwwroot\assets\scripts\" />
+		<Content Remove="wwwroot\assets\scss\" />
+		<Content Remove="wwwroot\scripts\" />
+		<Content Remove="wwwroot\css\" />
+	</ItemGroup>
+	<ItemGroup>
+		<ServiceWorker Include="wwwroot\service-worker.js">
+			<PublishedContent>wwwroot\service-worker.published.js</PublishedContent>
+		</ServiceWorker>
+	</ItemGroup>
+</Project>

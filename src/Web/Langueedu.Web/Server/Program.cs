@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 // using CurrieTechnologies.Razor.SweetAlert2;
-using Langueedu.Web.Components.Provider;
+using Langueedu.Components.Provider;
 using Langueedu.Web.Server.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 string langueeduApiUrl = builder.Configuration.GetValue<string>("LangueeduApiUrl");
+
 
 services.AddComponents();
 
@@ -21,7 +22,9 @@ services
     .AddOptions<LangueeduWebConfiguration>()
     .Bind(builder.Configuration);
 
-builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+
+// services.AddLangueeduSdk(langueeduApiUrl, null);
 
 var app = builder.Build();
 

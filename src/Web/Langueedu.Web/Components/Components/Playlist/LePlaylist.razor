@@ -1,0 +1,19 @@
+﻿@inherits Langueedu.Components.ComponentBase
+@namespace Langueedu.Components
+
+@foreach (var playlist in Playlists)
+{
+    <LeCard>
+    <LeCardHeader Title="@playlist.Name">
+        <LeCreativeDots />
+    </LeCardHeader>
+    <LeCardBody Class="pl-3 overflow-hidden">
+        <div class="row learn-slider1">
+            @foreach (var track in playlist.Tracks)
+                {
+                    <LeTrack Track="@track" />
+                }
+            </div>
+        </LeCardBody>
+    </LeCard>
+}

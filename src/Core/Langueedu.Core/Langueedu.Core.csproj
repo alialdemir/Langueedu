@@ -5,103 +5,103 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ardalis.GuardClauses" Version="4.0.0"/>
-    <PackageReference Include="Ardalis.Result" Version="3.1.2"/>
-    <PackageReference Include="Ardalis.Specification" Version="6.0.1"/>
-    <PackageReference Include="Autofac" Version="6.3.0"/>
-    <PackageReference Include="MediatR" Version="10.0.1"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-    <PackageReference Include="Ardalis.Result.FluentValidation" Version="3.1.2"/>
-    <PackageReference Include="SpotifyAPI.Web" Version="6.2.0"/>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0"/>
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
+    <PackageReference Include="Ardalis.Result" Version="3.1.2" />
+    <PackageReference Include="Ardalis.Specification" Version="6.0.1" />
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Ardalis.Result.FluentValidation" Version="3.1.2" />
+    <PackageReference Include="SpotifyAPI.Web" Version="6.2.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Langueedu.SharedKernel\Langueedu.SharedKernel.csproj"/>
+    <ProjectReference Include="..\Langueedu.SharedKernel\Langueedu.SharedKernel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Extensions\"/>
-    <None Remove="AutoMapper"/>
-    <None Remove="Mapping\"/>
-    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection"/>
-    <None Remove="Enums\"/>
-    <None Remove="ProjectAggregate\Entities\CategoryAggregate\"/>
-    <None Remove="Interfaces\"/>
-    <None Remove="Services\"/>
-    <None Remove="Features\"/>
-    <None Remove="Features\Commands\"/>
-    <None Remove="Features\Queries\"/>
-    <None Remove="Features\Queries\Playlist\"/>
-    <None Remove="Validations\"/>
-    <None Remove="FluentValidation"/>
-    <None Remove="FluentValidation.DependencyInjectionExtensions"/>
-    <None Remove="FluentValidation.AspNetCore"/>
-    <None Remove="Ardalis.Result.FluentValidation"/>
-    <None Remove="Entities\"/>
-    <None Remove="Features\Queries\Playlist\GetAllPlaylist\"/>
-    <None Remove="Features\Queries\Playlist\GetPlaylistDetailById\"/>
-    <None Remove="Specifications\Playlist\"/>
-    <None Remove="Specifications\Track\"/>
-    <None Remove="Features\Queries\Track\"/>
-    <None Remove="Features\Queries\Track\GetTrackDetailById\"/>
-    <None Remove="Entities\User\"/>
-    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore"/>
-    <None Remove="Features\Commands\Account\"/>
-    <None Remove="Features\Commands\Account\SignUp\"/>
-    <None Remove="Features\Commands\Track\AddFollowerTrack %28copy%29\"/>
-    <None Remove="Entities\Duel\"/>
-    <None Remove="Entities\BalanceAggregate\"/>
-    <None Remove="Features\Queries\Balance\"/>
-    <None Remove="Specifications\Balance\"/>
-    <None Remove="Specifications\Lyrics\"/>
-    <None Remove="Features\Commands\Balance\"/>
-    <None Remove="Features\Queries\BalanceQuesries\GetBalanceByUserId\"/>
-    <None Remove="Factories\"/>
-    <None Remove="Features\Commands\Balance\BalanceIncrease\"/>
-    <None Remove="Features\Commands\Balance\BalanceDecrease\"/>
-    <None Remove="Entities\LanguageAggregate\"/>
-    <None Remove="Features\Commands\Track\TrackAdapter\"/>
-    <None Remove="Adapters\"/>
-    <None Remove="SpotifyAPI.Web"/>
-    <None Remove="Specifications\Artist\"/>
-    <None Remove="Specifications\AlbumSpec\"/>
-    <None Remove="Specifications\TrackSearch\"/>
-    <None Remove="Specifications\ArtistGenre\"/>
+    <None Remove="Extensions\" />
+    <None Remove="AutoMapper" />
+    <None Remove="Mapping\" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Enums\" />
+    <None Remove="ProjectAggregate\Entities\CategoryAggregate\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Services\" />
+    <None Remove="Features\" />
+    <None Remove="Features\Commands\" />
+    <None Remove="Features\Queries\" />
+    <None Remove="Features\Queries\Playlist\" />
+    <None Remove="Validations\" />
+    <None Remove="FluentValidation" />
+    <None Remove="FluentValidation.DependencyInjectionExtensions" />
+    <None Remove="FluentValidation.AspNetCore" />
+    <None Remove="Ardalis.Result.FluentValidation" />
+    <None Remove="Entities\" />
+    <None Remove="Features\Queries\Playlist\GetAllPlaylist\" />
+    <None Remove="Features\Queries\Playlist\GetPlaylistDetailById\" />
+    <None Remove="Specifications\Playlist\" />
+    <None Remove="Specifications\Track\" />
+    <None Remove="Features\Queries\Track\" />
+    <None Remove="Features\Queries\Track\GetTrackDetailById\" />
+    <None Remove="Entities\User\" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="Features\Commands\Account\" />
+    <None Remove="Features\Commands\Account\SignUp\" />
+    <None Remove="Features\Commands\Track\AddFollowerTrack %28copy%29\" />
+    <None Remove="Entities\Duel\" />
+    <None Remove="Entities\BalanceAggregate\" />
+    <None Remove="Features\Queries\Balance\" />
+    <None Remove="Specifications\Balance\" />
+    <None Remove="Specifications\Lyrics\" />
+    <None Remove="Features\Commands\Balance\" />
+    <None Remove="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
+    <None Remove="Factories\" />
+    <None Remove="Features\Commands\Balance\BalanceIncrease\" />
+    <None Remove="Features\Commands\Balance\BalanceDecrease\" />
+    <None Remove="Entities\LanguageAggregate\" />
+    <None Remove="Features\Commands\Track\TrackAdapter\" />
+    <None Remove="Adapters\" />
+    <None Remove="SpotifyAPI.Web" />
+    <None Remove="Specifications\Artist\" />
+    <None Remove="Specifications\AlbumSpec\" />
+    <None Remove="Specifications\TrackSearch\" />
+    <None Remove="Specifications\ArtistGenre\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\"/>
-    <Folder Include="Mapping\"/>
-    <Folder Include="Enums\"/>
-    <Folder Include="Interfaces\"/>
-    <Folder Include="Services\"/>
-    <Folder Include="Features\"/>
-    <Folder Include="Features\Commands\"/>
-    <Folder Include="Features\Queries\"/>
-    <Folder Include="Features\Queries\Playlist\"/>
-    <Folder Include="Validations\"/>
-    <Folder Include="Entities\"/>
-    <Folder Include="Features\Queries\Playlist\GetAllPlaylist\"/>
-    <Folder Include="Specifications\PlaylistSpec\"/>
-    <Folder Include="Features\Queries\Track\"/>
-    <Folder Include="Features\Queries\Track\GetTrackDetailById\"/>
-    <Folder Include="Entities\User\"/>
-    <Folder Include="Features\Commands\Account\"/>
-    <Folder Include="Features\Commands\Account\SignUp\"/>
-    <Folder Include="Features\Commands\Track\RemoveFollowerTrack\"/>
-    <Folder Include="Entities\CourseAggregate\"/>
-    <Folder Include="Entities\BalanceAggregate\"/>
-    <Folder Include="Features\Queries\BalanceQuesries\"/>
-    <Folder Include="Specifications\BalanceSpec\"/>
-    <Folder Include="Specifications\LyricsSpec\"/>
-    <Folder Include="Features\Commands\Balance\"/>
-    <Folder Include="Features\Queries\BalanceQuesries\GetBalanceByUserId\"/>
-    <Folder Include="Factories\"/>
-    <Folder Include="Features\Commands\Balance\BalanceIncrease\"/>
-    <Folder Include="Features\Commands\Balance\BalanceDecrease\"/>
-    <Folder Include="Entities\LanguageAggregate\"/>
-    <Folder Include="Features\Commands\Track\TrackAdapter\"/>
-    <Folder Include="Adapters\"/>
-    <Folder Include="Specifications\ArtistSpec\"/>
-    <Folder Include="Specifications\AlbumSpec\"/>
-    <Folder Include="Specifications\TrackSpec\"/>
+    <Folder Include="Extensions\" />
+    <Folder Include="Mapping\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="Features\" />
+    <Folder Include="Features\Commands\" />
+    <Folder Include="Features\Queries\" />
+    <Folder Include="Features\Queries\Playlist\" />
+    <Folder Include="Validations\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Features\Queries\Playlist\GetAllPlaylist\" />
+    <Folder Include="Specifications\PlaylistSpec\" />
+    <Folder Include="Features\Queries\Track\" />
+    <Folder Include="Features\Queries\Track\GetTrackDetailById\" />
+    <Folder Include="Entities\User\" />
+    <Folder Include="Features\Commands\Account\" />
+    <Folder Include="Features\Commands\Account\SignUp\" />
+    <Folder Include="Features\Commands\Track\RemoveFollowerTrack\" />
+    <Folder Include="Entities\CourseAggregate\" />
+    <Folder Include="Entities\BalanceAggregate\" />
+    <Folder Include="Features\Queries\BalanceQuesries\" />
+    <Folder Include="Specifications\BalanceSpec\" />
+    <Folder Include="Specifications\LyricsSpec\" />
+    <Folder Include="Features\Commands\Balance\" />
+    <Folder Include="Features\Queries\BalanceQuesries\GetBalanceByUserId\" />
+    <Folder Include="Factories\" />
+    <Folder Include="Features\Commands\Balance\BalanceIncrease\" />
+    <Folder Include="Features\Commands\Balance\BalanceDecrease\" />
+    <Folder Include="Entities\LanguageAggregate\" />
+    <Folder Include="Features\Commands\Track\TrackAdapter\" />
+    <Folder Include="Adapters\" />
+    <Folder Include="Specifications\ArtistSpec\" />
+    <Folder Include="Specifications\AlbumSpec\" />
+    <Folder Include="Specifications\TrackSpec\" />
   </ItemGroup>
 </Project>

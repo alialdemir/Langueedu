@@ -1,0 +1,13 @@
+﻿@namespace Langueedu.Components
+
+@inherits UIComponentBase
+<div class="@Classname">
+    @if (!string.IsNullOrEmpty(Title))
+    {
+        <h5>@Title</h5>
+    }
+    @if (ChildContent is not null)
+    {
+        @ChildContent
+    }
+</div>

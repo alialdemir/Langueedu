@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
+
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>Langueedu.Maui.Pages</RootNamespace>
+		<PackageId>Langueedu.Maui.Pages</PackageId>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Langueedu.Components\Langueedu.Maui.Components.csproj" />
+		<ProjectReference Include="..\Shared\Langueedu.Web.Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Pages\" />
+		<None Remove="Shared\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Pages\" />
+		<Folder Include="Shared\" />
+		<Folder Include="wwwroot\assets\" />
+		<Folder Include="wwwroot\assets\fonts\" />
+		<Folder Include="wwwroot\assets\images\" />
+		<Folder Include="wwwroot\assets\scripts\" />
+		<Folder Include="wwwroot\assets\scss\" />
+		<Folder Include="wwwroot\scripts\" />
+		<Folder Include="wwwroot\css\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="wwwroot\service-worker.js" />
+		<Content Remove="wwwroot\assets\" />
+		<Content Remove="wwwroot\assets\fonts\" />
+		<Content Remove="wwwroot\assets\images\" />
+		<Content Remove="wwwroot\assets\scripts\" />
+		<Content Remove="wwwroot\assets\scss\" />
+		<Content Remove="wwwroot\scripts\" />
+		<Content Remove="wwwroot\css\" />
+	</ItemGroup>
+</Project>

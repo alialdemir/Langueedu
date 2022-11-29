@@ -1,0 +1,44 @@
+﻿@namespace Langueedu.Components
+
+@inherits ComponentBase<SignUpViewModel>
+
+
+<div class="sub-cont">
+    <div class="img">
+        <div class="img__text m--up">
+            <h2>New here?</h2>
+            <p>Sign up and discover great amount of new opportunities!</p>
+        </div>
+        <div class="img__text m--in">
+            <h2>One of us?</h2>
+            <p>If you already has an account, just sign in. We've missed you!</p>
+        </div>
+        <div class="img__btn"><span class="m--up">Sign up</span><span class="m--in">Sign in</span></div>
+    </div>
+    <div>
+
+        <LeEditForm Class="theme-form" Model=@BindingContext.SignUpModel
+            ValidSubmitCommand=@BindingContext.SignUpCommand>
+            <h4 class="text-center">NEW USER</h4>
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.UserName Placeholder="User Name"
+                autocomplete="username" ValidationFor="@(() => BindingContext.SignUpModel.UserName)" />
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.Email Placeholder="Email" autocomplete="username"
+                ValidationFor="@(() => BindingContext.SignUpModel.Email)" />
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.Password Placeholder="Password"
+                InputType=@InputTypes.Password autocomplete="current-password"
+                ValidationFor="@(() => BindingContext.SignUpModel.Password)" />
+
+            <LeTextField @bind-Value=@BindingContext.SignUpModel.ConfirmPassword Placeholder="Confirm Password"
+                InputType=@InputTypes.Password autocomplete="current-password"
+                ValidationFor="@(() => BindingContext.SignUpModel.ConfirmPassword)" />
+
+            <div class="form-group form-row mt-3 mb-0">
+                <LeButton Type=@ButtonTypes.Submit FullWidth>Sign Up</LeButton>
+            </div>
+            <div class="login-divider"></div>
+        </LeEditForm>
+    </div>
+</div>

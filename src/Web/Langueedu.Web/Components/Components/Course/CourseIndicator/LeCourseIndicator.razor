@@ -1,0 +1,20 @@
+@namespace Langueedu.Components
+
+<div class="le-course-header">
+    <LeIndicatorCard Title="Score" SubTitle=@Indicator.TotalScore.ToString() />
+
+    <LeIndicatorCard Title="Gaps" SubTitle=@($"{Indicator.TotalUserGaps}/{Indicator.Gaps}") />
+
+    <LeIndicatorCard Title="Hits" SubTitle=@Indicator.TotalHits.ToString() />
+
+    <LeIndicatorCard Title="Fails" SubTitle=@Indicator.TotalFails.ToString() />
+</div>
+
+<div class="mb-3">
+    <LeProgressBar Value=@Indicator.Time />
+</div>
+
+@code {
+    [Parameter]
+    public CourseIndicatorModel Indicator { get; set; }
+}

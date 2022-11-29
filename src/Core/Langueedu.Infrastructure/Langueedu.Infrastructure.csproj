@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,48 +6,48 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="6.0.1"/>
-    <PackageReference Include="Autofac" Version="6.3.0"/>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0"/>
-    <PackageReference Include="Ardalis.EFCore.Extensions" Version="1.1.0"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" Version="6.0.2"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.2"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2"/>
-    <PackageReference Include="SQLite" Version="3.13.0"/>
-    <PackageReference Include="NETStandard.Library" Version="2.0.3"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-    <PackageReference Include="AutoMapper" Version="11.0.1"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.2"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2"/>
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="6.0.2"/>
+    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+    <PackageReference Include="Ardalis.EFCore.Extensions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="6.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Langueedu.Core\Langueedu.Core.csproj"/>
-    <ProjectReference Include="..\Langueedu.SharedKernel\Langueedu.SharedKernel.csproj"/>
+    <ProjectReference Include="..\Langueedu.Core\Langueedu.Core.csproj" />
+    <ProjectReference Include="..\Langueedu.SharedKernel\Langueedu.SharedKernel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="FluentValidation"/>
-    <None Remove="FluentValidation.DependencyInjectionExtensions"/>
-    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection"/>
-    <None Remove="Mapping\"/>
-    <None Remove="AutoMapper"/>
-    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore"/>
-    <None Remove="IdentityServer4.AspNetIdentity"/>
-    <None Remove="Configs\"/>
-    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer"/>
-    <None Remove="Services\"/>
-    <None Remove="Data\Config\Playlist\"/>
-    <None Remove="Data\Config\BalanceConfigs\"/>
-    <None Remove="SpotifyAPI.Web"/>
-    <None Remove="Data\Config\LanguageConfig\"/>
+    <None Remove="FluentValidation" />
+    <None Remove="FluentValidation.DependencyInjectionExtensions" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Mapping\" />
+    <None Remove="AutoMapper" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="IdentityServer4.AspNetIdentity" />
+    <None Remove="Configs\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Services\" />
+    <None Remove="Data\Config\Playlist\" />
+    <None Remove="Data\Config\BalanceConfigs\" />
+    <None Remove="SpotifyAPI.Web" />
+    <None Remove="Data\Config\LanguageConfig\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mapping\"/>
-    <Folder Include="Configuration\"/>
-    <Folder Include="Services\"/>
-    <Folder Include="Data\Config\CourseConfigs\"/>
-    <Folder Include="Data\Config\PlaylistConfigs\"/>
-    <Folder Include="Data\Config\BalanceConfigs\"/>
-    <Folder Include="Data\Config\LanguageConfig\"/>
+    <Folder Include="Mapping\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Services\" />
+    <Folder Include="Data\Config\CourseConfigs\" />
+    <Folder Include="Data\Config\PlaylistConfigs\" />
+    <Folder Include="Data\Config\BalanceConfigs\" />
+    <Folder Include="Data\Config\LanguageConfig\" />
   </ItemGroup>
 </Project>

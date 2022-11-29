@@ -7,13 +7,13 @@ using Langueedu.Sdk.Utilities;
 
 namespace Langueedu.Sdk.Playlist
 {
-  internal class PlaylistService : ServiceBase, IPlaylistService
+  public class PlaylistService : ServiceBase, IPlaylistService
   {
     private const string API_URL_BASE = "/v1/Playlists";
 
     public PlaylistService(IHttpClientFactory clientFactory,
                            IToastService toastService)
-        : base(clientFactory.CreateClient("LangueeduApi"),toastService)
+        : base(clientFactory.CreateClient("LangueeduApi"), toastService)
     {
     }
 

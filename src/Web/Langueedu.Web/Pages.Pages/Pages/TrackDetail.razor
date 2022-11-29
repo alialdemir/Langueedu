@@ -1,0 +1,12 @@
+@page "/{ArtistSlug}/{TrackSlug}/{TrackId:float}"
+
+@inherits Langueedu.Components.ComponentBase
+@namespace Langueedu.Pages
+
+<div class="user-profile social-app-profile">
+    <div class="row">
+        <div class="col-sm-12 box-col-12">
+            <LeTrackDetail TrackId=@TrackIdShort />
+        </div>
+    </div>
+</div>

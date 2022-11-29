@@ -1,4 +1,4 @@
-﻿using Langueedu.Web.Components.Provider;
+﻿using Langueedu.Components.Provider;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebView.Maui;
 

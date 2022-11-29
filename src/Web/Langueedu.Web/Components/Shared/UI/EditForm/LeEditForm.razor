@@ -1,0 +1,9 @@
+﻿@namespace Langueedu.Components
+
+@inherits UIComponentBase
+
+<EditForm class="@Class" Model="@Model" OnValidSubmit=@ValidFormSubmitted>
+    <FluentValidationValidator />
+
+    @ChildContent
+</EditForm>

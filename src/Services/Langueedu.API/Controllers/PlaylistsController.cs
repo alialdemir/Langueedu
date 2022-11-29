@@ -28,7 +28,6 @@ public class PlaylistsController : BaseApiController
   public async Task<IActionResult> GetAllPlaylists()
   {
     var playList = await _mediator.Send(new GetAllPlaylistsQuery());
-
     return playList.ToActionResult();
   }
 }

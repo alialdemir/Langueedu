@@ -1,0 +1,18 @@
+﻿@namespace Langueedu.Components
+
+@inherits ComponentBase<SignInViewModel>
+
+<LeEditForm Class="theme-form" Model=@BindingContext.LoginModel ValidSubmitCommand=@BindingContext.LoginCommand>
+    <h4 class="text-center">LOGIN 1ss</h4>
+
+    <LeTextField @bind-Value=@BindingContext.LoginModel.UserName Label="Username" autocomplete="username"
+        ValidationFor="@(() => BindingContext.LoginModel.UserName)" />
+
+    <LeTextField @bind-Value=@BindingContext.LoginModel.Password Label="Password" InputType=@InputTypes.Password
+        autocomplete="current-password" ValidationFor="@(() => BindingContext.LoginModel.Password)" />
+
+    <div class="form-group form-row mt-3 mb-0">
+        <LeButton Type=@ButtonTypes.Submit FullWidth>LOGIN</LeButton>
+    </div>
+    <div class="login-divider"></div>
+</LeEditForm>
